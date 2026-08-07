@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+@name.md를 준수해
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 이 폴더의 성격
