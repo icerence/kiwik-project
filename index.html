@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>풀무원 | 더 나은 세상을 위한 풀무원의 계획</title>
+  <meta name="description" content="eco-caring과 지구식단으로 지속가능한 미래를 만드는 풀무원의 ESG 활동을 소개합니다." />
+  <link rel="icon" href="data:," />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brand: #7bcc12;
+      --color-brand-ink: #052e00;
+      --color-brand-glow: rgba(0, 200, 83, 0.45);
+      --color-gray-200: #d9dade;
+      --font-sans: "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+    }
+  </style>
+
+  <style>
+    /* Nanum Square Neo는 tech stack에 없는 외부 폰트 CDN이 필요해 시스템 한글 서체 스택으로 대체 */
+
+    ::selection { background: #7bcc12; color: #052e00; }
+
+    .skip-link {
+      position: fixed;
+      top: -3rem;
+      left: 1rem;
+      z-index: 100;
+      background: #7bcc12;
+      color: #052e00;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 0.5rem;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    #smooth-wrapper { overflow: hidden; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: #7bcc12;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+    .swiper-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      width: 38px;
+      flex-shrink: 0;
+      border-radius: 9999px;
+      border: 1px solid #9ca3af;
+      background: #ffffff;
+      color: #4b5563;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .swiper-btn:hover { border-color: #7bcc12; color: #7bcc12; }
+    .swiper-btn:active { transform: scale(0.94); }
+    .swiper-btn:focus-visible { outline: 2px solid #7bcc12; outline-offset: 2px; }
+    .swiper-btn svg { width: 18px; height: 18px; }
+    .swiper-btn.swiper-button-disabled { opacity: 0.35; cursor: not-allowed; }
+    .swiper-btn-sm { height: 30px; width: 30px; }
+    .swiper-btn-sm svg { width: 14px; height: 14px; }
+
+    .swiper-pagination {
+      position: static !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      background: #9ca3af;
+      opacity: 1;
+      margin: 0 !important;
+      border-radius: 9999px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .swiper-pagination-bullet-active { background: #030712; transform: scale(1.15); }
+    .pagination-sm .swiper-pagination-bullet { width: 6px; height: 6px; }
+    .swiper-pagination-bullet:focus-visible { outline: 2px solid #7bcc12; outline-offset: 2px; }
+
+    .dot-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      width: 32px;
+      border-radius: 9999px;
+    }
+    .dot-btn .dot-mark {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: 10px;
+      width: 10px;
+      border-radius: 9999px;
+      background: #9ca3af;
+      transition: opacity 0.25s ease;
+    }
+    .dot-btn .dot-circle {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: #7bcc12;
+      box-shadow: 0 0 4px rgba(0, 200, 83, 0.45);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .dot-btn.is-active .dot-circle { opacity: 1; transform: scale(1); }
+    .dot-btn.is-active .dot-mark { opacity: 0; }
+    .dot-btn:focus-visible { outline: 2px solid #7bcc12; outline-offset: 3px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-gray-900 antialiased">
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ===== Header ===== -->
+      <header class="w-full border-b border-gray-200 bg-white">
+        <div class="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between px-4 sm:px-6">
+          <a href="#sec-hero" class="flex h-9 items-center gap-1.5 rounded border border-gray-400 px-2" aria-label="풀무원 홈으로 이동">
+            <svg class="h-[18px] w-[18px] text-brand" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M16 4C9 4 4 9 4 16c8 0 12-4 12-12Z" />
+              <path d="M5.2 15.4 15 5.6" stroke="white" stroke-width="1" stroke-linecap="round" />
+            </svg>
+            <span class="text-sm font-bold text-brand">풀무원</span>
+          </a>
+
+          <nav aria-label="주요 메뉴" class="hidden md:block">
+            <ul class="flex gap-6 text-sm text-gray-600">
+              <li><a class="nav-link py-2" href="#sec-hero">회사소개</a></li>
+              <li><a class="nav-link py-2" href="#sec-footprint">사회책임경영</a></li>
+              <li><a class="nav-link py-2" href="#sec-ecocaring">바른먹거리</a></li>
+              <li><a class="nav-link py-2" href="#sec-earthdiet-products">지구식단</a></li>
+              <li><a class="nav-link py-2" href="#sec-newsroom">뉴스룸</a></li>
+            </ul>
+          </nav>
+
+          <div class="flex items-center gap-2 sm:gap-4">
+            <div class="relative hidden sm:block">
+              <button id="search-btn" type="button" aria-expanded="false" aria-controls="search-panel"
+                class="flex items-center gap-2 rounded-lg border border-gray-400 px-3 py-2 text-sm text-gray-600 transition hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">
+                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <circle cx="9" cy="9" r="6" />
+                  <path d="m17 17-4-4" stroke-linecap="round" />
+                </svg>
+                검색
+              </button>
+              <div id="search-panel" class="hidden absolute right-0 top-[calc(100%+8px)] w-72 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
+                <label for="search-input" class="sr-only">검색어 입력</label>
+                <input id="search-input" type="search" placeholder="궁금한 내용을 검색해보세요"
+                  class="w-full rounded-lg border border-gray-400 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30" />
+              </div>
+            </div>
+
+            <div class="relative">
+              <button id="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false"
+                class="flex items-center gap-1 rounded-2xl bg-gray-100 px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" />
+                </svg>
+                <span>KOR</span>
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.2 7.2a.9.9 0 0 1 1.27 0L10 10.72l3.53-3.52a.9.9 0 1 1 1.27 1.27l-4.16 4.17a.9.9 0 0 1-1.28 0L5.2 8.47a.9.9 0 0 1 0-1.27Z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <ul id="lang-menu" role="listbox" aria-label="언어 선택"
+                class="hidden absolute right-0 top-[calc(100%+8px)] w-28 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 text-sm shadow-lg">
+                <li role="option" aria-selected="true"><button type="button" class="block w-full px-3 py-2 text-left font-bold text-gray-900 hover:bg-gray-50">한국어</button></li>
+                <li role="option" aria-selected="false"><button type="button" class="block w-full px-3 py-2 text-left text-gray-500 hover:bg-gray-50">English</button></li>
+              </ul>
+            </div>
+
+            <button id="menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu"
+              class="rounded-lg border border-gray-400 p-2 text-gray-600 md:hidden">
+              <svg id="menu-icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+              <svg id="menu-icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-4 py-4 md:hidden">
+          <ul class="flex flex-col gap-1 text-sm text-gray-700">
+            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-hero">회사소개</a></li>
+            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-footprint">사회책임경영</a></li>
+            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-ecocaring">바른먹거리</a></li>
+            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-earthdiet-products">지구식단</a></li>
+            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-newsroom">뉴스룸</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <main id="main" tabindex="-1">
+
+        <!-- ===== Hero ===== -->
+        <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-[560px] w-full items-center justify-center overflow-hidden sm:h-[680px] lg:h-[880px]">
+          <img src="assets/hero-hands.png" alt="흙 위에 새싹을 감싸 쥔 손과 그 손을 다시 감싸는 어른의 손, 함께 지구를 돌보는 모습" class="absolute inset-0 h-full w-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/65"></div>
+
+          <button id="play-btn" type="button" aria-label="풀무원 eco-caring 소개 영상 재생"
+            class="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/70 backdrop-blur transition hover:bg-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white sm:right-10 sm:top-10">
+            <svg class="ml-0.5 h-4 w-4" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg>
+          </button>
+
+          <div class="relative z-10 mx-auto flex h-full w-full max-w-[1200px] flex-col items-center justify-center gap-10 px-6 py-14 text-center sm:gap-14 lg:py-20">
+            <h1 id="hero-heading" class="hero-fade text-3xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl lg:leading-[1.08]">
+              더 나은 세상을 위한<br />풀무원의 계획
+            </h1>
+            <div class="hero-fade flex max-w-3xl flex-col items-center gap-2 text-white">
+              <p class="text-xl font-bold sm:text-2xl">늘어난 먹거리</p>
+              <p class="text-xl font-bold sm:text-2xl">줄어든 플라스틱 배출</p>
+              <p class="mt-3 text-sm leading-relaxed text-gray-100">
+                풀무원의 바른 계획인 eco-caring. 지구온도 상승을 1.5도 이하로 제한하기 위해 사업 전체 범위에서 탄소를 감축하는 Net Zero와
+                생물다양성 손실을 최소화하고 지속가능한 제품·서비스를 확대하는 Nature Positive를 실현하고자 합니다. 우리의 목표는 2022년
+                대비 2035년까지 온실가스 20% 감축 및 2050년 Net Zero 달성, 수자원 13% 감축, 플라스틱 20% 감축을 달성하는 것입니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== eco-caring이란? ===== -->
+        <section id="sec-ecocaring" aria-labelledby="eco-heading" class="w-full bg-white px-6 py-14 md:py-20">
+          <div class="mx-auto max-w-[1200px]">
+            <h2 id="eco-heading" class="reveal text-2xl font-bold text-gray-950 sm:text-3xl">eco-caring이란?</h2>
+
+            <div class="reveal mt-10 flex flex-col items-center gap-3.5 md:mt-14">
+              <div class="flex w-full items-center justify-center gap-3 sm:gap-5">
+                <button type="button" class="swiper-btn eco-prev" aria-label="이전 이미지">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+                </button>
+
+                <div class="swiper eco-swiper w-full max-w-[820px]">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide flex flex-col items-center gap-3.5">
+                      <img src="assets/eco-farm.png" alt="드론으로 촬영한 태양광 패널과 농경지가 어우러진 친환경 농장 전경" class="h-[240px] w-full rounded-2xl border border-gray-400 bg-gray-50 object-cover shadow-sm sm:h-[320px] lg:h-[384px]" />
+                      <p class="flex items-center gap-2 text-sm"><span class="font-bold text-gray-950">목표</span><span class="text-gray-400">· 2035·2050 감축 목표</span></p>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center gap-3.5">
+                      <img src="assets/eco-farm.png" alt="풀무원 eco-caring 추진 연혁을 상징하는 친환경 농장 전경" class="h-[240px] w-full rounded-2xl border border-gray-400 bg-gray-50 object-cover shadow-sm sm:h-[320px] lg:h-[384px]" />
+                      <p class="flex items-center gap-2 text-sm"><span class="font-bold text-gray-950">이력</span><span class="text-gray-400">· eco-caring 추진 연혁</span></p>
+                    </div>
+                    <div class="swiper-slide flex flex-col items-center gap-3.5">
+                      <img src="assets/eco-farm.png" alt="이해관계자와의 파트너십을 상징하는 친환경 농장 전경" class="h-[240px] w-full rounded-2xl border border-gray-400 bg-gray-50 object-cover shadow-sm sm:h-[320px] lg:h-[384px]" />
+                      <p class="flex items-center gap-2 text-sm"><span class="font-bold text-gray-950">협력</span><span class="text-gray-400">· 이해관계자 파트너십 현황</span></p>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" class="swiper-btn eco-next" aria-label="다음 이미지">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+                </button>
+              </div>
+              <div class="eco-pagination swiper-pagination"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 풀무원의 발자국 ===== -->
+        <section id="sec-footprint" aria-labelledby="footprint-heading" class="w-full bg-gray-50 px-6 py-14 md:py-20">
+          <div class="mx-auto max-w-[1200px]">
+            <h2 id="footprint-heading" class="reveal text-2xl font-bold text-gray-950 sm:text-3xl">풀무원의 발자국</h2>
+
+            <div class="reveal mt-10 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-2 md:gap-8">
+              <div class="flex flex-col items-center gap-3">
+                <h3 class="w-full text-base font-bold text-gray-950">수상내역</h3>
+                <div class="flex w-full items-center justify-center gap-2.5">
+                  <button type="button" class="swiper-btn swiper-btn-sm award-prev" aria-label="이전 수상내역">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+                  </button>
+                  <div class="swiper award-swiper w-full max-w-[384px] overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="assets/award.png" alt="2025 대한민국 친환경대상 시상식 현장" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/award.png" alt="국가고객만족도(NCSI) 1위 선정 시상식 현장" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/award.png" alt="ESG 우수기업 인증 획득 현장" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/award.png" alt="대한민국 일자리 으뜸기업 선정 현장" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/award.png" alt="동반성장위원회 우수기업 표창 수여식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                    </div>
+                  </div>
+                  <button type="button" class="swiper-btn swiper-btn-sm award-next" aria-label="다음 수상내역">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+                  </button>
+                </div>
+                <div class="award-pagination swiper-pagination pagination-sm"></div>
+              </div>
+
+              <div class="flex flex-col items-center gap-3">
+                <h3 class="w-full text-base font-bold text-gray-950">MOU 체결내역</h3>
+                <div class="flex w-full items-center justify-center gap-2.5">
+                  <button type="button" class="swiper-btn swiper-btn-sm mou-prev" aria-label="이전 MOU 체결내역">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+                  </button>
+                  <div class="swiper mou-swiper w-full max-w-[384px] overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="assets/mou.png" alt="지자체 탄소중립 협력 MOU 체결식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/mou.png" alt="스타트업 상생협력 MOU 체결식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/mou.png" alt="대학 연구기관과의 공동연구 협약식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/mou.png" alt="친환경 포장재 개발 협력 MOU 체결식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                      <div class="swiper-slide"><img src="assets/mou.png" alt="해외 파트너사와의 수출 협력 협약식" class="h-[220px] w-full object-cover sm:h-[256px]" /></div>
+                    </div>
+                  </div>
+                  <button type="button" class="swiper-btn swiper-btn-sm mou-next" aria-label="다음 MOU 체결내역">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+                  </button>
+                </div>
+                <div class="mou-pagination swiper-pagination pagination-sm"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 나는 지구식단 합니다 (배너) ===== -->
+        <section id="sec-earthdiet-intro" aria-labelledby="earthdiet-heading" class="relative flex h-[380px] w-full items-center justify-center overflow-hidden sm:h-[480px] lg:h-[672px]">
+          <img src="assets/forest.png" alt="빛이 스며드는 울창한 숲의 전경" class="absolute inset-0 h-full w-full object-cover" />
+          <div class="absolute inset-0 bg-black/45"></div>
+          <h2 id="earthdiet-heading" class="reveal relative z-10 px-6 text-center text-3xl font-bold text-white sm:text-5xl lg:text-6xl">
+            나는 지구식단 합니다
+          </h2>
+        </section>
+
+        <!-- ===== 풀무원 지구식단 (제품 캐로셀) ===== -->
+        <section id="sec-earthdiet-products" aria-labelledby="products-heading" class="w-full bg-white px-6 py-14 md:py-20">
+          <div class="mx-auto max-w-[1200px]">
+            <h2 id="products-heading" class="reveal text-2xl font-bold text-gray-950 sm:text-3xl">풀무원 지구식단</h2>
+
+            <div class="reveal mt-10 flex items-center justify-center gap-3 md:mt-14 md:gap-8">
+              <button type="button" class="swiper-btn products-prev" aria-label="이전 제품">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+              </button>
+
+              <div class="swiper products-swiper w-full max-w-[940px] py-2">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-1.png" alt="지구식단 대체육 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 대체육</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-2.png" alt="지구식단 식물성음료 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 식물성음료</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-1.png" alt="지구식단 두부면 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 두부면</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-2.png" alt="지구식단 견과류 스낵 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 견과류 스낵</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-1.png" alt="지구식단 저탄소 두부 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 저탄소 두부</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                  <div class="swiper-slide flex flex-col items-start gap-2 pb-2">
+                    <a href="#" class="block w-full overflow-hidden rounded-2xl border border-gray-400 bg-gray-50 shadow-sm transition hover:shadow-md">
+                      <img src="assets/product-2.png" alt="지구식단 오트밀크 제품" class="h-[220px] w-full object-cover sm:h-[300px]" />
+                    </a>
+                    <p class="text-sm font-bold text-gray-950">지구식단 오트밀크</p>
+                    <a href="#" class="text-xs text-gray-400 hover:text-brand hover:underline">구매하기 →</a>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="swiper-btn products-next" aria-label="다음 제품">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+              </button>
+            </div>
+            <div class="products-pagination swiper-pagination mt-4"></div>
+          </div>
+        </section>
+
+        <!-- ===== 뉴스룸 + 유튜브 ===== -->
+        <section id="sec-newsroom" aria-labelledby="newsroom-heading" class="w-full bg-white px-6 py-14 md:py-20">
+          <div class="mx-auto flex max-w-[1200px] flex-col gap-16">
+            <div>
+              <h2 id="newsroom-heading" class="reveal text-2xl font-bold text-gray-950 sm:text-3xl">뉴스룸</h2>
+              <div class="reveal mt-10 flex items-center justify-center gap-3 md:gap-6">
+                <button type="button" class="swiper-btn news-prev" aria-label="이전 뉴스">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+                </button>
+                <div class="swiper news-swiper w-full max-w-[880px]">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">풀무원, 친환경 우수 기업 선정</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">바른먹거리 건강한 식단 레시피 공개</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">지구식단 신제품 3종 런칭</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">풀무원, ESG 경영보고서 발간</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">지구식단 캠페인 확대 추진</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50"><img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" /></a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">풀무원, 탄소중립 파트너십 체결</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="swiper-btn news-next" aria-label="다음 뉴스">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+                </button>
+              </div>
+              <div class="news-pagination swiper-pagination mt-4"></div>
+            </div>
+
+            <div>
+              <h2 id="youtube-heading" class="reveal text-2xl font-bold text-gray-950 sm:text-3xl">유튜브</h2>
+              <div class="reveal mt-10 flex items-center justify-center gap-3 md:gap-6">
+                <button type="button" class="swiper-btn sns-prev" aria-label="이전 영상">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg>
+                </button>
+                <div class="swiper sns-swiper w-full max-w-[880px]">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">eco-caring 캠페인 영상</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">두부면 레시피 브이로그</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">풀무원 농장 체험기</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">지구식단 브랜드 필름</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">풀무원 사원 인터뷰</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                    <div class="swiper-slide">
+                      <article class="flex flex-col items-start gap-2">
+                        <a href="#" class="relative block w-full overflow-hidden rounded-xl border border-gray-400 bg-gray-50">
+                          <img src="assets/news-card.png" alt="" class="h-[130px] w-full object-cover" />
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="h-8 w-8" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M7 4.5v11l9-5.5-9-5.5Z" /></svg></span>
+                        </a>
+                        <a href="#" class="text-sm font-bold text-gray-950 hover:text-brand">지속가능경영 다큐멘터리</a>
+                        <span class="h-[6px] w-[100px] rounded-full bg-gray-400" aria-hidden="true"></span>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="swiper-btn sns-next" aria-label="다음 영상">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg>
+                </button>
+              </div>
+              <div class="sns-pagination swiper-pagination mt-4"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== Footer ===== -->
+      <footer class="w-full bg-gray-700 px-6 py-14 text-white md:py-20">
+        <div class="mx-auto flex max-w-[1200px] flex-col gap-10">
+          <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+            <div class="flex flex-col gap-3.5">
+              <p class="text-base font-bold">PULMUONE 리디자인 LO-FI</p>
+              <p class="max-w-xs text-sm text-gray-300">풀무원의 eco-caring과 지구식단을 소개하는 반응형 랜딩페이지 와이어프레임입니다.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-11">
+              <div class="flex flex-col gap-3 text-sm">
+                <p class="font-bold">COMPANY</p>
+                <a href="#" class="text-gray-300 hover:text-white">회사소개</a>
+                <a href="#" class="text-gray-300 hover:text-white">지속가능경영</a>
+                <a href="#" class="text-gray-300 hover:text-white">채용정보</a>
+              </div>
+              <div class="flex flex-col gap-3 text-sm">
+                <p class="font-bold">POLICIES</p>
+                <a href="#" class="text-gray-300 hover:text-white">개인정보처리방침</a>
+                <a href="#" class="text-gray-300 hover:text-white">이용약관</a>
+              </div>
+              <div class="flex flex-col gap-3 text-sm">
+                <p class="font-bold">CONTACT</p>
+                <a href="#" class="text-gray-300 hover:text-white">고객센터</a>
+                <a href="#" class="text-gray-300 hover:text-white">제휴문의</a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-3.5 border-t border-gray-500/60 pt-6">
+            <div class="flex flex-col gap-2 text-xs text-gray-400 sm:flex-row sm:justify-between">
+              <p>© 2026 Pulmuone ESG Redesign Lo-Fi Wireframe. All rights reserved.</p>
+              <p>Korean Eco-Friendly / Healthy Food Company</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ===== 우측 섹션 도트 내비게이션 ===== -->
+  <nav aria-label="섹션 바로가기" class="fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-5 lg:flex xl:right-8">
+    <button type="button" class="dot-btn" data-target="#sec-hero" aria-label="계획 섹션으로 이동" aria-current="true">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5V2.5Z" /><path d="M8 9h6M8 12h6M8 15h4" /></svg></span>
+    </button>
+    <button type="button" class="dot-btn" data-target="#sec-ecocaring" aria-label="eco-caring 섹션으로 이동" aria-current="false">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="white" aria-hidden="true"><path d="M16 4C9 4 4 9 4 16c8 0 12-4 12-12Z" /></svg></span>
+    </button>
+    <button type="button" class="dot-btn" data-target="#sec-footprint" aria-label="발자국 섹션으로 이동" aria-current="false">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="white" aria-hidden="true"><ellipse cx="7" cy="6" rx="2.2" ry="3.2" /><ellipse cx="13" cy="13" rx="2.2" ry="3.2" /></svg></span>
+    </button>
+    <button type="button" class="dot-btn" data-target="#sec-earthdiet-intro" aria-label="지구식단 소개 섹션으로 이동" aria-current="false">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7.5" /><path d="M2.5 10h15M10 2.5c2.5 2 2.5 13 0 15M10 2.5c-2.5 2-2.5 13 0 15" /></svg></span>
+    </button>
+    <button type="button" class="dot-btn" data-target="#sec-earthdiet-products" aria-label="지구식단 제품 섹션으로 이동" aria-current="false">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7.5" /><path d="M2.5 10h15M10 2.5c2.5 2 2.5 13 0 15M10 2.5c-2.5 2-2.5 13 0 15" /></svg></span>
+    </button>
+    <button type="button" class="dot-btn" data-target="#sec-newsroom" aria-label="뉴스룸 섹션으로 이동" aria-current="false">
+      <span class="dot-mark"></span>
+      <span class="dot-circle"><svg class="h-3 w-3" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="1.4" aria-hidden="true"><rect x="3" y="6" width="14" height="10" rx="1.5" /><path d="M7 6 10 2l3 4" /></svg></span>
+    </button>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <!-- ScrollSmoother requires ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <script>
+    // ---------- 헤더 인터랙션 ----------
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    function closeMobileMenu() {
+      menuBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.add('hidden');
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
+    }
+
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    const langBtn = document.getElementById('lang-btn');
+    const langMenu = document.getElementById('lang-menu');
+    langBtn.addEventListener('click', () => {
+      const expanded = langBtn.getAttribute('aria-expanded') === 'true';
+      langBtn.setAttribute('aria-expanded', String(!expanded));
+      langMenu.classList.toggle('hidden');
+    });
+
+    const searchBtn = document.getElementById('search-btn');
+    const searchPanel = document.getElementById('search-panel');
+    searchBtn.addEventListener('click', () => {
+      const expanded = searchBtn.getAttribute('aria-expanded') === 'true';
+      searchBtn.setAttribute('aria-expanded', String(!expanded));
+      searchPanel.classList.toggle('hidden');
+      if (!expanded) document.getElementById('search-input').focus();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+        langBtn.setAttribute('aria-expanded', 'false');
+        langMenu.classList.add('hidden');
+      }
+      if (!searchBtn.contains(e.target) && !searchPanel.contains(e.target)) {
+        searchBtn.setAttribute('aria-expanded', 'false');
+        searchPanel.classList.add('hidden');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        langBtn.setAttribute('aria-expanded', 'false');
+        langMenu.classList.add('hidden');
+        searchBtn.setAttribute('aria-expanded', 'false');
+        searchPanel.classList.add('hidden');
+        closeMobileMenu();
+      }
+    });
+
+    // ---------- GSAP ----------
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: reduceMotion ? 0 : 1.1,
+      normalizeScroll: true,
+      ignoreMobileResize: true,
+    });
+
+    gsap.timeline({ delay: 0.2 }).from('.hero-fade', {
+      autoAlpha: 0,
+      y: reduceMotion ? 0 : 30,
+      duration: reduceMotion ? 0.01 : 0.9,
+      stagger: 0.15,
+      ease: 'power2.out',
+    });
+
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.set(el, { autoAlpha: 0, y: reduceMotion ? 0 : 28 });
+      gsap.to(el, {
+        autoAlpha: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+      });
+    });
+
+    const playBtn = document.getElementById('play-btn');
+    playBtn.addEventListener('click', () => {
+      gsap.fromTo(playBtn, { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+    });
+
+    // ---------- 섹션 도트 내비게이션 ----------
+    const dotButtons = gsap.utils.toArray('.dot-btn');
+    dotButtons.forEach((btn) => {
+      const target = document.querySelector(btn.dataset.target);
+      if (!target) return;
+
+      ScrollTrigger.create({
+        trigger: target,
+        start: 'top center',
+        end: 'bottom center',
+        onToggle: (self) => {
+          if (self.isActive) {
+            dotButtons.forEach((b) => {
+              const active = b === btn;
+              b.classList.toggle('is-active', active);
+              b.setAttribute('aria-current', String(active));
+            });
+          }
+        },
+      });
+
+      btn.addEventListener('click', () => smoother.scrollTo(target, true, 'top top'));
+    });
+
+    document.querySelectorAll('a.nav-link, #mobile-menu a').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) smoother.scrollTo(target, true, 'top top');
+          closeMobileMenu();
+        }
+      });
+    });
+
+    ScrollTrigger.refresh();
+
+    // ---------- Swiper 캐로셀 ----------
+    const a11y = { enabled: true };
+
+    new Swiper('.eco-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      navigation: { prevEl: '.eco-prev', nextEl: '.eco-next' },
+      pagination: { el: '.eco-pagination', clickable: true },
+    });
+
+    new Swiper('.award-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      navigation: { prevEl: '.award-prev', nextEl: '.award-next' },
+      pagination: { el: '.award-pagination', clickable: true },
+    });
+
+    new Swiper('.mou-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      navigation: { prevEl: '.mou-prev', nextEl: '.mou-next' },
+      pagination: { el: '.mou-pagination', clickable: true },
+    });
+
+    new Swiper('.products-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 32,
+      navigation: { prevEl: '.products-prev', nextEl: '.products-next' },
+      pagination: { el: '.products-pagination', clickable: true },
+      breakpoints: { 640: { slidesPerView: 2, slidesPerGroup: 2 } },
+    });
+
+    new Swiper('.news-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      navigation: { prevEl: '.news-prev', nextEl: '.news-next' },
+      pagination: { el: '.news-pagination', clickable: true },
+      breakpoints: { 640: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } },
+    });
+
+    new Swiper('.sns-swiper', {
+      loop: true,
+      keyboard: { enabled: true },
+      a11y,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      navigation: { prevEl: '.sns-prev', nextEl: '.sns-next' },
+      pagination: { el: '.sns-pagination', clickable: true },
+      breakpoints: { 640: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } },
+    });
+  </script>
+</body>
+</html>
