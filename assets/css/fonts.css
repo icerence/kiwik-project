@@ -1,0 +1,59 @@
+/* ------------------------------------------------------------------
+   fonts.css
+   kiwik-design/fonts 폴더에 있는 글꼴 파일 6개를 모두 등록한다.
+   - NanumSquareNeoTTF-aLt.woff2   Light      300
+   - NanumSquareNeoTTF-bRg.woff2   Regular    400
+   - NanumSquareNeoTTF-cBd.woff2   Bold       700
+   - NanumSquareNeoTTF-dEb.woff2   ExtraBold  800
+   - NanumSquareNeoTTF-eHv.woff2   Heavy      900
+   - NanumSquareNeo-Variable.woff2 가변폰트   300~900
+   가변폰트는 정적 폰트와 굵기 구간이 겹치므로 별도 패밀리로 등록한다.
+   ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "NanumSquare Neo";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeoTTF-aLt.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "NanumSquare Neo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeoTTF-bRg.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "NanumSquare Neo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeoTTF-cBd.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "NanumSquare Neo";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeoTTF-dEb.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "NanumSquare Neo";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeoTTF-eHv.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "NanumSquare Neo Variable";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("../../fonts/NanumSquareNeo-Variable.woff2") format("woff2");
+}
