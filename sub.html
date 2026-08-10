@@ -37,19 +37,16 @@
   /* ---------- 색: 회색 (index.html과 동일 값) ---------- */
   --color-gray-50: #f7f7f8;        /* Figma color/gray/50 */
   --color-gray-100: #efeff1;       /* Figma color/gray/100 — 푸터 배경 */
-  --color-gray-200: #d9dade;       /* Figma color/gray/200 */
-  --color-gray-400: #9ca1ab;       /* 푸터 구분자·버튼 테두리 */
+  --color-gray-200: #d9dade;       /* Figma color/gray/200 — 구분선 (시안 #e5e7eb 대치) */
+  --color-gray-400: #9ca1ab;       /* Figma color/gray/400 — 푸터 구분자·버튼 테두리, 캡션·날짜 (시안 #9ca3af 대치) */
 
-  /* ---------- 색: 글자 역할 (index.html과 동일 값) ---------- */
-  --color-gray-800: #31343b;   /* Figma color/text/primary */
-  --color-gray-600: #535964; /* Figma color/text/secondary */
-  --color-white: #ffffff;
+  /* ---------- 색: 회색 (이어서) ---------- */
+  --color-gray-800: #31343b;       /* Figma color/gray/800 — 본문 기본 */
+  --color-gray-600: #535964;       /* Figma color/gray/600 — 본문 보조·브레드크럼·메타 (시안 #4b5563 대치) */
+  --color-white: #ffffff;          /* Figma color/white */
 
-  /* ---------- 색: sub 시안에만 있는 값 ---------- */
-  --color-text-body: #4b5563;        /* Figma text/text-secondary — 본문 보조·브레드크럼·메타 */
-  --color-text-grey-out: #9ca3af;    /* Figma text/text-grey-out — 캡션·날짜·구분자 */
-  --color-text-strong: #030712;      /* Figma text/gray-800 — 추천 카드 제목 */
-  --color-border-grey-out: #e5e7eb;  /* Figma border/border-grey-out — 구분선 */
+  /* ---------- 색: sub 시안 전용 ---------- */
+  --color-gray-950: #17191c;         /* 디자인시스템 color/gray/950 — 추천 카드 제목 (시안 #030712 대치) */
   --color-scrim-banner-bottom: rgba(0, 0, 0, 0.70); /* Figma Banner Scrim 하단 정지점 */
 
   /* ---------- 반지름 (index.html과 동일) ---------- */
@@ -208,10 +205,10 @@
     <!-- Breadcrumbs — Figma node 3040:604 -->
     <nav class="flex flex-wrap items-center gap-2 py-6" aria-label="현재 위치">
       <ol class="flex flex-wrap items-center gap-2">
-        <li><a class="focus-ring text-sm text-text-body underline-offset-4 hover:underline" href="index.html">홈</a></li>
-        <li aria-hidden="true" class="text-xs text-text-grey-out">&gt;</li>
-        <li><a class="focus-ring text-sm text-text-body underline-offset-4 hover:underline" href="index.html#section2">사회책임경영</a></li>
-        <li aria-hidden="true" class="text-xs text-text-grey-out">&gt;</li>
+        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html">홈</a></li>
+        <li aria-hidden="true" class="text-xs text-gray-400">&gt;</li>
+        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html#section2">사회책임경영</a></li>
+        <li aria-hidden="true" class="text-xs text-gray-400">&gt;</li>
         <li><span class="text-sm font-bold text-lime-600" aria-current="page">친환경 케어 (Eco-Caring)</span></li>
       </ol>
     </nav>
@@ -223,13 +220,13 @@
       <article class="flex min-w-0 flex-col gap-8">
 
         <!-- Article Meta Row — Figma node 3040:612 -->
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-border-grey-out pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 pb-4">
           <p class="inline-flex rounded-sm bg-lime-600 px-2.5 py-1 text-xs font-bold text-white">우리의 실천</p>
 
           <div class="flex flex-wrap items-center gap-4 text-sm">
-            <p class="text-text-body">등록일: <time datetime="2026-03-20">2026.03.20</time></p>
-            <span aria-hidden="true" class="text-text-grey-out">|</span>
-            <p class="text-text-body">작성자: ESG환경경영팀</p>
+            <p class="text-gray-600">등록일: <time datetime="2026-03-20">2026.03.20</time></p>
+            <span aria-hidden="true" class="text-gray-400">|</span>
+            <p class="text-gray-600">작성자: ESG환경경영팀</p>
           </div>
         </div>
 
@@ -241,7 +238,7 @@
         <figure class="flex flex-col gap-3">
           <!-- 시안 전용 기사 사진이 없어 assets/images/product-1.png로 임시 대체 -->
           <img src="assets/images/product-1.png" alt="식물성 원료 기반 친환경 패키지를 적용한 풀무원 제품" class="aspect-video w-full rounded-2xl object-cover" loading="lazy" />
-          <figcaption class="text-center text-sm text-text-grey-out">
+          <figcaption class="text-center text-sm text-gray-400">
             ▲ 풀무원 R&amp;D 센터에서 자체 개발한 식물성 원료 기반 친환경 지속가능 용기 디자인
           </figcaption>
         </figure>
@@ -253,7 +250,7 @@
         <!-- Callout Box — Figma node 3040:624 -->
         <section class="flex flex-col gap-3 rounded-xl border border-lime-600 bg-green-50 p-6" aria-labelledby="kpi-title">
           <h2 id="kpi-title" class="text-lg font-extrabold text-green-900">주요 지속가능 성과지표 (Eco-Caring KPIs)</h2>
-          <ul class="flex list-inside list-disc flex-col gap-2 text-label text-text-body">
+          <ul class="flex list-inside list-disc flex-col gap-2 text-label text-gray-600">
             <li>수자원 및 해양 플라스틱 오염 방지를 위한 용기 전면 교체</li>
             <li>탄소 배출량 연간 약 150톤 가량의 직간접적 감축 효과 기대</li>
             <li>지속가능 원재료 소싱 비중을 2026년까지 전체 제품의 45%로 확대</li>
@@ -274,37 +271,37 @@
           <h2 id="recommend-title" class="text-lg font-extrabold text-gray-800">추천 콘텐츠</h2>
 
           <ul class="flex flex-col gap-4">
-            <li class="flex items-center gap-4 border-b border-border-grey-out pb-4">
+            <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
               <!-- 시안 전용 썸네일이 없어 기존 에셋으로 임시 대체 -->
               <img src="assets/images/about-media.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <p class="text-xs font-bold text-lime-600">Net Zero</p>
-                <h3 class="text-sm font-bold text-text-strong">
+                <h3 class="text-sm font-bold text-gray-950">
                   <a class="focus-ring" href="index.html#section2">2050 넷 제로 달성을 위한 단계별 로드맵</a>
                 </h3>
-                <p class="text-xs text-text-grey-out"><time datetime="2025-02-28">2025.02.28</time></p>
+                <p class="text-xs text-gray-400"><time datetime="2025-02-28">2025.02.28</time></p>
               </div>
             </li>
 
-            <li class="flex items-center gap-4 border-b border-border-grey-out pb-4">
+            <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
               <img src="assets/images/community-1.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <p class="text-xs font-bold text-lime-600">지구식단</p>
-                <h3 class="text-sm font-bold text-text-strong">
+                <h3 class="text-sm font-bold text-gray-950">
                   <a class="focus-ring" href="index.html#section3">지구식단과 함께하는 일상 속 탄소 감축법</a>
                 </h3>
-                <p class="text-xs text-text-grey-out"><time datetime="2025-03-10">2025.03.10</time></p>
+                <p class="text-xs text-gray-400"><time datetime="2025-03-10">2025.03.10</time></p>
               </div>
             </li>
 
-            <li class="flex items-center gap-4 border-b border-border-grey-out pb-4">
+            <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
               <img src="assets/images/eco-farm.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <p class="text-xs font-bold text-lime-600">수자원보호</p>
-                <h3 class="text-sm font-bold text-text-strong">
+                <h3 class="text-sm font-bold text-gray-950">
                   <a class="focus-ring" href="index.html#section2">지속가능 수자원 관리를 위한 풀무원의 수질 개선 프로젝트</a>
                 </h3>
-                <p class="text-xs text-text-grey-out"><time datetime="2025-01-15">2025.01.15</time></p>
+                <p class="text-xs text-gray-400"><time datetime="2025-01-15">2025.01.15</time></p>
               </div>
             </li>
           </ul>

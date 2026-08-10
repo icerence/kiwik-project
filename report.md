@@ -163,6 +163,34 @@
 Swiper가 wrapper에 픽셀 폭을 써 넣는 순간 트랙이 함께 밀리는 되먹임이다.
 `.card-swiper`에 `min-width: 0; max-width: 100%`를 넣어 끊었다.
 
+## 4.8 시스템에 없는 값 처리 (규칙: 대치 → 없으면 등록)
+
+### 1단계 — 유사 토큰으로 대치한 것
+
+`sub.html`이 sub 시안에서 가져온 4개는 kiwik 디자인시스템에 없는 **Tailwind 기본 팔레트 값**이었다.
+같은 역할·같은 계열에서 가장 가까운 시스템 변수로 대치했다.
+
+| 대치 전 | 대치 후 | 적용된 곳 |
+|---|---|---|
+| `--color-text-body` `#4b5563` | `--color-gray-600` `#535964` | 본문 보조·브레드크럼·메타 |
+| `--color-text-grey-out` `#9ca3af` | `--color-gray-400` `#9ca1ab` | 캡션·날짜·구분자 |
+| `--color-text-strong` `#030712` | `--color-gray-950` `#17191c` | 추천 카드 제목 |
+| `--color-border-grey-out` `#e5e7eb` | `--color-gray-200` `#d9dade` | 구분선 |
+
+대치로 서브 페이지의 본문·캡션·제목·구분선 색이 미세하게 달라졌다.
+
+### 2단계 — 유사값이 없어 `@theme`에 등록해 둔 것
+
+아래는 시스템 팔레트/스케일에 대응이 없어 변수로 남긴다.
+
+| 값 | 이유 |
+|---|---|
+| `--color-scrim-hero` · `--color-scrim-banner` · `--color-scrim-mobile-via` · `--color-scrim-banner-bottom` | `rgba(0,0,0,α)` 알파 오버레이. 팔레트는 불투명색만 다룬다 |
+| `--text-hero` · `--text-hero-sub` · `--text-section` · `--text-display*` · `--text-stat` · `--text-card*` | 1920px 캔버스 기준 `clamp()` 유동값. 시스템 Typography(`23:1273`)는 고정 스텝(12·14·16·18·20·24·30·36·48·60·72·96·128)만 정의한다 |
+| `--spacing-header-*` · `--spacing-news-thumb*` · `--spacing-social-pill-*` · `--spacing-hero-banner` · `--spacing-sidebar-col` · `--spacing-thumb` | 컴포넌트 고유 치수. 시스템 spacing 스케일에 대응이 없다 |
+
+`font/family/sans`는 `NanumSquare Neo`로 코드와 일치한다.
+
 ## 5. 판단이 필요한 항목
 
 ### 5.1 Hero 스크림 방향 — 시안과 접근성이 충돌
@@ -177,34 +205,6 @@ Swiper가 wrapper에 픽셀 폭을 써 넣는 순간 트랙이 함께 밀리는 
 
 모바일 시안(3007:2592)은 카드 3장이지만, 모바일에서 이 목록은 Swiper 캐로셀이라 슬라이드를 숨기면 빈 칸이 생긴다. 4장을 유지하고 사유를 주석으로 남겼다.
 
-### 5.4 sub.html의 색 4개 — 디자인시스템에 없음
-
-`sub.html`이 sub 시안에서 가져온 아래 4개는 kiwik 디자인시스템에 없는 **Tailwind 기본 팔레트 값**이다.
-규칙("시스템에 없는 값은 임의로 만들지 말고 멈추고 물어본다")에 따라 손대지 않았다.
-
-| 토큰 | 현재 값 | 같은 역할의 시스템 변수 |
-|---|---|---|
-| `--color-text-body` | `#4b5563` | `color/gray/600` `#535964` |
-| `--color-text-grey-out` | `#9ca3af` | `color/gray/400` `#9ca1ab` |
-| `--color-text-strong` | `#030712` | `color/gray/950` `#17191c` |
-| `--color-border-grey-out` | `#e5e7eb` | `color/gray/200` `#d9dade` |
-
-시스템 값으로 바꾸면 서브 페이지 본문·캡션·구분선 색이 미세하게 달라진다. 승인 필요.
-
-### 5.5 글자 크기 토큰 — 디자인시스템과 체계가 다름
-
-디자인시스템 Typography(`23:1273`)의 크기 체계는 **고정 스텝**(12·14·16·18·20·24·30·36·48·60·72·96·128)이다.
-반면 코드의 `--text-hero` · `--text-section` · `--text-display*` · `--text-stat` · `--text-card*`는
-1920px 캔버스 기준 `clamp()` 유동값이다.
-
-고정 스텝으로 바꾸면 반응형 거동이 통째로 달라지고 페이지 시안과도 어긋난다.
-어느 쪽을 기준으로 삼을지 결정이 필요해 손대지 않았다.
-참고로 `font/family/sans`는 `NanumSquare Neo`로 코드와 일치한다.
-
-### 5.6 스크림 색 — 시스템에 없음
-
-`--color-scrim-hero` · `--color-scrim-banner` · `--color-scrim-mobile-via` · `--color-scrim-banner-bottom`은
-`rgba(0,0,0,α)` 알파 오버레이라 시스템 팔레트에 대응 변수가 없다. `token-exempt`로 표기한 채 두었다.
 
 ## 6. 보류
 
