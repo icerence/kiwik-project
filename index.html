@@ -32,14 +32,11 @@
 
   /* ---------- 색: 브랜드 ---------- */
   --color-brand: #7bcc12;         /* lime/500 */
-  --color-brand-700: #65a80f;     /* text/brand, icon/brand — Eco-Caring 카드 강조색(제목·아이콘·태그) */
+  --color-lime-600: #60a10c;     /* 디자인시스템 color/lime/600 — Eco-Caring 카드 강조색(제목·아이콘·태그) */
   --color-green-50: #f2f9f3;      /* green/50 */
   --color-green-900: #002905;     /* green/900 */
   --color-green-950: #001903;     /* green/950 */
   --color-lime-800: #396204;      /* color/lime/800 — Eco-Caring 섹션 하단 배경 */
-  --color-badge-brand: #f1f8e7;   /* lime/100 */
-  --color-accent-globe: #4dad59;  /* green/400 */
-  --color-stat-bg: #263826;       /* StatBlock 배경(감축 목표 카드) */
 
   /* ---------- 색: 회색 (배경·선·보조 글자 공용) ---------- */
   --color-gray-50: #f7f7f8;       /* gray/50 */
@@ -47,21 +44,20 @@
   --color-gray-200: #d9dade;      /* gray/200 — 구분선. gray/100은 푸터 배경과 같은 색이라 선이 사라진다 */
   --color-gray-400: #9ca1ab;      /* gray/400 — 보조 라벨, 구분자, 버튼 테두리 */
 
-  --color-gray-700: #374151; /* token-exempt: @theme 정의 — gray/700 Eco-Caring 카드 본문 */
+  --color-gray-700: #40444d; /* token-exempt: @theme 정의 — 디자인시스템 color/gray/700. Eco-Caring 카드 본문 */
 
-  /* ---------- 색: 글자 역할 ---------- */
-  --color-text-primary: #31343b;  /* gray/800 */
-  --color-text-secondary: #535964;/* gray/600 */
-  --color-text-invert: #ffffff;   /* white */
-  --color-footer-body: #6b7280;   /* gray/500 */
+  /* ---------- 색: 회색·흰색 (이어서) ----------
+     역할 이름 별칭(--color-text-primary 등)은 두지 않는다.
+     이름·값 모두 디자인시스템 Color Palette(12:34)의 변수 경로를 따른다. */
+  --color-gray-800: #31343b;  /* gray/800 */
+  --color-gray-600: #535964;/* gray/600 */
+  --color-white: #ffffff;   /* white */
+  --color-gray-500: #6b7280;   /* gray/500 */
 
   /* ---------- 색: 스크림(사진 위 가독성 확보용) ---------- */
   --color-scrim-hero: rgba(0, 0, 0, 0.85); /* token-exempt: @theme 정의 */
   --color-scrim-banner: rgba(0, 0, 0, 0.45); /* token-exempt: @theme 정의 */
   --color-scrim-mobile-via: rgba(0, 0, 0, 0.70); /* token-exempt: @theme 정의 — Figma 모바일 Hero 스크림 중간값 */
-
-  /* ---------- 색: Hero CTA 버튼 ---------- */
-  --color-cta: #6ba842; /* token-exempt: Figma Hero CTA 버튼 색(lime/700 계열, node 3010:193) */
 
   /* ---------- 반지름 ---------- */
   --radius-sm: 4px;
@@ -92,7 +88,8 @@
 
   /* ---------- 비율 ---------- */
   --aspect-about: 38 / 25;
-  --aspect-featured: 2 / 1;
+  /* 시안 뉴스룸 대표 이미지 750×400 (Figma 3004:1293) */
+  --aspect-featured: 15 / 8;
   --aspect-thumb: 18 / 11;
   --aspect-community: 75 / 46;
   /* 시안 SNS 섹션 인스타그램 그리드 282x376 = 3:4 */
@@ -153,12 +150,24 @@
   --spacing-hairline: 1px;
   --spacing-line-thick: 2px;
   --spacing-outline: 3px;
+  /* Figma Value 카드 상단 액센트 바 두께 4px (3004:1353) */
+  --spacing-accent-bar: 4px;
   --spacing-outline-offset: 2px;
   --spacing-underline-offset: 4px;
 
   /* ---------- 사진 위 흰 글자용 그림자 (색은 색 토큰에서 파생) ---------- */
   --shadow-text-hero: 0 1px 12px color-mix(in srgb, var(--color-black) 60%, transparent);
   --shadow-text-strong: 0 1px 16px color-mix(in srgb, var(--color-black) 75%, transparent);
+
+  /* ---------- 뉴스 리스트 카드 썸네일 ----------
+     Figma PC(3004:1299) 144×144 정사각, 모바일(3007:2594) 90×70 */
+  --spacing-news-thumb: 144px;
+  --spacing-news-thumb-w-mobile: 90px;
+  --spacing-news-thumb-h-mobile: 70px;
+
+  /* ---------- 모바일 푸터 소셜 배지 (Figma 3009:244) 36×19 ---------- */
+  --spacing-social-pill-w: 36px;
+  --spacing-social-pill-h: 19px;
 }
 
 /* 시안의 미디어:텍스트 2열 배치.
@@ -173,7 +182,7 @@
 </style>
 </head>
 
-<body class="bg-white font-sans text-base text-text-primary">
+<body class="bg-white font-sans text-base text-gray-800">
 
 <a class="skip-link" href="#main">본문 바로가기</a>
 
@@ -187,7 +196,7 @@
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
         <span>지속가능경영보고서</span>
       </a>
-      <a class="util-link" href="#section4">
+      <a class="util-link" href="#site-footer">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
         <span>인재채용</span>
       </a>
@@ -195,7 +204,7 @@
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
         <span>고객기쁨센터</span>
       </a>
-      <a class="util-link" href="#section6">
+      <a class="util-link" href="#section5">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
         <span class="font-bold">#풀무원</span>
       </a>
@@ -209,11 +218,11 @@
 
       <nav id="primary-nav" class="site-nav" aria-label="주요 메뉴">
         <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="#section3">회사소개</a></li>
-          <li><a class="site-nav__link" href="#section4">사회책임경영</a></li>
+          <li><a class="site-nav__link" href="#section1">회사소개</a></li>
+          <li><a class="site-nav__link" href="sub.html">사회책임경영</a></li>
           <li><a class="site-nav__link" href="#section2">바른먹거리</a></li>
-          <li><a class="site-nav__link" href="#section6">지구식단</a></li>
-          <li><a class="site-nav__link" href="#section5">뉴스룸</a></li>
+          <li><a class="site-nav__link" href="#section3">지구식단</a></li>
+          <li><a class="site-nav__link" href="#section4">뉴스룸</a></li>
         </ul>
       </nav>
 
@@ -240,11 +249,9 @@
   <ul>
     <li><a class="dot-nav__link" href="#section1"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">2035 계획</span></a></li>
     <li><a class="dot-nav__link" href="#section2"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">Eco-Caring이란?</span></a></li>
-    <li><a class="dot-nav__link" href="#section3"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">실천으로 증명하는 약속</span></a></li>
-    <li><a class="dot-nav__link" href="#section4"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">풀무원의 발자국</span></a></li>
-    <li><a class="dot-nav__link" href="#section5"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">뉴스룸</span></a></li>
-    <li><a class="dot-nav__link" href="#section6"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">풀무원 지구식단</span></a></li>
-    <li><a class="dot-nav__link" href="#section7"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">SNS</span></a></li>
+    <li><a class="dot-nav__link" href="#section3"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">나는 지구식단 합니다</span></a></li>
+    <li><a class="dot-nav__link" href="#section4"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">뉴스룸</span></a></li>
+    <li><a class="dot-nav__link" href="#section5"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">SNS</span></a></li>
     <li><a class="dot-nav__link" href="#site-footer"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">사이트 정보</span></a></li>
   </ul>
 </nav>
@@ -255,12 +262,14 @@
        SECTION 1 — Hero
        ============================================================ -->
   <section id="section1" class="panel" aria-labelledby="hero-title">
-    <div class="panel__scroll pt-header-mobile lg:pt-header-desktop">
+    <!-- Hero 사진은 헤더 아래가 아니라 화면 전체(100vh)를 채운다.
+         헤더는 그 위에 떠 있고, 글자 여백은 .hero__inner--offset이 확보한다. -->
+    <div class="panel__scroll">
       <div class="hero">
         <img src="assets/images/hero.png" alt="" class="hero__bg" />
         <div class="hero__scrim bg-gradient-to-b from-scrim-banner via-scrim-mobile-via via-60% to-scrim-hero lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:via-35% lg:to-scrim-hero" aria-hidden="true"></div>
 
-        <div class="hero__inner mx-auto flex w-full max-w-page flex-col justify-between px-6">
+        <div class="hero__inner hero__inner--offset mx-auto flex w-full max-w-page flex-col justify-between px-6">
           <!-- 상단: 태그라인 · 제목 · 부제 · 데스크톱 CTA -->
           <div class="flex flex-col items-start gap-6">
             <p class="flex items-center gap-2">
@@ -268,26 +277,26 @@
               <span class="ts-strong text-sm font-bold tracking-widest text-brand lg:text-green-50">친환경 케어 Eco-Caring</span>
             </p>
 
-            <h1 id="hero-title" class="ts-hero text-hero font-black tracking-tight text-text-invert">
+            <h1 id="hero-title" class="ts-hero text-hero font-black tracking-tight text-white">
               2035 더 나은 세상을 위한<br />풀무원의 계획
             </h1>
 
-            <p class="ts-hero text-base leading-body text-text-invert">
+            <p class="ts-hero text-base leading-body text-white">
               A Plan for a Better World - Net Zero &amp; Nature Positive
             </p>
 
             <!-- CTA: 데스크톱 전용 — div로 감싸야 btn-brand CSS 캐스케이드를 우회 가능 -->
             <div class="hidden lg:flex">
-              <a class="btn-brand bg-cta self-start" href="#section2">감축 계획 자세히 보기</a>
+              <a class="btn-brand btn-brand--sm bg-brand self-start" href="#section2">감축 계획 자세히 보기</a>
             </div>
           </div>
 
           <!-- 하단 모바일: 제목 + 설명 (Figma 모바일 Bottom_Copy) -->
           <div class="flex flex-col gap-3 pb-2 lg:hidden">
-            <p class="ts-hero text-hero-sub font-bold tracking-tighter text-text-invert">
+            <p class="ts-hero text-hero-sub font-bold tracking-tighter text-white">
               늘어난 먹거리<br />줄어든 플라스틱 배출
             </p>
-            <p class="ts-strong text-sm leading-body text-text-invert">
+            <p class="ts-strong text-sm leading-body text-white">
               eco-caring은 지구온도 상승을 1.5℃ 이하로 제한하기 위한 풀무원의 실천 계획입니다.
             </p>
           </div>
@@ -295,17 +304,17 @@
           <!-- 하단 데스크톱: SCROLL DOWN (좌) + 카피 (우) -->
           <div class="hidden lg:flex lg:flex-row lg:items-end lg:justify-between">
             <p class="flex items-center gap-3 py-3">
-              <span class="ts-hero text-sm font-bold tracking-wider text-text-invert">SCROLL DOWN</span>
+              <span class="ts-hero text-sm font-bold tracking-wider text-white">SCROLL DOWN</span>
               <span class="scroll-cue flex size-6 items-center justify-center" aria-hidden="true">
                 <img src="assets/icons/arrow-down.svg" alt="" width="16" height="16" class="size-4" />
               </span>
             </p>
 
             <div class="flex max-w-2xl flex-col gap-3 items-end text-right">
-              <p class="ts-hero text-hero-sub font-bold tracking-tighter text-text-invert">
+              <p class="ts-hero text-hero-sub font-bold tracking-tighter text-white">
                 늘어난 먹거리<br />줄어든 플라스틱 배출
               </p>
-              <p class="ts-strong text-base leading-body-lg text-text-invert">
+              <p class="ts-strong text-base leading-body-lg text-white">
                 eco-caring은 지구온도 상승을 1.5℃ 이하로 제한하기 위한 풀무원의 실천 계획입니다.<br />
                 Net Zero와 Nature Positive를 두 축으로, 사업 전체 범위에서 실현해 나갑니다.
               </p>
@@ -320,75 +329,78 @@
        SECTION 2 — Eco-Caring이란? + 중장기 감축 목표
        ============================================================ -->
   <section id="section2" class="panel" aria-labelledby="s2-title">
-    <div class="panel__scroll panel__scroll--split pt-header-mobile lg:pt-header-desktop">
+    <!-- 배경: 모바일은 전체 초록(Figma 3007:2521), 데스크톱은 위 40% 흰색 / 아래 초록이며
+         카드가 그 경계를 가로질러 걸친다(Figma 3004:2217 — y=436 / 1080 = 40.4%). -->
+    <div class="panel__scroll panel__scroll--split bg-lime-800 pt-header-mobile lg:bg-linear-to-b lg:from-white lg:from-40% lg:to-lime-800 lg:to-40% lg:pt-header-desktop">
 
-      <div class="panel__block bg-white">
+      <div class="panel__block">
         <div class="mx-auto w-full max-w-page px-6">
-          <header class="mb-10 flex flex-col gap-2">
-            <h2 id="s2-title" class="text-section font-black text-text-primary">Eco-Caring이란?</h2>
-            <p class="text-base text-text-secondary">GOAL · DIRECTION · SCOPE</p>
+          <header class="mb-6 flex flex-col gap-2 lg:mb-10">
+            <p class="text-sm font-bold tracking-label text-brand lg:hidden">GOAL · DIRECTION · SCOPE</p>
+            <h2 id="s2-title" class="text-section font-black text-white lg:text-gray-800">Eco-Caring이란?</h2>
           </header>
 
-          <ul class="grid grid-cols-1 gap-8 sm:grid-cols-3">
-            <li class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-brand-700 bg-white p-10 shadow-card">
-              <div class="absolute inset-x-0 top-0 h-1 bg-brand-700" aria-hidden="true"></div>
+          <ul class="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-8">
+            <li class="value-card shadow-card">
+              <div class="value-card__accent" aria-hidden="true"></div>
               <div class="flex flex-col gap-4">
-                <p class="badge rounded-sm bg-brand-700 text-white">목표</p>
-                <h3 class="text-3xl font-black text-brand-700">Net Zero</h3>
+                <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
+                <h3 class="text-xl font-black text-lime-600 lg:text-3xl">Net Zero</h3>
                 <p class="text-sm leading-body text-gray-700">지구온도 상승을 1.5℃ 이하로 제한하기 위해 온실가스 배출량 ‘0’을 목표로 꾸준히 나아갑니다.</p>
               </div>
               <div class="flex flex-1 items-center justify-center">
-                <span class="flex size-icon-circle-lg items-center justify-center rounded-full bg-green-50">
-                  <img src="assets/icons/factory.svg" alt="" width="88" height="88" class="size-icon-lg" />
+                <span class="flex size-14 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
+                  <img src="assets/icons/factory.svg" alt="" width="88" height="88" class="size-7 lg:size-icon-lg" />
                 </span>
               </div>
             </li>
 
-            <li class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-brand-700 bg-white p-10 shadow-card">
-              <div class="absolute inset-x-0 top-0 h-1 bg-brand-700" aria-hidden="true"></div>
+            <li class="value-card shadow-card">
+              <div class="value-card__accent" aria-hidden="true"></div>
               <div class="flex flex-col gap-4">
-                <p class="badge rounded-sm bg-brand-700 text-white">목표</p>
-                <h3 class="text-3xl font-black text-brand-700">Nature Positive</h3>
+                <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
+                <h3 class="text-xl font-black text-lime-600 lg:text-3xl">Nature Positive</h3>
                 <p class="text-sm leading-body text-gray-700">지속가능한 지구환경을 위해 생물다양성 손실을 최소화하며 자연 자원을 적극 보전합니다.</p>
               </div>
               <div class="flex flex-1 items-center justify-center">
-                <span class="flex size-icon-circle-lg items-center justify-center rounded-full bg-green-50">
-                  <img src="assets/icons/leaf.svg" alt="" width="88" height="88" class="size-icon-lg" />
+                <span class="flex size-14 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
+                  <img src="assets/icons/leaf.svg" alt="" width="88" height="88" class="size-7 lg:size-icon-lg" />
                 </span>
               </div>
             </li>
 
-            <li class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-brand-700 bg-white p-10 shadow-card">
-              <div class="absolute inset-x-0 top-0 h-1 bg-brand-700" aria-hidden="true"></div>
+            <li class="value-card shadow-card">
+              <div class="value-card__accent" aria-hidden="true"></div>
               <div class="flex flex-col gap-4">
-                <p class="badge rounded-sm bg-brand-700 text-white">전략</p>
-                <h3 class="text-3xl font-black text-brand-700">추진방향</h3>
-                <p class="text-sm leading-body text-gray-700 text-center">지속가능 에너지, 지속가능 수자원, 지속가능 원재료, 지속가능 파트너십을 통해 실천합니다.</p>
+                <p class="badge rounded-sm bg-lime-600 text-white">전략</p>
+                <h3 class="text-xl font-black text-lime-600 lg:text-3xl">추진방향</h3>
+                <p class="text-sm leading-body text-gray-700 lg:text-center">지속가능 에너지, 지속가능 수자원, 지속가능 원재료, 지속가능 파트너십을 통해 실천합니다.</p>
               </div>
-              <div class="grid grid-cols-2 gap-4 pt-2">
+              <!-- Figma: 모바일 4열 1행 + 짧은 라벨(3007:2547), 데스크톱 2열 2행 + 두 줄 라벨(3004:1385) -->
+              <div class="grid grid-cols-4 gap-4 pt-2 lg:grid-cols-2">
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-16 items-center justify-center rounded-full bg-green-50">
-                    <img src="assets/icons/zap.svg" alt="" width="32" height="32" class="size-8" />
+                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                    <img src="assets/icons/zap.svg" alt="" width="32" height="32" class="size-5 lg:size-8" />
                   </span>
-                  <span class="text-xs font-bold text-brand-700">지속가능<br />에너지</span>
+                  <span class="text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br /></span>에너지</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-16 items-center justify-center rounded-full bg-green-50">
-                    <img src="assets/icons/globe-mini.svg" alt="" width="32" height="32" class="size-8" />
+                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                    <img src="assets/icons/globe-mini.svg" alt="" width="32" height="32" class="size-5 lg:size-8" />
                   </span>
-                  <span class="text-xs font-bold text-brand-700">지속가능<br />원재료</span>
+                  <span class="text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br /></span>원재료</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-16 items-center justify-center rounded-full bg-green-50">
-                    <img src="assets/icons/droplet.svg" alt="" width="32" height="32" class="size-8" />
+                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                    <img src="assets/icons/droplet.svg" alt="" width="32" height="32" class="size-5 lg:size-8" />
                   </span>
-                  <span class="text-xs font-bold text-brand-700">지속가능<br />수자원</span>
+                  <span class="text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br /></span>수자원</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-16 items-center justify-center rounded-full bg-green-50">
-                    <img src="assets/icons/handshake.svg" alt="" width="32" height="32" class="size-8" />
+                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                    <img src="assets/icons/handshake.svg" alt="" width="32" height="32" class="size-5 lg:size-8" />
                   </span>
-                  <span class="text-xs font-bold text-brand-700">지속가능<br />파트너십</span>
+                  <span class="text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br /></span>파트너십</span>
                 </span>
               </div>
             </li>
@@ -396,29 +408,29 @@
         </div>
       </div>
 
-      <div class="panel__block panel__block--auto bg-lime-800">
+      <div class="panel__block panel__block--auto">
         <div class="mx-auto w-full max-w-page px-6">
-          <header class="mb-10 flex flex-col gap-2">
-            <h2 class="text-section font-black text-text-invert">2035 풀무원의 중장기 감축 목표</h2>
-            <p class="text-base text-gray-400">PULMUONE ECO-CARING BY NUMBERS</p>
+          <header class="mb-6 flex flex-col gap-2 lg:mb-10">
+            <p class="text-sm font-bold tracking-label text-brand lg:hidden">PULMUONE ECO-CARING BY NUMBERS</p>
+            <h2 class="text-section font-black text-white">2035 풀무원의 중장기 감축 목표</h2>
           </header>
 
           <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-6">
-            <li class="stat-block bg-green-950 shadow-card sm:bg-stat-bg">
+            <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">2050</p>
-              <p class="text-xl font-bold text-white">Net Zero 달성 목표 연도</p>
+              <p class="text-base font-bold text-white">Net Zero 달성 목표 연도</p>
             </li>
-            <li class="stat-block bg-green-950 shadow-card sm:bg-stat-bg">
+            <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">13%</p>
-              <p class="text-xl font-bold text-white">수자원 사용량 감축</p>
+              <p class="text-base font-bold text-white">수자원 사용량 감축</p>
             </li>
-            <li class="stat-block bg-green-950 shadow-card sm:bg-stat-bg">
+            <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">20%</p>
-              <p class="text-xl font-bold text-white">플라스틱 사용량 감축</p>
+              <p class="text-base font-bold text-white">플라스틱 사용량 감축</p>
             </li>
-            <li class="stat-block bg-green-950 shadow-card sm:bg-stat-bg">
+            <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">20%</p>
-              <p class="text-xl font-bold text-white">온실가스 감축</p>
+              <p class="text-base font-bold text-white">온실가스 감축</p>
             </li>
           </ul>
         </div>
@@ -428,43 +440,22 @@
   </section>
 
   <!-- ============================================================
-       SECTION 3 — 실천으로 증명하는 약속 + 지구시민 배너
+       SECTION 3 — 지구식단 선언 배너 (Figma Section-Brand-Manifesto 3004:1415)
        ============================================================ -->
   <section id="section3" class="panel" aria-labelledby="s3-title">
-    <div class="panel__scroll panel__scroll--split pt-header-mobile lg:pt-header-desktop">
-
-      <div class="panel__block bg-white">
-        <div class="mx-auto grid w-full max-w-page items-center gap-10 px-6 lg:grid-media-text lg:gap-20">
-          <img src="assets/images/about-media.png" alt="풀무원 eco-caring을 상징하는 3D 일러스트레이션" class="aspect-about max-h-media-cap w-full rounded-2xl object-cover" loading="lazy" />
-
-          <div class="flex flex-col items-start gap-8">
-            <header class="flex flex-col gap-2">
-              <h2 id="s3-title" class="text-section font-black text-text-primary">친환경 케어,<br />실천으로 증명하는 약속</h2>
-              <p class="text-base text-text-secondary">ABOUT PULMUONE ECO-CARING</p>
-            </header>
-
-            <p class="text-base leading-normal text-text-primary">
-              풀무원의 바른 계획인 eco-caring은 사람과 지구의 건강한 내일을 위한 약속입니다.<br />
-              목표와 추진방향, 적용범위를 투명하게 공개하며 실천으로 증명해 나가겠습니다.
-            </p>
-
-            <a class="btn-brand bg-brand" href="#section2">
-              eco-caring 알아보기
-              <img src="assets/icons/arrow-right.svg" alt="" width="16" height="16" class="size-4" />
-            </a>
-          </div>
-        </div>
-      </div>
+    <!-- 시안은 이 배너만 헤더 여백 없이 화면을 꽉 채운다(Figma 3004:1415 / 3007:2572).
+         본문이 세로 중앙 정렬이라 고정 헤더에 가려지지 않는다. -->
+    <div class="panel__scroll">
 
       <div class="panel__block panel__block--media">
         <img src="assets/images/global-citizen-banner.png" alt="" class="hero__bg" />
         <div class="absolute inset-0 bg-scrim-banner" aria-hidden="true"></div>
 
-        <div class=”relative mx-auto flex w-full max-w-page flex-col items-start gap-2.5 px-6”>
-          <p class=”ts-hero text-display-lg font-black text-text-invert”>나는 지구식단 합니다</p>
-          <p class=”ts-hero text-display-lg font-bold text-text-invert”>I EAT FOR<br />THE PLANET</p>
-          <p class=”ts-strong text-display font-bold text-text-invert”>더 나은 한 끼를 위한<br />모두의 식물성 식단</p>
-          <p class=”ts-strong text-section font-bold text-text-invert”>더 편하고, 더 맛있고,<br />더 즐거운 식탁을 만듭니다</p>
+        <div class="relative mx-auto flex w-full max-w-page flex-col items-start gap-2.5 px-6">
+          <h2 id="s3-title" class="ts-hero text-display-lg font-black text-white">나는 지구식단 합니다</h2>
+          <p class="ts-hero text-display-lg font-bold text-white">I EAT FOR<br />THE PLANET</p>
+          <p class="ts-strong text-display font-bold text-white">더 나은 한 끼를 위한<br />모두의 식물성 식단</p>
+          <p class="ts-strong text-section font-bold text-white">더 편하고, 더 맛있고,<br />더 즐거운 식탁을 만듭니다</p>
         </div>
       </div>
 
@@ -472,119 +463,71 @@
   </section>
 
   <!-- ============================================================
-       SECTION 3-M — Nature Positive (모바일 전용, 데스크톱에서 hidden)
-       모바일 Figma node 3007:2579 기준
-       ============================================================ -->
-  <section class="lg:hidden bg-gray-50" aria-label="지구환경 보호">
-    <div class="flex flex-col items-center gap-4 px-8 py-10 text-center">
-      <p class="text-xs font-extrabold uppercase tracking-label text-brand-700">NATURE POSITIVE</p>
-      <p class="text-lg font-extrabold text-text-primary">건강한 지구환경을 생각하는 풀무원</p>
-      <!-- 지구 일러스트 에셋(earth-illustration.png)이 assets/images에 없어
-           about-media.png로 임시 대체. 실제 에셋 추가 후 교체 필요. -->
-      <img src="assets/images/about-media.png" alt="건강한 지구환경을 상징하는 일러스트레이션" class="size-44 rounded-full object-cover" loading="lazy" />
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 4 — 풀무원의 발자국
+       SECTION 4 — 뉴스룸 (Figma Section-Newsroom 3004:1288)
        ============================================================ -->
   <section id="section4" class="panel" aria-labelledby="s4-title">
     <div class="panel__scroll pt-header-mobile lg:pt-header-desktop">
       <div class="panel__block bg-white">
         <div class="mx-auto w-full max-w-page px-6">
-          <header class="mb-10 flex flex-col gap-2">
-            <h2 id="s4-title" class="text-section font-black text-text-primary">풀무원의 발자국</h2>
-            <p class="text-base text-text-secondary">AWARDS &amp; PARTNERSHIPS</p>
-          </header>
-
-          <div class="swiper card-swiper" data-swiper="csr">
-            <ul class="swiper-wrapper">
-              <li class="swiper-slide csr-card shadow-card">
-                <p class="badge rounded-sm bg-badge-brand text-green-950">PARTNERSHIP</p>
-                <h3 class="text-card font-bold text-text-primary">MOU 체결 현황</h3>
-                <p class="text-sm leading-body text-text-secondary">
-                  친환경 기술과 지속가능식품 연구를 위해 국내외 기관·기업과 맺어 온 업무협약 현황을 확인하실 수 있습니다.
-                </p>
-                <a class="card-link card-link--dark" href="#section5">자세히 보기<span class="sr-only"> : MOU 체결 현황</span></a>
-              </li>
-
-              <li class="swiper-slide csr-card shadow-card">
-                <p class="badge rounded-sm bg-badge-brand text-green-950">HERITAGE</p>
-                <h3 class="text-card font-bold text-text-primary">이웃 사랑과 생명 존중</h3>
-                <p class="text-sm leading-body text-text-secondary">
-                  이웃 사랑과 생명 존중 정신을 바탕으로 지속가능한 성장을 도모해 온 풀무원의 발자취를 담았습니다.
-                </p>
-                <a class="card-link card-link--dark" href="#section5">자세히 보기<span class="sr-only"> : 이웃 사랑과 생명 존중</span></a>
-              </li>
-            </ul>
-            <div class="swiper-pagination" data-pagination="csr"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 5 — 뉴스룸
-       ============================================================ -->
-  <section id="section5" class="panel" aria-labelledby="s5-title">
-    <div class="panel__scroll pt-header-mobile lg:pt-header-desktop">
-      <div class="panel__block bg-white">
-        <div class="mx-auto w-full max-w-page px-6">
-          <header class="mb-10 flex flex-col gap-2">
-            <h2 id="s5-title" class="text-section font-black text-text-primary">뉴스룸</h2>
-            <p class="text-base text-text-secondary">PULMUONE NEWSROOM</p>
+          <!-- Figma: 모바일은 부제가 제목 위(3007:2584), 데스크톱은 제목 아래(3004:1290) -->
+          <header class="mb-6 flex flex-col gap-2 lg:mb-10">
+            <p class="text-sm text-gray-600 lg:hidden">PULMUONE NEWSROOM</p>
+            <h2 id="s4-title" class="text-section font-black text-gray-800">뉴스룸</h2>
+            <p class="hidden text-base text-gray-600 lg:block">PULMUONE NEWSROOM</p>
           </header>
 
           <div class="grid gap-10 lg:grid-media-text">
-            <article class="flex flex-col gap-6">
-              <a class="focus-ring block overflow-hidden rounded-xl" href="#section5">
+            <article class="flex flex-col gap-4 lg:gap-6">
+              <a class="focus-ring block overflow-hidden rounded-2xl" href="#section4">
                 <img src="assets/images/news-featured.png" alt="풀무원 넷제로 시스템 검증의견서 수여 현장" class="aspect-featured w-full object-cover" loading="lazy" />
               </a>
-              <p class="text-sm font-bold text-green-900">보도자료 · 2025.03.13</p>
-              <h3 class="text-display-sm font-extrabold text-text-primary">
-                <a class="focus-ring" href="#section5">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
+              <p class="text-xs font-bold text-green-900 lg:text-sm">보도자료 · 2025.03.13</p>
+              <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
+                <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
               </h3>
-              <p class="text-base leading-normal text-footer-body">
+              <p class="text-sm leading-normal text-gray-500 lg:text-base">
                 풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
               </p>
             </article>
 
             <div class="swiper card-swiper" data-swiper="news">
               <ul class="swiper-wrapper">
-                <li class="swiper-slide news-row">
-                  <img src="assets/images/news-small-1.png" alt="지구식단 두유면 제품 이미지" class="news-row__thumb aspect-thumb" loading="lazy" />
-                  <div class="flex min-w-0 flex-col gap-2">
+                <li class="swiper-slide news-card">
+                  <img src="assets/images/news-small-1.png" alt="지구식단 두유면 제품 이미지" class="news-card__thumb" loading="lazy" />
+                  <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">보도자료 · 2025.02.17</p>
-                    <h3 class="text-lg font-bold text-text-primary">
-                      <a class="focus-ring" href="#section5">풀무원, ‘지구식단 두유면’ 자체 생산 통해 공급 확대</a>
+                    <h3 class="text-sm font-bold text-gray-800">
+                      <a class="focus-ring" href="#section4">풀무원, ‘지구식단 두유면’ 자체 생산 통해 공급 확대</a>
                     </h3>
                   </div>
                 </li>
-                <li class="swiper-slide news-row">
-                  <img src="assets/images/news-small-2.png" alt="유기동물 보호단체에 전달된 사료" class="news-row__thumb aspect-thumb" loading="lazy" />
-                  <div class="flex min-w-0 flex-col gap-2">
+                <li class="swiper-slide news-card">
+                  <img src="assets/images/news-small-2.png" alt="유기동물 보호단체에 전달된 사료" class="news-card__thumb" loading="lazy" />
+                  <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">ESG 소식 · 2025.02.28</p>
-                    <h3 class="text-lg font-bold text-text-primary">
-                      <a class="focus-ring" href="#section5">풀무원, 유기동물 보호단체 3곳에 사료 8톤 기부</a>
+                    <h3 class="text-sm font-bold text-gray-800">
+                      <a class="focus-ring" href="#section4">풀무원, 유기동물 보호단체 3곳에 사료 8톤 기부</a>
                     </h3>
                   </div>
                 </li>
-                <li class="swiper-slide news-row">
-                  <img src="assets/images/news-small-3.png" alt="친환경 케어 전략 선언 현장" class="news-row__thumb aspect-thumb" loading="lazy" />
-                  <div class="flex min-w-0 flex-col gap-2">
+                <li class="swiper-slide news-card">
+                  <img src="assets/images/news-small-3.png" alt="친환경 케어 전략 선언 현장" class="news-card__thumb" loading="lazy" />
+                  <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
-                    <h3 class="text-lg font-bold text-text-primary">
-                      <a class="focus-ring" href="#section5">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
+                    <h3 class="text-sm font-bold text-gray-800">
+                      <a class="focus-ring" href="#section4">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
                     </h3>
                   </div>
                 </li>
-                <li class="swiper-slide news-row">
-                  <img src="assets/images/news-small-1.png" alt="풀무원 지속가능경영 보고서 표지" class="news-row__thumb aspect-thumb" loading="lazy" />
-                  <div class="flex min-w-0 flex-col gap-2">
+                <!-- Figma 데스크톱(3004:1313)에만 있는 4번째 카드.
+                     모바일 시안(3007:2592)은 3장이지만, 모바일에서는 이 목록이 Swiper 캐로셀로
+                     바뀌어 한 장씩 넘겨 보므로 슬라이드를 숨기면 빈 칸이 생긴다. 그래서 남긴다. -->
+                <li class="swiper-slide news-card">
+                  <img src="assets/images/news-small-1.png" alt="풀무원 지속가능경영 보고서 표지" class="news-card__thumb" loading="lazy" />
+                  <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
-                    <h3 class="text-lg font-bold text-text-primary">
-                      <a class="focus-ring" href="#section5">풀무원, 식물성 음료 '그린주스' 신제품 3종 출시</a>
+                    <h3 class="text-sm font-bold text-gray-800">
+                      <a class="focus-ring" href="#section4">풀무원, 식물성 음료 '그린주스' 신제품 3종 출시</a>
                     </h3>
                   </div>
                 </li>
@@ -598,61 +541,21 @@
   </section>
 
   <!-- ============================================================
-       SECTION 6 — 풀무원 지구식단 + CTA
+       SECTION 5 — SNS (Figma Section-Social-Media 3004:1318)
+       모바일 시안(Homepage-Mobile 3007:2502)에는 이 섹션이 없어 lg 미만에서 숨긴다.
+       display:none이므로 스크린리더 접근 대상에서도 함께 빠진다.
        ============================================================ -->
-  <section id="section6" class="panel" aria-labelledby="s6-title">
-    <div class="panel__scroll panel__scroll--split pt-header-mobile lg:pt-header-desktop">
-
-      <div class="panel__block bg-white">
-        <div class="mx-auto w-full max-w-page px-6">
-          <header class="mb-10 flex flex-col gap-2">
-            <h2 id="s6-title" class="text-section font-black text-text-primary">풀무원 지구식단</h2>
-            <p class="text-base text-text-secondary">GOAL · DIRECTION · SCOPE</p>
-          </header>
-
-          <div class="grid items-center gap-10 lg:grid-media-text-wide lg:gap-20">
-            <img src="assets/images/community-1.png" alt="식물성 지구식단과 동물복지 지구식단 제품이 차려진 식탁" class="aspect-community max-h-media-cap w-full rounded-2xl object-cover" loading="lazy" />
-
-            <div class="flex flex-col gap-6">
-              <p class="text-sm font-bold uppercase tracking-tagline text-green-900">Plant Forward · Animal Welfare</p>
-              <h3 class="text-display-sm font-extrabold text-text-primary">식물성과 동물복지, 지구식단으로 만나다</h3>
-              <p class="text-base leading-normal text-footer-body">
-                지구식단은 식물성 식품과 동물복지 식품을 중심으로 나의 건강과 지구환경까지 생각하는 지속가능식품 전문 브랜드입니다. 식물성 지구식단과 동물복지 지구식단, 두 갈래의 제품을 만나보세요.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel__block panel__block--auto panel__block--cta bg-green-50">
-        <div class="mx-auto flex w-full max-w-page flex-col items-center gap-8 px-6 text-center">
-          <p class="text-display font-extrabold text-green-900">
-            오늘의 한 끼가 지구의 내일을 바꿉니다.<br />지금, 지구식단을 시작하세요.
-          </p>
-          <p class="text-base text-text-primary">
-            바른 먹거리로 사람과 지구의 건강한 내일을 만드는 일, 풀무원이 여러분과 함께 실천하겠습니다.
-          </p>
-          <a class="btn-brand btn-brand--sm bg-brand" href="#site-footer">지구식단 시작하기</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 7 — SNS
-       ============================================================ -->
-  <section id="section7" class="panel" aria-labelledby="s7-title">
+  <section id="section5" class="panel hidden lg:block" aria-labelledby="s5-title">
     <div class="panel__scroll pt-header-mobile lg:pt-header-desktop">
       <div class="panel__block bg-white">
         <div class="mx-auto w-full max-w-page px-6">
           <header class="mb-10 flex flex-col gap-2">
-            <h2 id="s7-title" class="text-section font-black text-text-primary">SNS</h2>
-            <p class="text-base text-text-secondary">PULMUONE SOCIAL NETWORK SERVICE</p>
+            <h2 id="s5-title" class="text-section font-black text-gray-800">SNS</h2>
+            <p class="text-base text-gray-600">PULMUONE SOCIAL NETWORK SERVICE</p>
           </header>
 
           <div class="flex flex-col gap-6 pb-6">
-            <h3 class="text-3xl font-extrabold text-text-primary">풀무원 인스타그램</h3>
+            <h3 class="text-3xl font-extrabold text-gray-800">풀무원 인스타그램</h3>
             <ul class="grid grid-cols-2 gap-6 lg:grid-cols-4">
               <li>
                 <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
@@ -678,7 +581,7 @@
           </div>
 
           <div class="flex flex-col gap-6 py-6">
-            <h3 class="text-3xl font-extrabold text-text-primary">풀무원 유튜브</h3>
+            <h3 class="text-3xl font-extrabold text-gray-800">풀무원 유튜브</h3>
             <ul class="grid grid-cols-1 gap-6 lg:grid-cols-3">
               <li class="relative">
                 <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
@@ -726,53 +629,68 @@
 <footer id="site-footer" class="bg-gray-100">
   <div class="mx-auto w-full max-w-page border-t border-gray-200 px-6 py-10">
 
-    <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-start lg:px-20">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-20">
       <div class="flex flex-col items-start gap-4">
         <img src="assets/images/footer-logo.png" alt="풀무원" class="h-9 w-auto" loading="lazy" />
-        <address class="flex flex-col gap-1 text-xs not-italic text-text-secondary">
+        <!-- 회사정보: 데스크톱은 로고 아래(3004:1347), 모바일은 공식계정 아래(3009:224) -->
+        <address class="hidden flex-col gap-1 text-xs not-italic text-gray-600 lg:flex">
           <span>법인명 : (주)풀무원</span>
           <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
           <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
         </address>
       </div>
 
-      <div class="flex flex-col gap-4 lg:items-end">
+      <div class="flex flex-col gap-6 lg:items-end lg:gap-4">
+        <!-- 모바일 시안(3009:196)은 한글 링크 아래 영문 번역이 붙는 2열 구조다. -->
         <nav aria-label="정책 및 안내">
-          <ul class="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1 lg:justify-end">
-            <li><a class="footer-link font-bold" href="#site-footer">개인정보처리방침</a></li>
-            <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">이메일주소 무단수집 거부</a></li>
-            <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">사이버감사실</a></li>
-            <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">공정거래</a></li>
-            <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">풀무원채용</a></li>
+          <ul class="grid grid-cols-2 gap-x-4 gap-y-4 lg:flex lg:flex-wrap lg:items-center lg:justify-end lg:gap-x-3 lg:gap-y-1">
+            <li><a class="footer-link footer-link--stacked font-bold" href="#site-footer">개인정보처리방침<span class="footer-link__en">Privacy Policy</span></a></li>
+            <li aria-hidden="true" class="hidden text-sm text-gray-400 lg:block">|</li>
+            <li><a class="footer-link footer-link--stacked" href="#site-footer">이메일주소 무단수집 거부<span class="footer-link__en">Email Collection Refusal</span></a></li>
+            <li aria-hidden="true" class="hidden text-sm text-gray-400 lg:block">|</li>
+            <li><a class="footer-link footer-link--stacked" href="#site-footer">사이버감사실<span class="footer-link__en">Cyber Audit</span></a></li>
+            <li aria-hidden="true" class="hidden text-sm text-gray-400 lg:block">|</li>
+            <li><a class="footer-link footer-link--stacked" href="#site-footer">공정거래<span class="footer-link__en">Fair Trade</span></a></li>
+            <li aria-hidden="true" class="hidden text-sm text-gray-400 lg:block">|</li>
+            <li><a class="footer-link footer-link--stacked" href="#site-footer">풀무원채용<span class="footer-link__en">Recruitment</span></a></li>
           </ul>
         </nav>
 
         <div class="flex flex-wrap items-center gap-3">
-          <span class="text-sm text-text-primary">공식계정</span>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
+          <span class="text-sm text-gray-800">공식계정</span>
+
+          <!-- 모바일 시안(3009:216): K · Y · IG 흰 배지 3개 -->
+          <a class="social-pill" href="#site-footer"><span aria-hidden="true">K</span><span class="sr-only">풀무원 카카오톡 채널</span></a>
+          <a class="social-pill" href="#site-footer"><span aria-hidden="true">Y</span><span class="sr-only">풀무원 유튜브</span></a>
+          <a class="social-pill" href="#site-footer"><span aria-hidden="true">IG</span><span class="sr-only">풀무원 인스타그램</span></a>
+
+          <!-- 데스크톱 시안(3004:1347): 아이콘 4개 -->
+          <a class="focus-ring hidden rounded-md lg:block" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
+          <a class="focus-ring hidden rounded-md lg:block" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
+          <a class="focus-ring hidden rounded-md lg:block" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
+          <a class="focus-ring hidden rounded-md lg:block" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
         </div>
       </div>
+
+      <address class="flex flex-col gap-1 text-xs not-italic text-gray-600 lg:hidden">
+        <span>법인명 : (주)풀무원</span>
+        <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+        <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
+      </address>
     </div>
 
-    <hr class="my-6 border-gray-200" />
+    <hr class="my-6 hidden border-gray-200 lg:block" />
 
-    <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center lg:px-20">
-      <p class="text-xs leading-normal text-text-secondary">Copyright © Pulmuone Corporate All Rights Reserved.</p>
+    <div class="mt-6 flex flex-col gap-4 lg:mt-0 lg:flex-row lg:items-center lg:justify-between lg:px-20">
+      <p class="order-2 text-center text-xs leading-normal text-gray-600 lg:order-1 lg:text-left">Copyright © Pulmuone Corporate All Rights Reserved.</p>
 
-      <div class="flex items-center gap-6">
-        <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-text-primary" aria-haspopup="listbox" aria-expanded="false">
+      <div class="order-1 flex items-center gap-6 lg:order-2">
+        <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-gray-800" aria-haspopup="listbox" aria-expanded="false">
           계열사/브랜드 사이트
           <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" class="size-3" />
         </button>
-        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="size-14" loading="lazy" />
+        <!-- 모바일 시안(3007:2608)에는 인증 마크가 없다. -->
+        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="hidden size-14 lg:block" loading="lazy" />
       </div>
     </div>
 
