@@ -285,12 +285,13 @@
 }
 
 /* ---------- 통계 블록(중장기 감축 목표) ---------- */
+/* Figma: padding 32px, gap 16px, border-radius --radius-md(6px) */
 .stat-block {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  gap: 1rem;
+  border-radius: var(--radius-md);
+  padding: 2rem;
 }
 
 /* ---------- CSR / 발자국 카드 ---------- */
@@ -363,6 +364,30 @@
   text-decoration: underline;
 }
 
+/* ---------- Swiper: 미초기화 상태(데스크톱)의 그리드 폴백 ----------
+   Swiper가 초기화되지 않은 데스크톱에서는 swiper-wrapper를
+   그냥 flex 행/열로 펼쳐 카드가 나란히 보이게 한다. */
+.card-swiper:not(.swiper-initialized) {
+  overflow: visible;
+}
+.card-swiper:not(.swiper-initialized) .swiper-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.card-swiper:not(.swiper-initialized) .swiper-slide {
+  flex: 1 1 0;
+  min-width: 0;
+}
+/* 뉴스 리스트는 데스크톱에서도 세로 스택으로 표시한다. */
+.card-swiper[data-swiper="news"]:not(.swiper-initialized) .swiper-wrapper {
+  flex-direction: column;
+  gap: 0;
+}
+.card-swiper:not(.swiper-initialized) .swiper-pagination {
+  display: none;
+}
+
 /* ---------- Swiper 페이지네이션(브랜드 색상) ---------- */
 .card-swiper {
   position: relative;
@@ -374,4 +399,18 @@
 }
 .card-swiper .swiper-pagination-bullet-active {
   background: var(--color-brand);
+}
+
+/* ---------- 2단 분할 패널(100vh 안에 두 블록): 여백 축소 ---------- */
+.panel__scroll--split .panel__block {
+  padding-block: 1.25rem;
+  flex: 1 1 auto;
+}
+.panel__scroll--split .panel__block--auto {
+  flex: none;
+}
+@media (min-width: 64rem) {
+  .panel__scroll--split .panel__block {
+    padding-block: 1.75rem;
+  }
 }
