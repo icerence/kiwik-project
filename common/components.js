@@ -50,35 +50,14 @@
     });
   }
 
-  async function loadFragment(path) {
-    var response = await fetch(path);
-    if (!response.ok) throw new Error(path + ' 응답 오류: ' + response.status);
-    return response.text();
-  }
-
-  async function mountComponents() {
-    var oldHeader = document.querySelector('body > header, #smooth-content > header');
-    var oldFooter = document.querySelector('body > footer, #smooth-content > footer');
-    if (!oldHeader || !oldFooter) return;
-
-    try {
-      var fragments = await Promise.all([
-        loadFragment('common/header.html'),
-        loadFragment('common/footer.html')
-      ]);
-      oldHeader.outerHTML = fragments[0];
-      oldFooter.outerHTML = fragments[1];
-
-      var header = document.getElementById('site-header');
-      if (header) {
-        setActiveNavigation(header);
-        bindHeader(header);
-      }
-      document.dispatchEvent(new CustomEvent('common-components:ready'));
-    } catch (error) {
-      console.error('[common components]', error);
+  function initComponents() {
+    var header = document.getElementById('site-header');
+    if (header) {
+      setActiveNavigation(header);
+      bindHeader(header);
     }
+    document.dispatchEvent(new CustomEvent('common-components:ready'));
   }
 
-  mountComponents();
+  initComponents();
 })();
