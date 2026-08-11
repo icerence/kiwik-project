@@ -25,6 +25,7 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/food-tokens.css" />
 
   <style type="text/tailwindcss">
     @theme {
@@ -36,19 +37,19 @@
       --font-weight-black: 900;
 
       /* ---------- 색: 브랜드 (food.html~food4.html과 겹치는 값은 같은 이름 재사용) ---------- */
-      --color-brand: #7bcc12;
-      --color-brand-dark: #4a7e07;
-      --color-badge-brand: #f1f8e7; /* Barun Eat Logo Card 테두리 (index.html·food4.html과 동일 이름·값 재사용) */
+      --color-brand: var(--food-color-brand);
+      --color-brand-dark: var(--food-color-brand-dark);
+      --color-badge-brand: var(--food-color-badge-brand); /* Barun Eat Logo Card 테두리 */
 
       /* ---------- 색: 중립 ---------- */
-      --color-gray-600: #535964; /* token-exempt: @theme 정의 — gray/600, index.html 공식 gray 팔레트와 동일 값(단일 출처 유지) */
-      --color-text-primary: #31343b;
-      --color-text-body: #40444d; /* food.html·food2.html·food3.html과 동일 이름·값 재사용 */
-      --color-border: #e5e7eb;
-      --color-gray-100: #efeff1;
-      --color-gray-200: #d9dade;
-      --color-gray-400: #9ca1ab;
-      --color-surface-soft: #f9fafb; /* Barun Eat Logo Card·PRIS Showcase Block 배경 (food3.html과 동일 이름·값 재사용) */
+      --color-gray-600: var(--food-color-gray-600);
+      --color-text-primary: var(--food-color-text-primary);
+      --color-text-body: var(--food-color-text-body);
+      --color-border: var(--food-color-border);
+      --color-gray-100: var(--food-color-gray-100);
+      --color-gray-200: var(--food-color-gray-200);
+      --color-gray-400: var(--food-color-gray-400);
+      --color-surface-soft: var(--food-color-surface-soft); /* Barun Eat Logo Card·PRIS Showcase Block 배경 */
 
       /* ---------- 색: 히어로 스크림 ---------- */
       --color-scrim-hero: rgba(0, 0, 0, 0.2); /* Hero 사진 위 스크림 (Figma node 1788:3866 실측 0.2) */

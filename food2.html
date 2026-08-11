@@ -15,6 +15,7 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/food-tokens.css" />
 
   <style type="text/tailwindcss">
     @theme {
@@ -26,20 +27,20 @@
       --font-weight-black: 900;
 
       /* ---------- 색: 브랜드 (Figma node 1788:3259 실측값. food.html과 겹치는 값은 같은 이름 재사용) ---------- */
-      --color-brand: #7bcc12;
+      --color-brand: var(--food-color-brand);
       --color-brand-hover: #60a10c;  /* lime/600, surface/brand-hover — Plant-Forward 카드 헤더 */
-      --color-brand-dark: #4a7e07;   /* surface/brand-pressed — 원형 배지 텍스트 */
-      --color-brand-deep: #396204;   /* lime/800, surface/brand-contrast — Animal Welfare 카드 헤더 */
+      --color-brand-dark: var(--food-color-brand-dark); /* surface/brand-pressed — 원형 배지 텍스트 */
+      --color-brand-deep: var(--food-color-brand-deep); /* lime/800, surface/brand-contrast — Animal Welfare 카드 헤더 */
 
       /* ---------- 색: 중립 ---------- */
-      --color-gray-600: #535964; /* token-exempt: @theme 정의 — gray/600, index.html 공식 gray 팔레트와 동일 값(단일 출처 유지) */
-      --color-text-primary: #31343b;
-      --color-text-body: #40444d;
-      --color-border: #e5e7eb;
-      --color-gray-50: #f7f7f8;
-      --color-gray-100: #efeff1;
-      --color-gray-200: #d9dade;
-      --color-gray-400: #9ca1ab;
+      --color-gray-600: var(--food-color-gray-600);
+      --color-text-primary: var(--food-color-text-primary);
+      --color-text-body: var(--food-color-text-body);
+      --color-border: var(--food-color-border);
+      --color-gray-50: var(--food-color-gray-50);
+      --color-gray-100: var(--food-color-gray-100);
+      --color-gray-200: var(--food-color-gray-200);
+      --color-gray-400: var(--food-color-gray-400);
 
       /* ---------- 레이아웃 ---------- */
       --container-food: 1200px;

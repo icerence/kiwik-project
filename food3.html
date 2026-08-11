@@ -15,6 +15,7 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/food-tokens.css" />
 
   <style type="text/tailwindcss">
     @theme {
@@ -26,19 +27,19 @@
       --font-weight-black: 900;
 
       /* ---------- 색: 브랜드 (Figma node 1788:3442 실측값. food.html·food2.html과 겹치는 값은 같은 이름 재사용) ---------- */
-      --color-brand: #7bcc12;
-      --color-brand-dark: #4a7e07;
+      --color-brand: var(--food-color-brand);
+      --color-brand-dark: var(--food-color-brand-dark);
 
       /* ---------- 색: 중립 ---------- */
-      --color-gray-600: #535964; /* token-exempt: @theme 정의 — gray/600, index.html 공식 gray 팔레트와 동일 값(단일 출처 유지) */
-      --color-text-primary: #31343b;
-      --color-text-body: #40444d;
-      --color-border: #e5e7eb;
-      --color-gray-50: #f7f7f8;
-      --color-gray-100: #efeff1;
-      --color-gray-200: #d9dade;
-      --color-gray-400: #9ca1ab;
-      --color-surface-soft: #f9fafb; /* principles-section 배경 + icon-circle 배경 (Figma 실측 #f9fafb) */
+      --color-gray-600: var(--food-color-gray-600);
+      --color-text-primary: var(--food-color-text-primary);
+      --color-text-body: var(--food-color-text-body);
+      --color-border: var(--food-color-border);
+      --color-gray-50: var(--food-color-gray-50);
+      --color-gray-100: var(--food-color-gray-100);
+      --color-gray-200: var(--food-color-gray-200);
+      --color-gray-400: var(--food-color-gray-400);
+      --color-surface-soft: var(--food-color-surface-soft); /* principles-section 배경 + icon-circle 배경 */
 
       /* ---------- 색: 사진 위 스크림 ---------- */
       --color-scrim-hero: rgba(0, 0, 0, 0.15);      /* hero-section 사진 위 어둡게 */
