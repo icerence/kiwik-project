@@ -358,7 +358,7 @@
   padding: 1rem 1.75rem;
   font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--color-green-900);
   transition: opacity 0.15s ease;
 }
 .btn-brand:hover {
