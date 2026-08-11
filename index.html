@@ -168,6 +168,16 @@
   /* ---------- 모바일 푸터 소셜 배지 (Figma 3009:244) 36×19 ---------- */
   --spacing-social-pill-w: 36px;
   --spacing-social-pill-h: 19px;
+
+  /* Header dropdown menu from Figma node 2034:563 */
+  --spacing-header-main-desktop: 96px;
+  --spacing-dropdown-height: 292px;
+  --spacing-dropdown-max: 1200px;
+  --spacing-dropdown-pad-top: 60px;
+  --spacing-dropdown-accent-w: 54px;
+  --spacing-dropdown-col-sm: 120px;
+  --spacing-dropdown-col-md: 140px;
+  --spacing-dropdown-col-lg: 170px;
 }
 
 /* 시안의 미디어:텍스트 2열 배치.
@@ -218,12 +228,55 @@
 
       <nav id="primary-nav" class="site-nav" aria-label="주요 메뉴">
         <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="#section1">회사소개</a></li>
-          <li><a class="site-nav__link" href="sub.html">사회책임경영</a></li>
-          <li><a class="site-nav__link" href="#section2">바른먹거리</a></li>
-          <li><a class="site-nav__link" href="#section3">지구식단</a></li>
-          <li><a class="site-nav__link" href="#section4">뉴스룸</a></li>
+          <li><a class="site-nav__link" href="#section1" aria-haspopup="true">회사소개</a></li>
+          <li><a class="site-nav__link" href="sub.html" aria-haspopup="true">사회책임경영</a></li>
+          <li><a class="site-nav__link" href="food.html" aria-haspopup="true">바른먹거리</a></li>
+          <li><a class="site-nav__link" href="#section3" aria-haspopup="true">지구식단</a></li>
+          <li><a class="site-nav__link" href="#section4" aria-haspopup="true">뉴스룸</a></li>
         </ul>
+
+        <div class="site-dropdown" aria-label="주요 메뉴 전체 하위 메뉴">
+          <div class="site-dropdown__grid">
+            <ul class="site-dropdown__column site-dropdown__column--active" aria-label="회사소개 하위 메뉴">
+              <li><a class="site-dropdown__link site-dropdown__link--active" href="#section1">총괄CEO인사말</a></li>
+              <li><a class="site-dropdown__link" href="ci.html">CI소개</a></li>
+              <li><a class="site-dropdown__link" href="#section1">연혁</a></li>
+              <li><a class="site-dropdown__link" href="#section1">가치체계</a></li>
+              <li><a class="site-dropdown__link" href="#section1">사업소개</a></li>
+              <li><a class="site-dropdown__link" href="#section1">동반성장</a></li>
+              <li><a class="site-dropdown__link" href="#section1">기업지배구조</a></li>
+              <li><a class="site-dropdown__link" href="#section1">투자정보</a></li>
+            </ul>
+
+            <ul class="site-dropdown__column" aria-label="사회책임경영 하위 메뉴">
+              <li><a class="site-dropdown__link" href="sub.html">개요</a></li>
+              <li><a class="site-dropdown__link" href="sub.html">추진전략</a></li>
+              <li><a class="site-dropdown__link" href="sub.html">활동 및 실적</a></li>
+              <li><a class="site-dropdown__link" href="sub.html">수상</a></li>
+            </ul>
+
+            <ul class="site-dropdown__column site-dropdown__column--wide" aria-label="바른먹거리 하위 메뉴">
+              <li><a class="site-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-dropdown__link" href="food.html">지속가능식품</a></li>
+              <li><a class="site-dropdown__link" href="food.html">바른먹거리 원칙</a></li>
+              <li><a class="site-dropdown__link" href="food.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-dropdown__link" href="food.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+
+            <ul class="site-dropdown__column site-dropdown__column--small" aria-label="지구식단 하위 메뉴">
+              <li><a class="site-dropdown__link" href="#section3">지구로그</a></li>
+              <li><a class="site-dropdown__link" href="#section3">팝업스토어</a></li>
+            </ul>
+
+            <ul class="site-dropdown__column site-dropdown__column--small" aria-label="뉴스룸 하위 메뉴">
+              <li><a class="site-dropdown__link" href="#section4">풀무원뉴스</a></li>
+              <li><a class="site-dropdown__link" href="#section4">ESG경영</a></li>
+              <li><a class="site-dropdown__link" href="#section4">멀티미디어</a></li>
+              <li><a class="site-dropdown__link" href="#section4">자료&amp;공지</a></li>
+            </ul>
+          </div>
+        </div>
       </nav>
 
       <div class="flex items-center gap-4">
@@ -233,7 +286,9 @@
 
         <button type="button" class="focus-ring hidden items-center gap-1 rounded-lg border border-gray-400 p-2 text-base lg:flex" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
           <span>KOR</span>
-          <img src="assets/icons/chevron-down.svg" alt="" width="20" height="20" class="size-5" />
+          <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+          </svg>
         </button>
 
         <button type="button" id="menu-toggle" class="focus-ring flex size-10 items-center justify-center rounded-lg lg:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-nav">

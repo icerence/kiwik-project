@@ -74,6 +74,94 @@
 .site-nav__link:hover {
   color: var(--color-brand);
 }
+.site-dropdown {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .site-dropdown {
+    position: fixed;
+    left: 50%;
+    top: var(--spacing-header-desktop);
+    z-index: 45;
+    display: block;
+    width: min(100%, var(--spacing-dropdown-max));
+    height: var(--spacing-dropdown-height);
+    transform: translateX(-50%) translateY(-0.5rem);
+    border-top: var(--spacing-hairline) solid var(--color-gray-200);
+    border-bottom: var(--spacing-hairline) solid var(--color-gray-200);
+    background: var(--color-white);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  }
+  .is-header-compact .site-dropdown {
+    top: var(--spacing-header-main-desktop);
+  }
+  .site-nav:hover .site-dropdown,
+  .site-nav:focus-within .site-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .site-dropdown__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns:
+      var(--spacing-dropdown-col-md)
+      var(--spacing-dropdown-col-md)
+      var(--spacing-dropdown-col-lg)
+      var(--spacing-dropdown-col-sm)
+      var(--spacing-dropdown-col-sm);
+    justify-content: center;
+    padding-top: var(--spacing-dropdown-pad-top);
+  }
+  .site-dropdown__column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .site-dropdown__column--active::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(var(--spacing-dropdown-pad-top) * -1);
+    width: var(--spacing-dropdown-accent-w);
+    height: var(--spacing-outline);
+    transform: translateX(-50%);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+  }
+  .site-dropdown__link {
+    position: relative;
+    display: block;
+    min-height: 1.5625rem;
+    color: var(--color-gray-600);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25rem;
+    text-align: center;
+    text-underline-offset: var(--spacing-underline-offset);
+    transition: color 0.15s ease;
+  }
+  .site-dropdown__link:hover,
+  .site-dropdown__link:focus-visible,
+  .site-dropdown__link--active {
+    color: var(--color-lime-800);
+  }
+  .site-dropdown__link--active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.125rem;
+    width: 100%;
+    height: var(--spacing-line-thick);
+    transform: translateX(-50%);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+  }
+}
 
 @media (max-width: 63.9375rem) {
   .site-nav {
