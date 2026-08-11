@@ -10,10 +10,6 @@
        자연 세로 스크롤 페이지다. food.html~food4.html과 마찬가지로 시안에 100vh 풀페이지
        왕복 구조가 없어 그 요구는 적용하지 않았다.
 
-       시안 노드는 브레드크럼 대신 5개 하위 페이지(food/food2/food3/food4/food5)를 잇는
-       "Active Chapter Submenu Bar"를 갖고 있어 이를 food5.html에 그대로 구현했다. 이후
-       food.html~food4.html의 기존 브레드크럼도 같은 구조로 통일했다.
-
        Policy Mission Section의 영문 타이틀과 PRIS 라벨은 시안에서 Roboto 폰트를 쓰지만,
        프로젝트 CDN 화이트리스트에 구글 폰트가 없어 사이트 공용 --font-sans(NanumSquare Neo)로
        대체했다(굵기·크기·색상은 시안과 동일하게 유지).
@@ -118,11 +114,49 @@
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 
-    .submenu-link { transition: background-color 0.2s ease; }
-    .submenu-link--active { cursor: default; }
-
     .footer-link { color: var(--color-text-body); }
     .footer-link:hover { color: var(--color-brand-dark); }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
+      #sec-hero { height: 280px !important; }
+      #sec-intro, #sec-mission, #sec-policy { padding-left: 40px !important; padding-right: 40px !important; }
+      #sec-intro { padding-top: 64px !important; padding-bottom: 64px !important; }
+      #sec-mission { padding-top: 48px !important; padding-bottom: 48px !important; }
+      #sec-policy { padding-top: 32px !important; padding-bottom: 64px !important; }
+      #sec-intro > div > div { max-width: 800px !important; padding: 32px !important; }
+      #sec-policy > div > div:nth-of-type(1) { flex-wrap: nowrap !important; overflow-x: auto; }
+      #sec-policy > div > div:nth-of-type(3) { flex-direction: row !important; gap: 32px !important; padding: 32px !important; }
+      #sec-policy > div > div:nth-of-type(3) > div:first-child { width: 340px !important; height: 240px !important; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
+
+    @media (max-width: 767px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      #sec-hero { height: 260px !important; }
+      #sec-intro, #sec-mission, #sec-policy { padding-left: 20px !important; padding-right: 20px !important; }
+      #sec-intro { padding-top: 48px !important; padding-bottom: 48px !important; }
+      #sec-mission { padding-top: 40px !important; padding-bottom: 40px !important; }
+      #sec-policy { padding-top: 20px !important; padding-bottom: 56px !important; }
+      #hero-heading, #intro-heading, #mission-heading { overflow-wrap: anywhere; }
+      #sec-intro > div { gap: 32px !important; }
+      #sec-intro > div > div { padding: 24px !important; }
+      #sec-policy > div { gap: 28px !important; }
+      #sec-policy > div > div:nth-of-type(1) { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; border-top: 1px solid var(--color-border); }
+      #sec-policy > div > div:nth-of-type(1) > span { min-height: 37px; padding: 10px 8px !important; font-size: 0.8125rem !important; }
+      #sec-policy > div > div:nth-of-type(1) > span:nth-child(n+3) { grid-column: span 1; }
+      #sec-policy > div > div:nth-of-type(3) { padding: 20px !important; }
+      #sec-policy > div > div:nth-of-type(3) > div:first-child { height: 220px !important; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -203,20 +237,6 @@
           </div>
         </div>
       </header>
-
-      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동) ===== -->
-      <nav aria-label="바른먹거리 하위 메뉴" class="w-full bg-brand">
-        <div class="mx-auto flex w-full max-w-food items-start px-6">
-          <a href="food.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능 식생활</a>
-          <a href="food2.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능식품</a>
-          <a href="food3.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 원칙</a>
-          <a href="food4.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 캠페인</a>
-          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
-            식품안전 및 품질정책
-            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
-          </span>
-        </div>
-      </nav>
 
       <main id="main" tabindex="-1">
 

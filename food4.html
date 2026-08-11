@@ -108,11 +108,40 @@
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 
-    .submenu-link { transition: background-color 0.2s ease; }
-    .submenu-link--active { cursor: default; }
-
     .footer-link { color: var(--color-text-secondary); }
     .footer-link:hover { color: var(--color-brand-dark); }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
+      main > section[aria-hidden="true"] { height: 240px !important; }
+      main > section { padding-left: 48px !important; padding-right: 48px !important; }
+      #sec-intro, #sec-kids, #sec-adult, #sec-senior, #sec-tv, #sec-online, #sec-partners { padding-top: 64px !important; padding-bottom: 64px !important; }
+      #sec-kids .h-95, #sec-adult .h-95, #sec-senior .h-95 { height: 260px !important; }
+      #sec-tv figure > div, #sec-online figure > div { height: 220px !important; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
+
+    @media (max-width: 767px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      main > section[aria-hidden="true"] { height: 200px !important; }
+      main > section { padding-left: 20px !important; padding-right: 20px !important; }
+      #sec-intro, #sec-kids, #sec-adult, #sec-senior, #sec-tv, #sec-online, #sec-partners { padding-top: 60px !important; padding-bottom: 60px !important; }
+      #sec-intro > div, #sec-kids > div, #sec-adult > div, #sec-senior > div, #sec-tv > div, #sec-online > div, #sec-partners > div { gap: 32px !important; }
+      #intro-heading, #kids-heading, #adult-heading, #senior-heading, #tv-heading, #online-heading, #partners-heading { overflow-wrap: anywhere; }
+      #sec-kids .grid, #sec-adult .grid, #sec-senior .grid, #sec-tv .grid, #sec-online .grid, #sec-partners .grid { grid-template-columns: 1fr !important; }
+      #sec-kids .h-95, #sec-adult .h-95, #sec-senior .h-95 { height: 220px !important; }
+      #sec-tv figure > div, #sec-online figure > div { height: 220px !important; }
+      #sec-kids a, #sec-adult a { width: 100% !important; justify-content: center !important; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -193,20 +222,6 @@
           </div>
         </div>
       </header>
-
-      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동 — food5.html과 동일 구성) ===== -->
-      <nav aria-label="바른먹거리 하위 메뉴" class="w-full bg-brand">
-        <div class="mx-auto flex w-full max-w-food items-start px-6">
-          <a href="food.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능 식생활</a>
-          <a href="food2.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능식품</a>
-          <a href="food3.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 원칙</a>
-          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
-            바른먹거리 캠페인
-            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
-          </span>
-          <a href="food5.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">식품안전 및 품질정책</a>
-        </div>
-      </nav>
 
       <main id="main" tabindex="-1">
 

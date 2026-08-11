@@ -101,11 +101,40 @@
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 
-    .submenu-link { transition: background-color 0.2s ease; }
-    .submenu-link--active { cursor: default; }
-
     .footer-link { color: var(--color-text-body); }
     .footer-link:hover { color: var(--color-brand-dark); }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
+      #sec-hero { min-height: 240px !important; padding: 64px 48px !important; }
+      #sec-intro, #sec-framework, #sec-lohas { padding: 64px 48px !important; }
+      #sec-framework > div > div:nth-of-type(3) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 32px !important; }
+      #sec-lohas > div > div:nth-of-type(2) { grid-template-columns: 280px minmax(0, 1fr) !important; align-items: center !important; }
+      #sec-lohas > div > div:nth-of-type(2) > div:first-child { grid-column: 1; grid-row: 1; text-align: left !important; align-items: flex-start !important; }
+      #sec-lohas > div > div:nth-of-type(2) > div:nth-child(2) { grid-column: 1; grid-row: 2; }
+      #sec-lohas > div > div:nth-of-type(2) > div:last-child { grid-column: 2; grid-row: 1 / span 2; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
+
+    @media (max-width: 767px) {
+      header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
+      #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
+      #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
+      #sec-hero { min-height: 200px !important; padding: 40px 20px !important; }
+      #sec-intro, #sec-framework, #sec-lohas { padding: 56px 20px !important; }
+      #sec-intro > div, #sec-framework > div, #sec-lohas > div { gap: 32px !important; }
+      #intro-heading, #framework-heading, #lohas-heading { overflow-wrap: anywhere; }
+      #sec-framework > div > div:nth-of-type(3),
+      #sec-lohas > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; }
+      #sec-lohas > div > div:nth-of-type(2) > div { text-align: center !important; align-items: center !important; }
+      #site-footer > div { padding-top: 40px !important; padding-bottom: 40px !important; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -186,20 +215,6 @@
           </div>
         </div>
       </header>
-
-      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동 — food5.html과 동일 구성) ===== -->
-      <nav aria-label="바른먹거리 하위 메뉴" class="w-full bg-brand">
-        <div class="mx-auto flex w-full max-w-food items-start px-6">
-          <a href="food.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능 식생활</a>
-          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
-            지속가능식품
-            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
-          </span>
-          <a href="food3.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 원칙</a>
-          <a href="food4.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 캠페인</a>
-          <a href="food5.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">식품안전 및 품질정책</a>
-        </div>
-      </nav>
 
       <main id="main" tabindex="-1">
 

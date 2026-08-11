@@ -3,93 +3,93 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>풀무원, 친환경 패키지 개발로 플라스틱 30% 감축 달성 | 풀무원 Eco-Caring</title>
-<meta name="description" content="지속가능한 지구를 지키기 위한 풀무원의 친환경 기술 혁신 리포트. 생분해성 친환경 패키지 도입으로 온실가스 배출을 절감합니다." />
+<title>?臾댁썝, 移쒗솚寃??⑦궎吏 媛쒕컻濡??뚮씪?ㅽ떛 30% 媛먯텞 ?ъ꽦 | ?臾댁썝 Eco-Caring</title>
+<meta name="description" content="吏?띻??ν븳 吏援щ? 吏?ㅺ린 ?꾪븳 ?臾댁썝??移쒗솚寃?湲곗닠 ?곸떊 由ы룷?? ?앸텇?댁꽦 移쒗솚寃??⑦궎吏 ?꾩엯?쇰줈 ?⑥떎媛??諛곗텧???덇컧?⑸땲??" />
 
 <!-- Tailwind CSS v4 (Play CDN) -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-<!-- 프로젝트 스타일 -->
+<!-- ?꾨줈?앺듃 ?ㅽ???-->
 <link rel="stylesheet" href="assets/css/fonts.css" />
 <link rel="stylesheet" href="assets/css/style.css" />
 
 <style type="text/tailwindcss">
 /* ------------------------------------------------------------------
-   sub.html 전용 @theme
-   - Tailwind Play CDN은 외부 CSS의 @theme을 읽지 못하므로 토큰을 이 파일 안에 둔다.
-   - index.html의 토큰 이름·값 체계를 베이스라인으로 하고,
-     sub 시안(Figma node 3040:535)에만 등장하는 값만 새로 추가한다.
+   sub.html ?꾩슜 @theme
+   - Tailwind Play CDN? ?몃? CSS??@theme???쎌? 紐삵븯誘濡??좏겙?????뚯씪 ?덉뿉 ?붾떎.
+   - index.html???좏겙 ?대쫫쨌媛?泥닿퀎瑜?踰좎씠?ㅻ씪?몄쑝濡??섍퀬,
+     sub ?쒖븞(Figma node 3040:535)?먮쭔 ?깆옣?섎뒗 媛믩쭔 ?덈줈 異붽??쒕떎.
    ------------------------------------------------------------------ */
 @theme {
-  /* ---------- 글꼴 (index.html과 동일) ---------- */
+  /* ---------- 湲瑗?(index.html怨??숈씪) ---------- */
   --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  /* ---------- 색: 브랜드 (index.html과 동일 값) ---------- */
+  /* ---------- ?? 釉뚮옖??(index.html怨??숈씪 媛? ---------- */
   --color-brand: #7bcc12;          /* Figma color/lime/500 */
-  --color-lime-600: #60a10c;      /* 디자인시스템 color/lime/600 */
+  --color-lime-600: #60a10c;      /* ?붿옄?몄떆?ㅽ뀥 color/lime/600 */
   --color-green-50: #f2f9f3;       /* Figma color/green/50 */
   --color-green-900: #002905;      /* Figma color/green/900 */
 
-  /* ---------- 색: 회색 (index.html과 동일 값) ---------- */
+  /* ---------- ?? ?뚯깋 (index.html怨??숈씪 媛? ---------- */
   --color-gray-50: #f7f7f8;        /* Figma color/gray/50 */
-  --color-gray-100: #efeff1;       /* Figma color/gray/100 — 푸터 배경 */
-  --color-gray-200: #d9dade;       /* Figma color/gray/200 — 구분선 (시안 #e5e7eb 대치) */
-  --color-gray-400: #9ca1ab;       /* Figma color/gray/400 — 푸터 구분자·버튼 테두리, 캡션·날짜 (시안 #9ca3af 대치) */
+  --color-gray-100: #efeff1;       /* Figma color/gray/100 ???명꽣 諛곌꼍 */
+  --color-gray-200: #d9dade;       /* Figma color/gray/200 ??援щ텇??(?쒖븞 #e5e7eb ?移? */
+  --color-gray-400: #9ca1ab;       /* Figma color/gray/400 ???명꽣 援щ텇?먃룸쾭???뚮몢由? 罹≪뀡쨌?좎쭨 (?쒖븞 #9ca3af ?移? */
 
-  /* ---------- 색: 회색 (이어서) ---------- */
-  --color-gray-800: #31343b;       /* Figma color/gray/800 — 본문 기본 */
-  --color-gray-600: #535964;       /* Figma color/gray/600 — 본문 보조·브레드크럼·메타 (시안 #4b5563 대치) */
+  /* ---------- ?? ?뚯깋 (?댁뼱?? ---------- */
+  --color-gray-800: #31343b;       /* Figma color/gray/800 ??蹂몃Ц 湲곕낯 */
+  --color-gray-600: #535964;       /* Figma color/gray/600 ??蹂몃Ц 蹂댁“쨌釉뚮젅?쒗겕?셋룸찓? (?쒖븞 #4b5563 ?移? */
   --color-white: #ffffff;          /* Figma color/white */
 
-  /* ---------- 색: sub 시안 전용 ---------- */
-  --color-gray-950: #17191c;         /* 디자인시스템 color/gray/950 — 추천 카드 제목 (시안 #030712 대치) */
-  --color-scrim-banner-bottom: rgba(0, 0, 0, 0.70); /* Figma Banner Scrim 하단 정지점 */
+  /* ---------- ?? sub ?쒖븞 ?꾩슜 ---------- */
+  --color-gray-950: #17191c;         /* ?붿옄?몄떆?ㅽ뀥 color/gray/950 ??異붿쿇 移대뱶 ?쒕ぉ (?쒖븞 #030712 ?移? */
+  --color-scrim-banner-bottom: rgba(0, 0, 0, 0.70); /* Figma Banner Scrim ?섎떒 ?뺤???*/
 
-  /* ---------- 반지름 (index.html과 동일) ---------- */
+  /* ---------- 諛섏?由?(index.html怨??숈씪) ---------- */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 12px;
   --radius-2xl: 16px;
 
-  /* ---------- 레이아웃 ---------- */
-  /* 시안 콘텐츠 폭 1200px + 좌우 px-6(24px씩) = 1248px (index.html과 동일) */
+  /* ---------- ?덉씠?꾩썐 ---------- */
+  /* ?쒖븞 肄섑뀗痢???1200px + 醫뚯슦 px-6(24px?? = 1248px (index.html怨??숈씪) */
   --container-page: 1248px;
   --spacing-header-desktop: 152px;
-  /* 시안 Hero Banner 높이 450px */
+  /* ?쒖븞 Hero Banner ?믪씠 450px */
   --spacing-hero-banner: 450px;
-  /* 시안 Sidebar Column 고정 폭 340px (Article 800 + gap 60 + Sidebar 340 = 1200) */
+  /* ?쒖븞 Sidebar Column 怨좎젙 ??340px (Article 800 + gap 60 + Sidebar 340 = 1200) */
   --spacing-sidebar-col: 340px;
-  /* 시안 추천 카드 썸네일 80px */
+  /* ?쒖븞 異붿쿇 移대뱶 ?몃꽕??80px */
   --spacing-thumb: 80px;
 
-  /* ---------- 자간 ---------- */
-  /* 시안 Hero Eyebrow letter-spacing 2px @ 14px = 0.143em (index.html --tracking-tagline과 동일) */
+  /* ---------- ?먭컙 ---------- */
+  /* ?쒖븞 Hero Eyebrow letter-spacing 2px @ 14px = 0.143em (index.html --tracking-tagline怨??숈씪) */
   --tracking-tagline: 0.143em;
 
-  /* ---------- 행간 ---------- */
-  --leading-article: 1.8;  /* 시안 본문 문단 */
-  --leading-body: 1.6;     /* 시안 Hero 부제 */
-  --leading-title: 1.4;    /* 시안 Download Callout 제목 */
+  /* ---------- ?됯컙 ---------- */
+  --leading-article: 1.8;  /* ?쒖븞 蹂몃Ц 臾몃떒 */
+  --leading-body: 1.6;     /* ?쒖븞 Hero 遺??*/
+  --leading-title: 1.4;    /* ?쒖븞 Download Callout ?쒕ぉ */
 
-  /* ---------- 글자 크기 ---------- */
-  /* 시안 기사 제목 48px @1920px 캔버스 */
+  /* ---------- 湲???ш린 ---------- */
+  /* ?쒖븞 湲곗궗 ?쒕ぉ 48px @1920px 罹붾쾭??*/
   --text-article-hero: clamp(1.75rem, 2.5vw, 3rem);
   --text-article-hero--line-height: 1.3;
-  /* 시안 Callout 불릿 15px */
+  /* ?쒖븞 Callout 遺덈┸ 15px */
   --text-label: 15px;
-  /* 시안 Download Callout 설명 13px */
+  /* ?쒖븞 Download Callout ?ㅻ챸 13px */
   --text-caption: 13px;
 }
 
-/* style.css에서만 참조하는 토큰.
-   Play CDN은 외부 CSS를 스캔하지 않으므로 static으로 선언해 항상 출력되게 한다. */
+/* style.css?먯꽌留?李몄“?섎뒗 ?좏겙.
+   Play CDN? ?몃? CSS瑜??ㅼ틪?섏? ?딆쑝誘濡?static?쇰줈 ?좎뼵????긽 異쒕젰?섍쾶 ?쒕떎. */
 @theme static {
-  --color-black: #000000; /* token-exempt: @theme static 정의 — 텍스트 그림자 색의 원천 */
+  --color-black: #000000; /* token-exempt: @theme static ?뺤쓽 ???띿뒪??洹몃┝???됱쓽 ?먯쿇 */
 
   --spacing-header-mobile: 64px;
   --spacing-hairline: 1px;
@@ -102,7 +102,7 @@
   --shadow-text-strong: 0 1px 16px color-mix(in srgb, var(--color-black) 75%, transparent);
 }
 
-/* 시안 Columns Wrapper: 본문 열은 남는 폭, 사이드바는 고정 폭 340px. */
+/* ?쒖븞 Columns Wrapper: 蹂몃Ц ?댁? ?⑤뒗 ?? ?ъ씠?쒕컮??怨좎젙 ??340px. */
 @utility grid-article {
   grid-template-columns: 1fr var(--spacing-sidebar-col);
 }
@@ -111,50 +111,49 @@
 
 <body class="bg-white font-sans text-base text-gray-800">
 
-<a class="skip-link" href="#main">본문 바로가기</a>
+<a class="skip-link" href="#main">蹂몃Ц 諛붾줈媛湲?/a>
 
-<!-- ================= 헤더 (index.html과 동일 컴포넌트) ================= -->
+<!-- ================= ?ㅻ뜑 (index.html怨??숈씪 而댄룷?뚰듃) ================= -->
 <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white">
   <div class="mx-auto w-full max-w-page px-6">
 
-    <!-- 상단 유틸리티 바 -->
+    <!-- ?곷떒 ?좏떥由ы떚 諛?-->
     <div id="utility-bar" class="hidden h-14 items-center justify-end gap-1 overflow-hidden lg:flex">
       <a class="util-link" href="index.html#section2">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
-        <span>지속가능경영보고서</span>
+        <span>吏?띻??κ꼍?곷낫怨좎꽌</span>
       </a>
       <a class="util-link" href="#site-footer">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
-        <span>인재채용</span>
+        <span>?몄옱梨꾩슜</span>
       </a>
       <a class="util-link" href="#site-footer">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
-        <span>고객기쁨센터</span>
+        <span>怨좉컼湲곗겏?쇳꽣</span>
       </a>
       <a class="util-link" href="index.html#section5">
         <span class="util-link__icon bg-gray-50"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
-        <span class="font-bold">#풀무원</span>
+        <span class="font-bold">#?臾댁썝</span>
       </a>
     </div>
 
-    <!-- 메인 내비게이션 -->
+    <!-- 硫붿씤 ?대퉬寃뚯씠??-->
     <div class="flex h-16 items-center justify-between lg:h-24">
       <a href="index.html" class="focus-ring shrink-0 rounded-md">
-        <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" class="w-24 lg:w-28" />
+        <img src="assets/images/logo-pulmuone.png" alt="?臾댁썝 ?덉쑝濡??대룞" class="w-24 lg:w-28" />
       </a>
 
       <nav id="primary-nav" class="site-nav" aria-label="주요 메뉴">
         <ul class="site-nav__list">
           <li><a class="site-nav__link" href="index.html#section1">회사소개</a></li>
           <li><a class="site-nav__link" href="sub.html" aria-current="page">사회책임경영</a></li>
-          <li><a class="site-nav__link" href="index.html#section2">바른먹거리</a></li>
+          <li><a class="site-nav__link" href="food.html">바른먹거리</a></li>
           <li><a class="site-nav__link" href="index.html#section3">지구식단</a></li>
           <li><a class="site-nav__link" href="index.html#section4">뉴스룸</a></li>
         </ul>
       </nav>
-
       <div class="flex items-center gap-4">
-        <button type="button" class="focus-ring hidden size-9 items-center justify-center rounded-lg lg:flex" aria-label="통합 검색 열기">
+        <button type="button" class="focus-ring hidden size-9 items-center justify-center rounded-lg lg:flex" aria-label="?듯빀 寃???닿린">
           <img src="assets/icons/search.svg" alt="" width="20" height="20" class="size-5" />
         </button>
 
@@ -163,7 +162,7 @@
           <img src="assets/icons/chevron-down.svg" alt="" width="20" height="20" class="size-5" />
         </button>
 
-        <button type="button" id="menu-toggle" class="focus-ring flex size-10 items-center justify-center rounded-lg lg:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-nav">
+        <button type="button" id="menu-toggle" class="focus-ring flex size-10 items-center justify-center rounded-lg lg:hidden" aria-label="硫붾돱 ?닿린" aria-expanded="false" aria-controls="primary-nav">
           <span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
       </div>
@@ -174,110 +173,110 @@
 <main id="main" class="pt-header-mobile lg:pt-header-desktop">
 
   <!-- ============================================================
-       Hero Banner — Figma node 3040:594 (1920×450)
+       Hero Banner ??Figma node 3040:594 (1920횞450)
        ============================================================ -->
   <section class="relative flex items-center overflow-hidden py-16 lg:h-hero-banner lg:py-0" aria-labelledby="article-title">
-    <!-- 시안 전용 배너 사진이 없어 assets/images/forest.png로 임시 대체 -->
+    <!-- ?쒖븞 ?꾩슜 諛곕꼫 ?ъ쭊???놁뼱 assets/images/forest.png濡??꾩떆 ?泥?-->
     <img src="assets/images/forest.png" alt="" class="absolute inset-0 size-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-scrim-banner-bottom" aria-hidden="true"></div>
 
     <div class="relative mx-auto flex w-full max-w-page flex-col items-start gap-4 px-6">
       <p class="flex items-center gap-2">
         <span class="h-0.5 w-6 shrink-0 bg-green-50" aria-hidden="true"></span>
-        <span class="ts-strong text-sm font-bold tracking-tagline text-brand">지속가능경영 · ECO-CARING</span>
+        <span class="ts-strong text-sm font-bold tracking-tagline text-brand">吏?띻??κ꼍??쨌 ECO-CARING</span>
       </p>
 
       <h1 id="article-title" class="ts-hero text-article-hero font-black text-white">
-        풀무원, 친환경 패키지 개발로 플라스틱 30% 감축 달성
+        ?臾댁썝, 移쒗솚寃??⑦궎吏 媛쒕컻濡??뚮씪?ㅽ떛 30% 媛먯텞 ?ъ꽦
       </h1>
 
       <p class="ts-strong text-lg leading-body text-gray-200">
-        지속가능한 지구를 지키기 위한 풀무원의 친환경 기술 혁신 리포트
+        吏?띻??ν븳 吏援щ? 吏?ㅺ린 ?꾪븳 ?臾댁썝??移쒗솚寃?湲곗닠 ?곸떊 由ы룷??
       </p>
     </div>
   </section>
 
   <!-- ============================================================
-       Main Outer Wrapper — Figma node 3040:602
+       Main Outer Wrapper ??Figma node 3040:602
        ============================================================ -->
   <div class="mx-auto w-full max-w-page px-6 pb-16 lg:pb-30">
 
-    <!-- Breadcrumbs — Figma node 3040:604 -->
-    <nav class="flex flex-wrap items-center gap-2 py-6" aria-label="현재 위치">
+    <!-- Breadcrumbs ??Figma node 3040:604 -->
+    <nav class="flex flex-wrap items-center gap-2 py-6" aria-label="?꾩옱 ?꾩튂">
       <ol class="flex flex-wrap items-center gap-2">
-        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html">홈</a></li>
+        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html">??/a></li>
         <li aria-hidden="true" class="text-xs text-gray-400">&gt;</li>
-        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html#section2">사회책임경영</a></li>
+        <li><a class="focus-ring text-sm text-gray-600 underline-offset-4 hover:underline" href="index.html#section2">?ы쉶梨낆엫寃쎌쁺</a></li>
         <li aria-hidden="true" class="text-xs text-gray-400">&gt;</li>
-        <li><span class="text-sm font-bold text-lime-600" aria-current="page">친환경 케어 (Eco-Caring)</span></li>
+        <li><span class="text-sm font-bold text-lime-600" aria-current="page">移쒗솚寃?耳??(Eco-Caring)</span></li>
       </ol>
     </nav>
 
-    <!-- Columns Wrapper — Figma node 3040:610 -->
+    <!-- Columns Wrapper ??Figma node 3040:610 -->
     <div class="grid grid-cols-1 items-start gap-10 lg:grid-article lg:gap-15">
 
-      <!-- ---------- Article Column — Figma node 3040:611 ---------- -->
+      <!-- ---------- Article Column ??Figma node 3040:611 ---------- -->
       <article class="flex min-w-0 flex-col gap-8">
 
-        <!-- Article Meta Row — Figma node 3040:612 -->
+        <!-- Article Meta Row ??Figma node 3040:612 -->
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 pb-4">
-          <p class="inline-flex rounded-sm bg-lime-600 px-2.5 py-1 text-xs font-bold text-white">우리의 실천</p>
+          <p class="inline-flex rounded-sm bg-lime-600 px-2.5 py-1 text-xs font-bold text-white">?곕━???ㅼ쿇</p>
 
           <div class="flex flex-wrap items-center gap-4 text-sm">
-            <p class="text-gray-600">등록일: <time datetime="2026-03-20">2026.03.20</time></p>
+            <p class="text-gray-600">?깅줉?? <time datetime="2026-03-20">2026.03.20</time></p>
             <span aria-hidden="true" class="text-gray-400">|</span>
-            <p class="text-gray-600">작성자: ESG환경경영팀</p>
+            <p class="text-gray-600">?묒꽦?? ESG?섍꼍寃쎌쁺?</p>
           </div>
         </div>
 
         <p class="text-lg leading-article text-gray-800">
-          풀무원은 지구환경 오염을 방지하고 생태계의 복원력을 높이기 위해 전 제품에 친환경 패키지 기술 개발을 적용하고 있습니다. 이번에 도입된 생분해성 친환경 패키지는 자연 유래 원료를 활용하여 기존 석유계 화학 합성 플라스틱에 비해 온실가스 배출을 대폭 절감시키는 우수한 친환경성을 지니고 있습니다.
+          ?臾댁썝? 吏援ы솚寃??ㅼ뿼??諛⑹??섍퀬 ?앺깭怨꾩쓽 蹂듭썝?μ쓣 ?믪씠湲??꾪빐 ???쒗뭹??移쒗솚寃??⑦궎吏 湲곗닠 媛쒕컻???곸슜?섍퀬 ?덉뒿?덈떎. ?대쾲???꾩엯???앸텇?댁꽦 移쒗솚寃??⑦궎吏???먯뿰 ?좊옒 ?먮즺瑜??쒖슜?섏뿬 湲곗〈 ?앹쑀怨??뷀븰 ?⑹꽦 ?뚮씪?ㅽ떛??鍮꾪빐 ?⑥떎媛??諛곗텧??????덇컧?쒗궎???곗닔??移쒗솚寃쎌꽦??吏?덇퀬 ?덉뒿?덈떎.
         </p>
 
-        <!-- Inline Image Block — Figma node 3040:620 -->
+        <!-- Inline Image Block ??Figma node 3040:620 -->
         <figure class="flex flex-col gap-3">
-          <!-- 시안 전용 기사 사진이 없어 assets/images/product-1.png로 임시 대체 -->
-          <img src="assets/images/product-1.png" alt="식물성 원료 기반 친환경 패키지를 적용한 풀무원 제품" class="aspect-video w-full rounded-2xl object-cover" loading="lazy" />
+          <!-- ?쒖븞 ?꾩슜 湲곗궗 ?ъ쭊???놁뼱 assets/images/product-1.png濡??꾩떆 ?泥?-->
+          <img src="assets/images/product-1.png" alt="?앸Ъ???먮즺 湲곕컲 移쒗솚寃??⑦궎吏瑜??곸슜???臾댁썝 ?쒗뭹" class="aspect-video w-full rounded-2xl object-cover" loading="lazy" />
           <figcaption class="text-center text-sm text-gray-400">
-            ▲ 풀무원 R&amp;D 센터에서 자체 개발한 식물성 원료 기반 친환경 지속가능 용기 디자인
+            ???臾댁썝 R&amp;D ?쇳꽣?먯꽌 ?먯껜 媛쒕컻???앸Ъ???먮즺 湲곕컲 移쒗솚寃?吏?띻????⑷린 ?붿옄??
           </figcaption>
         </figure>
 
         <p class="text-lg leading-article text-gray-800">
-          특히 풀무원 지구식단 제품 라인업에 전면 도입된 바이오 페트(Bio-PET) 소재는 유기 재료의 비율을 극대화하여 폐기 단계에서 빠른 자가 생분해가 이루어지도록 돕습니다. 이는 당사 중장기 Net Zero 달성 목표인 ‘2050 온실가스 제로’를 실천하기 위한 핵심 전략 중 하나이며, 다양한 협력사들과의 환경적 연대 및 파트너십을 통해 더 큰 성과를 만들어내고자 합니다.
+          ?뱁엳 ?臾댁썝 吏援ъ떇???쒗뭹 ?쇱씤?낆뿉 ?꾨㈃ ?꾩엯??諛붿씠???섑듃(Bio-PET) ?뚯옱???좉린 ?щ즺??鍮꾩쑉??洹밸??뷀븯???먭린 ?④퀎?먯꽌 鍮좊Ⅸ ?먭? ?앸텇?닿? ?대（?댁??꾨줉 ?뺤뒿?덈떎. ?대뒗 ?뱀궗 以묒옣湲?Net Zero ?ъ꽦 紐⑺몴????050 ?⑥떎媛???쒕줈?숇? ?ㅼ쿇?섍린 ?꾪븳 ?듭떖 ?꾨왂 以??섎굹?대ŉ, ?ㅼ뼇???묐젰?щ뱾怨쇱쓽 ?섍꼍???곕? 諛??뚰듃?덉떗???듯빐 ?????깃낵瑜?留뚮뱾?대궡怨좎옄 ?⑸땲??
         </p>
 
-        <!-- Callout Box — Figma node 3040:624 -->
+        <!-- Callout Box ??Figma node 3040:624 -->
         <section class="flex flex-col gap-3 rounded-xl border border-lime-600 bg-green-50 p-6" aria-labelledby="kpi-title">
-          <h2 id="kpi-title" class="text-lg font-extrabold text-green-900">주요 지속가능 성과지표 (Eco-Caring KPIs)</h2>
+          <h2 id="kpi-title" class="text-lg font-extrabold text-green-900">二쇱슂 吏?띻????깃낵吏??(Eco-Caring KPIs)</h2>
           <ul class="flex list-inside list-disc flex-col gap-2 text-label text-gray-600">
-            <li>수자원 및 해양 플라스틱 오염 방지를 위한 용기 전면 교체</li>
-            <li>탄소 배출량 연간 약 150톤 가량의 직간접적 감축 효과 기대</li>
-            <li>지속가능 원재료 소싱 비중을 2026년까지 전체 제품의 45%로 확대</li>
+            <li>?섏옄??諛??댁뼇 ?뚮씪?ㅽ떛 ?ㅼ뿼 諛⑹?瑜??꾪븳 ?⑷린 ?꾨㈃ 援먯껜</li>
+            <li>?꾩냼 諛곗텧???곌컙 ??150??媛?됱쓽 吏곴컙?묒쟻 媛먯텞 ?④낵 湲곕?</li>
+            <li>吏?띻????먯옱猷??뚯떛 鍮꾩쨷??2026?꾧퉴吏 ?꾩껜 ?쒗뭹??45%濡??뺣?</li>
           </ul>
         </section>
 
         <p class="text-lg leading-article text-gray-800">
-          풀무원은 앞으로도 먹거리의 안전성을 최고로 유지하면서도, 그 먹거리를 담아내는 기술적 그릇에서도 지구와의 조화를 포기하지 않을 것입니다. 우리의 이러한 작은 노력이 모든 생명체와의 공존(Nature Positive)을 실현하는 가장 바른 대답이 될 것이라 확신합니다.
+          ?臾댁썝? ?욎쑝濡쒕룄 癒밴굅由ъ쓽 ?덉쟾?깆쓣 理쒓퀬濡??좎??섎㈃?쒕룄, 洹?癒밴굅由щ? ?댁븘?대뒗 湲곗닠??洹몃쫯?먯꽌??吏援ъ???議고솕瑜??ш린?섏? ?딆쓣 寃껋엯?덈떎. ?곕━???대윭???묒? ?몃젰??紐⑤뱺 ?앸챸泥댁???怨듭〈(Nature Positive)???ㅽ쁽?섎뒗 媛??諛붾Ⅸ ??듭씠 ??寃껋씠???뺤떊?⑸땲??
         </p>
 
       </article>
 
-      <!-- ---------- Sidebar Column — Figma node 3040:631 ---------- -->
+      <!-- ---------- Sidebar Column ??Figma node 3040:631 ---------- -->
       <aside class="flex min-w-0 flex-col gap-10">
 
-        <!-- Recommend Block — Figma node 3040:632 -->
+        <!-- Recommend Block ??Figma node 3040:632 -->
         <section class="flex flex-col gap-5 rounded-2xl bg-gray-50 p-6" aria-labelledby="recommend-title">
-          <h2 id="recommend-title" class="text-lg font-extrabold text-gray-800">추천 콘텐츠</h2>
+          <h2 id="recommend-title" class="text-lg font-extrabold text-gray-800">異붿쿇 肄섑뀗痢?/h2>
 
           <ul class="flex flex-col gap-4">
             <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
-              <!-- 시안 전용 썸네일이 없어 기존 에셋으로 임시 대체 -->
+              <!-- ?쒖븞 ?꾩슜 ?몃꽕?쇱씠 ?놁뼱 湲곗〈 ?먯뀑?쇰줈 ?꾩떆 ?泥?-->
               <img src="assets/images/about-media.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <p class="text-xs font-bold text-lime-600">Net Zero</p>
                 <h3 class="text-sm font-bold text-gray-950">
-                  <a class="focus-ring" href="index.html#section2">2050 넷 제로 달성을 위한 단계별 로드맵</a>
+                  <a class="focus-ring" href="index.html#section2">2050 ???쒕줈 ?ъ꽦???꾪븳 ?④퀎蹂?濡쒕뱶留?/a>
                 </h3>
                 <p class="text-xs text-gray-400"><time datetime="2025-02-28">2025.02.28</time></p>
               </div>
@@ -286,9 +285,9 @@
             <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
               <img src="assets/images/community-1.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="text-xs font-bold text-lime-600">지구식단</p>
+                <p class="text-xs font-bold text-lime-600">吏援ъ떇??/p>
                 <h3 class="text-sm font-bold text-gray-950">
-                  <a class="focus-ring" href="index.html#section3">지구식단과 함께하는 일상 속 탄소 감축법</a>
+                  <a class="focus-ring" href="index.html#section3">吏援ъ떇?④낵 ?④퍡?섎뒗 ?쇱긽 ???꾩냼 媛먯텞踰?/a>
                 </h3>
                 <p class="text-xs text-gray-400"><time datetime="2025-03-10">2025.03.10</time></p>
               </div>
@@ -297,9 +296,9 @@
             <li class="flex items-center gap-4 border-b border-gray-200 pb-4">
               <img src="assets/images/eco-farm.png" alt="" class="size-thumb shrink-0 rounded-md object-cover" loading="lazy" />
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="text-xs font-bold text-lime-600">수자원보호</p>
+                <p class="text-xs font-bold text-lime-600">?섏옄?먮낫??/p>
                 <h3 class="text-sm font-bold text-gray-950">
-                  <a class="focus-ring" href="index.html#section2">지속가능 수자원 관리를 위한 풀무원의 수질 개선 프로젝트</a>
+                  <a class="focus-ring" href="index.html#section2">吏?띻????섏옄??愿由щ? ?꾪븳 ?臾댁썝???섏쭏 媛쒖꽑 ?꾨줈?앺듃</a>
                 </h3>
                 <p class="text-xs text-gray-400"><time datetime="2025-01-15">2025.01.15</time></p>
               </div>
@@ -307,22 +306,22 @@
           </ul>
         </section>
 
-        <!-- Download Callout — Figma node 3040:653 -->
+        <!-- Download Callout ??Figma node 3040:653 -->
         <section class="flex flex-col gap-4 rounded-2xl bg-green-900 p-6" aria-labelledby="report-title">
           <p class="flex items-center gap-2">
-            <!-- 시안 아이콘(circle-x, 24px)에 대응하는 에셋이 없어 file-text.svg로 임시 대체 -->
+            <!-- ?쒖븞 ?꾩씠肄?circle-x, 24px)????묓븯???먯뀑???놁뼱 file-text.svg濡??꾩떆 ?泥?-->
             <img src="assets/icons/file-text.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
             <span class="text-base font-bold text-brand">E-REPORT</span>
           </p>
 
-          <h2 id="report-title" class="text-lg font-extrabold leading-title text-white">2025 지속가능경영보고서 다운로드</h2>
+          <h2 id="report-title" class="text-lg font-extrabold leading-title text-white">2025 吏?띻??κ꼍?곷낫怨좎꽌 ?ㅼ슫濡쒕뱶</h2>
 
           <p class="text-caption text-green-50 opacity-80">
-            풀무원의 더 나은 성취와 투명한 탄소 발자국 환경 성과가 가득 차 있습니다.
+            ?臾댁썝?????섏? ?깆랬? ?щ챸???꾩냼 諛쒖옄援??섍꼍 ?깃낵媛 媛??李??덉뒿?덈떎.
           </p>
 
           <a class="focus-ring flex w-full items-center justify-center rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-green-900" href="index.html#section2">
-            PDF 다운로드 받기
+            PDF ?ㅼ슫濡쒕뱶 諛쏄린
           </a>
         </section>
 
@@ -331,41 +330,41 @@
   </div>
 </main>
 
-<!-- ================= 푸터 (index.html과 동일 컴포넌트) ================= -->
+<!-- ================= ?명꽣 (index.html怨??숈씪 而댄룷?뚰듃) ================= -->
 <footer id="site-footer" class="bg-gray-100">
   <div class="mx-auto w-full max-w-page border-t border-gray-200 px-6 py-10">
 
     <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-start lg:px-20">
       <div class="flex flex-col items-start gap-4">
-        <img src="assets/images/footer-logo.png" alt="풀무원" class="h-9 w-auto" loading="lazy" />
+        <img src="assets/images/footer-logo.png" alt="?臾댁썝" class="h-9 w-auto" loading="lazy" />
         <address class="flex flex-col gap-1 text-xs not-italic text-gray-600">
-          <span>법인명 : (주)풀무원</span>
-          <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
-          <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
+          <span>踰뺤씤紐?: (二??臾댁썝</span>
+          <span>?쒖슱??媛뺣궓援?愿묓룊濡?280 濡쒖쫰?곗씪鍮뚮뵫</span>
+          <span>??쒖쟾??: <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
         </address>
       </div>
 
       <div class="flex flex-col gap-4 lg:items-end">
-        <nav aria-label="정책 및 안내">
+        <nav aria-label="?뺤콉 諛??덈궡">
           <ul class="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1 lg:justify-end">
-            <li><a class="footer-link font-bold" href="#site-footer">개인정보처리방침</a></li>
+            <li><a class="footer-link font-bold" href="#site-footer">媛쒖씤?뺣낫泥섎━諛⑹묠</a></li>
             <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+            <li><a class="footer-link" href="#site-footer">?대찓?쇱＜??臾대떒?섏쭛 嫄곕?</a></li>
             <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">사이버감사실</a></li>
+            <li><a class="footer-link" href="#site-footer">?ъ씠踰꾧컧?ъ떎</a></li>
             <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">공정거래</a></li>
+            <li><a class="footer-link" href="#site-footer">怨듭젙嫄곕옒</a></li>
             <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-            <li><a class="footer-link" href="#site-footer">풀무원채용</a></li>
+            <li><a class="footer-link" href="#site-footer">?臾댁썝梨꾩슜</a></li>
           </ul>
         </nav>
 
         <div class="flex flex-wrap items-center gap-3">
-          <span class="text-sm text-gray-800">공식계정</span>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
-          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
+          <span class="text-sm text-gray-800">怨듭떇怨꾩젙</span>
+          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="?臾댁썝 ?좏뒠釉? class="size-7" loading="lazy" /></a>
+          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="?臾댁썝 X" class="size-7" loading="lazy" /></a>
+          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="?臾댁썝 ?몄뒪?洹몃옩" class="size-7" loading="lazy" /></a>
+          <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="?臾댁썝 ?ㅼ씠踰?釉붾줈洹? class="size-7" loading="lazy" /></a>
         </div>
       </div>
     </div>
@@ -373,34 +372,34 @@
     <hr class="my-6 border-gray-200" />
 
     <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center lg:px-20">
-      <p class="text-xs leading-normal text-gray-600">Copyright © Pulmuone Corporate All Rights Reserved.</p>
+      <p class="text-xs leading-normal text-gray-600">Copyright 짤 Pulmuone Corporate All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
         <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-gray-800" aria-haspopup="listbox" aria-expanded="false">
-          계열사/브랜드 사이트
+          怨꾩뿴??釉뚮옖???ъ씠??
           <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" class="size-3" />
         </button>
-        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="size-14" loading="lazy" />
+        <img src="assets/images/footer-badge-privacy.png" alt="媛쒖씤?뺣낫蹂댄샇 ?곗닔 ?뱀궗?댄듃 ?몄쬆 留덊겕" class="size-14" loading="lazy" />
       </div>
     </div>
 
   </div>
 </footer>
 
-<!-- ================= 스크립트 ================= -->
+<!-- ================= ?ㅽ겕由쏀듃 ================= -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
 <script>
-/* sub.html은 일반 문서 스크롤 페이지다.
-   assets/js/main.js는 index.html의 풀페이지(.panel) 전용 로직이라 여기서는 불러오지 않는다.
-   (.panel이 없으면 위쪽 휠 이벤트가 푸터로 강제 이동해 스크롤이 막힌다)
-   이 페이지에 필요한 동작은 모바일 메뉴 토글과 등장 애니메이션뿐이라 인라인으로 둔다. */
+/* sub.html? ?쇰컲 臾몄꽌 ?ㅽ겕濡??섏씠吏??
+   assets/js/main.js??index.html????섏씠吏(.panel) ?꾩슜 濡쒖쭅?대씪 ?ш린?쒕뒗 遺덈윭?ㅼ? ?딅뒗??
+   (.panel???놁쑝硫??꾩そ ???대깽?멸? ?명꽣濡?媛뺤젣 ?대룞???ㅽ겕濡ㅼ씠 留됲엺??
+   ???섏씠吏???꾩슂???숈옉? 紐⑤컮??硫붾돱 ?좉?怨??깆옣 ?좊땲硫붿씠?섎퓧?대씪 ?몃씪?몄쑝濡??붾떎. */
 (function () {
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* ---------------- 모바일 메뉴 ---------------- */
+  /* ---------------- 紐⑤컮??硫붾돱 ---------------- */
   var menuToggle = document.getElementById('menu-toggle');
   var primaryNav = document.getElementById('primary-nav');
 
@@ -409,15 +408,15 @@
     if (!primaryNav.classList.contains('is-open')) return;
 
     menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', '메뉴 열기');
+    menuToggle.setAttribute('aria-label', '硫붾돱 ?닿린');
 
     if (!window.gsap || reduceMotion.matches) {
       primaryNav.classList.remove('is-open');
       return;
     }
 
-    // 열 때 GSAP이 남긴 인라인 opacity/transform이 CSS 전환을 덮어써서
-    // 클래스만 떼면 닫히지 않는다. slideUp으로 직접 애니메이션한 뒤 클래스를 뗀다.
+    // ????GSAP???④릿 ?몃씪??opacity/transform??CSS ?꾪솚????뼱?⑥꽌
+    // ?대옒?ㅻ쭔 ?쇰㈃ ?ロ엳吏 ?딅뒗?? slideUp?쇰줈 吏곸젒 ?좊땲硫붿씠?섑븳 ???대옒?ㅻ? ???
     gsap.to(primaryNav, {
       autoAlpha: 0,
       y: -8,
@@ -439,7 +438,7 @@
 
       primaryNav.classList.add('is-open');
       menuToggle.setAttribute('aria-expanded', 'true');
-      menuToggle.setAttribute('aria-label', '메뉴 닫기');
+      menuToggle.setAttribute('aria-label', '硫붾돱 ?リ린');
 
       if (window.gsap && !reduceMotion.matches) {
         gsap.fromTo(primaryNav, { autoAlpha: 0, y: -8 }, { autoAlpha: 1, y: 0, duration: 0.25, ease: 'power2.out' });
@@ -452,7 +451,7 @@
     });
   }
 
-  /* ---------------- 등장 애니메이션 (GSAP) ---------------- */
+  /* ---------------- ?깆옣 ?좊땲硫붿씠??(GSAP) ---------------- */
   if (!window.gsap || !window.ScrollTrigger || reduceMotion.matches) return;
   gsap.registerPlugin(ScrollTrigger);
 
