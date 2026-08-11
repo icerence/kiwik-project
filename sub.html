@@ -404,23 +404,51 @@
   var menuToggle = document.getElementById('menu-toggle');
   var primaryNav = document.getElementById('primary-nav');
 
+  function closeMenu() {
+    if (!menuToggle || !primaryNav) return;
+    if (!primaryNav.classList.contains('is-open')) return;
+
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', '메뉴 열기');
+
+    if (!window.gsap || reduceMotion.matches) {
+      primaryNav.classList.remove('is-open');
+      return;
+    }
+
+    // 열 때 GSAP이 남긴 인라인 opacity/transform이 CSS 전환을 덮어써서
+    // 클래스만 떼면 닫히지 않는다. slideUp으로 직접 애니메이션한 뒤 클래스를 뗀다.
+    gsap.to(primaryNav, {
+      autoAlpha: 0,
+      y: -8,
+      duration: 0.2,
+      ease: 'power2.in',
+      onComplete: function () {
+        primaryNav.classList.remove('is-open');
+        gsap.set(primaryNav, { clearProps: 'opacity,visibility,transform' });
+      }
+    });
+  }
+
   if (menuToggle && primaryNav) {
     menuToggle.addEventListener('click', function () {
-      var willOpen = !primaryNav.classList.contains('is-open');
-      primaryNav.classList.toggle('is-open', willOpen);
-      menuToggle.setAttribute('aria-expanded', String(willOpen));
-      menuToggle.setAttribute('aria-label', willOpen ? '메뉴 닫기' : '메뉴 열기');
+      if (primaryNav.classList.contains('is-open')) {
+        closeMenu();
+        return;
+      }
 
-      if (willOpen && window.gsap && !reduceMotion.matches) {
+      primaryNav.classList.add('is-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', '메뉴 닫기');
+
+      if (window.gsap && !reduceMotion.matches) {
         gsap.fromTo(primaryNav, { autoAlpha: 0, y: -8 }, { autoAlpha: 1, y: 0, duration: 0.25, ease: 'power2.out' });
       }
     });
 
     document.addEventListener('keydown', function (event) {
       if (event.key !== 'Escape') return;
-      primaryNav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', '메뉴 열기');
+      closeMenu();
     });
   }
 
