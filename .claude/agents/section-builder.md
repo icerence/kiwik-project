@@ -40,6 +40,7 @@ description: Figma 시안 없이 이미 있는 index.html의 @theme 토큰만으
 1. Edit 또는 MultiEdit로 대상 파일의 해당 섹션 자리에만 변경을 적용합니다. 다른 섹션·다른 파일은 건드리지 않습니다.
 2. 새 파셜 파일을 만들 때는 Write를 사용하며, 그 파일이 index.html의 CDN 목록과 @theme 정의를 그대로 쓰는 구조인지 확인합니다.
 3. @theme에 없는 값이 필요하면 먼저 index.html의 @theme 블록에 그 값을 변수로 추가하고 나서 참조합니다. 값을 임시로 하드코딩한 뒤 나중에 뽑아내는 방식은 쓰지 않습니다.
+4. 새 HTML 페이지를 만들거나 대상 페이지 편집을 마친 직후 `node common/sync-common.mjs`를 실행해 공통 head·header·footer를 자동 적용합니다.
 
 ### 4. Evaluate
 
@@ -47,7 +48,8 @@ description: Figma 시안 없이 이미 있는 index.html의 @theme 토큰만으
 
 1. Read로 방금 편집한 파일을 다시 열어, tokens 변수가 아닌 자리에 남은 수치 단위(px·em·rem)가 있는지 검색합니다. 하드코딩 색상·arbitrary 클래스·미허용 CDN은 자동 훅이 이미 걸렀으므로 여기서는 훅이 못 잡는 값 위주로 봅니다.
 2. 요청한 섹션 외의 자리가 바뀌지 않았는지 확인합니다. 바뀐 자리가 있으면 되돌립니다.
-3. 불일치가 있으면 원인을 한 문장으로 정리해 사용자에게 보고합니다. 자동으로 재수정하지 않습니다.
+3. 대상 페이지에 `common:head`, `common:header`, `common:footer` 영역이 각각 하나씩 있는지 확인합니다.
+4. 불일치가 있으면 원인을 한 문장으로 정리해 사용자에게 보고합니다. 자동으로 재수정하지 않습니다.
 
 ## 보고 방식
 

@@ -1,0 +1,18 @@
+:root {
+  /* Food pages: shared brand colors */
+  --food-color-brand: #7bcc12;
+  --food-color-brand-dark: #4a7e07;
+  --food-color-brand-deep: #396204;
+  --food-color-badge-brand: #f1f8e7;
+
+  /* Food pages: shared neutral colors */
+  --food-color-gray-50: #f7f7f8;
+  --food-color-gray-100: #efeff1;
+  --food-color-gray-200: #d9dade;
+  --food-color-gray-400: #9ca1ab;
+  --food-color-gray-600: #535964;
+  --food-color-text-primary: #31343b;
+  --food-color-text-body: #40444d;
+  --food-color-border: #e5e7eb;
+  --food-color-surface-soft: #f9fafb;
+}
