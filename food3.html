@@ -53,7 +53,8 @@
       /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. food.html·food2.html과 겹치는 값은 같은 이름 재사용) ---------- */
       --text-food-headline: 2.75rem; /* 44px — main-title-row */
       --text-food-display: 2rem;    /* 32px */
-      --text-food-tiny: 0.8125rem;  /* 13px — breadcrumb */
+      --text-food-tiny: 0.8125rem;  /* 13px — 서브메뉴 */
+      --text-food-micro: 0.625rem;  /* 10px — 서브메뉴 활성 항목의 ▼ 표시 (food5.html과 동일 이름·값 재사용) */
       --text-food-body: 0.9375rem;  /* 15px */
 
       /* ---------- 행간 (Tailwind 기본 스케일에 없는 시안 값만) ---------- */
@@ -103,6 +104,9 @@
     .nav-link:hover::after,
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+
+    .submenu-link { transition: background-color 0.2s ease; }
+    .submenu-link--active { cursor: default; }
 
     .footer-link { color: var(--color-text-body); }
     .footer-link:hover { color: var(--color-brand-dark); }
@@ -187,14 +191,17 @@
         </div>
       </header>
 
-      <!-- ===== 로컬 내비게이션 (브레드크럼) ===== -->
-      <nav aria-label="현재 위치" class="w-full bg-brand">
-        <div class="mx-auto flex w-full max-w-food items-center gap-2 px-6 py-3 text-food-tiny text-white">
-          <a href="index.html" class="focus-ring rounded">홈</a>
-          <span aria-hidden="true" class="opacity-60">&gt;</span>
-          <a href="index.html#section2" class="focus-ring rounded">바른먹거리</a>
-          <span aria-hidden="true" class="opacity-60">&gt;</span>
-          <span class="font-bold" aria-current="page">바른먹거리 원칙</span>
+      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동 — food5.html과 동일 구성) ===== -->
+      <nav aria-label="바른먹거리 하위 메뉴" class="w-full bg-brand">
+        <div class="mx-auto flex w-full max-w-food items-start px-6">
+          <a href="food.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능 식생활</a>
+          <a href="food2.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능식품</a>
+          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
+            바른먹거리 원칙
+            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
+          </span>
+          <a href="food4.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 캠페인</a>
+          <a href="food5.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">식품안전 및 품질정책</a>
         </div>
       </nav>
 

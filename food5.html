@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>지속가능식품 | 풀무원 바른먹거리</title>
-  <meta name="description" content="풀무원 지속가능식품 — 식물성지향 식품(Plant-Forward Foods)과 동물복지 식품(Animal Welfare Foods)으로 사람과 지구에 건강한 순환을 돕습니다." />
-  <!-- Figma node-id=1788:3259 (sustainable-food-page)를 구현.
-       6개 블록(Header/LocalNav/Hero/Intro/Framework/LohasDirection/Footer)의 자연 세로 스크롤 페이지다.
-       food.html 작업 때 확정된 선례에 따라 100vh 풀페이지 왕복 요구는 이 시안에도 적용하지 않았다
-       (섹션 높이 340/363/1020/592px로 100vh 배수가 아니고 순환 인디케이터도 없음). -->
+  <title>식품안전 및 품질정책 | 풀무원 바른먹거리</title>
+  <meta name="description" content="풀무원 식품안전 및 품질정책 — 글로벌 식품안전기준 준수와 PRIS(풀무원 법규 통합관리 시스템)를 통한 지속적인 기술혁신을 소개합니다." />
+  <!-- Figma node-id=1788:3866 (food-safety-quality-policy-page)를 구현.
+       7개 블록(Header/Submenu/Hero/Introduction/PolicyMission/InteractivePolicyTabs/Footer)의
+       자연 세로 스크롤 페이지다. food.html~food4.html과 마찬가지로 시안에 100vh 풀페이지
+       왕복 구조가 없어 그 요구는 적용하지 않았다.
+
+       시안 노드는 브레드크럼 대신 5개 하위 페이지(food/food2/food3/food4/food5)를 잇는
+       "Active Chapter Submenu Bar"를 갖고 있어 이를 food5.html에 그대로 구현했다. 이후
+       food.html~food4.html의 기존 브레드크럼도 같은 구조로 통일했다.
+
+       Policy Mission Section의 영문 타이틀과 PRIS 라벨은 시안에서 Roboto 폰트를 쓰지만,
+       프로젝트 CDN 화이트리스트에 구글 폰트가 없어 사이트 공용 --font-sans(NanumSquare Neo)로
+       대체했다(굵기·크기·색상은 시안과 동일하게 유지).
+
+       Interactive Policy Tabs & Process Section의 5개 탭과 하단 페이지네이션(1/3)은 시안에
+       "원칙 준수" 탭 1개의 콘텐츠(PRIS Showcase Block)만 주어져 있고 나머지 4개 탭·2/3페이지의
+       콘텐츠는 시안에 없다. food.html의 2탭 메뉴(활성 링크 1개 + 비활성 span 1개) 선례를 따라
+       첫 탭만 활성 상태로 렌더링하고 나머지 탭·이전/다음 버튼은 콘텐츠가 없는 장식/비활성 요소로
+       처리했다. -->
   <link rel="icon" href="data:," />
 
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -25,39 +39,42 @@
       --font-weight-extrabold: 800;
       --font-weight-black: 900;
 
-      /* ---------- 색: 브랜드 (Figma node 1788:3259 실측값. food.html과 겹치는 값은 같은 이름 재사용) ---------- */
+      /* ---------- 색: 브랜드 (food.html~food4.html과 겹치는 값은 같은 이름 재사용) ---------- */
       --color-brand: #7bcc12;
-      --color-brand-hover: #60a10c;  /* lime/600, surface/brand-hover — Plant-Forward 카드 헤더 */
-      --color-brand-dark: #4a7e07;   /* surface/brand-pressed — 원형 배지 텍스트 */
-      --color-brand-deep: #396204;   /* lime/800, surface/brand-contrast — Animal Welfare 카드 헤더 */
+      --color-brand-dark: #4a7e07;
+      --color-badge-brand: #f1f8e7; /* Barun Eat Logo Card 테두리 (index.html·food4.html과 동일 이름·값 재사용) */
 
       /* ---------- 색: 중립 ---------- */
       --color-text-primary: #31343b;
-      --color-text-body: #40444d;
+      --color-text-body: #40444d; /* food.html·food2.html·food3.html과 동일 이름·값 재사용 */
       --color-border: #e5e7eb;
-      --color-gray-50: #f7f7f8;
       --color-gray-100: #efeff1;
       --color-gray-200: #d9dade;
       --color-gray-400: #9ca1ab;
+      --color-surface-soft: #f9fafb; /* Barun Eat Logo Card·PRIS Showcase Block 배경 (food3.html과 동일 이름·값 재사용) */
+
+      /* ---------- 색: 히어로 스크림 ---------- */
+      --color-scrim-hero: rgba(0, 0, 0, 0.2); /* Hero 사진 위 스크림 (Figma node 1788:3866 실측 0.2) */
 
       /* ---------- 레이아웃 ---------- */
-      --container-food: 1200px;
+      --container-food: 1200px; /* 전 food 페이지 공용 콘텐츠 폭 */
+      --container-food-policy-card: 900px; /* Barun Eat Logo Card 폭 */
+      --radius-panel: 1.25rem; /* 20px — Barun Eat Logo Card 라운드 (food3.html과 동일 이름·값 재사용) */
 
-      /* ---------- 글자 크기 (food.html과 동일 이름 재사용) ---------- */
-      --text-food-hero: 2.5rem;      /* 40px */
-      --text-food-display: 2rem;     /* 32px */
-      --text-food-tiny: 0.8125rem;  /* 13px */
-      --text-food-micro: 0.625rem;  /* 10px — 서브메뉴 활성 항목의 ▼ 표시 (food5.html과 동일 이름·값 재사용) */
-      --text-food-body: 0.9375rem;  /* 15px */
+      /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. 다른 food 페이지와 겹치는 값은 같은 이름 재사용) ---------- */
+      --text-food-hero: 2.5rem;      /* 40px — Hero 타이틀 */
+      --text-food-display: 2rem;     /* 32px — Policy Mission 섹션 제목 (food.html~food4.html과 동일 이름·값 재사용) */
+      --text-food-tiny: 0.8125rem;   /* 13px — 서브메뉴 링크, 페이지네이션 "1 / 3" (food.html~food4.html과 동일 이름·값 재사용) */
+      --text-food-micro: 0.625rem;   /* 10px — 서브메뉴 활성 항목의 ▼ 표시 */
+      --text-food-2xs: 0.6875rem;    /* 11px — PRIS 영문 서브라벨 */
+      --text-food-badge: 0.875rem;   /* 14px — LOHAS 배지 "바른/먹거리" */
+      --text-food-badge--line-height: 1.125rem; /* 18px */
 
-      /* ---------- 행간 (시안 고정 px 값 중 Tailwind 기본 스케일에 없는 것만) ---------- */
-      --leading-food-relaxed: 1.625rem; /* 26px — Framework 섹션 본문 */
-    }
-
-    /* 시안 Lohas Direction 3열(텍스트/원형그리드/텍스트) 배치.
-       가운데 열은 원형 그리드 고유 폭, 양옆은 남는 폭을 균등하게 채운다. */
-    @utility grid-lohas {
-      grid-template-columns: 1fr auto 1fr;
+      /* ---------- 행간 (Tailwind 기본 스케일에 없는 시안 값만) ---------- */
+      --leading-food-title: 1.4;  /* Intro 헤드라인 */
+      --leading-food-snug: 1.6;   /* Interactive Policy Tabs 섹션 설명문 */
+      --leading-food: 1.7;        /* PRIS 설명문 (food.html·food3.html·food4.html과 동일 이름·값 재사용) */
+      --leading-food-loose: 1.8;  /* Barun Eat Logo Card 본문 + Mission 문장 (food.html·food3.html·food4.html과 동일 이름·값 재사용) */
     }
   </style>
 
@@ -122,7 +139,7 @@
   <div id="smooth-wrapper">
     <div id="smooth-content">
 
-      <!-- ===== Header (사이트 공용 헤더 — index.html/food.html과 동일 구성) ===== -->
+      <!-- ===== Header (사이트 공용 헤더 — index.html/food.html~food4.html과 동일 구성) ===== -->
       <header class="w-full border-b border-border bg-white">
         <div class="mx-auto w-full max-w-food px-6">
 
@@ -187,163 +204,138 @@
         </div>
       </header>
 
-      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동 — food5.html과 동일 구성) ===== -->
+      <!-- ===== Active Chapter Submenu Bar (바른먹거리 하위 5개 페이지 이동) ===== -->
       <nav aria-label="바른먹거리 하위 메뉴" class="w-full bg-brand">
         <div class="mx-auto flex w-full max-w-food items-start px-6">
           <a href="food.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능 식생활</a>
-          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
-            지속가능식품
-            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
-          </span>
+          <a href="food2.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">지속가능식품</a>
           <a href="food3.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 원칙</a>
           <a href="food4.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">바른먹거리 캠페인</a>
-          <a href="food5.html" class="submenu-link px-4 py-3.5 text-food-tiny text-white hover:bg-brand-dark/20">식품안전 및 품질정책</a>
+          <span aria-current="page" class="submenu-link submenu-link--active flex items-center gap-1 bg-brand-dark px-4 py-3.5 text-food-tiny font-bold text-white">
+            식품안전 및 품질정책
+            <span aria-hidden="true" class="text-food-micro leading-none">▼</span>
+          </span>
         </div>
       </nav>
 
       <main id="main" tabindex="-1">
 
         <!-- ===== Hero ===== -->
-        <!-- 시안 원본은 사진 배경 위에 완전 불투명 검정 스크림을 얹어 사진이 전혀 보이지 않는 상태다(스크린샷 확인).
-             그래서 보이지 않는 이미지를 따로 내려받지 않고 단색 배경으로 동일한 결과를 구현했다. -->
-        <section id="sec-hero" aria-labelledby="hero-heading" class="flex w-full flex-col items-start justify-end bg-black px-6 py-10 sm:px-10 lg:py-20">
-          <div class="mx-auto flex w-full max-w-food flex-col items-start gap-2">
-            <h1 id="hero-heading" class="hero-fade text-food-hero font-extrabold text-white">지속가능식품</h1>
-            <p class="hero-fade text-lg text-gray-200">Sustainable Food</p>
+        <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-80 w-full items-center justify-center overflow-hidden">
+          <img src="assets/images/food5-hero.png" alt="토마토 농장에서 작물을 살펴보는 농부의 모습" class="absolute inset-0 size-full object-cover" />
+          <div class="absolute inset-0 bg-scrim-hero" aria-hidden="true"></div>
+          <div class="reveal relative z-10 flex flex-col items-center gap-4 px-6 text-center text-white">
+            <h1 id="hero-heading" class="text-food-hero font-extrabold leading-tight">식품안전 및 품질정책</h1>
+            <p class="text-lg font-normal">고객이 안심하고 믿을 수 있는 품질과 안전성을 위해 엄격한 관리 체계를 준수합니다</p>
           </div>
         </section>
 
-        <!-- ===== Intro ===== -->
-        <section id="sec-intro" aria-labelledby="intro-heading" class="w-full bg-white px-6 pb-20 pt-25">
-          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-10 text-center">
-            <div class="reveal flex flex-col items-center gap-3">
-              <h2 id="intro-heading" class="text-4xl font-extrabold text-text-primary">내 몸에도 지구 환경에도 좋은</h2>
-              <p class="text-food-display font-extrabold text-brand">Sustainable food</p>
+        <!-- ===== Introduction ===== -->
+        <section id="sec-intro" aria-labelledby="intro-heading" class="w-full bg-white px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <h2 id="intro-heading" class="reveal max-w-food text-center text-4xl font-extrabold leading-food-title text-text-primary">
+              풀무원은 <span class="text-brand">건강한 먹거리</span>와 <span class="text-brand">지속 가능한 미래</span>를 위해
+              <span class="block">한 걸음씩 나아가고 있습니다.</span>
+            </h2>
+
+            <div class="reveal flex w-full max-w-food-policy-card flex-col items-center gap-6 rounded-panel border border-badge-brand bg-surface-soft p-12">
+              <div class="flex size-20 shrink-0 flex-col items-center justify-center rounded-full bg-brand text-center">
+                <p class="text-food-badge font-extrabold leading-(--text-food-badge--line-height) text-white">
+                  <span class="block">바른</span>
+                  <span class="block">먹거리</span>
+                </p>
+              </div>
+
+              <p class="text-center leading-food-loose text-food-tiny text-text-body">
+                풀무원은 &quot;바른 먹거리 원칙&quot;을 바탕으로 식품 안전과 품질에 대한
+                확고한 약속을 지키며 건강한 삶과 지구 환경을 위해 노력하고 있습니다.
+                풀무원은 창사 이래 자연 친화적이고 건강한 제품을 제공하는 것을 최우선으로 삼아왔으며,
+                글로벌 식품 안전 기준에 따라 우리의 모든 제품이
+                신뢰할 수 있는 품질과 안전성을 제공하도록 최선을 다하고 있습니다.
+              </p>
+
+              <button type="button" class="focus-ring flex size-10 items-center justify-center rounded-full border border-border bg-white text-lg font-bold text-text-body" aria-label="바른 먹거리 원칙 더 보기">
+                +
+              </button>
             </div>
-            <p class="reveal max-w-3xl text-base leading-7 text-text-body">
-              이웃사랑, 생명존중의 정신에서 시작한 풀무원의 바른먹거리는<br class="hidden sm:block" />
-              내 몸에도 지구환경에도 좋은 지속가능한 바른먹거리, '지속가능식품'으로 진화합니다.
+          </div>
+        </section>
+
+        <!-- ===== Policy Mission ===== -->
+        <section id="sec-mission" aria-labelledby="mission-heading" class="w-full bg-white px-6 py-15">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-8">
+            <p id="mission-heading" class="reveal text-center text-food-display font-extrabold text-brand-dark">Pulmuone Food Safety &amp; Quality Policy</p>
+
+            <div class="reveal flex w-full items-center justify-center bg-brand px-6 py-2.5">
+              <p class="text-xs font-extrabold uppercase text-white">Mission</p>
+            </div>
+
+            <p class="reveal text-center leading-food-loose text-base font-bold text-text-primary">
+              풀무원은 글로벌 식품안전기준과 품질기준을 준수하며,
+              <span class="block">지속적인 기술혁신으로 안전한 먹거리를 제공합니다.</span>
             </p>
           </div>
         </section>
 
-        <!-- ===== 지속가능식품 속성과 체계 ===== -->
-        <section id="sec-framework" aria-labelledby="framework-heading" class="w-full border-t border-border bg-white px-6 py-20">
+        <!-- ===== Interactive Policy Tabs & Process ===== -->
+        <section id="sec-policy" aria-labelledby="policy-heading" class="w-full bg-white px-6 pb-20 pt-10">
+          <h2 id="policy-heading" class="sr-only">식품안전 및 품질정책 세부 원칙</h2>
           <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
 
-            <div class="reveal flex flex-col items-center gap-4 text-center">
-              <h2 id="framework-heading" class="text-food-display font-extrabold text-text-primary">지속가능식품 <span class="text-brand">속성과 체계</span></h2>
-              <p class="max-w-4xl leading-food-relaxed text-food-body text-text-body">
-                지속가능식품은 사람과 지구에 건강한 순환을 돕는 <strong class="font-bold text-brand">지속가능한 원료와 공정</strong>으로 만듭니다. 식물성 원료 사용을 확대하며 동물성 원료의 경우 생명의 존엄성이 보장된 환경에서 생산된 원료를 우선으로 사용합니다. 풀무원 영양관리기준에 따라 영양균형식을 제공하고 환경친화적인 제조, 포장, 유통이 되도록 노력합니다. 지속가능식품은 이러한 속성을 담아 <strong class="font-bold text-brand">식물성지향 식품(Plant-Forward Foods)</strong>과 <strong class="font-bold text-brand">동물복지 식품(Animal Welfare Foods)</strong>을 제공합니다.
-              </p>
+            <div class="reveal flex w-full border-b border-l border-border">
+              <span aria-current="true" class="flex flex-1 items-center justify-center border-r border-brand bg-brand px-5 py-4 text-center text-sm font-bold text-white">
+                원칙 준수
+              </span>
+              <span aria-disabled="true" class="flex flex-1 items-center justify-center border-r border-b border-border bg-white px-5 py-4 text-center text-sm text-text-body">
+                글로벌식품안전 기준 조화
+              </span>
+              <span aria-disabled="true" class="flex flex-1 items-center justify-center border-r border-b border-border bg-white px-5 py-4 text-center text-sm text-text-body">
+                Best Practices 개발과 실천
+              </span>
+              <span aria-disabled="true" class="flex flex-1 items-center justify-center border-r border-b border-border bg-white px-5 py-4 text-center text-sm text-text-body">
+                지속적인 개선과 혁신
+              </span>
+              <span aria-disabled="true" class="flex flex-1 items-center justify-center border-r border-b border-border bg-white px-5 py-4 text-center text-sm text-text-body">
+                투명성과 소통
+              </span>
             </div>
 
-            <div class="reveal flex flex-col items-center justify-center gap-1 rounded-lg bg-brand px-10 py-4.5 text-center text-white">
-              <p class="text-lg font-extrabold">Sustainable Foods</p>
-              <p class="text-sm">(지속가능 식품)</p>
-            </div>
+            <p class="reveal max-w-food text-center leading-food-snug text-sm text-text-body">
+              고객의 건강과 식품안전을 핵심가치로 삼고 있으며, 이를 위해 글로벌 식품안전 규정과 원칙을 준수하고 있습니다. 이 규정과 원칙은 생산단계부터 최종 소비자에 이르기까지 엄격히 적용되며, 모든 풀무원 제품은 관련 법률과 규제를 준수하여 제공됩니다.
+            </p>
 
-            <div class="reveal grid w-full grid-cols-1 gap-10 lg:grid-cols-2">
-              <!-- Plant-Forward Foods -->
-              <div class="flex flex-col items-start gap-6">
-                <div class="flex w-full flex-col items-center gap-1 rounded-lg bg-brand-hover p-5 text-center text-white">
-                  <p class="text-lg font-extrabold">Plant-Forward Foods</p>
-                  <p class="text-food-tiny">(식물성 지향 식품)</p>
+            <div class="reveal flex w-full flex-col items-center gap-12 rounded-2xl border border-border bg-surface-soft p-10 lg:flex-row">
+              <div class="h-80 w-full shrink-0 overflow-hidden rounded-xl lg:w-120">
+                <img src="assets/images/food5-pris.png" alt="실험복을 입은 연구원들이 모니터의 품질 데이터를 분석하는 모습" class="size-full object-cover" />
+              </div>
+              <div class="flex flex-1 flex-col items-start gap-6">
+                <div class="flex flex-col items-start gap-1">
+                  <p class="text-base font-bold text-brand-dark">PRIS</p>
+                  <p class="text-food-2xs font-medium text-gray-400">Pulmuone Regulation Integrate System</p>
                 </div>
-                <p class="w-full text-center text-base font-bold text-text-primary">
-                  동물성 원료 사용을 줄이고<br />
-                  <span class="text-brand">식물성 원료 사용을 지향</span>한 식품
+                <p class="text-2xl font-extrabold text-text-primary">풀무원 법규 통합관리 시스템</p>
+                <p class="leading-food text-sm text-text-body">
+                  법령과 기준 대비 부적합 사항을 자동화된 방식으로 검출하는 디지털 표시 심의 통합 관리 시스템을 시행하고 있습니다. 이를 통해 사전 예방적 유해물질 차단 및 정밀 원료 정보 감사를 이행합니다.
                 </p>
-                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
-                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
-                    <p class="text-base font-bold text-brand-hover">Plant-Based Foods</p>
-                    <p class="text-food-tiny text-text-body">(순식물성 식품)</p>
-                  </div>
-                  <p class="w-full leading-6 text-food-tiny text-text-body">식물성 원료로만 구성한 식품이자 동물성 원료를 식물성으로 완전히 대체한 100% 식물성 식품입니다. 콩, 두부, 곡물, 채소, 과일 등 식물성 원료와 동물성 원료를 식물성으로 대체한 비건 컨셉을 구현합니다. 고도화된 기술을 통해 단백질을 높이고, 탄수화물을 줄이는 등 영양적 가치를 강조합니다.</p>
-                </div>
-                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
-                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
-                    <p class="text-base font-bold text-brand-hover">Plant-Forward Fresh RM</p>
-                    <p class="text-food-tiny text-text-body">(식물성지향 신선간편조리식)</p>
-                  </div>
-                  <p class="w-full leading-6 text-food-tiny text-text-body">식물성을 지향하고 일부 동물성 원료가 포함된 신선간편조리식입니다. 순식물성 식품에 고기 조각이 없는 동물성 소스, 육수만 제한된 양만큼 사용합니다. 사용되는 동물성 원료는 동물복지 인증 원료로 단계적으로 전환합니다.</p>
-                </div>
-              </div>
-
-              <!-- Animal Welfare Foods -->
-              <div class="flex flex-col items-start gap-6">
-                <div class="flex w-full flex-col items-center gap-1 rounded-lg bg-brand-deep p-5 text-center text-white">
-                  <p class="text-lg font-extrabold">Animal Welfare Foods</p>
-                  <p class="text-food-tiny">(동물복지 식품)</p>
-                </div>
-                <p class="w-full text-center text-base font-bold text-text-primary">
-                  지속가능 속성의 동물성<br />
-                  <span class="text-brand-deep">원료를 강조</span>한 식품
-                </p>
-                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
-                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
-                    <p class="text-base font-bold text-brand-deep">Animal Welfare Foods</p>
-                    <p class="text-food-tiny text-text-body">(동물복지 식품)</p>
-                  </div>
-                  <p class="w-full leading-6 text-food-tiny text-text-body">육류, 가공, 달걀을 주원료로 사용한 식품으로 동물복지 인증 원료를 사용합니다. 탄소배출량이 큰 동물성 원료 사용은 지금보다는 줄이려고 노력합니다. 동물복지 인증 원료·1차 가공품 그리고 신선간편조리식으로 구현합니다.</p>
-                </div>
-                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
-                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
-                    <p class="text-base font-bold text-brand-deep">Sustainable Seafoods</p>
-                    <p class="text-food-tiny text-text-body">(지속가능 수산물 식품)</p>
-                  </div>
-                  <p class="w-full leading-6 text-food-tiny text-text-body">어류, 해조를 원료로 주원료로 사용한 식품으로 ASC/MSC 인증 원료를 사용합니다. ASC/MSC 인증 원료·1차 가공품 그리고 신선간편조리식으로 구현합니다.</p>
-                </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <!-- ===== 지속가능식품의 지향점 ===== -->
-        <section id="sec-lohas" aria-labelledby="lohas-heading" class="w-full border-t border-border bg-white px-6 py-20">
-          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
-
-            <div class="reveal flex flex-col items-center gap-4 text-center">
-              <h2 id="lohas-heading" class="text-food-display font-extrabold text-text-primary">지속가능식품의 지향점</h2>
-              <p class="text-food-body text-gray-400">지속가능의 의미를 담은 인증 원료와 공정 기술을 지향하기에 "풀무원 지속가능식품은 내몸에도 지구환경에도 좋습니다"</p>
-            </div>
-
-            <div class="reveal grid w-full grid-cols-1 items-center gap-10 lg:grid-lohas">
-              <div class="flex flex-col items-start gap-8 lg:items-end lg:text-right">
-                <div class="flex flex-col items-start gap-2 lg:items-end">
-                  <p class="text-base font-bold text-text-primary">식물성 원료 사용 확대</p>
-                  <p class="leading-5 text-food-tiny text-text-body">식물성 원료 사용을 늘리고 시장의 변화를 이끌어온 바른먹거리(Plant-healthy,plant-forward food)로 지속 가능한 식문화를 확대합니다.</p>
-                </div>
-                <div class="flex flex-col items-start gap-2 lg:items-end">
-                  <p class="text-base font-bold text-text-primary">식품의 영양안전</p>
-                  <p class="leading-5 text-food-tiny text-text-body">국내, 유기농인증을 넘어 선 지구환경에도 더 나아간 지구환경까지 지속 가능한 바른 원료를 사용합니다.</p>
-                </div>
-              </div>
-
-              <div class="grid shrink-0 grid-cols-2 gap-4 justify-self-center">
-                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand bg-white p-4 text-center text-sm font-bold text-brand-dark">식물성 원료<br />사용 확대</span>
-                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand-hover bg-white p-4 text-center text-sm font-bold text-brand-deep">지속가능성<br />인증 원료 사용</span>
-                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand bg-white p-4 text-center text-sm font-bold text-brand-deep">식품의<br />영양안전</span>
-                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand-hover bg-white p-4 text-center text-sm font-bold text-brand-dark">환경친화적<br />공정 기술</span>
-              </div>
-
-              <div class="flex flex-col items-start gap-8">
-                <div class="flex flex-col items-start gap-2">
-                  <p class="text-base font-bold text-text-primary">지속가능성 인증 원료 사용</p>
-                  <p class="leading-5 text-food-tiny text-text-body">축산 고기 대비 지속가능식품(plant-forward food, on-farm, off-farm)이 인체와 지구환경에 미치는 선한 영향력과 사회적 책임을 다하고 있습니다.</p>
-                </div>
-                <div class="flex flex-col items-start gap-2">
-                  <p class="text-base font-bold text-text-primary">환경친화적 공정 기술</p>
-                  <p class="leading-5 text-food-tiny text-text-body">사회, 환경에 부정적인 원료를 피하고 미래 사회가 요구하는 친환경적 지구환경에도 도움이 되는 좋은 원료로 미래를 만들어 갑니다.</p>
-                </div>
-              </div>
-            </div>
+            <nav aria-label="정책 세부 항목 페이지" class="reveal flex items-center justify-center gap-4">
+              <button type="button" disabled class="flex items-center rounded border border-border p-2 text-xs text-gray-400 disabled:opacity-60" aria-label="이전 페이지">
+                &lt;
+              </button>
+              <p class="text-food-tiny text-text-body"><span class="font-bold text-text-primary">1</span> / 3</p>
+              <button type="button" disabled class="flex items-center rounded border border-border p-2 text-xs text-gray-400 disabled:opacity-60" aria-label="다음 페이지">
+                &gt;
+              </button>
+            </nav>
           </div>
         </section>
 
       </main>
 
-      <!-- ===== Footer (사이트 공용 푸터 — index.html/food.html과 동일 구성) ===== -->
+      <!-- ===== Footer (사이트 공용 푸터 — index.html/food.html~food4.html과 동일 구성) ===== -->
       <footer id="site-footer" class="bg-gray-100">
         <div class="mx-auto w-full max-w-food border-t border-border px-6 py-10">
 
@@ -447,14 +439,6 @@
       smooth: reduceMotion ? 0 : 1.1,
       normalizeScroll: true,
       ignoreMobileResize: true,
-    });
-
-    gsap.timeline({ delay: 0.15 }).from('.hero-fade', {
-      autoAlpha: 0,
-      y: reduceMotion ? 0 : 24,
-      duration: reduceMotion ? 0.01 : 0.9,
-      stagger: 0.1,
-      ease: 'power2.out',
     });
 
     gsap.utils.toArray('.reveal').forEach((el) => {
