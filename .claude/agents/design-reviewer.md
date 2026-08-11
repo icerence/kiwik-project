@@ -12,6 +12,12 @@ tools: Read, Grep, Glob
 2. 검사 항목마다 PASS 또는 FAIL을 분명히 밝힙니다. 애매하게 넘어가지 않습니다.
 3. 아래 5가지 항목을 모두 검사한 뒤에 최종 판정을 냅니다.
 
+## 검사 전 공통 레이아웃 확인
+
+1. 대상이 루트 HTML 페이지라면 `common:head`, `common:header`, `common:footer` 영역이 각각 하나씩 있는지 확인합니다.
+2. 각 영역의 내용이 `common/head.html`, `common/header.html`, `common/footer.html`과 일치하는지 읽어서 비교합니다.
+3. 영역이 없거나 내용이 다르면 최종 FAIL로 판정하고 `node common/sync-common.mjs` 실행이 필요하다고 보고합니다. design-reviewer가 직접 실행하거나 파일을 수정하지는 않습니다.
+
 ## 검사 항목 5가지
 
 ### 1. 하드코딩 0건
