@@ -1,0 +1,3 @@
+- pc[home]: https://www.figma.com/design/kbQt32SGSRHikH6GlYj2vc/%ED%92%80%EB%AC%B4%EC%9B%90--%EB%94%94%EC%9E%90%EC%9D%B8%EC%8B%9C%EC%95%88?node-id=3004-1250&t=keE3ofxSvLGOVKa6-4
+- mobile[home]:https://www.figma.com/design/kbQt32SGSRHikH6GlYj2vc/%ED%92%80%EB%AC%B4%EC%9B%90--%EB%94%94%EC%9E%90%EC%9D%B8%EC%8B%9C%EC%95%88?node-id=3007-2502&t=keE3ofxSvLGOVKa6-4
+- pc[sub]:https://www.figma.com/design/kbQt32SGSRHikH6GlYj2vc/%ED%92%80%EB%AC%B4%EC%9B%90--%EB%94%94%EC%9E%90%EC%9D%B8%EC%8B%9C%EC%95%88?node-id=3040-535&t=keE3ofxSvLGOVKa6-4

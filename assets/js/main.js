@@ -1,7 +1,9 @@
 /* ------------------------------------------------------------------
    main.js
    - GSAP(ScrollTrigger + ScrollToPlugin)으로 풀페이지 섹션 이동
-     section1 → section2 → ... → section6 → footer, 그리고 역방향
+     section1 → section2 → ... → section5 → footer, 그리고 역방향
+     (= Figma 시안의 Hero · Mission-Impact · Manifesto · Newsroom · Social + Footer 6단계.
+      모바일에서는 SNS가 빠져 5단계가 된다 — rebuildTargets가 매번 다시 계산한다.)
    - 마우스 휠 / 터치 스와이프 / 키보드 / 앵커 링크 / 도트 내비 지원
    - 카드 줄은 좁은 화면에서만 Swiper 캐로셀로 전환
    외부 의존성은 index.html에 선언한 GSAP·Swiper 뿐이다.
@@ -23,8 +25,23 @@
 
   var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
   var footer = document.getElementById('site-footer');
-  var targets = footer ? panels.concat([footer]) : panels;
-  var lastIndex = targets.length - 1;
+  var targets = [];
+  var lastIndex = 0;
+
+  /* 모바일 시안에는 SNS 섹션이 없어 lg 미만에서 display:none으로 감춘다.
+     그래서 이동 대상 목록은 "지금 실제로 보이는 패널"만으로 매번 다시 만든다. */
+  function rebuildTargets() {
+    var previous = targets[currentIndex] || null;
+
+    targets = panels.filter(function (panel) {
+      return panel.getClientRects().length > 0;
+    });
+    if (footer) targets.push(footer);
+    lastIndex = Math.max(0, targets.length - 1);
+
+    var moved = previous ? targets.indexOf(previous) : -1;
+    currentIndex = moved === -1 ? Math.min(currentIndex, lastIndex) : moved;
+  }
 
   var dotLinks = Array.prototype.slice.call(document.querySelectorAll('.dot-nav__link'));
 
@@ -75,8 +92,17 @@
     });
   }
 
+  // Hero 섹션에서는 헤더가 사진 위에 떠 있고, 벗어나면 흰 배경으로 돌아온다.
+  var siteHeader = document.getElementById('site-header');
+
+  function syncHeaderFloat() {
+    if (!siteHeader) return;
+    siteHeader.classList.toggle('site-header--float', currentIndex === 0);
+  }
+
   function syncNav() {
     syncUtilityBar();
+    syncHeaderFloat();
 
     var id = targets[currentIndex] ? targets[currentIndex].id : '';
     dotLinks.forEach(function (link) {
@@ -327,14 +353,12 @@
       spaceBetween: 16,
       breakpoints: { 640: { slidesPerView: 2.1 } }
     },
-    csr: {
-      slidesPerView: 1.1,
-      spaceBetween: 16
-    },
+    // 뉴스는 가로형 리스트 카드라 옆으로 두 장을 놓으면 좁다.
+    // 한 슬라이드에 세로로 2장씩 담아 4개 항목이 2페이지가 되게 한다.
     news: {
-      slidesPerView: 1.1,
+      slidesPerView: 1,
       spaceBetween: 16,
-      breakpoints: { 640: { slidesPerView: 2.1 } }
+      grid: { rows: 2, fill: 'row' }
     }
   };
 
@@ -370,7 +394,24 @@
 
   /* ---------------- 초기화 ---------------- */
 
+  /* 브레이크포인트가 바뀌면 보이는 패널 구성이 달라지므로 GSAP matchMedia로 다시 맞춘다. */
+  function watchBreakpoints() {
+    var mm = gsap.matchMedia();
+
+    mm.add('(min-width: 1024px)', function () {
+      rebuildTargets();
+      syncNav();
+    });
+
+    mm.add('(max-width: 1023.98px)', function () {
+      rebuildTargets();
+      syncNav();
+    });
+  }
+
   function init() {
+    rebuildTargets();
+    watchBreakpoints();
     syncNav();
     buildEntranceAnimations();
 
@@ -389,6 +430,8 @@
     if (window.Swiper) syncSwipers();
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
+      rebuildTargets();
+      syncNav();
       ScrollTrigger.refresh();
       if (!isAnimating) {
         window.scrollTo(0, targetTop(currentIndex));
