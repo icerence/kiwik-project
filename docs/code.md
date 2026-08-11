@@ -3,7 +3,7 @@
 당신은 10년 차 시니어 프론트엔드 개발자이자 UI/UX 전문가입니다.
 
 # Task
-/figma-to-code @link.md
+/figma-to-code @../link.md
 # Tech Stack
 - HTML
 - CSS (tailwindv4)
