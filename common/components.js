@@ -3,6 +3,7 @@
 
   function currentPage() {
     var name = window.location.pathname.split('/').pop() || 'index.html';
+    if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
     if (name.toLowerCase() === 'sub.html') return 'sub';
     return 'index';
