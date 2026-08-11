@@ -42,7 +42,8 @@ F:\harness는 단일 프로젝트가 아니다.
 | 사진·이미지 | `assets/images/` | `assets/` 루트에 이미지를 두지 않는다 |
 | 아이콘 SVG | `assets/icons/` | |
 | 웹폰트 원본 | `fonts/` | |
-| 기획·보고 문서 | 저장소 루트의 `*.md` | 코드 디렉터리(`assets/`)에 섞지 않는다 |
+| 보고서·요청서 문서 | `docs/` | 작업 보고, 수정 요청, 작업 지시서 |
+| 규칙·설정 문서 | 저장소 루트의 `*.md` | `CLAUDE.md` `AGENTS.md` `name.md` `link.md` `design-system-harness.md` |
 
 지킬 것.
 
