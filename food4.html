@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>바른먹거리 캠페인 | 풀무원 바른먹거리</title>
+  <meta name="description" content="풀무원 바른먹거리 캠페인 — 어린이·성인·시니어 대상 바른먹거리 교육과 TV·온라인 콘텐츠, 파트너 협업 활동을 소개합니다." />
+  <!-- Figma node-id=1788:3613 (right-food-campaign-page)를 구현.
+       11개 블록(Header/Breadcrumb/Hero/Intro/Kids/SongArtPlay/Adult/Senior/TV/Online/Partners/Footer)의
+       자연 세로 스크롤 페이지다. food.html·food2.html·food3.html과 마찬가지로 시안에 100vh 풀페이지
+       왕복 구조가 없어 그 요구는 적용하지 않았다. -->
+  <link rel="icon" href="data:," />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+
+  <style type="text/tailwindcss">
+    @theme {
+      /* ---------- 글꼴 ---------- */
+      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+      --font-weight-normal: 400;
+      --font-weight-bold: 700;
+      --font-weight-extrabold: 800;
+      --font-weight-black: 900;
+
+      /* ---------- 색: 브랜드 (food.html·food2.html·food3.html과 겹치는 값은 같은 이름 재사용) ---------- */
+      --color-brand: #7bcc12;
+      --color-brand-dark: #4a7e07;
+      --color-badge-brand: #f1f8e7; /* Section_Badge 배경 (index.html·food.html과 동일 이름·값 재사용) */
+
+      /* ---------- 색: 중립 ---------- */
+      --color-text-primary: #31343b;
+      --color-text-secondary: #6b7280; /* 본문 보조 텍스트 (Figma node 1788:3613 실측값. food3의 text-body #40444d와 달라 새 이름 사용) */
+      --color-border: #e5e7eb;
+      --color-gray-50: #f7f7f8;
+      --color-gray-100: #efeff1;
+      --color-gray-200: #d9dade;
+      --color-gray-400: #9ca1ab;
+      --color-surface-alt: #fafbf8; /* Kids/Adult/TV/Partners 섹션의 얼룩무늬(zebra) 배경 */
+
+      /* ---------- 색: 바른먹거리 송 미술놀이 프로모 카드(웜톤) ---------- */
+      --color-cream-50: #fff9f6;  /* Promo_Card 배경 */
+      --color-cream-100: #ffe8e3; /* Promo_Card 테두리 + 장식 원 */
+
+      /* ---------- 색: 영상 재생 버튼 (food.html과 동일 이름 재사용) ---------- */
+      --color-video-play: #ff3b30;
+      --color-scrim-thumb: rgba(0, 0, 0, 0.35); /* 영상 썸네일 스크림 (Figma 실측 0.35 — food.html은 0.3) */
+
+      /* ---------- 레이아웃 ---------- */
+      --container-food: 1200px;
+      --container-campaign-heading: 600px; /* Intro 레이블+헤드라인 블록 폭 */
+      --container-campaign-lead: 800px;    /* Intro 본문 문단 폭 */
+      --container-campaign-copy: 900px;    /* Kids/Adult/Senior/Partners 본문 문단 폭 */
+
+      /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. 다른 food 페이지와 겹치는 값은 같은 이름 재사용) ---------- */
+      --text-food-hero: 2.625rem;   /* 42px — Intro 헤드라인 */
+      --text-food-display: 2rem;    /* 32px — 섹션 제목 */
+      --text-food-tiny: 0.8125rem;  /* 13px — 배지 라벨 */
+      --text-food-body: 0.9375rem;  /* 15px — 본문 */
+
+      /* ---------- 행간 (Tailwind 기본 스케일에 없는 시안 값만) ---------- */
+      --leading-food-title: 1.3;  /* Intro 헤드라인 (food3와 동일 이름 재사용) */
+      --leading-food: 1.7;        /* 섹션 본문 (food.html·food3.html과 동일 이름 재사용) */
+      --leading-food-loose: 1.8;  /* Intro 본문 (food.html·food3.html과 동일 이름 재사용) */
+    }
+  </style>
+
+  <style>
+    ::selection { background: var(--color-brand); color: var(--color-brand-dark); }
+
+    .skip-link {
+      position: fixed;
+      top: -3rem;
+      left: 1rem;
+      z-index: 100;
+      background: var(--color-brand);
+      color: var(--color-brand-dark);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 0.5rem;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .focus-ring:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 2px;
+    }
+
+    #smooth-wrapper { overflow: hidden; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: var(--color-brand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after,
+    .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+
+    .footer-link { color: var(--color-text-secondary); }
+    .footer-link:hover { color: var(--color-brand-dark); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-text-primary antialiased">
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ===== Header (사이트 공용 헤더 — index.html/food.html/food2.html/food3.html과 동일 구성) ===== -->
+      <header class="w-full border-b border-border bg-white">
+        <div class="mx-auto w-full max-w-food px-6">
+
+          <div class="hidden h-14 items-center justify-end gap-1 lg:flex">
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section2">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+              <span>지속가능경영보고서</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section4">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+              <span>인재채용</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#site-footer">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+              <span>고객기쁨센터</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm font-bold text-text-primary" href="index.html#section6">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+              <span>#풀무원</span>
+            </a>
+          </div>
+
+          <div class="flex h-16 items-center justify-between lg:h-24">
+            <a href="index.html" class="focus-ring shrink-0 rounded-md">
+              <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" class="w-24 lg:w-28" />
+            </a>
+
+            <nav id="primary-nav" aria-label="주요 메뉴" class="hidden lg:block">
+              <ul class="flex items-center gap-10 text-sm text-text-secondary">
+                <li><a class="nav-link py-2" href="index.html#section3">회사소개</a></li>
+                <li><a class="nav-link py-2" href="index.html#section4">사회책임경영</a></li>
+                <li><a class="nav-link py-2" href="index.html#section2" aria-current="page">바른먹거리</a></li>
+                <li><a class="nav-link py-2" href="index.html#section6">지구식단</a></li>
+                <li><a class="nav-link py-2" href="index.html#section5">뉴스룸</a></li>
+              </ul>
+            </nav>
+
+            <div class="flex items-center gap-5">
+              <button type="button" class="focus-ring hidden size-5 items-center justify-center lg:flex" aria-label="통합 검색 열기">
+                <img src="assets/icons/search.svg" alt="" width="20" height="20" class="size-5" />
+              </button>
+              <button type="button" class="focus-ring hidden items-center gap-1 rounded-lg border border-black p-2 text-base text-text-primary lg:flex" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+                <span>KOR</span>
+                <img src="assets/icons/chevron-down.svg" alt="" width="20" height="20" class="size-5" />
+              </button>
+              <button type="button" id="menu-btn" class="focus-ring flex size-10 items-center justify-center rounded-lg border border-gray-400 lg:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+                <svg id="menu-icon-open" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                <svg id="menu-icon-close" class="hidden size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="mobile-menu" class="hidden border-t border-border py-4 lg:hidden">
+            <ul class="flex flex-col gap-1 text-sm text-text-secondary">
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section3">회사소개</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section4">사회책임경영</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5 font-bold text-brand" href="index.html#section2" aria-current="page">바른먹거리</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section6">지구식단</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section5">뉴스룸</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== 로컬 내비게이션 (브레드크럼) ===== -->
+      <nav aria-label="현재 위치" class="w-full bg-brand">
+        <div class="mx-auto flex w-full max-w-food items-center gap-2 px-6 py-3 text-food-tiny text-white">
+          <a href="index.html" class="focus-ring flex size-4 items-center justify-center rounded">
+            <img src="assets/icons/home.svg" alt="홈으로 이동" width="16" height="16" />
+          </a>
+          <span aria-hidden="true" class="opacity-60">&gt;</span>
+          <a href="index.html#section2" class="focus-ring rounded">바른먹거리</a>
+          <span aria-hidden="true" class="opacity-60">&gt;</span>
+          <span class="font-bold" aria-current="page">바른먹거리 캠페인</span>
+        </div>
+      </nav>
+
+      <main id="main" tabindex="-1">
+
+        <!-- ===== Hero ===== -->
+        <section aria-hidden="true" class="relative h-80 w-full overflow-hidden">
+          <img src="assets/images/food4-hero.png" alt="" class="absolute inset-0 size-full object-cover" />
+        </section>
+
+        <!-- ===== 캠페인 소개 (Intro) ===== -->
+        <section id="sec-intro" aria-labelledby="intro-heading" class="w-full bg-white px-6 pb-16 pt-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-10">
+
+            <div class="reveal mx-auto flex w-full max-w-campaign-heading flex-col items-center gap-4 text-center">
+              <p class="text-xl font-bold text-text-secondary">바른먹거리 캠페인</p>
+              <h1 id="intro-heading" class="text-food-hero font-extrabold leading-food-title">
+                <span class="block text-brand-dark">바른먹거리의 중요성을 알리고</span>
+                <span class="block text-brand">바른 식습관을 교육합니다.</span>
+              </h1>
+            </div>
+
+            <div class="reveal flex size-45 shrink-0 flex-col items-center justify-center gap-2 rounded-full border-4 border-brand bg-white text-center">
+              <img src="assets/icons/leaf-outline.svg" alt="" class="size-10" />
+              <p class="text-2xl font-black leading-tight text-brand-dark">
+                <span class="block">바른</span>
+                <span class="block">먹거리</span>
+              </p>
+            </div>
+
+            <p class="reveal mx-auto w-full max-w-campaign-lead text-center leading-food-loose text-text-secondary">
+              어릴 때 형성된 입맛이 평생의 건강을 결정합니다. 풀무원의 바른먹거리 캠페인은 나 스스로 먹거리의 중요성을 알고 실천하여 올바른 식습관을 기를 수 있도록 돕는 사회공헌 캠페인입니다. 전문화된 영양학적 지식과 정성 어린 교육을 통해, 아이들과 청소년뿐 아니라 온 가족의 건강한 내일을 만들어 가겠습니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- ===== 어린이 바른먹거리 교육 ===== -->
+        <section id="sec-kids" aria-labelledby="kids-heading" class="w-full border-y border-border bg-surface-alt px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">KIDS PROGRAM</span>
+              <h2 id="kids-heading" class="text-food-display font-extrabold text-text-primary">어린이 바른먹거리 교육</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-kids-1.png" alt="어린이들이 식탁에 둘러앉아 채소를 살펴보는 모습" class="size-full object-cover" />
+              </div>
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-kids-2.png" alt="어린이가 보드게임으로 식품 표시 읽는 법을 배우는 모습" class="size-full object-cover" />
+              </div>
+            </div>
+
+            <div class="reveal flex flex-col items-center gap-4 text-center">
+              <p class="max-w-campaign-copy text-lg font-bold text-brand-dark">어릴 때 입맛이 평생의 입맛을 결정합니다.</p>
+              <p class="max-w-campaign-copy text-food-body leading-food text-text-secondary">
+                어린이들이 식품 표시를 확인하여 가공식품 속 첨가물을 스스로 가려내고, 영양소 성분을 분별할 수 있도록 맞춤형 보드게임 및 체험 중심의 교육을 지원합니다. 영유아부터 초등학생까지 각 연령대 눈높이에 맞춘 체계적인 가이드를 제공합니다.
+              </p>
+            </div>
+
+            <a href="index.html#section2" class="reveal focus-ring flex items-center gap-2 rounded-lg bg-text-primary px-6 py-3 text-sm font-bold text-white">
+              어린이 바른먹거리 교육 신청하기
+              <img src="assets/icons/chevron-right.svg" alt="" class="size-3" />
+            </a>
+          </div>
+        </section>
+
+        <!-- ===== 바른먹거리 송 미술놀이 (프로모 카드) ===== -->
+        <section id="sec-song" aria-labelledby="song-heading" class="w-full bg-white px-6 py-20">
+          <div class="mx-auto w-full max-w-food">
+            <div class="reveal flex w-full flex-col items-center gap-8 rounded-3xl border border-cream-100 bg-cream-50 p-8 sm:p-12">
+
+              <div class="flex flex-col items-center gap-3 text-center">
+                <span aria-hidden="true" class="size-14 rounded-full bg-cream-100"></span>
+                <h2 id="song-heading" class="text-2xl font-extrabold text-text-primary">바른먹거리 송 미술놀이</h2>
+                <p class="text-food-body text-text-secondary">집에서 아이들과 쉽고 재미있게 먹거리의 소중함을 배울 수 있습니다.</p>
+              </div>
+
+              <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+                <div class="flex flex-col items-center gap-2 rounded-xl border border-border bg-white p-5 text-center">
+                  <p class="text-food-body font-bold text-text-primary">바른먹거리 송</p>
+                  <p class="text-xs text-text-secondary">음원 다운로드</p>
+                </div>
+                <div class="flex flex-col items-center gap-2 rounded-xl border border-border bg-white p-5 text-center">
+                  <p class="text-food-body font-bold text-text-primary">바른먹거리 율동</p>
+                  <p class="text-xs text-text-secondary">영상 다운로드</p>
+                </div>
+                <div class="flex flex-col items-center gap-2 rounded-xl border border-border bg-white p-5 text-center">
+                  <p class="text-food-body font-bold text-text-primary">코코몽 송</p>
+                  <p class="text-xs text-text-secondary">음원 다운로드</p>
+                </div>
+                <div class="flex flex-col items-center gap-2 rounded-xl border border-border bg-white p-5 text-center">
+                  <p class="text-food-body font-bold text-text-primary">코코몽 악보</p>
+                  <p class="text-xs text-text-secondary">악보 다운로드</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 성인 바른먹거리 교육 ===== -->
+        <section id="sec-adult" aria-labelledby="adult-heading" class="w-full border-y border-border bg-surface-alt px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">ADULT PROGRAM</span>
+              <h2 id="adult-heading" class="text-food-display font-extrabold text-text-primary">성인 바른먹거리 교육</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-adult-1.png" alt="“미래를 위한 푸른 약속” 현수막을 든 참가자들" class="size-full object-cover" />
+              </div>
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-adult-2.png" alt="조리복을 입은 참가자들이 채소를 손질하는 실습 모습" class="size-full object-cover" />
+              </div>
+            </div>
+
+            <p class="reveal max-w-campaign-copy text-center text-food-body leading-food text-text-secondary">
+              아이의 식습관 길잡이가 될 부모들을 위한 전문 영양/식생활 코칭 교육을 진행합니다. 가정 내에서 실질적으로 건강한 상차림을 구현할 수 있도록 조리 실습 및 유기농 식품 정보 교육을 종합적으로 연계하여 삶의 질을 넓혀 드립니다.
+            </p>
+
+            <a href="index.html#section2" class="reveal focus-ring flex items-center gap-2 rounded-lg bg-text-primary px-6 py-3 text-sm font-bold text-white">
+              성인 바른먹거리 교육 신청하기
+              <img src="assets/icons/chevron-right.svg" alt="" class="size-3" />
+            </a>
+          </div>
+        </section>
+
+        <!-- ===== 시니어 바른먹거리 교육 ===== -->
+        <section id="sec-senior" aria-labelledby="senior-heading" class="w-full bg-white px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">SENIOR PROGRAM</span>
+              <h2 id="senior-heading" class="text-food-display font-extrabold text-text-primary">시니어 바른먹거리 교육</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-senior-1.png" alt="의료진이 시니어에게 영양 상담을 하는 모습" class="size-full object-cover" />
+              </div>
+              <div class="h-95 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-senior-2.png" alt="시니어들이 한 상에 둘러앉아 식사하는 모습" class="size-full object-cover" />
+              </div>
+            </div>
+
+            <p class="reveal max-w-campaign-copy text-center text-food-body leading-food text-text-secondary">
+              고령화 시대에 발맞춰 신체 노화와 만성 질환 예방을 위한 영양 식사법 가이드를 제공합니다. 염분 섭취를 줄이고 필수 소화 단백질을 보강하며, 혼자서도 안전하게 조리할 수 있는 시니어 간편 균형 레시피 실습을 지원합니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- ===== TV로 만나는 바른먹거리 캠페인 ===== -->
+        <section id="sec-tv" aria-labelledby="tv-heading" class="w-full border-y border-border bg-surface-alt px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">MEDIA BROADCAST</span>
+              <h2 id="tv-heading" class="text-food-display font-extrabold text-text-primary">TV로 만나는 바른먹거리 캠페인</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <figure class="flex flex-col gap-4">
+                <div class="relative h-80 overflow-hidden rounded-xl">
+                  <img src="assets/images/food4-tv-1.png" alt="신선한 과일을 들고 웃는 어린이" class="absolute inset-0 size-full object-cover" />
+                  <div class="absolute inset-0 bg-scrim-thumb" aria-hidden="true"></div>
+                  <button type="button" class="focus-ring video-play absolute inset-0 m-auto flex size-16 items-center justify-center rounded-full bg-video-play" aria-label="아이들의 건강한 먹거리를 만드는 시간 영상 재생 (04:20)">
+                    <img src="assets/icons/play.svg" alt="" width="18" height="21" />
+                  </button>
+                </div>
+                <figcaption class="flex items-center justify-between gap-4">
+                  <span class="truncate font-bold text-text-primary">아이들의 건강한 먹거리를 만드는 시간</span>
+                  <span class="shrink-0 text-sm text-gray-400">04:20</span>
+                </figcaption>
+              </figure>
+              <figure class="flex flex-col gap-4">
+                <div class="relative h-80 overflow-hidden rounded-xl">
+                  <img src="assets/images/food4-tv-2.png" alt="풀무원 지구식단 캠페인 송 애니메이션 장면" class="absolute inset-0 size-full object-cover" />
+                  <div class="absolute inset-0 bg-scrim-thumb" aria-hidden="true"></div>
+                  <button type="button" class="focus-ring video-play absolute inset-0 m-auto flex size-16 items-center justify-center rounded-full bg-video-play" aria-label="풀무원 지구식단 캠페인 송 영상 재생 (03:15)">
+                    <img src="assets/icons/play.svg" alt="" width="18" height="21" />
+                  </button>
+                </div>
+                <figcaption class="flex items-center justify-between gap-4">
+                  <span class="truncate font-bold text-text-primary">풀무원 지구식단 캠페인 송</span>
+                  <span class="shrink-0 text-sm text-gray-400">03:15</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 온라인 바른먹거리 교육 ===== -->
+        <section id="sec-online" aria-labelledby="online-heading" class="w-full bg-white px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">ONLINE CLASS</span>
+              <h2 id="online-heading" class="text-food-display font-extrabold text-text-primary">온라인 바른먹거리 교육</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <figure class="flex flex-col gap-4">
+                <div class="relative h-80 overflow-hidden rounded-xl">
+                  <img src="assets/images/food4-online-1.png" alt="온라인 요리 클래스를 진행하는 강사의 모습" class="absolute inset-0 size-full object-cover" />
+                  <div class="absolute inset-0 bg-scrim-thumb" aria-hidden="true"></div>
+                  <button type="button" class="focus-ring video-play absolute inset-0 m-auto flex size-16 items-center justify-center rounded-full bg-video-play" aria-label="집에서 실천하는 우리아이 건강 요리 클래스 영상 재생 (08:45)">
+                    <img src="assets/icons/play.svg" alt="" width="18" height="21" />
+                  </button>
+                </div>
+                <figcaption class="flex items-center justify-between gap-4">
+                  <span class="truncate font-bold text-text-primary">집에서 실천하는 우리아이 건강 요리 클래스</span>
+                  <span class="shrink-0 text-sm text-gray-400">08:45</span>
+                </figcaption>
+              </figure>
+              <figure class="flex flex-col gap-4">
+                <div class="relative h-80 overflow-hidden rounded-xl">
+                  <img src="assets/images/food4-online-2.png" alt="파프리카와 브로콜리 캐릭터가 등장하는 편식 요리 팁 애니메이션" class="absolute inset-0 size-full object-cover" />
+                  <div class="absolute inset-0 bg-scrim-thumb" aria-hidden="true"></div>
+                  <button type="button" class="focus-ring video-play absolute inset-0 m-auto flex size-16 items-center justify-center rounded-full bg-video-play" aria-label="야채 싫어하는 아이들을 위한 편식 요리 팁 영상 재생 (12:10)">
+                    <img src="assets/icons/play.svg" alt="" width="18" height="21" />
+                  </button>
+                </div>
+                <figcaption class="flex items-center justify-between gap-4">
+                  <span class="truncate font-bold text-text-primary">야채 싫어하는 아이들을 위한 편식 요리 팁</span>
+                  <span class="shrink-0 text-sm text-gray-400">12:10</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 파트너 협업 ===== -->
+        <section id="sec-partners" aria-labelledby="partners-heading" class="w-full border-y border-border bg-surface-alt px-6 pb-25 pt-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-3 text-center">
+              <span class="rounded-full bg-badge-brand px-4 py-1.5 text-food-tiny font-bold text-brand-dark">PARTNER COOPERATIONS</span>
+              <h2 id="partners-heading" class="text-food-display font-extrabold text-text-primary">네이버, 디즈니, 키자니아도 함께 합니다.</h2>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+              <div aria-hidden="true" class="h-90 rounded-2xl bg-white"></div>
+              <div class="h-90 overflow-hidden rounded-2xl">
+                <img src="assets/images/food4-partners-bears.png" alt="숲 속에서 함께하는 곰 캐릭터 일러스트" class="size-full object-cover" />
+              </div>
+            </div>
+
+            <p class="reveal max-w-campaign-copy text-center text-food-body leading-food text-text-secondary">
+              어린이들이 좋아하는 인기 캐릭터 및 네이버 해피빈 온라인 플랫폼, 키자니아 직업 체험 프로그램 등 다양한 협업 채널을 다각도로 활용하여 재미있고 친숙한 교육 콘텐츠를 배포하며 실효성 있는 실천 방향을 전파합니다.
+            </p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ===== Footer (사이트 공용 푸터 — index.html/food.html/food2.html/food3.html과 동일 구성) ===== -->
+      <footer id="site-footer" class="bg-gray-100">
+        <div class="mx-auto w-full max-w-food border-t border-border px-6 py-10">
+
+          <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-start">
+            <div class="flex flex-col items-start gap-4">
+              <img src="assets/images/footer-logo.png" alt="풀무원" class="h-9 w-auto" loading="lazy" />
+              <address class="flex flex-col gap-1 text-xs not-italic text-text-secondary">
+                <span>법인명 : (주)풀무원</span>
+                <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+                <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
+              </address>
+            </div>
+
+            <div class="flex flex-col gap-4 lg:items-end">
+              <nav aria-label="정책 및 안내">
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1 lg:justify-end">
+                  <li><a class="footer-link text-sm font-bold" href="#site-footer">개인정보처리방침</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">이메일주소 무단수집 거부</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">사이버감사실</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">공정거래</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">풀무원채용</a></li>
+                </ul>
+              </nav>
+
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="text-sm text-text-primary">공식계정</span>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-6 border-border" />
+
+          <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
+            <p class="text-xs leading-normal text-text-secondary">Copyright © Pulmuone Corporate All Rights Reserved.</p>
+
+            <div class="flex items-center gap-6">
+              <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-text-primary" aria-haspopup="listbox" aria-expanded="false">
+                계열사/브랜드 사이트
+                <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" class="size-3" />
+              </button>
+              <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="size-14" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ================= 스크립트 ================= -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <!-- ScrollSmoother requires ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <script>
+    // ---------- 헤더 인터랙션 ----------
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        menuBtn.focus();
+      }
+    });
+
+    // ---------- GSAP ----------
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: reduceMotion ? 0 : 1.1,
+      normalizeScroll: true,
+      ignoreMobileResize: true,
+    });
+
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.set(el, { autoAlpha: 0, y: reduceMotion ? 0 : 28 });
+      gsap.to(el, {
+        autoAlpha: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+      });
+    });
+
+    // 영상 재생 버튼(실제 재생 기능 없음) 클릭 피드백 — food.html과 동일 패턴
+    gsap.utils.toArray('.video-play').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        gsap.fromTo(btn, { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href && href.length > 1 && document.querySelector(href)) {
+          e.preventDefault();
+          smoother.scrollTo(href, true, 'top top');
+          if (!mobileMenu.classList.contains('hidden')) {
+            menuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.add('hidden');
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    ScrollTrigger.refresh();
+  </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지속가능식품 | 풀무원 바른먹거리</title>
+  <meta name="description" content="풀무원 지속가능식품 — 식물성지향 식품(Plant-Forward Foods)과 동물복지 식품(Animal Welfare Foods)으로 사람과 지구에 건강한 순환을 돕습니다." />
+  <!-- Figma node-id=1788:3259 (sustainable-food-page)를 구현.
+       6개 블록(Header/LocalNav/Hero/Intro/Framework/LohasDirection/Footer)의 자연 세로 스크롤 페이지다.
+       food.html 작업 때 확정된 선례에 따라 100vh 풀페이지 왕복 요구는 이 시안에도 적용하지 않았다
+       (섹션 높이 340/363/1020/592px로 100vh 배수가 아니고 순환 인디케이터도 없음). -->
+  <link rel="icon" href="data:," />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+
+  <style type="text/tailwindcss">
+    @theme {
+      /* ---------- 글꼴 ---------- */
+      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+      --font-weight-normal: 400;
+      --font-weight-bold: 700;
+      --font-weight-extrabold: 800;
+      --font-weight-black: 900;
+
+      /* ---------- 색: 브랜드 (Figma node 1788:3259 실측값. food.html과 겹치는 값은 같은 이름 재사용) ---------- */
+      --color-brand: #7bcc12;
+      --color-brand-hover: #60a10c;  /* lime/600, surface/brand-hover — Plant-Forward 카드 헤더 */
+      --color-brand-dark: #4a7e07;   /* surface/brand-pressed — 원형 배지 텍스트 */
+      --color-brand-deep: #396204;   /* lime/800, surface/brand-contrast — Animal Welfare 카드 헤더 */
+
+      /* ---------- 색: 중립 ---------- */
+      --color-text-primary: #31343b;
+      --color-text-body: #40444d;
+      --color-border: #e5e7eb;
+      --color-gray-50: #f7f7f8;
+      --color-gray-100: #efeff1;
+      --color-gray-200: #d9dade;
+      --color-gray-400: #9ca1ab;
+
+      /* ---------- 레이아웃 ---------- */
+      --container-food: 1200px;
+
+      /* ---------- 글자 크기 (food.html과 동일 이름 재사용) ---------- */
+      --text-food-hero: 2.5rem;      /* 40px */
+      --text-food-display: 2rem;     /* 32px */
+      --text-food-tiny: 0.8125rem;  /* 13px */
+      --text-food-body: 0.9375rem;  /* 15px */
+
+      /* ---------- 행간 (시안 고정 px 값 중 Tailwind 기본 스케일에 없는 것만) ---------- */
+      --leading-food-relaxed: 1.625rem; /* 26px — Framework 섹션 본문 */
+    }
+
+    /* 시안 Lohas Direction 3열(텍스트/원형그리드/텍스트) 배치.
+       가운데 열은 원형 그리드 고유 폭, 양옆은 남는 폭을 균등하게 채운다. */
+    @utility grid-lohas {
+      grid-template-columns: 1fr auto 1fr;
+    }
+  </style>
+
+  <style>
+    ::selection { background: var(--color-brand); color: var(--color-brand-dark); }
+
+    .skip-link {
+      position: fixed;
+      top: -3rem;
+      left: 1rem;
+      z-index: 100;
+      background: var(--color-brand);
+      color: var(--color-brand-dark);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 0.5rem;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .focus-ring:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 2px;
+    }
+
+    #smooth-wrapper { overflow: hidden; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: var(--color-brand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after,
+    .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+
+    .footer-link { color: var(--color-text-body); }
+    .footer-link:hover { color: var(--color-brand-dark); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-text-primary antialiased">
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ===== Header (사이트 공용 헤더 — index.html/food.html과 동일 구성) ===== -->
+      <header class="w-full border-b border-border bg-white">
+        <div class="mx-auto w-full max-w-food px-6">
+
+          <div class="hidden h-14 items-center justify-end gap-1 lg:flex">
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section2">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+              <span>지속가능경영보고서</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section4">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+              <span>인재채용</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#site-footer">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+              <span>고객기쁨센터</span>
+            </a>
+            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm font-bold text-text-primary" href="index.html#section6">
+              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+              <span>#풀무원</span>
+            </a>
+          </div>
+
+          <div class="flex h-16 items-center justify-between lg:h-24">
+            <a href="index.html" class="focus-ring shrink-0 rounded-md">
+              <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" class="w-24 lg:w-28" />
+            </a>
+
+            <nav id="primary-nav" aria-label="주요 메뉴" class="hidden lg:block">
+              <ul class="flex items-center gap-10 text-sm text-text-body">
+                <li><a class="nav-link py-2" href="index.html#section3">회사소개</a></li>
+                <li><a class="nav-link py-2" href="index.html#section4">사회책임경영</a></li>
+                <li><a class="nav-link py-2" href="index.html#section2" aria-current="page">바른먹거리</a></li>
+                <li><a class="nav-link py-2" href="index.html#section6">지구식단</a></li>
+                <li><a class="nav-link py-2" href="index.html#section5">뉴스룸</a></li>
+              </ul>
+            </nav>
+
+            <div class="flex items-center gap-5">
+              <button type="button" class="focus-ring hidden size-5 items-center justify-center lg:flex" aria-label="통합 검색 열기">
+                <img src="assets/icons/search.svg" alt="" width="20" height="20" class="size-5" />
+              </button>
+              <button type="button" class="focus-ring hidden items-center gap-1 rounded-lg border border-black p-2 text-base text-text-primary lg:flex" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+                <span>KOR</span>
+                <img src="assets/icons/chevron-down.svg" alt="" width="20" height="20" class="size-5" />
+              </button>
+              <button type="button" id="menu-btn" class="focus-ring flex size-10 items-center justify-center rounded-lg border border-gray-400 lg:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+                <svg id="menu-icon-open" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                <svg id="menu-icon-close" class="hidden size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="mobile-menu" class="hidden border-t border-border py-4 lg:hidden">
+            <ul class="flex flex-col gap-1 text-sm text-text-body">
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section3">회사소개</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section4">사회책임경영</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5 font-bold text-brand" href="index.html#section2" aria-current="page">바른먹거리</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section6">지구식단</a></li>
+              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section5">뉴스룸</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== 로컬 내비게이션 (브레드크럼) ===== -->
+      <nav aria-label="현재 위치" class="w-full bg-brand">
+        <div class="mx-auto flex w-full max-w-food items-center gap-6 px-6 py-3 text-sm">
+          <a href="index.html#section2" class="focus-ring rounded font-bold text-white">바른먹거리</a>
+          <span aria-hidden="true" class="text-gray-200">&gt;</span>
+          <span class="font-bold text-white" aria-current="page">지속가능식품</span>
+        </div>
+      </nav>
+
+      <main id="main" tabindex="-1">
+
+        <!-- ===== Hero ===== -->
+        <!-- 시안 원본은 사진 배경 위에 완전 불투명 검정 스크림을 얹어 사진이 전혀 보이지 않는 상태다(스크린샷 확인).
+             그래서 보이지 않는 이미지를 따로 내려받지 않고 단색 배경으로 동일한 결과를 구현했다. -->
+        <section id="sec-hero" aria-labelledby="hero-heading" class="flex w-full flex-col items-start justify-end bg-black px-6 py-10 sm:px-10 lg:py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-start gap-2">
+            <h1 id="hero-heading" class="hero-fade text-food-hero font-extrabold text-white">지속가능식품</h1>
+            <p class="hero-fade text-lg text-gray-200">Sustainable Food</p>
+          </div>
+        </section>
+
+        <!-- ===== Intro ===== -->
+        <section id="sec-intro" aria-labelledby="intro-heading" class="w-full bg-white px-6 pb-20 pt-25">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-10 text-center">
+            <div class="reveal flex flex-col items-center gap-3">
+              <h2 id="intro-heading" class="text-4xl font-extrabold text-text-primary">내 몸에도 지구 환경에도 좋은</h2>
+              <p class="text-food-display font-extrabold text-brand">Sustainable food</p>
+            </div>
+            <p class="reveal max-w-3xl text-base leading-7 text-text-body">
+              이웃사랑, 생명존중의 정신에서 시작한 풀무원의 바른먹거리는<br class="hidden sm:block" />
+              내 몸에도 지구환경에도 좋은 지속가능한 바른먹거리, '지속가능식품'으로 진화합니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- ===== 지속가능식품 속성과 체계 ===== -->
+        <section id="sec-framework" aria-labelledby="framework-heading" class="w-full border-t border-border bg-white px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-4 text-center">
+              <h2 id="framework-heading" class="text-food-display font-extrabold text-text-primary">지속가능식품 <span class="text-brand">속성과 체계</span></h2>
+              <p class="max-w-4xl leading-food-relaxed text-food-body text-text-body">
+                지속가능식품은 사람과 지구에 건강한 순환을 돕는 <strong class="font-bold text-brand">지속가능한 원료와 공정</strong>으로 만듭니다. 식물성 원료 사용을 확대하며 동물성 원료의 경우 생명의 존엄성이 보장된 환경에서 생산된 원료를 우선으로 사용합니다. 풀무원 영양관리기준에 따라 영양균형식을 제공하고 환경친화적인 제조, 포장, 유통이 되도록 노력합니다. 지속가능식품은 이러한 속성을 담아 <strong class="font-bold text-brand">식물성지향 식품(Plant-Forward Foods)</strong>과 <strong class="font-bold text-brand">동물복지 식품(Animal Welfare Foods)</strong>을 제공합니다.
+              </p>
+            </div>
+
+            <div class="reveal flex flex-col items-center justify-center gap-1 rounded-lg bg-brand px-10 py-4.5 text-center text-white">
+              <p class="text-lg font-extrabold">Sustainable Foods</p>
+              <p class="text-sm">(지속가능 식품)</p>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 gap-10 lg:grid-cols-2">
+              <!-- Plant-Forward Foods -->
+              <div class="flex flex-col items-start gap-6">
+                <div class="flex w-full flex-col items-center gap-1 rounded-lg bg-brand-hover p-5 text-center text-white">
+                  <p class="text-lg font-extrabold">Plant-Forward Foods</p>
+                  <p class="text-food-tiny">(식물성 지향 식품)</p>
+                </div>
+                <p class="w-full text-center text-base font-bold text-text-primary">
+                  동물성 원료 사용을 줄이고<br />
+                  <span class="text-brand">식물성 원료 사용을 지향</span>한 식품
+                </p>
+                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
+                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
+                    <p class="text-base font-bold text-brand-hover">Plant-Based Foods</p>
+                    <p class="text-food-tiny text-text-body">(순식물성 식품)</p>
+                  </div>
+                  <p class="w-full leading-6 text-food-tiny text-text-body">식물성 원료로만 구성한 식품이자 동물성 원료를 식물성으로 완전히 대체한 100% 식물성 식품입니다. 콩, 두부, 곡물, 채소, 과일 등 식물성 원료와 동물성 원료를 식물성으로 대체한 비건 컨셉을 구현합니다. 고도화된 기술을 통해 단백질을 높이고, 탄수화물을 줄이는 등 영양적 가치를 강조합니다.</p>
+                </div>
+                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
+                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
+                    <p class="text-base font-bold text-brand-hover">Plant-Forward Fresh RM</p>
+                    <p class="text-food-tiny text-text-body">(식물성지향 신선간편조리식)</p>
+                  </div>
+                  <p class="w-full leading-6 text-food-tiny text-text-body">식물성을 지향하고 일부 동물성 원료가 포함된 신선간편조리식입니다. 순식물성 식품에 고기 조각이 없는 동물성 소스, 육수만 제한된 양만큼 사용합니다. 사용되는 동물성 원료는 동물복지 인증 원료로 단계적으로 전환합니다.</p>
+                </div>
+              </div>
+
+              <!-- Animal Welfare Foods -->
+              <div class="flex flex-col items-start gap-6">
+                <div class="flex w-full flex-col items-center gap-1 rounded-lg bg-brand-deep p-5 text-center text-white">
+                  <p class="text-lg font-extrabold">Animal Welfare Foods</p>
+                  <p class="text-food-tiny">(동물복지 식품)</p>
+                </div>
+                <p class="w-full text-center text-base font-bold text-text-primary">
+                  지속가능 속성의 동물성<br />
+                  <span class="text-brand-deep">원료를 강조</span>한 식품
+                </p>
+                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
+                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
+                    <p class="text-base font-bold text-brand-deep">Animal Welfare Foods</p>
+                    <p class="text-food-tiny text-text-body">(동물복지 식품)</p>
+                  </div>
+                  <p class="w-full leading-6 text-food-tiny text-text-body">육류, 가공, 달걀을 주원료로 사용한 식품으로 동물복지 인증 원료를 사용합니다. 탄소배출량이 큰 동물성 원료 사용은 지금보다는 줄이려고 노력합니다. 동물복지 인증 원료·1차 가공품 그리고 신선간편조리식으로 구현합니다.</p>
+                </div>
+                <div class="flex w-full flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-6">
+                  <div class="flex w-full flex-col items-center gap-1 border-b border-gray-100 pb-3 text-center">
+                    <p class="text-base font-bold text-brand-deep">Sustainable Seafoods</p>
+                    <p class="text-food-tiny text-text-body">(지속가능 수산물 식품)</p>
+                  </div>
+                  <p class="w-full leading-6 text-food-tiny text-text-body">어류, 해조를 원료로 주원료로 사용한 식품으로 ASC/MSC 인증 원료를 사용합니다. ASC/MSC 인증 원료·1차 가공품 그리고 신선간편조리식으로 구현합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 지속가능식품의 지향점 ===== -->
+        <section id="sec-lohas" aria-labelledby="lohas-heading" class="w-full border-t border-border bg-white px-6 py-20">
+          <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
+
+            <div class="reveal flex flex-col items-center gap-4 text-center">
+              <h2 id="lohas-heading" class="text-food-display font-extrabold text-text-primary">지속가능식품의 지향점</h2>
+              <p class="text-food-body text-gray-400">지속가능의 의미를 담은 인증 원료와 공정 기술을 지향하기에 "풀무원 지속가능식품은 내몸에도 지구환경에도 좋습니다"</p>
+            </div>
+
+            <div class="reveal grid w-full grid-cols-1 items-center gap-10 lg:grid-lohas">
+              <div class="flex flex-col items-start gap-8 lg:items-end lg:text-right">
+                <div class="flex flex-col items-start gap-2 lg:items-end">
+                  <p class="text-base font-bold text-text-primary">식물성 원료 사용 확대</p>
+                  <p class="leading-5 text-food-tiny text-text-body">식물성 원료 사용을 늘리고 시장의 변화를 이끌어온 바른먹거리(Plant-healthy,plant-forward food)로 지속 가능한 식문화를 확대합니다.</p>
+                </div>
+                <div class="flex flex-col items-start gap-2 lg:items-end">
+                  <p class="text-base font-bold text-text-primary">식품의 영양안전</p>
+                  <p class="leading-5 text-food-tiny text-text-body">국내, 유기농인증을 넘어 선 지구환경에도 더 나아간 지구환경까지 지속 가능한 바른 원료를 사용합니다.</p>
+                </div>
+              </div>
+
+              <div class="grid shrink-0 grid-cols-2 gap-4 justify-self-center">
+                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand bg-white p-4 text-center text-sm font-bold text-brand-dark">식물성 원료<br />사용 확대</span>
+                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand-hover bg-white p-4 text-center text-sm font-bold text-brand-deep">지속가능성<br />인증 원료 사용</span>
+                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand bg-white p-4 text-center text-sm font-bold text-brand-deep">식품의<br />영양안전</span>
+                <span class="flex size-35 flex-col items-center justify-center rounded-full border-4 border-brand-hover bg-white p-4 text-center text-sm font-bold text-brand-dark">환경친화적<br />공정 기술</span>
+              </div>
+
+              <div class="flex flex-col items-start gap-8">
+                <div class="flex flex-col items-start gap-2">
+                  <p class="text-base font-bold text-text-primary">지속가능성 인증 원료 사용</p>
+                  <p class="leading-5 text-food-tiny text-text-body">축산 고기 대비 지속가능식품(plant-forward food, on-farm, off-farm)이 인체와 지구환경에 미치는 선한 영향력과 사회적 책임을 다하고 있습니다.</p>
+                </div>
+                <div class="flex flex-col items-start gap-2">
+                  <p class="text-base font-bold text-text-primary">환경친화적 공정 기술</p>
+                  <p class="leading-5 text-food-tiny text-text-body">사회, 환경에 부정적인 원료를 피하고 미래 사회가 요구하는 친환경적 지구환경에도 도움이 되는 좋은 원료로 미래를 만들어 갑니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ===== Footer (사이트 공용 푸터 — index.html/food.html과 동일 구성) ===== -->
+      <footer id="site-footer" class="bg-gray-100">
+        <div class="mx-auto w-full max-w-food border-t border-border px-6 py-10">
+
+          <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-start">
+            <div class="flex flex-col items-start gap-4">
+              <img src="assets/images/footer-logo.png" alt="풀무원" class="h-9 w-auto" loading="lazy" />
+              <address class="flex flex-col gap-1 text-xs not-italic text-text-body">
+                <span>법인명 : (주)풀무원</span>
+                <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+                <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
+              </address>
+            </div>
+
+            <div class="flex flex-col gap-4 lg:items-end">
+              <nav aria-label="정책 및 안내">
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1 lg:justify-end">
+                  <li><a class="footer-link text-sm font-bold" href="#site-footer">개인정보처리방침</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">이메일주소 무단수집 거부</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">사이버감사실</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">공정거래</a></li>
+                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
+                  <li><a class="footer-link text-sm" href="#site-footer">풀무원채용</a></li>
+                </ul>
+              </nav>
+
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="text-sm text-text-primary">공식계정</span>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
+                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-6 border-border" />
+
+          <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
+            <p class="text-xs leading-normal text-text-body">Copyright © Pulmuone Corporate All Rights Reserved.</p>
+
+            <div class="flex items-center gap-6">
+              <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-text-primary" aria-haspopup="listbox" aria-expanded="false">
+                계열사/브랜드 사이트
+                <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" class="size-3" />
+              </button>
+              <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="size-14" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ================= 스크립트 ================= -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <!-- ScrollSmoother requires ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <script>
+    // ---------- 헤더 인터랙션 ----------
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        menuBtn.focus();
+      }
+    });
+
+    // ---------- GSAP ----------
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: reduceMotion ? 0 : 1.1,
+      normalizeScroll: true,
+      ignoreMobileResize: true,
+    });
+
+    gsap.timeline({ delay: 0.15 }).from('.hero-fade', {
+      autoAlpha: 0,
+      y: reduceMotion ? 0 : 24,
+      duration: reduceMotion ? 0.01 : 0.9,
+      stagger: 0.1,
+      ease: 'power2.out',
+    });
+
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.set(el, { autoAlpha: 0, y: reduceMotion ? 0 : 28 });
+      gsap.to(el, {
+        autoAlpha: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href && href.length > 1 && document.querySelector(href)) {
+          e.preventDefault();
+          smoother.scrollTo(href, true, 'top top');
+          if (!mobileMenu.classList.contains('hidden')) {
+            menuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.add('hidden');
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    ScrollTrigger.refresh();
+  </script>
+</body>
+</html>
