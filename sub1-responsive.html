@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+  <!-- Tailwind CSS v4 (Play CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>사회책임경영 개요 | 풀무원</title>
@@ -16,11 +21,11 @@
   <style>
     :root{--green:#003e08;--pale:#f2f9f3;--shadow-card:0 5px 12px rgba(0,0,0,.08);--shadow-hub:0 8px 18px rgba(0,0,0,.14)} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"NanumSquare Neo",Arial,sans-serif}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%}ul,ol{margin:0;padding:0;list-style:none}h1,h2,h3,p{margin-top:0}main{display:block;padding-top:155px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:99;background:#fff;padding:8px}
-    .subnav{height:44px;display:flex;align-items:center;gap:8px;padding:0 16px;background:var(--lime);color:#fff;font-size:12px}.subnav img{width:16px;height:16px}.hero{height:300px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(#0006,#0006),url("assets/images/overview-hero.png") center/cover}.hero h1{margin:0;font-size:42px;font-weight:900}.hero p{margin:12px 0 0;font-size:18px}.section-title{height:113px;display:flex;align-items:center;gap:16px;max-width:1088px;margin:auto}.section-title h2{font-size:28px;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:#d9dade}
-    .promise{height:626px;padding:80px max(80px,calc((100% - 1120px)/2));text-align:center}.promise h2{max-width:960px;margin:0 auto 60px;font-size:32px;line-height:1.4;color:var(--dark)}.promise h2 em{color:var(--lime);font-style:normal}.tabs{display:grid;grid-template-columns:1fr 1fr;height:54px;margin-bottom:60px}.tabs span{display:grid;place-items:center;border:1px solid #d9dade;font-weight:800}.tabs .on{background:var(--lime);border-color:var(--lime);color:#fff}.promise>p{max-width:800px;margin:auto;font-size:15px;line-height:1.8}.detail{display:inline-block;margin-top:52px;color:var(--ink);font-size:12px;font-weight:800;text-decoration:none}
-    .capital{height:632px;padding:80px max(80px,calc((100% - 1120px)/2));background:var(--gray)}.center-title{text-align:center}.center-title h2{margin:0;color:var(--dark);font-size:32px}.center-title p{margin:10px 0 0;font-size:18px;font-weight:800}.capital-grid,.output-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px}.card{display:flex;align-items:center;gap:20px;height:96px;padding:20px;border-radius:12px;background:#fff}.ico{display:grid;place-items:center;flex:0 0 56px;height:56px;overflow:hidden;border-radius:50%;background:var(--lime)}.ico img{display:block;width:30px;height:30px;object-fit:contain;filter:brightness(0) invert(1)}.card b,.output-card b{display:block;margin-bottom:8px;font-size:16px}.card small{font-size:12px}.transition{height:80px;display:grid;place-items:center}.transition img{width:48px;height:32px}
-    .model{padding:80px max(80px,calc((100% - 1120px)/2));text-align:center}.model>h2{margin:0 0 54px;font-size:24px}.business{display:grid;grid-template-columns:1fr 1fr;gap:32px}.business .card{height:88px;background:var(--gray);text-align:left}.business .ico{flex-basis:48px;height:48px}.business .ico img{width:26px;height:26px}.orbit{position:relative;height:700px;margin-top:60px;border-radius:12px;background:var(--gray)}.node{position:absolute;width:120px;height:120px;display:grid;place-content:center;padding:14px;border:2px solid var(--lime);border-radius:30px;background:#fff;font-size:11px;box-shadow:0 5px 12px #00000014}.node b{margin-bottom:8px;color:var(--lime);font-size:12px}.core{left:calc(50% - 80px);top:270px;width:160px;height:160px;border-width:4px}.core b{font-size:22px}.n1{left:calc(50% - 60px);top:30px}.n2{left:calc(50% - 244px);top:106px}.n3{right:calc(50% - 244px);top:106px}.n4{left:calc(50% - 320px);top:290px}.n5{right:calc(50% - 320px);top:290px}.n6{left:calc(50% - 244px);bottom:106px}.n7{right:calc(50% - 244px);bottom:106px}.n8{left:calc(50% - 60px);bottom:30px}
-    .output{padding:80px max(80px,calc((100% - 1120px)/2));background:var(--pale)}.badge{width:max-content;margin:auto;padding:8px 20px;border-radius:20px;background:var(--lime);color:#fff;font-size:12px;font-weight:800}.output .center-title{margin-top:16px}.output-grid{margin-top:60px}.output-card{display:flex;gap:20px;min-height:160px;padding:32px;border-radius:12px;background:#fff}.output-card .ico{flex-basis:52px;height:52px;background:var(--green)}.output-card .ico img{width:30px;height:30px}.output-card p{margin:0 0 12px;font-size:12px}.output-card ul{margin:0;padding:0;list-style:none;font-size:12px;font-weight:700;line-height:1.9}.output-card li:before{content:"";display:inline-block;width:5px;height:5px;margin-right:8px;border-radius:2px;background:var(--lime);vertical-align:2px}
+    .subnav{height:44px;display:flex;align-items:center;gap:10px;padding:0 32px;background:var(--lime);color:#fff;font-size:13px;font-weight:500}.subnav img{width:16px;height:16px}.hero{height:300px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(#0006,#0006),url("assets/images/overview-hero.png") center/cover}.hero h1{margin:0;font-size:44px;font-weight:900;letter-spacing:-.5px}.hero p{margin:16px 0 0;font-size:18px;font-weight:400;opacity:.95;line-height:1.6}.section-title{padding:56px 32px 32px;display:flex;align-items:center;gap:16px;max-width:1088px;margin:auto}.section-title h2{font-size:28px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:#d9dade}
+    .promise{min-height:560px;padding:80px max(40px,calc((100% - 1088px)/2));text-align:center}.promise h2{max-width:960px;margin:0 auto 48px;font-size:32px;line-height:1.5;color:var(--dark)}.promise h2 em{color:var(--lime);font-style:normal}.tabs{display:grid;grid-template-columns:1fr 1fr;height:56px;margin-bottom:48px;max-width:800px;margin-left:auto;margin-right:auto}.tabs span{display:grid;place-items:center;border:1px solid #d9dade;font-weight:800;font-size:15px}.tabs .on{background:var(--lime);border-color:var(--lime);color:#fff}.promise>p{max-width:820px;margin:auto;font-size:15px;line-height:1.85;color:var(--ink)}.detail{display:inline-block;margin-top:40px;color:var(--ink);font-size:13px;font-weight:800;text-decoration:none}
+    .capital{min-height:580px;padding:80px max(40px,calc((100% - 1088px)/2));background:var(--gray)}.center-title{text-align:center}.center-title h2{margin:0;color:var(--dark);font-size:32px;font-weight:800}.center-title p{margin:12px 0 0;font-size:17px;font-weight:800;color:var(--lime)}.capital-grid,.output-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}.card{display:flex;align-items:center;gap:24px;min-height:100px;padding:24px 28px;border-radius:12px;background:#fff;box-shadow:var(--shadow-card)}.ico{display:grid;place-items:center;flex:0 0 56px;height:56px;overflow:hidden;border-radius:50%;background:var(--lime)}.ico img{display:block;width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}.card b,.output-card b{display:block;margin-bottom:6px;font-size:17px;font-weight:800;color:var(--dark)}.card small{font-size:13px;line-height:1.5;color:var(--ink)}.transition{height:80px;display:grid;place-items:center}.transition img{width:48px;height:32px}
+    .model{padding:80px max(40px,calc((100% - 1088px)/2));text-align:center}.model>h2{margin:0 0 48px;font-size:26px;font-weight:800;color:var(--dark)}.business{display:grid;grid-template-columns:1fr 1fr;gap:32px}.business .card{min-height:96px;padding:24px 28px;background:var(--gray);text-align:left}.business .ico{flex-basis:50px;height:50px}.business .ico img{width:26px;height:26px}.orbit{position:relative;height:700px;margin-top:48px;border-radius:12px;background:var(--gray)}.node{position:absolute;width:124px;height:124px;display:grid;place-content:center;padding:14px;border:2px solid var(--lime);border-radius:30px;background:#fff;font-size:11px;box-shadow:0 5px 12px #00000014}.node b{margin-bottom:6px;color:var(--lime);font-size:12px}.core{left:calc(50% - 80px);top:270px;width:160px;height:160px;border-width:4px}.core b{font-size:22px}.n1{left:calc(50% - 62px);top:30px}.n2{left:calc(50% - 244px);top:106px}.n3{right:calc(50% - 244px);top:106px}.n4{left:calc(50% - 320px);top:290px}.n5{right:calc(50% - 320px);top:290px}.n6{left:calc(50% - 244px);bottom:106px}.n7{right:calc(50% - 244px);bottom:106px}.n8{left:calc(50% - 62px);bottom:30px}
+    .output{padding:80px max(40px,calc((100% - 1088px)/2));background:var(--pale)}.badge{width:max-content;margin:auto;padding:8px 20px;border-radius:20px;background:var(--lime);color:#fff;font-size:13px;font-weight:800}.output .center-title{margin-top:16px}.output-grid{margin-top:48px}.output-card{display:flex;gap:24px;min-height:160px;padding:32px;border-radius:12px;background:#fff;box-shadow:var(--shadow-card)}.output-card .ico{flex-basis:56px;height:56px;border-radius:50%;background:var(--green);display:grid;place-items:center}.output-card .ico img{width:28px;height:28px}.output-card p{margin:0 0 12px;font-size:13px;color:var(--ink)}.output-card ul{margin:0;padding:0;list-style:none;font-size:13px;font-weight:700;line-height:1.9;color:var(--dark)}.output-card li:before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:2px;background:var(--lime);vertical-align:2px}
     @media(max-width:1279px){
       .subnav{position:relative;z-index:2;height:44px!important;min-height:44px;display:flex!important;padding:0 48px}.hero{height:240px;background-position:center}.hero h1{font-size:36px}.section-title{height:96px;margin:0 48px}.section-title h2{font-size:24px}.promise{height:438px;padding:48px}.promise h2{margin-bottom:36px;font-size:24px}.tabs{margin-bottom:32px}.detail{margin-top:24px}.capital{height:548px;padding:60px 48px}.capital-grid{margin-top:40px}.card{height:72px}.ico{flex-basis:44px;height:44px}.ico img{width:24px;height:24px}.transition{height:60px}.model{height:931px;padding:60px 48px}.model>h2{margin-bottom:40px}.business{gap:24px}.business .card{height:104px;padding:24px}.orbit{height:600px;margin-top:40px}.core{top:220px}.n1{top:30px}.n2,.n3{top:110px}.n4,.n5{top:240px}.n6,.n7{bottom:110px}.n8{bottom:30px}.output{height:773px;padding:60px 48px}.output-grid{margin-top:40px}.output-card{min-height:149px}.center-title h2{font-size:24px}.center-title p{font-size:14px}
     }
@@ -73,21 +78,21 @@
           <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-          <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
         </ul>
       </nav>
 
       <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
         <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
           <ul class="site-header-dropdown__list">
-            <li><a class="site-header-dropdown__link" href="ceo.html">총괄CEO인사말</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">CI소개</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">연혁</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">가치체계</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">사업소개</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">동반성장</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">기업지배구조</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">투자정보</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+            <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
@@ -108,10 +113,10 @@
             <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
-            <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
           </ul>
         </div>
       </div>
@@ -139,7 +144,7 @@
         <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
         <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
         <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-        <li><a href="index.html#section5">뉴스룸</a></li>
+        <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
       </ul>
     </div>
   </div>
@@ -163,8 +168,8 @@
         <img src="assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
         <address>
           <span>법인명 : (주)풀무원</span>
-          <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
-          <span>대표전화 : <a class="common-focus" href="tel:080-022-0085">080-022-0085</a></span>
+          <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+          <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
         </address>
       </div>
 

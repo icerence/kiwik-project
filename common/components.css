@@ -238,14 +238,50 @@ body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
 .common-footer__family > img { width: 3.5rem; height: 3.5rem; }
 
 @media (max-width: 1023px) {
+  .common-header__utility,
+  .common-header__nav,
+  .common-header__language { display: none !important; }
+  .common-header__main { height: 60px !important; position: relative !important; padding: 0 1rem !important; }
   .common-header__logo-link {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
+  .common-header__logo-link img { width: 104px !important; height: auto !important; }
   .common-header__actions {
-    position: absolute;
-    left: 0;
+    position: static !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .common-header__search {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    width: 44px !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 0 !important;
+    background: transparent !important;
+    z-index: 10 !important;
+  }
+  .common-header__search img { width: 20px !important; height: 20px !important; }
+  .common-header__menu-button {
+    position: absolute !important;
+    left: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    width: 44px !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 0 !important;
+    background: transparent !important;
+    z-index: 10 !important;
   }
 }
 
