@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>총괄 CEO 인사말 | 풀무원</title>
+  <meta name="description" content="풀무원 총괄 CEO 이우봉의 인사말입니다.">
+  <link rel="icon" href="data:,">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="common/components.css" />
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+      --color-brand: #7bcc12;
+      --color-gray-200: #d9dade;
+      --color-gray-600: #535964;
+      --color-gray-800: #31343b;
+      --color-white: #ffffff;
+      --radius-xl: 12px;
+      --container-ceo: 960px;
+      --spacing-header-mobile: 64px;
+      --spacing-header-desktop: 155px;
+      --text-ceo-title: clamp(1.75rem, 3vw, 2.25rem);
+      --text-ceo-title--line-height: 1.4;
+      --leading-ceo-body: 1.85;
+    }
+
+    .ceo-hero-image {
+      background-image: url("assets/images/ceo-hero.png");
+      background-position: center 6%;
+      background-size: cover;
+    }
+
+    .ceo-portrait {
+      background-image: url("assets/images/ceo-portrait.png");
+      background-position: center 26.7%;
+      background-size: 103% auto;
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-gray-800 antialiased" data-page="ceo">
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="index.html#section3">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub.html">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+            <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+          <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="sub.html">개요</a></li>
+              <li><a class="site-header-dropdown__link" href="sub.html">추진전략</a></li>
+              <li><a class="site-header-dropdown__link" href="sub.html">활동 및 실적</a></li>
+              <li><a class="site-header-dropdown__link" href="sub.html">수상</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+              <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+              <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+              <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+            <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="index.html#section3">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a href="index.html#section5">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
+
+  <main id="main-content" class="pt-[var(--spacing-header-mobile)] lg:pt-[var(--spacing-header-desktop)]">
+    <section aria-label="총괄 CEO 인사말 소개">
+      <div class="ceo-hero-image h-48 bg-no-repeat sm:h-60" role="img" aria-label="자연과 건강한 식생활을 표현한 풀무원 이미지"></div>
+
+      <div class="mx-auto max-w-[var(--container-ceo)] px-6 pb-16 pt-8 lg:px-0 lg:pb-20">
+        <nav aria-label="현재 위치" class="text-sm leading-6 text-gray-600">
+          <ol class="flex flex-wrap items-center gap-2">
+            <li><a class="common-focus hover:text-brand" href="index.html" aria-label="홈">⌂</a></li>
+            <li aria-hidden="true">›</li>
+            <li><a class="common-focus hover:text-brand" href="index.html#section3">회사소개</a></li>
+            <li aria-hidden="true">›</li>
+            <li aria-current="page">총괄 CEO 인사말</li>
+          </ol>
+        </nav>
+        <hr class="my-10 border-gray-200">
+        <h1 class="text-center text-[length:var(--text-ceo-title)] font-bold leading-[var(--text-ceo-title--line-height)] tracking-tight">
+          존경하는 풀무원 고객 여러분, 그리고 이해 관계자 여러분<br class="hidden sm:block">
+          <span class="text-brand">한결같은 관심과 사랑에 깊은 감사</span>를 드립니다.
+        </h1>
+      </div>
+    </section>
+
+    <section aria-labelledby="ceo-message-title" class="mx-auto max-w-[var(--container-ceo)] px-6 pb-24 lg:px-0">
+      <div class="ceo-portrait h-80 rounded-xl bg-no-repeat sm:h-[600px]" role="img" aria-label="풀무원 총괄 CEO 이우봉"></div>
+      <h2 id="ceo-message-title" class="mt-10 text-lg font-bold leading-[1.6]">안녕하십니까. 풀무원 총괄CEO 이우봉입니다.</h2>
+
+      <div class="mt-10 space-y-7 text-base leading-[var(--leading-ceo-body)]">
+        <p>풀무원은 ‘한국 유기농의 아버지’로 불리는 풀무원농장 원경선 원장님의 이웃사랑과 생명존중의 정신을 계승하며 사회적 가치를 실현하는 기업으로 성장해 왔습니다. 우리는 단순한 이윤 추구를 넘어, 사회적 공익을 추구하는 영리 기업으로의 길을 변함없이 걸어왔습니다.</p>
+        <p>이러한 풀무원만의 정체성은 경영 원칙과 제도 전반에 반영되어 있습니다. 풀무원은 회사 정관에 ‘경제적 가치’, ‘사회적 가치’, ‘환경적 가치’의 창출을 ‘풀무원의 사회적 책임’으로 명시하고, 끊임없는 혁신을 통해 공유가치를 창출함으로써 지속가능한 성장을 도모하고 있습니다.</p>
+        <p>기업 구성원이 행복하게 일하고, 고객에게 신뢰받으며, 협력기업과 동등한 지위에서 상생하고, 지역사회에서 사랑받고, 나아가 주주에게도 매력적인 기업이 되는 것, 이것이 우리의 목표이자 경영이념입니다.</p>
+        <p>우리는 미래지향적 종합식품기업으로 도약하기 위해 가치체계를 새롭게 정립하여 기업경영을 실천하고 있습니다.</p>
+        <p>회사의 미션은 ‘바른먹거리로 사람과 지구의 건강한 내일을 만드는 기업’입니다. 미션 추진을 위한 4대 핵심전략은 ‘식물성지향(Plant Forward)’, ‘동물복지(Animal Welfare)’, ‘건강한 경험(Healthy Experience)’, ‘친환경 케어(Eco-Caring)’로 정하였습니다. 고객과 우리 자신을 향한 행동기준인 핵심가치는 ‘바른 마음’, ‘변화 주도’, ‘함께 성장’입니다.</p>
+        <p>2026년 글로벌 경기 전망은 여전히 불투명하며, 우리를 둘러싼 사업 환경 또한 큰 도전을 요구하고 있습니다. AI 기술혁신은 빠른 속도로 진화하고 있으며, 식품산업은 글로벌 경쟁이 한층 더 치열해지고 있습니다. 풀무원은 핵심 전략과 실행력을 바탕으로 미래성장을 위한 기반을 더욱 굳건히 다져 나가겠습니다.</p>
+        <p>풀무원이 지난 41년간 아무도 가지 않은 험난한 길을 개척하며 식품산업의 역사를 써왔듯이, 앞으로도 새로운 식문화를 만들어가며 ‘글로벌 No.1 지속가능식생활기업’, ‘글로벌 ESG 대표기업’으로 제2의 도약을 위해 더욱 노력해 나갈 것을 약속드립니다.</p>
+        <p>감사합니다.</p>
+      </div>
+
+      <p class="mt-10 text-2xl font-bold leading-10">(주) 풀무원 총괄 CEO&nbsp;&nbsp; 이 우 봉</p>
+      <hr class="mt-10 border-gray-200">
+    </section>
+  </main>
+
+  <!-- common:footer:start -->
+  <footer id="site-footer" class="common-footer">
+    <div class="common-footer__inner">
+      <div class="common-footer__top">
+        <div class="common-footer__company">
+          <img src="assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+          <address>
+            <span>법인명 : (주)풀무원</span>
+            <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+            <span>대표전화 : <a class="common-focus" href="tel:080-022-0085">080-022-0085</a></span>
+          </address>
+        </div>
+
+        <div class="common-footer__links">
+          <nav aria-label="정책 및 안내">
+            <ul class="common-footer__policy-list">
+              <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+            </ul>
+          </nav>
+
+          <div class="common-footer__social">
+            <span>공식계정</span>
+            <a class="common-focus" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" loading="lazy" /></a>
+            <a class="common-focus" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+            <a class="common-focus" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+            <a class="common-focus" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+            <a class="common-focus" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" loading="lazy" /></a>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="common-footer__bottom">
+        <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+        <div class="common-footer__family">
+          <button type="button" class="common-focus" aria-haspopup="listbox" aria-expanded="false">
+            계열사/브랜드 사이트
+            <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+          </button>
+          <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- common:footer:end -->
+</body>
+</html>
