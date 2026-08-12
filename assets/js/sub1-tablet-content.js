@@ -1,4 +1,4 @@
-// 태블릿(768~1279px) 전용 보조 스크립트.
+// 태블릿(768~1199px) 전용 보조 스크립트.
 // 콘텐츠(텍스트/아이콘)는 sub1-responsive.html 하단 인라인 스크립트가
 // #capital-grid / #orbit / #output-grid 를 모든 브레이크포인트 공용으로 1회만 생성한다.
 // 이 파일은 그 결과물 위에 태블릿 CSS(sub1-tablet-fix.css, sub1-tablet-content.css)가
