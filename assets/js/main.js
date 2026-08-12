@@ -24,6 +24,10 @@
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const desktopQuery = window.matchMedia('(min-width: 1024px)');
 
+  // 모바일은 문서의 기본 스크롤만 사용한다. 이전에 내려받은 main.js가 남아
+  // 있더라도 휠·터치 이벤트를 가로채 섹션 단위로 이동시키지 않는다.
+  if (!desktopQuery.matches) return;
+
   const panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
   const footer = document.getElementById('site-footer');
   let targets = [];
@@ -48,6 +52,14 @@
 
   let currentIndex = 0;
   let isAnimating = false;
+
+  // 최초 진입 직후 모바일 뷰포트가 확정되는 경우에도 진행 중인 패널 이동을
+  // 즉시 멈춰, 이후 스크롤은 브라우저 기본 동작으로 이어지게 한다.
+  desktopQuery.addEventListener('change', function (event) {
+    if (event.matches) return;
+    gsap.killTweensOf(window);
+    isAnimating = false;
+  });
 
   /* ---------------- 이동 ---------------- */
 
@@ -143,6 +155,7 @@
   /* ---------------- 휠 ---------------- */
 
   window.addEventListener('wheel', function (event) {
+    if (!desktopQuery.matches) return;
     if (event.ctrlKey) return;
 
     const direction = event.deltaY > 0 ? 1 : -1;
@@ -175,6 +188,7 @@
   }, { passive: true });
 
   window.addEventListener('touchmove', function (event) {
+    if (!desktopQuery.matches) return;
     const touch = event.touches[0];
     const deltaY = touchStartY - touch.clientY;
     const deltaX = touchStartX - touch.clientX;
@@ -190,6 +204,7 @@
   }, { passive: false });
 
   window.addEventListener('touchend', function (event) {
+    if (!desktopQuery.matches) return;
     const touch = event.changedTouches[0];
     const deltaY = touchStartY - touch.clientY;
     const deltaX = touchStartX - touch.clientX;
@@ -207,6 +222,7 @@
   /* ---------------- 키보드 ---------------- */
 
   window.addEventListener('keydown', function (event) {
+    if (!desktopQuery.matches) return;
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target.closest && event.target.closest('input, textarea, select, [contenteditable]')) return;
 
@@ -238,6 +254,7 @@
   /* ---------------- 앵커 링크 ---------------- */
 
   document.addEventListener('click', function (event) {
+    if (!desktopQuery.matches) return;
     const link = event.target.closest ? event.target.closest('a[href^="#"]') : null;
     if (!link) return;
 
@@ -421,6 +438,7 @@
   let resizeTimer = null;
   window.addEventListener('resize', function () {
     if (window.Swiper) syncSwipers();
+    if (!desktopQuery.matches) return;
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
       rebuildTargets();
