@@ -138,16 +138,12 @@
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 
-    .tab-link { border-bottom: 2px solid transparent; }
-    .tab-link--active { color: var(--color-brand); border-color: var(--color-brand); }
-    .tab-link--inactive { color: var(--color-gray-400); }
-
     .footer-link { color: var(--color-text-body); }
     .footer-link:hover { color: var(--color-brand-dark); }
 
     @media (min-width: 768px) and (max-width: 1023px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
@@ -162,7 +158,7 @@
 
     @media (max-width: 767px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
@@ -188,7 +184,7 @@
     }
   </style>
 </head>
-<body class="bg-white font-sans text-text-primary antialiased">
+<body class="bg-white font-sans text-text-primary antialiased" data-common-header-offset>
   <a href="#main" class="skip-link">본문 바로가기</a>
 
   <!-- common:header:start -->
@@ -301,14 +297,6 @@
     <div id="smooth-content">
 
       <!-- ===== Header (사이트 공용 헤더 — index.html과 동일 구성) ===== -->
-
-      <!-- ===== 탭 메뉴 ===== -->
-      <div class="w-full border-b border-border bg-white">
-        <div class="mx-auto flex w-full max-w-food justify-center gap-6 px-6">
-          <a href="#main" class="tab-link tab-link--active px-6 py-4 text-center text-food-body font-bold" aria-current="page">지속가능 식생활</a>
-          <span class="tab-link tab-link--inactive px-6 py-4 text-center text-food-body font-medium" aria-disabled="true">지속가능한 원칙</span>
-        </div>
-      </div>
 
       <main id="main" tabindex="-1">
 
