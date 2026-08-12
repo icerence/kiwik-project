@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>추진전략 | 풀무원</title>
+  <link rel="icon" href="assets/pulmuone_favicon.svg" type="image/svg+xml">
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="common/components.css" />
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+  <style>
+    :root{--card:#f7f7f8;--line:#e0f1e3;--scrim-a:rgba(0,0,0,.3);--scrim-b:rgba(0,0,0,.3)} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"NanumSquare Neo",Arial,sans-serif}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%}ul,ol{margin:0;padding:0;list-style:none}h1,h2,h3,p{margin-top:0}main{display:block;padding-top:155px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--white);padding:8px}
+    .subnav{height:44px;display:flex;align-items:center;gap:8px;padding:0 16px;background:var(--lime);color:var(--white);font-size:12px}.subnav img{width:16px;height:16px}.subnav .crumb-sep{color:var(--white);opacity:.7}.subnav .crumb-current{font-weight:700}.subnav .crumb-caret{width:10px;height:6px;filter:brightness(0) invert(1)}
+    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/strategy-hero.png") center/cover}.hero-inner{width:720px;max-width:100%}.hero h1{margin:0;font-size:48px;font-weight:800;line-height:1.1}.hero p{margin:16px 0 0;font-size:20px;font-weight:500;opacity:.9;line-height:1.5}
+    .section-title{padding:48px 96px 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:1088px;margin:auto}.section-title h2{font-size:30px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
+    .promise{padding:0 96px 96px;text-align:center}.promise-inner{max-width:960px;margin:auto;font-size:24px;font-weight:800;line-height:1.5;color:var(--dark)}.promise-inner em{color:var(--lime);font-style:normal}
+    .tabs-wrap{padding:0 96px 96px}.tabs{display:grid;grid-template-columns:1fr 1fr;max-width:1088px;margin:auto}.tabs span{display:grid;place-items:center;padding:16px 8px;border:1px solid var(--line);font-weight:700;font-size:14px;color:var(--ink)}.tabs .on{background:var(--lime);border-color:var(--lime);color:var(--white);font-weight:800}
+    .csr-intro{padding:0 96px 96px;text-align:center}.csr-intro-inner{max-width:1088px;margin:auto}.csr-intro h2{font-size:30px;font-weight:800;color:var(--dark)}.csr-intro>.csr-intro-inner>p{margin:40px auto 0;font-size:14px;line-height:1.6;color:var(--ink)}.csr-notice{margin-top:40px;font-size:16px;font-weight:800;color:var(--lime);line-height:1.6}.csr-notice p{margin:0}
+    .stakeholders{padding:0 96px 96px}.stakeholder-grid{max-width:1088px;margin:auto;display:flex;flex-direction:column;gap:40px}
+    .card{position:relative;display:flex;align-items:center;gap:96px;padding:44px;border:1px solid var(--line);border-radius:4px;background:var(--card);overflow:hidden}
+    .card .notch{position:absolute;left:-1px;top:-1px;width:6px;height:72px;border-radius:2px;background:var(--lime)}
+    .card .col-left{flex:0 0 280px;display:flex;flex-direction:column;gap:12px}.card .col-left b{font-size:20px;font-weight:700;color:var(--dark)}.card .col-left span{font-size:16px;font-weight:700;color:var(--lime)}
+    .card .col-right{flex:1;display:flex;flex-direction:column;gap:24px}.card .col-right p{margin:0;font-size:14px;line-height:1.6;color:var(--ink)}
+    .card .col-right p:before{content:"• "}
+    @media(max-width:1279px){
+      :root{--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.8)} /* token-exempt: 태블릿 히어로 스크림 값(Figma Tablet/Strategy 지정) */
+      .subnav{height:44px!important;min-height:44px;padding:0 48px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
+      .section-title{padding:40px 48px 32px}.section-title-row{max-width:none}.section-title h2{font-size:24px}
+      .promise{padding:0 48px 48px}.promise-inner{max-width:none;font-size:20px}
+      .tabs-wrap{padding:0 48px 48px}.tabs{max-width:none}.tabs span{padding:12px 8px;font-size:13px}
+      .csr-intro{padding:0 48px 48px}.csr-intro-inner{max-width:none}.csr-intro h2{font-size:24px}.csr-intro>.csr-intro-inner>p{margin-top:32px;font-size:14px}.csr-notice{margin-top:8px;font-size:15px}
+      .stakeholders{padding:0 48px 64px}.stakeholder-grid{max-width:none;gap:32px}
+      .card{padding:40px;gap:24px;border-radius:8px}.card .notch{height:auto;top:-1px;bottom:-1px;border-radius:0}
+      .card .col-left{flex-basis:220px;gap:6px}.card .col-left b{font-size:18px;font-weight:800}.card .col-left span{font-size:15px;font-weight:800}
+      .card .col-right{gap:8px}.card .col-right p{font-size:13px;line-height:1.5}
+      .card .col-right p:before{content:""}
+    }
+    @media(max-width:1023px){
+      main{padding-top:60px}
+      .common-header__utility,.common-header__nav,.common-header__language{display:none!important}
+      .common-header__main{height:60px}
+      .common-header__logo-link{position:absolute;left:50%;transform:translateX(-50%)}
+      .common-header__logo-link img{width:104px}
+      .common-header__actions{position:static;width:100%;height:60px;pointer-events:none}
+      .common-header__menu-button{position:absolute!important;left:0;display:flex!important;width:44px!important;height:44px!important;border:0;pointer-events:auto}
+      .common-header__search{position:absolute;right:0;display:flex!important;width:44px;height:44px;align-items:center;justify-content:center;border:0;background:transparent;pointer-events:auto}
+      .common-header__search img{width:20px;height:20px}
+    }
+    @media(max-width:767px){
+      :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 근사값(Figma color/overlay 변수, 인덱스 페이지의 --color-scrim-banner 0.45와 동일 계열 채택) */
+      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
+      .section-title{padding:24px 20px}
+      .promise{padding:0 20px 40px}.promise-inner{font-size:18px}
+      .tabs-wrap{padding:0 20px 32px}.tabs span{font-size:14px}.tabs .on{font-weight:800}
+      .csr-intro{padding:0 20px 32px}.csr-intro h2{font-size:22px}.csr-intro>.csr-intro-inner>p{margin-top:16px}.csr-notice{margin-top:16px}
+      .stakeholders{padding:0 20px 48px}.stakeholder-grid{gap:16px}
+      .card{flex-direction:column;align-items:stretch;gap:12px;padding:20px;border-color:var(--lime)}.card .notch{background:var(--lime)}
+      .card .col-left{flex-basis:auto;gap:8px}.card .col-left b{font-size:16px;font-weight:800}.card .col-left span{font-size:14px;font-weight:700}
+      .card .col-right{gap:8px}.card .col-right p{font-size:13px}
+      .card .col-right p:before{content:"• "}
+      .common-footer{position:relative;clear:both;margin-top:0}}
+  </style>
+</head>
+<body data-page="sub2">
+<a class="skip" href="#main">본문 바로가기</a>
+<!-- common:header:start -->
+<header id="site-header" class="common-header">
+  <div class="common-header__inner">
+    <div id="utility-bar" class="common-header__utility">
+      <a class="common-header__utility-link" href="index.html#section2">
+        <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+        <span>지속가능경영보고서</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#section4">
+        <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+        <span>인재채용</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#site-footer">
+        <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+        <span>고객기쁨센터</span>
+      </a>
+      <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+        <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+        <span>#풀무원</span>
+      </a>
+    </div>
+
+    <div class="common-header__main">
+      <a href="index.html" class="common-focus common-header__logo-link">
+        <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+      </a>
+
+      <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+        <ul class="common-header__nav-list">
+          <li><a class="common-header__nav-link" data-nav-page="index" href="index.html#section3">회사소개</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+        <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="ceo.html">총괄CEO인사말</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">CI소개</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="ceo.html">투자정보</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+            <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+            <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+            <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+            <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+            <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+            <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+            <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+            <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+            <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
+            <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
+            <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
+            <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="common-header__actions">
+        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+          <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+        </button>
+        <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+          <span>KOR</span>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+          </svg>
+        </button>
+        <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+          <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+      <ul>
+        <li><a data-nav-page="index" href="index.html#section3">회사소개</a></li>
+        <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+        <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+        <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+        <li><a href="index.html#section5">뉴스룸</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<!-- common:header:end -->
+<main id="main">
+  <nav class="subnav" aria-label="현재 위치">
+    <img src="assets/icons/home.svg" alt="">
+    <span class="crumb-sep">›</span>
+    <span>사회책임경영</span>
+    <span class="crumb-sep">›</span>
+    <strong class="crumb-current">추진전략</strong>
+    <img class="crumb-caret" src="assets/icons/chevron-down.svg" alt="">
+  </nav>
+  <section class="hero"><div class="hero-inner"><h1>추진전략</h1><p>지속가능한 성장을 위한 풀무원의 사회적 가치 실현</p></div></section>
+  <section class="section-title"><div class="section-title-row"><h2>사회책임경영</h2><i></i></div></section>
+  <section class="promise"><p class="promise-inner">풀무원은 경제적 사회적 환경적 가치 창출을 풀무원의<br>사회적책임으로 정의하고 끊임없는 혁신을 통해<br>공유가치를 창출함으로써 <em>지속가능한 성장</em>을<br><em>도모하겠습니다.</em></p></section>
+  <div class="tabs-wrap"><div class="tabs"><span class="on">기업사회책임경영</span><span>바른마음경영</span></div></div>
+  <section class="csr-intro"><div class="csr-intro-inner"><h2>풀무원의 기업사회책임</h2><p>풀무원은 경제적 가치, 사회적 가치, 환경적 가치 창출을 우리의 기업사회책임으로 정의하고 있습니다.</p><div class="csr-notice"><p>이러한 기업사회책임을 다하기 위하여,</p><p>다음의 실천 지침을 성실히 이행할 것을 다짐합니다.</p></div></div></section>
+  <section class="stakeholders"><div class="stakeholder-grid" id="stakeholder-grid"></div></section>
+</main>
+<!-- common:footer:start -->
+<footer id="site-footer" class="common-footer">
+  <div class="common-footer__inner">
+    <div class="common-footer__top">
+      <div class="common-footer__company">
+        <img src="assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+        <address>
+          <span>법인명 : (주)풀무원</span>
+          <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+          <span>대표전화 : <a class="common-focus" href="tel:080-022-0085">080-022-0085</a></span>
+        </address>
+      </div>
+
+      <div class="common-footer__links">
+        <nav aria-label="정책 및 안내">
+          <ul class="common-footer__policy-list">
+            <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+          </ul>
+        </nav>
+
+        <div class="common-footer__social">
+          <span>공식계정</span>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" loading="lazy" /></a>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="common-footer__bottom">
+      <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+      <div class="common-footer__family">
+        <button type="button" class="common-focus" aria-haspopup="listbox" aria-expanded="false">
+          계열사/브랜드 사이트
+          <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+        </button>
+        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- common:footer:end -->
+<script>
+const stakeholders=[
+  ['고객이','신뢰하는 풀무원',['우리는 고객의 건강과 행복을 최우선 가치로 삼아 기업 경영을 혁신합니다.','우리는 고객의 소리에 귀 기울여 고객만족과 감동을 실현하는 제품과 서비스를 제공합니다.']],
+  ['주주에게','매력적인 풀무원',['우리는 모든 형태의 부패에 반대하고, 합리적 지배구조 하에서 경영 현황을 투명하게 공개합니다.','우리는 법규를 준수하고 기업가치를 제고하여 주주에게 지속가능한 이익을 제공하기 위해 노력합니다.']],
+  ['지역사회에서','사랑받는 풀무원',['우리는 자원을 효율적으로 사용하며 원료, 제조, 판매, 폐기의 전 과정에서 환경 보존을 실천합니다.','우리는 지역사회와의 지속가능한 발전을 위해 사회공헌 활동에 앞장섭니다.']],
+  ['협력기업과','함께하는 풀무원',['우리는 협력기업과 가치를 실천하는 동반자로서, 동등한 지위에서 공정하게 거래합니다.','우리는 협력기업과 경쟁력 강화 및 공동 발전을 위해 상생 협력합니다.']],
+  ['기업 구성원이','행복한 풀무원',['우리는 인권을 보장하고 다양성을 존중하며, 공정한 기회 제공을 통해 구성원의 성장을 지원합니다.','우리는 구성원의 안전과 건강을 보장하며, 일과 삶이 조화를 이룰 수 있도록 지원합니다.']]
+];
+document.querySelector('#stakeholder-grid').innerHTML=stakeholders.map(function(x){
+  var bullets=x[2].map(function(t){return '<p>'+t+'</p>'}).join('');
+  return '<div class="card"><span class="notch"></span><div class="col-left"><b>'+x[0]+'</b><span>'+x[1]+'</span></div><div class="col-right">'+bullets+'</div></div>';
+}).join('');
+</script>
+</body>
+</html>

@@ -8,6 +8,11 @@
   --common-header-main-height-desktop: 6rem;
   --common-header-utility-height: 3.5rem;
   --common-header-border-width: 1px;
+  --lime: #7bcc12; /* token-exempt: 공용 브랜드 색상(index.html @theme --color-brand과 동일) — sub*-responsive.html이 공통 참조 */
+  --ink: #535964; /* token-exempt: 공용 브랜드 색상(index.html @theme --color-gray-600과 동일) */
+  --dark: #31343b; /* token-exempt: 공용 브랜드 색상(index.html @theme --color-gray-800과 동일로 통일) */
+  --gray: #efeff1; /* token-exempt: 공용 브랜드 색상(index.html @theme --color-gray-100과 동일) */
+  --white: #fff; /* token-exempt: 공용 브랜드 색상(index.html @theme --color-white과 동일) */
 }
 
 body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
