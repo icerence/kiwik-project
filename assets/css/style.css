@@ -317,7 +317,7 @@
 }
 
 /* ---------- Eco-Caring 밸류 카드 ----------
-   Figma 데스크톱(3004:1352) padding 40px + brand 테두리 + 상단 4px 액센트 바,
+   데스크톱 Figma(3004:1352)의 40px 패딩 + brand 테두리 + 상단 4px 액센트 바,
    모바일(3007:2526) padding 20px + 테두리·액센트 바 없음(초록 배경 위 흰 카드). */
 .value-card {
   position: relative;
@@ -336,6 +336,13 @@
   .value-card {
     border: var(--spacing-hairline) solid var(--color-lime-600);
     padding: 2.5rem;
+  }
+  .value-card__visual {
+    flex: none;
+    height: var(--spacing-value-card-visual-lg);
+  }
+  .value-card__visual--strategy {
+    gap: var(--spacing-value-card-strategy-gap-lg);
   }
   .value-card__accent {
     position: absolute;
@@ -536,5 +543,20 @@
 @media (min-width: 64rem) {
   .panel__scroll--split .panel__block {
     padding-block: 1.75rem;
+    flex: none;
+  }
+}
+@media (min-width: 64rem) and (max-height: 60rem) {
+  .panel__scroll--split .panel__block {
+    padding-block: var(--spacing-split-block-compact);
+  }
+  .value-card__visual {
+    height: var(--spacing-value-card-visual-compact);
+  }
+  .value-card__visual--strategy {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .value-card__visual--strategy > span {
+    align-self: center;
   }
 }
