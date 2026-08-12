@@ -16,15 +16,15 @@
   <script src="common/components.js" defer></script>
   <!-- common:head:end -->
   <style>
-    :root{--card:#f7f7f8;--line:#e0f1e3;--scrim-a:rgba(0,0,0,.3);--scrim-b:rgba(0,0,0,.3)} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
+    :root{--card:#f7f7f8;--line:#e0f1e3;--scrim-a:rgba(0,0,0,.3);--scrim-b:rgba(0,0,0,.3);--container-xl:1200px;--container-lg:960px;--container-sm:600px;--container-pad-lg:48px;--container-pad-sm:20px} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"NanumSquare Neo",Arial,sans-serif}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%}ul,ol{margin:0;padding:0;list-style:none}h1,h2,h3,p{margin-top:0}main{display:block;padding-top:155px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--white);padding:8px}
     .subnav{height:44px;display:flex;align-items:center;gap:10px;padding:0 32px;background:var(--lime);color:var(--white);font-size:13px;font-weight:500}.subnav img{width:16px;height:16px}.subnav .crumb-sep{color:var(--white);opacity:.75}.subnav .crumb-current{font-weight:700}.subnav .crumb-caret{width:10px;height:6px;filter:brightness(0) invert(1)}
-    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/strategy-hero.png") center/cover}.hero-inner{width:720px;max-width:100%}.hero h1{margin:0;font-size:44px;font-weight:900;letter-spacing:-.5px;line-height:1.2}.hero p{margin:16px 0 0;font-size:18px;font-weight:400;opacity:.95;line-height:1.6}
-    .section-title{padding:56px 32px 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:1088px;margin:auto}.section-title h2{font-size:28px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
-    .promise{padding:32px 32px 64px;text-align:center}.promise-inner{max-width:960px;margin:auto;font-size:24px;font-weight:800;line-height:1.6;color:var(--dark)}.promise-inner em{color:var(--lime);font-style:normal}
-    .tabs-wrap{padding:0 32px 64px}.tabs{display:grid;grid-template-columns:1fr 1fr;max-width:800px;margin:auto;height:54px}.tabs span{display:grid;place-items:center;padding:14px 12px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}.tabs .on{background:var(--lime);border-color:var(--lime);color:var(--white);font-weight:800}
-    .csr-intro{padding:0 32px 64px;text-align:center}.csr-intro-inner{max-width:1088px;margin:auto}.csr-intro h2{font-size:28px;font-weight:800;color:var(--dark)}.csr-intro>.csr-intro-inner>p{margin:32px auto 0;font-size:15px;line-height:1.7;color:var(--ink)}.csr-notice{margin-top:32px;font-size:16px;font-weight:800;color:var(--lime);line-height:1.6}.csr-notice p{margin:4px 0}
-    .stakeholders{padding:0 32px 96px}.stakeholder-grid{max-width:1088px;margin:auto;display:flex;flex-direction:column;gap:32px}
+    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/strategy-hero.png") center/cover}.hero-inner{width:720px;max-width:100%;padding:0;box-sizing:border-box}.hero h1{margin:0;font-size:44px;font-weight:900;letter-spacing:-.5px;line-height:1.2}.hero p{margin:16px 0 0;font-size:18px;font-weight:400;opacity:.95;line-height:1.6}
+    .section-title{padding:56px 0 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:var(--container-xl);margin:auto}.section-title h2{font-size:28px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
+    .promise{padding:32px 0 64px;text-align:center}.promise-inner{max-width:960px;margin:auto;font-size:24px;font-weight:800;line-height:1.6;color:var(--dark)}.promise-inner em{color:var(--lime);font-style:normal}
+    .tabs-wrap{padding:0 0 64px}.tabs{display:grid;grid-template-columns:1fr 1fr;max-width:800px;margin:auto;height:54px}.tabs span{display:grid;place-items:center;padding:14px 12px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}.tabs .on{background:var(--lime);border-color:var(--lime);color:var(--white);font-weight:800}
+    .csr-intro{padding:0 0 64px;text-align:center}.csr-intro-inner{max-width:var(--container-xl);margin:auto}.csr-intro h2{font-size:28px;font-weight:800;color:var(--dark)}.csr-intro>.csr-intro-inner>p{margin:32px auto 0;font-size:15px;line-height:1.7;color:var(--ink)}.csr-notice{margin-top:32px;font-size:16px;font-weight:800;color:var(--lime);line-height:1.6}.csr-notice p{margin:4px 0}
+    .stakeholders{padding:0 0 96px}.stakeholder-grid{max-width:var(--container-xl);margin:auto;display:flex;flex-direction:column;gap:32px}
     .card{position:relative;display:flex;align-items:center;gap:48px;padding:40px 48px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.03)}
     .card .notch{position:absolute;left:-1px;top:-1px;width:6px;height:72px;border-radius:2px;background:var(--lime)}
     .card .col-left{flex:0 0 280px;display:flex;flex-direction:column;gap:12px}.card .col-left b{font-size:20px;font-weight:700;color:var(--dark)}.card .col-left span{font-size:16px;font-weight:700;color:var(--lime)}
@@ -32,37 +32,37 @@
     .card .col-right p:before{content:"• "}
     @media(max-width:1279px){
       :root{--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.8)} /* token-exempt: 태블릿 히어로 스크림 값(Figma Tablet/Strategy 지정) */
-      .subnav{height:44px!important;min-height:44px;padding:0 48px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
-      .section-title{padding:40px 48px 32px}.section-title-row{max-width:none}.section-title h2{font-size:24px}
-      .promise{padding:0 48px 48px}.promise-inner{max-width:none;font-size:20px}
-      .tabs-wrap{padding:0 48px 48px}.tabs{max-width:none}.tabs span{padding:12px 8px;font-size:13px}
-      .csr-intro{padding:0 48px 48px}.csr-intro-inner{max-width:none}.csr-intro h2{font-size:24px}.csr-intro>.csr-intro-inner>p{margin-top:32px;font-size:14px}.csr-notice{margin-top:8px;font-size:15px}
-      .stakeholders{padding:0 48px 64px}.stakeholder-grid{max-width:none;gap:32px}
+      .subnav{height:44px!important;min-height:44px;padding:0 48px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero-inner{padding:0 var(--container-pad-lg)}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
+      .section-title{padding:40px var(--container-pad-lg) 32px}.section-title-row{max-width:var(--container-lg)}.section-title h2{font-size:24px}
+      .promise{padding:0 var(--container-pad-lg) 48px}.promise-inner{max-width:none;font-size:20px}
+      .tabs-wrap{padding:0 var(--container-pad-lg) 48px}.tabs{max-width:none}.tabs span{padding:12px 8px;font-size:13px}
+      .csr-intro{padding:0 var(--container-pad-lg) 48px}.csr-intro-inner{max-width:var(--container-lg)}.csr-intro h2{font-size:24px}.csr-intro>.csr-intro-inner>p{margin-top:32px;font-size:14px}.csr-notice{margin-top:8px;font-size:15px}
+      .stakeholders{padding:0 var(--container-pad-lg) 64px}.stakeholder-grid{max-width:var(--container-lg);gap:32px}
       .card{padding:40px;gap:24px;border-radius:8px}.card .notch{height:auto;top:-1px;bottom:-1px;border-radius:0}
       .card .col-left{flex-basis:220px;gap:6px}.card .col-left b{font-size:18px;font-weight:800}.card .col-left span{font-size:15px;font-weight:800}
       .card .col-right{gap:8px}.card .col-right p{font-size:13px;line-height:1.5}
       .card .col-right p:before{content:""}
     }
-    @media (max-width: 1023px) {
+    @media (max-width: 1199px) {
       main { padding-top: 60px !important; }
       .common-header__utility,.common-header__nav,.common-header__language { display: none !important; }
       .common-header__main { height: 60px !important; position: relative !important; padding: 0 16px !important; }
       .common-header__logo-link { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; }
       .common-header__logo-link img { width: 104px !important; height: auto !important; }
       .common-header__actions { position: static !important; width: 100% !important; height: 60px !important; pointer-events: none !important; }
-      .common-header__menu-button { position: absolute !important; left: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
-      .common-header__search { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
-      .common-header__search img { width: 20px !important; height: 20px !important; display: block !important; }
+      .common-header__menu-button { position: absolute !important; left: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search { position: absolute !important; right: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; visibility: visible !important; opacity: 1 !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent url("assets/icons/search.svg") center / 22px 22px no-repeat !important; color: #31343b !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search svg { display: none !important; }
     }
     @media(max-width:767px){
       :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 근사값(Figma color/overlay 변수, 인덱스 페이지의 --color-scrim-banner 0.45와 동일 계열 채택) */
       body{word-break:keep-all}
-      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
-      .section-title{padding:24px 20px}
-      .promise{padding:0 20px 40px}.promise-inner{font-size:18px}
-      .tabs-wrap{padding:0 20px 32px}.tabs span{font-size:14px}.tabs .on{font-weight:800}
-      .csr-intro{padding:0 20px 32px}.csr-intro h2{font-size:22px}.csr-intro>.csr-intro-inner>p{margin-top:16px}.csr-notice{margin-top:16px}
-      .stakeholders{padding:0 20px 48px}.stakeholder-grid{gap:16px}
+      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero-inner{padding:0 var(--container-pad-sm)}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
+      .section-title{padding:24px var(--container-pad-sm)}.section-title-row{max-width:var(--container-sm)}
+      .promise{padding:0 var(--container-pad-sm) 40px}.promise-inner{font-size:18px}
+      .tabs-wrap{padding:0 var(--container-pad-sm) 32px}.tabs span{font-size:14px}.tabs .on{font-weight:800}
+      .csr-intro{padding:0 var(--container-pad-sm) 32px}.csr-intro-inner{max-width:var(--container-sm)}.csr-intro h2{font-size:22px}.csr-intro>.csr-intro-inner>p{margin-top:16px}.csr-notice{margin-top:16px}
+      .stakeholders{padding:0 var(--container-pad-sm) 48px}.stakeholder-grid{max-width:var(--container-sm);gap:16px}
       .card{flex-direction:column;align-items:stretch;gap:12px;padding:20px;border-color:var(--lime)}.card .notch{background:var(--lime)}
       .card .col-left{flex-basis:auto;gap:8px}.card .col-left b{font-size:16px;font-weight:800}.card .col-left span{font-size:14px;font-weight:700}
       .card .col-right{gap:8px}.card .col-right p{font-size:13px}
@@ -149,8 +149,11 @@
       </div>
 
       <div class="common-header__actions">
-        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기" style="display:flex!important;visibility:visible!important;opacity:1!important;">
-          <img src="assets/icons/search.svg" alt="" width="20" height="20" style="display:block!important;width:20px!important;height:20px!important;" />
+        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
         </button>
         <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
           <span>KOR</span>
@@ -178,14 +181,6 @@
 </header>
 <!-- common:header:end -->
 <main id="main">
-  <nav class="subnav" aria-label="현재 위치">
-    <img src="assets/icons/home.svg" alt="">
-    <span class="crumb-sep">›</span>
-    <span>사회책임경영</span>
-    <span class="crumb-sep">›</span>
-    <strong class="crumb-current">추진전략</strong>
-    <img class="crumb-caret" src="assets/icons/chevron-down.svg" alt="">
-  </nav>
   <section class="hero"><div class="hero-inner"><h1>추진전략</h1><p>지속가능한 성장을 위한 풀무원의 사회적 가치 실현</p></div></section>
   <section class="section-title"><div class="section-title-row"><h2>사회책임경영</h2><i></i></div></section>
   <section class="promise"><p class="promise-inner">풀무원은 경제적 사회적 환경적 가치 창출을 풀무원의<br>사회적책임으로 정의하고 끊임없는 혁신을 통해<br>공유가치를 창출함으로써 <em>지속가능한 성장</em>을<br><em>도모하겠습니다.</em></p></section>

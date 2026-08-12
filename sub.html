@@ -55,7 +55,7 @@
       .award-tabs{max-width:680px;height:52px}.award-tabs span{font-size:15px}
       .award-sec{padding:24px 24px 64px}.award-img{width:280px;height:210px}.award-body{padding:24px 28px;gap:12px}.award-body h3{font-size:17px}.award-body p{font-size:14px}
     }
-    @media (max-width: 1023px) {
+    @media (max-width: 1199px) {
       main { padding-top: 60px !important; }
       .common-header__utility,.common-header__nav,.common-header__language { display: none !important; }
       .common-header__main { height: 60px !important; position: relative !important; padding: 0 16px !important; }
@@ -63,8 +63,8 @@
       .common-header__logo-link img { width: 104px !important; height: auto !important; }
       .common-header__actions { position: static !important; width: 100% !important; height: 60px !important; pointer-events: none !important; }
       .common-header__menu-button { position: absolute !important; left: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
-      .common-header__search { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
-      .common-header__search img { width: 20px !important; height: 20px !important; display: block !important; }
+      .common-header__search { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent url("assets/icons/search.svg") center / 22px 22px no-repeat !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search svg { display: none !important; }
     }
     @media(max-width:767px){
       :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 값 */
@@ -157,8 +157,11 @@
       </div>
 
       <div class="common-header__actions">
-        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기" style="display:flex!important;visibility:visible!important;opacity:1!important;">
-          <img src="assets/icons/search.svg" alt="" width="20" height="20" style="display:block!important;width:20px!important;height:20px!important;" />
+        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
         </button>
         <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
           <span>KOR</span>
@@ -186,15 +189,6 @@
 </header>
 <!-- common:header:end -->
 <main id="main">
-  <nav class="subnav" aria-label="현재 위치">
-    <img src="assets/icons/home.svg" alt="">
-    <span class="crumb-sep">›</span>
-    <span>사회책임경영</span>
-    <span class="crumb-sep">›</span>
-    <strong class="crumb-current">수상내역</strong>
-    <img class="crumb-caret" src="assets/icons/chevron-down.svg" alt="">
-  </nav>
-
   <section class="hero"><div class="hero-inner"><h1>수상내역</h1><p>사람과 자연의 지속 가능한 가치를 실천해 받는 대외기관의 인정을 담았습니다.</p></div></section>
 
   <section class="section-title"><div class="section-title-row"><h2>성과</h2><i></i></div></section>
