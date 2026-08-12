@@ -154,10 +154,16 @@
   }
 }
 .dot-nav ul {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-dot-nav-slot-gap);
+  --dot-nav-current: 0;
+}
+.dot-nav li:not(.dot-nav__indicator) {
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
 }
 .dot-nav__link {
   position: relative;
@@ -180,34 +186,46 @@
   transform: scale(var(--scale-dot-nav-active));
   transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
-.dot-nav__active {
+.dot-nav__indicator {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
   border-radius: var(--radius-dot-nav);
   background: var(--color-brand);
   box-shadow: var(--shadow-dot-nav-active);
+  pointer-events: none;
+  transform: translateY(calc(var(--dot-nav-current) * (var(--spacing-dot-nav-active) + var(--spacing-dot-nav-slot-gap))));
+  transition: transform var(--transition-dot-nav);
+}
+.dot-nav__indicator-icon {
+  position: absolute;
+  width: var(--spacing-dot-nav-icon);
+  height: var(--spacing-dot-nav-icon);
   opacity: var(--opacity-dot-nav-hidden);
   transform: scale(var(--scale-dot-nav-rest));
   transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
-}
-.dot-nav__active img {
-  width: var(--spacing-dot-nav-icon);
-  height: var(--spacing-dot-nav-icon);
 }
 .dot-nav__link[aria-current="true"] .dot-nav__inactive {
   opacity: var(--opacity-dot-nav-hidden);
   transform: scale(var(--scale-dot-nav-rest));
 }
-.dot-nav__link[aria-current="true"] .dot-nav__active {
+.dot-nav[data-current="0"] .dot-nav__indicator-icon:nth-child(1),
+.dot-nav[data-current="1"] .dot-nav__indicator-icon:nth-child(2),
+.dot-nav[data-current="2"] .dot-nav__indicator-icon:nth-child(3),
+.dot-nav[data-current="3"] .dot-nav__indicator-icon:nth-child(4),
+.dot-nav[data-current="4"] .dot-nav__indicator-icon:nth-child(5) {
   opacity: var(--opacity-dot-nav-visible);
   transform: scale(var(--scale-dot-nav-active));
 }
 @media (prefers-reduced-motion: reduce) {
   .dot-nav__inactive,
-  .dot-nav__active {
+  .dot-nav__indicator,
+  .dot-nav__indicator-icon {
     transition: none;
   }
 }

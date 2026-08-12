@@ -49,6 +49,7 @@
   }
 
   const dotLinks = Array.prototype.slice.call(document.querySelectorAll('.dot-nav__link'));
+  const dotNav = document.querySelector('.dot-nav');
 
   let currentIndex = 0;
   let isAnimating = false;
@@ -87,14 +88,21 @@
     syncHeaderFloat();
 
     const id = targets[currentIndex] ? targets[currentIndex].id : '';
+    let activeDotIndex = -1;
     dotLinks.forEach(function (link) {
       const isCurrent = link.getAttribute('href') === '#' + id;
       if (isCurrent) {
         link.setAttribute('aria-current', 'true');
+        activeDotIndex = dotLinks.indexOf(link);
       } else {
         link.removeAttribute('aria-current');
       }
     });
+    // 푸터에는 전용 링크가 없으므로 표시 원은 마지막 섹션 위치에 그대로 둔다.
+    if (dotNav && activeDotIndex >= 0) {
+      dotNav.dataset.current = String(activeDotIndex);
+      dotNav.querySelector('ul').style.setProperty('--dot-nav-current', activeDotIndex);
+    }
   }
 
   function goTo(index, options) {
