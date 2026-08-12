@@ -578,3 +578,17 @@
     align-self: center;
   }
 }
+
+/* 864px 이하의 낮은 데스크톱: 텍스트 크기는 유지하고 Section 2의
+   상하 여백만 압축해 패널 내부 스크롤 없이 한 화면에 맞춘다. */
+@media (min-width: 64rem) and (max-height: 54rem) {
+  #section2 .panel__scroll--split {
+    padding-top: var(--common-header-main-height-desktop);
+  }
+  #section2 .panel__block header {
+    margin-bottom: var(--spacing-section-heading-margin-short);
+  }
+  #section2 .value-card {
+    padding-block: var(--spacing-value-card-padding-block-short);
+  }
+}
