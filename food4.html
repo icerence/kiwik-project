@@ -62,6 +62,7 @@
 
       /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. 다른 food 페이지와 겹치는 값은 같은 이름 재사용) ---------- */
       --text-food-hero: 2.625rem;   /* 42px — Intro 헤드라인 */
+      --text-food-hero-title: 2.5rem; /* 40px — food2~food5 Hero 제목 통일 */
       --text-food-display: 2rem;    /* 32px — 섹션 제목 */
       --text-food-tiny: 0.8125rem;  /* 13px — 배지 라벨, 서브메뉴 */
       --text-food-micro: 0.625rem;  /* 10px — 서브메뉴 활성 항목의 ▼ 표시 (food5.html과 동일 이름·값 재사용) */
@@ -119,11 +120,11 @@
 
     @media (min-width: 768px) and (max-width: 1023px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
-      main > section[aria-hidden="true"] { height: 240px !important; }
+      #sec-hero { height: 240px !important; }
       main > section { padding-left: 48px !important; padding-right: 48px !important; }
       #sec-intro, #sec-kids, #sec-adult, #sec-senior, #sec-tv, #sec-online, #sec-partners { padding-top: 64px !important; padding-bottom: 64px !important; }
       #sec-kids .h-95, #sec-adult .h-95, #sec-senior .h-95 { height: 260px !important; }
@@ -133,11 +134,11 @@
 
     @media (max-width: 767px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      main > section[aria-hidden="true"] { height: 200px !important; }
+      #sec-hero { height: 200px !important; }
       main > section { padding-left: 20px !important; padding-right: 20px !important; }
       #sec-intro, #sec-kids, #sec-adult, #sec-senior, #sec-tv, #sec-online, #sec-partners { padding-top: 60px !important; padding-bottom: 60px !important; }
       #sec-intro > div, #sec-kids > div, #sec-adult > div, #sec-senior > div, #sec-tv > div, #sec-online > div, #sec-partners > div { gap: 32px !important; }
@@ -158,7 +159,7 @@
     }
   </style>
 </head>
-<body class="bg-white font-sans text-text-primary antialiased">
+<body class="bg-white font-sans text-text-primary antialiased" data-common-header-offset>
   <a href="#main" class="skip-link">본문 바로가기</a>
 
   <!-- common:header:start -->
@@ -275,8 +276,13 @@
       <main id="main" tabindex="-1">
 
         <!-- ===== Hero ===== -->
-        <section aria-hidden="true" class="relative h-80 w-full overflow-hidden">
+        <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-80 w-full items-center justify-center overflow-hidden">
           <img src="assets/images/food4-hero.png" alt="" class="absolute inset-0 size-full object-cover" />
+          <div class="absolute inset-0 bg-scrim-thumb" aria-hidden="true"></div>
+          <div class="relative z-10 flex flex-col items-center gap-2 px-6 text-center text-white">
+            <h1 id="hero-heading" class="text-food-hero-title font-extrabold leading-food-title">바른먹거리 캠페인</h1>
+            <p class="text-lg font-normal">Wholesome Food Campaign</p>
+          </div>
         </section>
 
         <!-- ===== 캠페인 소개 (Intro) ===== -->
@@ -285,10 +291,10 @@
 
             <div class="reveal mx-auto flex w-full max-w-campaign-heading flex-col items-center gap-4 text-center">
               <p class="text-xl font-bold text-text-secondary">바른먹거리 캠페인</p>
-              <h1 id="intro-heading" class="text-food-hero font-extrabold leading-food-title">
+              <h2 id="intro-heading" class="text-food-hero font-extrabold leading-food-title">
                 <span class="block text-brand-dark">바른먹거리의 중요성을 알리고</span>
                 <span class="block text-brand">바른 식습관을 교육합니다.</span>
-              </h1>
+              </h2>
             </div>
 
             <div class="reveal flex size-45 shrink-0 flex-col items-center justify-center gap-2 rounded-full border-4 border-brand bg-white text-center">

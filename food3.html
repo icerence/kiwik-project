@@ -46,7 +46,7 @@
       --color-surface-soft: var(--food-color-surface-soft); /* principles-section 배경 + icon-circle 배경 */
 
       /* ---------- 색: 사진 위 스크림 ---------- */
-      --color-scrim-hero: rgba(0, 0, 0, 0.15);      /* hero-section 사진 위 어둡게 */
+      --color-scrim-hero: rgba(0, 0, 0, 0.35);      /* hero-section 제목 가독성 스크림 */
       --color-scrim-forest: rgba(11, 21, 4, 0.4);   /* philosophy-image-panel 숲 사진 위 스크림 */
 
       /* ---------- 레이아웃 ---------- */
@@ -58,6 +58,7 @@
 
       /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. food.html·food2.html과 겹치는 값은 같은 이름 재사용) ---------- */
       --text-food-headline: 2.75rem; /* 44px — main-title-row */
+      --text-food-hero-title: 2.5rem; /* 40px — food2~food5 Hero 제목 통일 */
       --text-food-display: 2rem;    /* 32px */
       --text-food-tiny: 0.8125rem;  /* 13px — 서브메뉴 */
       --text-food-micro: 0.625rem;  /* 10px — 서브메뉴 활성 항목의 ▼ 표시 (food5.html과 동일 이름·값 재사용) */
@@ -116,11 +117,11 @@
 
     @media (min-width: 768px) and (max-width: 1023px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
-      main > section[aria-hidden="true"] { height: 280px !important; }
+      #sec-hero { height: 280px !important; }
       #sec-philosophy, #sec-principles, #sec-traceability { padding: 64px 48px !important; }
       #sec-principles > div > div { padding-left: 32px !important; padding-right: 32px !important; }
       #sec-principles > div > div > div:last-of-type { flex-direction: row !important; }
@@ -130,11 +131,11 @@
 
     @media (max-width: 767px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      main > section[aria-hidden="true"] { height: 260px !important; }
+      #sec-hero { height: 260px !important; }
       #sec-philosophy, #sec-principles, #sec-traceability { padding: 56px 20px !important; }
       #sec-philosophy > div, #sec-principles > div, #sec-traceability > div { gap: 32px !important; }
       #philosophy-heading, #principles-heading, #traceability-heading { overflow-wrap: anywhere; }
@@ -155,7 +156,7 @@
     }
   </style>
 </head>
-<body class="bg-white font-sans text-text-primary antialiased">
+<body class="bg-white font-sans text-text-primary antialiased" data-common-header-offset>
   <a href="#main" class="skip-link">본문 바로가기</a>
 
   <!-- common:header:start -->
@@ -272,18 +273,22 @@
       <main id="main" tabindex="-1">
 
         <!-- ===== Hero ===== -->
-        <section aria-hidden="true" class="relative h-80 w-full overflow-hidden">
+        <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-80 w-full items-center justify-center overflow-hidden">
           <img src="assets/images/food3-hero.png" alt="" class="absolute inset-0 size-full object-cover" />
-          <div class="absolute inset-0 bg-scrim-hero"></div>
+          <div class="absolute inset-0 bg-scrim-hero" aria-hidden="true"></div>
+          <div class="relative z-10 flex flex-col items-center gap-2 px-6 text-center text-white">
+            <h1 id="hero-heading" class="text-food-hero-title font-extrabold leading-food-title">바른먹거리 원칙</h1>
+            <p class="text-lg font-normal">Wholesome Food Principles</p>
+          </div>
         </section>
 
         <!-- ===== Philosophy Intro ===== -->
         <section id="sec-philosophy" aria-labelledby="philosophy-heading" class="w-full bg-white px-6 py-20">
           <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
 
-            <h1 id="philosophy-heading" class="reveal text-center text-food-headline font-extrabold leading-food-title text-text-primary">
+            <h2 id="philosophy-heading" class="reveal text-center text-food-headline font-extrabold leading-food-title text-text-primary">
               내 가족의 건강과 행복을 위한 <span class="text-brand">바른먹거리</span>.
-            </h1>
+            </h2>
 
             <div class="reveal relative h-80 w-full overflow-hidden rounded-panel md:h-120">
               <img src="assets/images/food3-philosophy-forest.png" alt="숲 사이로 햇살이 비치는 나무 캐노피" class="absolute inset-0 size-full object-cover" />
