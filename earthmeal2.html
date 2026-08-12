@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -48,9 +48,27 @@
     .page-title { font-size: var(--text-page-title); line-height: var(--leading-page-title); }
     .section-title { font-size: var(--text-section-title); line-height: var(--leading-section-title); }
     .card-shadow { box-shadow: var(--shadow-card); }
+    .popup-visit-grid > article > div { text-align: center; }
     .skip-link { position: fixed; inset-inline-start: 1rem; inset-block-start: -5rem; z-index: 100; padding: .75rem 1rem; background: var(--color-gray-950); color: var(--color-white); }
     .skip-link:focus { inset-block-start: 1rem; }
-    @media (max-width: 767px) {
+    @media (max-width: 640px) {
+      .popup-inner,
+      .popup-media { width: min(calc(100% - 40px), 600px); }
+      .popup-card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .popup-card-grid--three { gap: var(--radius-lg); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .popup-schedule-grid { gap: var(--radius-lg); grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+      .popup-schedule-grid > article { align-items: center; flex-direction: column; gap: calc(var(--radius-lg) / 2); min-height: auto; padding: calc(var(--radius-lg) / 2) !important; text-align: center; }
+      .popup-schedule-grid > article > img { height: var(--radius-2xl) !important; width: var(--radius-2xl) !important; }
+      .popup-schedule-grid > article > div { align-self: stretch; }
+      #schedule .section-title { font-size: calc(var(--radius-2xl) - (var(--radius-lg) / 2)); line-height: var(--radius-2xl); }
+      #schedule > .popup-inner > p { font-size: calc(var(--radius-lg) + (var(--radius-lg) / 4)); line-height: calc(var(--radius-2xl) - (var(--radius-lg) / 2)); }
+      .popup-schedule-grid h3,
+      .popup-schedule-grid p { font-size: var(--radius-lg) !important; line-height: calc(var(--radius-lg) + (var(--radius-lg) / 4)) !important; }
+      .popup-visit-grid { gap: var(--radius-lg); grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .popup-visit-grid > article > img { height: calc(var(--spacing-schedule-card) / 2) !important; object-fit: cover; }
+      .popup-visit-grid > article > div { padding: calc(var(--radius-lg) / 2) !important; text-align: center; }
+      .popup-visit-grid h3 { font-size: calc(var(--radius-2xl) - (var(--radius-lg) / 2)) !important; line-height: var(--radius-2xl) !important; }
+      .popup-visit-grid p { font-size: calc(var(--radius-lg) + (var(--radius-lg) / 4)) !important; line-height: calc(var(--radius-2xl) - (var(--radius-lg) / 2)) !important; }
       .section-space { padding-block: 3rem; }
       .page-title { font-size: 2rem; line-height: 1.25; }
       .section-title { font-size: 1.5rem; line-height: 1.35; }
@@ -97,21 +115,21 @@
             <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
             <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
             <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-            <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
           </ul>
         </nav>
 
         <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
           <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
             <ul class="site-header-dropdown__list">
-              <li><a class="site-header-dropdown__link" href="ceo.html">총괄CEO인사말</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">CI소개</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">연혁</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">가치체계</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">사업소개</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">동반성장</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">기업지배구조</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">투자정보</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
             </ul>
             <ul class="site-header-dropdown__list">
               <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
@@ -132,10 +150,10 @@
               <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
             </ul>
             <ul class="site-header-dropdown__list">
-              <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/resources.html">자료&공지</a></li>
             </ul>
           </div>
         </div>
@@ -163,7 +181,7 @@
           <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-          <li><a href="index.html#section5">뉴스룸</a></li>
+          <li><a data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
         </ul>
       </div>
     </div>
@@ -183,19 +201,19 @@
 
       <section id="overview" class="section-space bg-gray-50" aria-labelledby="overview-title"><div class="popup-inner"><h2 id="overview-title" class="section-title font-extrabold">풀무원 팝업스토어 개요</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원은 시대의 식생활 트렌드를 반영한 체험형 공간을 운영합니다. 새로운 메뉴와 제품, 사람과 식탁을 잇는 프로그램을 만나보세요.</p><img class="mt-10 h-auto w-full" src="assets/images/earthlog2/popup-overview.svg" alt="풀무원 팝업스토어의 시그니처 메뉴, 쿠킹 클래스, 에코 마켓" width="1200" height="326"></div></section>
 
-      <section id="schedule" class="section-space bg-gray-50" aria-labelledby="schedule-title"><div class="popup-inner"><h2 id="schedule-title" class="section-title font-extrabold">운영 일정</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원 팝업스토어의 운영 일정과 프로그램 시간표를 확인하세요.</p><div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section id="schedule" class="section-space bg-gray-50" aria-labelledby="schedule-title"><div class="popup-inner"><h2 id="schedule-title" class="section-title font-extrabold">운영 일정</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원 팝업스토어의 운영 일정과 프로그램 시간표를 확인하세요.</p><div class="popup-card-grid--two popup-schedule-grid mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <article class="card-shadow flex min-h-44 items-center gap-5 rounded-2xl border border-gray-200 bg-white p-6"><img class="size-16 shrink-0" src="assets/images/earthlog2/icon-operation-period.svg" alt=""><div><h3 class="text-lg font-extrabold">운영기간</h3><p class="mt-1 text-sm leading-6 text-gray-600">2026.08.10 ~<br>2026.09.10</p></div></article>
         <article class="card-shadow flex min-h-44 items-center gap-5 rounded-2xl border border-gray-200 bg-white p-6"><img class="size-16 shrink-0" src="assets/images/earthlog2/icon-location.svg" alt=""><div><h3 class="text-lg font-extrabold">위치안내</h3><p class="mt-1 text-sm leading-6 text-gray-600">서울 성수동<br>풀무원 로하스 라운지</p></div></article>
         <article class="card-shadow flex min-h-44 items-center gap-5 rounded-2xl border border-gray-200 bg-white p-6"><img class="size-16 shrink-0" src="assets/images/earthlog2/icon-operation-hours.svg" alt=""><div><h3 class="text-lg font-extrabold">운영시간</h3><p class="mt-1 text-sm leading-6 text-gray-600">매일 10:00 ~ 20:00<br>(월요일 휴무)</p></div></article>
         <article class="card-shadow flex min-h-44 items-center gap-5 rounded-2xl border border-gray-200 bg-white p-6"><img class="size-16 shrink-0" src="assets/images/earthlog2/icon-experience-program.svg" alt=""><div><h3 class="text-lg font-extrabold">체험프로그램</h3><p class="mt-1 text-sm leading-6 text-gray-600">두부 만들기 /<br>비건 쿠킹클래스</p></div></article>
       </div></div></section>
 
-      <section id="visit" class="section-space bg-gray-50" aria-labelledby="visit-title"><div class="popup-inner"><h2 id="visit-title" class="section-title font-extrabold">방문 안내</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원 팝업스토어 방문 전 확인해 주세요. 주차 및 대중교통 안내를 제공합니다.</p><div class="mt-10 grid gap-6 md:grid-cols-2">
-        <article class="card-shadow overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="h-auto w-full" src="assets/images/earthlog2/visit-active.svg" alt="성수동 팝업스토어 건물 앞 거리" width="588" height="220"><div class="p-5"><h3 class="text-lg font-extrabold">진행중</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원 바른먹거리 체험관</p></div></article>
+      <section id="visit" class="section-space bg-gray-50" aria-labelledby="visit-title"><div class="popup-inner"><h2 id="visit-title" class="section-title font-extrabold">방문 안내</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원 팝업스토어 방문 전 확인해 주세요. 주차 및 대중교통 안내를 제공합니다.</p><div class="popup-card-grid--two popup-visit-grid mt-10 grid grid-cols-2 gap-6 md:grid-cols-2">
+        <article class="card-shadow overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="h-card-image w-full object-cover" src="assets/images/earthlog2/visit-active.svg" alt="성수동 팝업스토어 건물 앞 거리" width="588" height="220"><div class="p-5"><h3 class="text-lg font-extrabold">진행중</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원 바른먹거리 체험관</p></div></article>
           <article class="card-shadow overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="h-card-image w-full object-cover" src="assets/images/earthlog2/visit-upcoming.svg" alt="성수역에서 팝업스토어까지의 약도" width="588" height="220"><div class="p-5"><h3 class="text-lg font-extrabold">오픈 예정</h3><p class="mt-2 text-sm leading-6 text-gray-600">성수역 2번 출구 도보 5분</p></div></article>
       </div></div></section>
 
-      <section id="archive" class="section-space bg-white" aria-labelledby="archive-title"><div class="popup-inner"><h2 id="archive-title" class="section-title font-extrabold">지난 팝업스토어</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원이 그동안 운영한 팝업스토어를 돌아봅니다. 바른먹거리 페스타, 두부 팝업 등 특별한 순간들을 확인하세요.</p><div class="mt-10 grid gap-6 md:grid-cols-3">
+      <section id="archive" class="section-space bg-white" aria-labelledby="archive-title"><div class="popup-inner"><h2 id="archive-title" class="section-title font-extrabold">지난 팝업스토어</h2><p class="mt-3 text-base leading-7 text-gray-600">풀무원이 그동안 운영한 팝업스토어를 돌아봅니다. 바른먹거리 페스타, 두부 팝업 등 특별한 순간들을 확인하세요.</p><div class="popup-card-grid--three mt-10 grid grid-cols-3 gap-6 md:grid-cols-3">
         <img class="h-auto w-full" src="assets/images/earthlog2/archive-popup-first.svg" alt="지난 풀무원 팝업스토어 단체 체험" width="387" height="246" loading="lazy">
         <img class="h-auto w-full" src="assets/images/earthlog2/archive-popup-second.svg" alt="지난 풀무원 팝업스토어 제품 전시" width="390" height="246" loading="lazy">
         <img class="h-auto w-full rounded-2xl border border-gray-200" src="assets/images/earthlog2/archive-popup-third.svg" alt="지난 풀무원 팝업스토어 쿠킹 프로그램" width="384" height="240" loading="lazy">

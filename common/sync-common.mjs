@@ -1,18 +1,41 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const commonDir = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(commonDir, '..');
-const targets = (await readdir(rootDir))
-  .filter((name) => name.toLowerCase().endsWith('.html'))
-  .sort();
+
+async function getHtmlFiles(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  let files = [];
+  for (const entry of entries) {
+    const res = resolve(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name !== 'node_modules' && entry.name !== 'common' && !entry.name.startsWith('.')) {
+        files = files.concat(await getHtmlFiles(res));
+      }
+    } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.html')) {
+      files.push(res);
+    }
+  }
+  return files;
+}
+
+const targets = (await getHtmlFiles(rootDir)).sort();
 
 const partials = {
   head: (await readFile(resolve(commonDir, 'head.html'), 'utf8')).trim(),
   header: (await readFile(resolve(commonDir, 'header.html'), 'utf8')).trim(),
   footer: (await readFile(resolve(commonDir, 'footer.html'), 'utf8')).trim(),
 };
+
+function adjustPaths(partial, prefix) {
+  if (!prefix) return partial;
+  return partial.replace(
+    /(src|href)=(["'])(?!(?:https?:|\/\/|#|data:|tel:|mailto:|\/|\.\.\/))(.*?)\2/gi,
+    (match, attr, quote, value) => `${attr}=${quote}${prefix}${value}${quote}`,
+  );
+}
 
 function replaceRegion(source, name, partial, fileName) {
   const pattern = new RegExp(
@@ -69,6 +92,27 @@ function placeHeaderOutsideSmoothWrapper(source, fileName) {
 function initializeRegions(source, fileName) {
   let updated = source;
 
+  // index.html과 동일한 Tailwind v4 CDN 및 GSAP/ScrollTrigger 스크립트가 head 상단에 배치되도록 보장
+  if (!updated.includes('@tailwindcss/browser')) {
+    const headMatch = updated.match(/<head\b[^>]*>/i);
+    if (headMatch) {
+      updated = updated.replace(
+        headMatch[0],
+        `${headMatch[0]}\n  <!-- Tailwind CSS v4 (Play CDN) -->\n  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>`,
+      );
+    }
+  }
+
+  if (!updated.includes('gsap.min.js')) {
+    const headMatch = updated.match(/<head\b[^>]*>/i);
+    if (headMatch) {
+      updated = updated.replace(
+        headMatch[0],
+        `${headMatch[0]}\n  <!-- GSAP & ScrollTrigger (Entrance Animations) -->\n  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>\n  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>`,
+      );
+    }
+  }
+
   if (!hasRegion(updated, 'head')) {
     if (!updated.includes('</head>')) throw new Error(`${fileName}: </head>가 없습니다.`);
     updated = updated.replace(
@@ -115,18 +159,23 @@ function initializeRegions(source, fileName) {
   return updated;
 }
 
-for (const fileName of targets) {
-  const filePath = resolve(rootDir, fileName);
+for (const filePath of targets) {
+  const relPath = relative(rootDir, filePath);
+  const relDir = relative(rootDir, dirname(filePath));
+  const depth = relDir ? relDir.split(/[\\/]/).filter(Boolean).length : 0;
+  const prefix = depth > 0 ? '../'.repeat(depth) : '';
+
   const original = await readFile(filePath, 'utf8');
   const newline = original.includes('\r\n') ? '\r\n' : '\n';
-  let updated = initializeRegions(original.replace(/\r\n/g, '\n'), fileName);
-  updated = placeHeaderOutsideSmoothWrapper(updated, fileName);
+  let updated = initializeRegions(original.replace(/\r\n/g, '\n'), relPath);
+  updated = placeHeaderOutsideSmoothWrapper(updated, relPath);
 
   for (const [name, partial] of Object.entries(partials)) {
-    updated = replaceRegion(updated, name, partial, fileName);
+    const adjustedPartial = adjustPaths(partial, prefix);
+    updated = replaceRegion(updated, name, adjustedPartial, relPath);
   }
 
   updated = updated.replace(/\n/g, newline);
   if (updated !== original) await writeFile(filePath, updated, 'utf8');
-  console.log(`synced ${fileName}`);
+  console.log(`synced ${relPath}`);
 }

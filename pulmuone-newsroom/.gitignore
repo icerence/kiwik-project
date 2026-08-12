@@ -1,0 +1,7 @@
+# Local AI-tool settings
+.claude/
+
+# Generated runtime files
+__pycache__/
+*.py[cod]
+

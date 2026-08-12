@@ -23,6 +23,9 @@
 
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const desktopQuery = window.matchMedia('(min-width: 1024px)');
+  const sectionNavigationDuration = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--duration-section-navigation')
+  ) / 1000;
 
   // 모바일은 문서의 기본 스크롤만 사용한다. 이전에 내려받은 main.js가 남아
   // 있더라도 휠·터치 이벤트를 가로채 섹션 단위로 이동시키지 않는다.
@@ -116,7 +119,7 @@
     isAnimating = true;
 
     gsap.to(window, {
-      duration: reduceMotion() ? 0 : 0.9,
+      duration: reduceMotion() ? 0 : sectionNavigationDuration,
       ease: 'power2.inOut',
       scrollTo: { y: y, autoKill: false },
       onComplete: function () {

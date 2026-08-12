@@ -226,7 +226,7 @@ body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
 .common-footer__social { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 .common-footer__social > span { font-size: .875rem; }
 .common-footer__social a { border-radius: .375rem; }
-.common-footer__social img { width: 1.75rem; height: 1.75rem; }
+.common-footer__social img { width: 1.75rem; height: 1.75rem; mix-blend-mode: multiply; }
 .common-footer hr { margin-block: 1.5rem; border: 0; border-top: 1px solid #e5e7eb; }
 .common-footer__bottom { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .common-footer__bottom > p { color: #40444d; font-size: .75rem; line-height: 1.5; }

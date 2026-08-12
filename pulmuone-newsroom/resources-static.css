@@ -1,0 +1,787 @@
+﻿@font-face{font-family:NSN;src:url('assets/fonts/NanumSquareNeo-Variable.ttf')}*{box-sizing:border-box}body{margin:0;background:#fafaf7;color:#17202d;font-family:NSN,sans-serif}.shell{width:1200px;max-width:calc(100% - 40px);margin:auto}a{text-decoration:none;color:inherit}.site-header{height:155px;background:#fff;border-bottom:1px solid #d9dade}.utility{height:56px;display:flex;justify-content:flex-end;align-items:center;gap:8px}.utility a{display:flex;align-items:center;gap:6px;font-size:14px}.utility img{width:20px;height:20px;padding:4px;background:#f4f8ef;border-radius:10px}.nav{height:98px;display:flex;align-items:center}.logo img{width:112px;height:58px;object-fit:contain}.nav nav{display:flex;gap:44px;margin-left:180px;font-size:14px;color:#555}.actions{margin-left:auto;display:flex;gap:14px;align-items:center}.actions button{background:#fff;border:0}.actions img{width:20px}.actions .lang{border:1px solid #9fa4aa;border-radius:8px;padding:10px 12px}main{padding:42px 0 112px;min-height:720px}.page-head{height:92px;display:flex;justify-content:space-between;align-items:flex-start}.page-head h1{margin:0 0 8px;font-size:40px;letter-spacing:-1.5px}.page-head p{margin:0;color:#7e8894}.search{width:269px;height:53px;margin-top:0;border:1px solid #c7ccc2;border-radius:30px;background:#fff;display:flex;align-items:center;padding:0 18px}.search input{width:100%;border:0;outline:0;font:inherit;background:none}.search img{width:23px}.tabs{height:58px;padding:5px;background:#f1f5ee;border-radius:14px;display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:34px}.tabs button{border:0;border-radius:10px;background:transparent;color:#59645f;font:inherit}.tabs button.active{background:#fff;color:#58a522;box-shadow:0 2px 0 #73c840}.panel{display:none}.panel.active{display:block}.archive-note{text-align:center;margin:34px 0;color:#7b858f;font-size:14px}.archive-note a{color:#58a522}.press-table{overflow:hidden;border:1px solid #e3e7e1;border-radius:16px;background:#fff}.press-row{display:grid;grid-template-columns:90px 1fr 170px;align-items:center;min-height:66px;padding:0 28px;border-bottom:1px solid #edf0f1;font-size:14px}.press-row.head{min-height:58px;background:#f1f5ee;font-weight:700}.press-row.head>span:first-child{text-align:center}.press-row.head>b{text-align:center}.press-row.head>span:last-child{text-align:center}.press-row span,.press-row time{color:#a0a8b1}.press-row>span:first-child{text-align:center}.press-row time{text-align:center}.press-row b{font-weight:600;padding-left:30px}.pagination{height:76px;display:flex;justify-content:center;align-items:center;gap:4px}.pagination button{width:32px;height:32px;border:0;background:transparent;color:#84909c}.pagination .current{border-radius:50%;background:#eef3e9;color:#1e252a}.center-intro{text-align:center;margin:14px auto 58px}.center-intro h2{font-size:30px;margin:0 0 18px}.center-intro p{font-size:13px;line-height:1.75;color:#7f8790}.section-title{font-size:26px;margin:60px 0 24px}.section-title.centered{text-align:center}.report-feature{display:grid;grid-template-columns:365px 1fr;gap:56px}.cover{height:470px;padding:20px;background:#fff;border-radius:9px;box-shadow:0 9px 25px #23301518}.cover img{width:100%;height:100%;object-fit:contain}.download-row{display:flex;gap:8px;margin:14px 0}.download-row a,.report-card a{padding:9px 12px;background:#f2f2f2;border-radius:4px;font-size:12px}.cover-story{padding:25px;background:#18aa54;border-radius:14px;color:#fff}.cover-story p{font-size:12px;line-height:1.55}.parts{display:grid;gap:13px}.parts article{padding:18px 22px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.parts i,.brochure-parts i{display:block;color:#54b51b;font-size:12px;font-style:normal}.parts b{display:block;margin:5px 0}.parts p{margin:0;color:#7b848c;font-size:12px}.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.report-card{padding:18px;background:#fff;box-shadow:0 7px 20px #23301512}.report-card>span{font-size:13px}.report-card img{width:100%;height:310px;object-fit:contain}.report-card>div{display:flex;gap:6px}.overview{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;font-size:12px}.overview th{background:#55ad18;color:#fff;padding:16px}.overview td{padding:15px;background:#fff;border-bottom:1px solid #e6e8e5}.brochure-hero{display:grid;grid-template-columns:1.4fr 1fr;overflow:hidden;border-radius:25px;background:#61ce00}.brochure-hero img{width:100%;height:350px;object-fit:cover}.brochure-parts{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:16px}.brochure-parts article{grid-column:span 2;min-height:135px;padding:20px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.brochure-parts article:nth-child(n+4){grid-column:span 3}.brochure-parts b{display:block;margin:7px 0}.brochure-parts p{margin:0;color:#7b848c;font-size:12px}.brochure-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.brochure-card{display:grid;grid-template-columns:170px 1fr;gap:22px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 7px 20px #23301514}.brochure-card img{width:170px;height:235px;object-fit:contain}.brochure-card h4{font-size:18px}.brochure-card p{color:#7b848c;font-size:12px}.brochure-card a{display:inline-block;margin-top:12px;padding:11px 17px;border-radius:22px;background:#55aa11;color:#fff;font-size:12px}.notice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.notice-grid>a{min-height:242px;padding:28px;background:#fff;border-radius:12px;box-shadow:0 5px 17px #2330150c;display:flex;flex-direction:column}.notice-grid h3{margin:0 0 12px;font-size:17px;line-height:1.4}.notice-grid p{margin:0;color:#717b84;font-size:12px}.notice-grid time{margin-top:auto;color:#a1a8ae;font-size:12px}footer{padding:42px 0;background:#f0f1f3;color:#626970;font-size:12px}.footer-inner{display:flex;justify-content:space-between}.footer-inner img{width:120px}.footer-inner nav{display:flex;gap:22px}.copyright{text-align:right;margin-top:52px;color:#a2a8ae}@media(max-width:800px){.utility,.nav nav{display:none}.site-header{height:76px}.nav{height:76px}.page-head{height:auto;display:block}.search{width:100%;margin:20px 0}.tabs{height:auto;grid-template-columns:1fr 1fr}.press-table{overflow:auto}.press-row{min-width:760px}.report-feature,.brochure-hero{grid-template-columns:1fr}.report-grid,.brochure-grid,.notice-grid{grid-template-columns:1fr}.brochure-parts{grid-template-columns:1fr}.brochure-parts article,.brochure-parts article:nth-child(n+4){grid-column:auto}.footer-inner{display:block}.footer-inner nav{flex-wrap:wrap}.copyright{text-align:left}}
+
+@font-face{font-family:'NanumSquare Neo';src:url('assets/fonts/NanumSquareNeo-Variable.ttf') format('truetype');font-weight:100 1000;font-style:normal;font-display:swap}html,body,button,input,textarea,select{font-family:'NanumSquare Neo','Malgun Gothic',sans-serif!important}
+
+/* ==========================================================================
+   풀무원 뉴스룸 4개 페이지 (newsroom, esg, multimedia, resources)
+   통일된 Hover 스타일 시스템 (Unified Hover Design System)
+   ========================================================================== */
+
+/* 1. 카드형 요소 (News Cards, Report Cards, Brochure Cards, Notice Cards, Article Cards) */
+.news-card,
+.report-card,
+.brochure-card,
+.media-card,
+.video-card,
+.notice-grid > a,
+.parts article,
+.brochure-parts article,
+.esg-news-list article,
+.page-esg article {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+}
+
+.news-card:hover,
+.report-card:hover,
+.brochure-card:hover,
+.media-card:hover,
+.video-card:hover,
+.notice-grid > a:hover,
+.parts article:hover,
+.brochure-parts article:hover,
+.esg-news-list article:hover,
+.page-esg article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  border-color: #7bcc12;
+}
+
+/* 2. 썸네일 이미지 확대 (Image Scale Zoom on Hover) */
+.thumbnail,
+.report-cover,
+.cover,
+.report-card img,
+.brochure-hero,
+.brochure-card img,
+.media-thumb,
+.video-thumb,
+.notice-grid > a img,
+.esg-news-list article img,
+.page-esg article img {
+  overflow: hidden;
+}
+
+.thumbnail img,
+.report-cover img,
+.cover img,
+.report-card img,
+.brochure-card img,
+.media-thumb img,
+.video-thumb img,
+.esg-news-list article img,
+.page-esg article img {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-card:hover .thumbnail,
+.news-card:hover img,
+.report-card:hover img,
+.brochure-card:hover img,
+.media-card:hover img,
+.video-card:hover img,
+.notice-grid > a:hover img,
+.esg-news-list article:hover img,
+.page-esg article:hover img {
+  transform: scale(1.03);
+}
+
+/* 3. 탭 버튼 (Tab Buttons) */
+.tabs button,
+.news-tabs button,
+.media-tabs button,
+.resource-tabs button {
+  transition: color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.tabs button:not(.selected):not(.active):hover,
+.news-tabs button:not(.selected):not(.active):hover,
+.media-tabs button:not(.selected):not(.active):hover,
+.resource-tabs button:not(.selected):not(.active):hover {
+  color: #111827 !important;
+  font-weight: 600;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.tabs button.selected:hover,
+.tabs button.active:hover,
+.news-tabs button.selected:hover,
+.media-tabs button.selected:hover {
+  opacity: 1;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* 4. 테이블 목록 행 (Press Rows & Notice Rows) */
+.press-row:not(.press-head),
+.notice-row {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.press-row:not(.press-head):hover,
+.notice-row:hover {
+  background-color: #f9faf6;
+}
+
+.press-row:not(.press-head):hover b,
+.press-row:not(.press-head):hover a,
+.notice-row:hover b,
+.notice-row:hover a {
+  color: #087a39;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 5. 검색 폼 및 버튼 (Search Forms & Buttons) */
+.search {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search:hover,
+.search:focus-within {
+  border-color: #7bcc12;
+  box-shadow: 0 0 0 3px rgba(123, 204, 18, 0.15);
+}
+
+.search button[type="submit"],
+.search button {
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.search button[type="submit"]:hover,
+.search button:hover {
+  opacity: 0.8;
+  transform: scale(1.08);
+}
+
+/* 6. 액션 및 다운로드 버튼 (Download & Action Buttons) */
+.btn-pdf,
+.download-row a,
+.report-card a,
+.brochure-card a,
+.cover-story a {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.download-row a:hover,
+.report-card a:hover,
+.brochure-card a:hover {
+  background-color: #7bcc12;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(123, 204, 18, 0.25);
+}
+
+/* 7. 페이지네이션 (Pagination Hover) */
+.pagination a:not(.current),
+.pagination button:not(:disabled) {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.pagination a:not(.current):hover,
+.pagination button:not(:disabled):hover {
+  background-color: #eef3e9;
+  color: #16a34a;
+  transform: translateY(-1px);
+}
+
+/* 8. 등장(떠오름) 애니메이션 CSS Fallback */
+.entrance-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.entrance-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-item {
+  opacity: 0;
+  translate: 0 28px;
+}
+
+.scroll-reveal-item.is-scroll-revealed {
+  opacity: 1;
+  translate: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-item {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* ==========================================================================
+   9. 카테고리 탭 슬라이딩 Active Indicator 애니메이션
+   (Sliding Category Tab Active Indicator)
+   ========================================================================== */
+
+.tabs,
+.media-tabs,
+.news-tabs,
+.resource-tabs {
+  position: relative !important;
+  z-index: 1;
+}
+
+/* 슬라이딩 배경 버튼 Indicator */
+.tab-sliding-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  border-bottom: 2px solid #79c842;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform, width, height;
+}
+
+/* 탭 버튼 및 링크 텍스트 레이어 보장 */
+.tabs button,
+.tabs a,
+.media-tabs button,
+.news-tabs button,
+.resource-tabs button {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  transition: color 0.25s ease;
+}
+
+.tabs button.selected,
+.tabs button.active,
+.tabs a.selected,
+.tabs a.active,
+.media-tabs button.selected,
+.news-tabs button.selected,
+.resource-tabs button.active {
+  background: transparent !important;
+  color: #65ac32 !important;
+  font-weight: 700;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   10. 뉴스룸 서브페이지 공통 헤더 & 페이지네이션 디자인 시스템 통일
+   (Newsroom Subpages Unified Section Header & Pagination Design System)
+   ========================================================================== */
+
+/* 1. 페이지 상단 섹션 헤더 통일 (Section Header Unification) */
+.content,
+main.content,
+main.shell {
+  padding: 40px 0 80px !important;
+}
+
+/* newsroom.html과 동일한 GNB 하단 → 페이지 제목 시작 거리 */
+main.content.shell {
+  padding-top: 16px !important;
+}
+
+main.content.shell > .page-head {
+  height: 120px !important;
+  min-height: 120px !important;
+  align-items: center !important;
+}
+
+.intro,
+.page-head {
+  min-height: 120px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 24px !important;
+  padding: 0 !important;
+}
+
+.intro h1,
+.page-head h1,
+.esg-hero-copy h1 {
+  margin: 0 0 10px;
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 800 !important; /* ExtraBold */
+  letter-spacing: -1.2px;
+}
+
+.intro p,
+.page-head p {
+  margin: 0;
+  color: var(--body, #4b5563);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.intro .search,
+.page-head .search {
+  width: 270px;
+  height: 52px;
+  margin: 0;
+  align-self: center;
+}
+
+/* 2. 페이지네이션 디자인 통일 (Pagination Unification) */
+.pagination {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 24px;
+}
+
+.pagination a,
+.pagination button {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 12px !important;
+  background: #ffffff;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  color: #c5c9d0;
+  cursor: default;
+  background: transparent;
+}
+
+.pagination a.current,
+.pagination button.current,
+.pagination .current {
+  border-radius: 12px !important;
+  background: #f2f5ee !important;
+  color: #111111 !important;
+  font-weight: 800 !important;
+}
+
+.pagination a:not(.current):hover,
+.pagination button:not(:disabled):not(.current):hover {
+  background-color: #eef3e9 !important;
+  color: #16a34a !important;
+  transform: translateY(-1px);
+}
+
+/* 11. 보도자료 아카이브 안내 텍스트 내 +더보기 버튼 (Archive Note +More Button) */
+.archive-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 34px 0;
+  color: #7b858f;
+  font-size: 14px;
+}
+
+.archive-note .btn-more-archive,
+.archive-note a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 14px;
+  border: 1px solid #79c842;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #58a522 !important;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.archive-note .btn-more-archive:hover,
+.archive-note a:hover {
+  background-color: #58a522 !important;
+  border-color: #58a522 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(88, 165, 34, 0.25);
+}
+
+/* ==========================================================================
+   12. 전체 서브페이지 검색창 디자인 시스템 통일 (esg.html 검색창 유일 기준)
+   (Unified Search Bar Component Design System - Based on esg.html)
+   ========================================================================== */
+
+.search,
+.compact-search,
+.page-filter {
+  width: 270px !important;
+  height: 54px !important;
+  flex: 0 0 270px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid #c7ccc2 !important;
+  border-radius: 30px !important;
+  background: #ffffff !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.search:hover,
+.search:focus-within,
+.compact-search:hover,
+.compact-search:focus-within,
+.page-filter:hover,
+.page-filter:focus-within {
+  border-color: #7bcc12 !important;
+  box-shadow: 0 0 0 2px rgba(123, 204, 18, 0.16) !important;
+}
+
+.search input[type="search"],
+.search input,
+.compact-search input,
+.page-filter input {
+  min-width: 0 !important;
+  height: 52px !important;
+  flex: 1 !important;
+  width: auto !important;
+  padding: 0 0 0 24px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: #31343b !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 24px !important;
+  font-family: inherit !important;
+}
+
+.search input::placeholder,
+.compact-search input::placeholder,
+.page-filter input::placeholder {
+  color: #9ca3af !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+.search button[type="submit"],
+.search button,
+.compact-search button,
+.page-filter button {
+  width: 68px !important;
+  height: 52px !important;
+  flex: 0 0 68px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.search button[type="submit"]:hover,
+.search button:hover,
+.compact-search button:hover,
+.page-filter button:hover {
+  background: #f7faf3 !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.search img,
+.compact-search img,
+.page-filter img {
+  width: 25px !important;
+  height: 25px !important;
+  object-fit: contain !important;
+}
+
+/* ==========================================================================
+   13. resources.html 전반적 가독성 & ExtraBold 서브타이틀 대폭 강화
+   (Enhanced ExtraBold Typography Upgrade for resources.html)
+   ========================================================================== */
+
+/* 주요 섹션 타이틀 및 분류 헤더 (Section Titles & Headers) */
+.section-title {
+  font-size: 34px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  letter-spacing: -1px !important;
+  margin: 64px 0 28px !important;
+  color: #111827 !important;
+}
+
+.center-intro h2 {
+  font-size: 36px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  letter-spacing: -1.2px !important;
+  color: #111827 !important;
+}
+
+.center-intro p {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  color: #4b5563 !important;
+}
+
+/* Part 번호 및 Part 제목 ("01 Part 1.") */
+.parts i,
+.brochure-parts i {
+  font-size: 16px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  color: #54b51b !important;
+  letter-spacing: -0.5px !important;
+}
+
+.parts b,
+.brochure-parts b {
+  font-size: 20px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  color: #111827 !important;
+  margin: 6px 0 8px !important;
+}
+
+.parts p,
+.brochure-parts p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #4b5563 !important;
+}
+
+/* Cover Story 타이틀 및 본문 */
+.cover-story b {
+  font-size: 18px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+.cover-story p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+
+/* 통합보고서 아카이브 카드 및 표지 애니메이션 레이어 격리 (Report Card Layer Containment) */
+.report-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 24px !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 7px 20px rgba(35, 48, 21, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.report-card > span,
+.report-card .report-title {
+  display: block !important;
+  font-size: 20px !important;
+  font-weight: 700 !important; /* Bold */
+  letter-spacing: -0.5px !important;
+  color: #111827 !important;
+  margin-bottom: 12px !important;
+  line-height: 1.35 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.report-card .report-cover {
+  width: 100% !important;
+  height: 310px !important;
+  overflow: hidden !important; /* 이미지 확장이 카드나 버튼 영역으로 삐져나가지 않도록 엄격 캡슐화 */
+  border-radius: 8px !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.report-card .report-cover img,
+.report-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.report-card:hover .report-cover img,
+.report-card:hover img {
+  transform: scale(1.03) !important;
+}
+
+.report-card > div,
+.report-card .download-row,
+.report-card a,
+.download-row a {
+  position: relative !important;
+  z-index: 10 !important; /* 이미지보다 훨씬 상위 레이어로 배치하여 절대 겹치거나 가려지지 않음 */
+}
+
+/* 브로슈어 카드 (Brochure Card) */
+.brochure-card h4 {
+  font-size: 22px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  margin-bottom: 10px !important;
+  color: #111827 !important;
+}
+
+.brochure-card p {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: #4b5563 !important;
+}
+
+.brochure-card a,
+.download-row a,
+.report-card a {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+/* 공지사항 그레이드 (Notice Grid) 및 기사/보도자료 제목 */
+.notice-grid h3 {
+  font-size: 20px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  line-height: 1.45 !important;
+  color: #111827 !important;
+}
+
+.notice-grid p {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: #4b5563 !important;
+}
+
+.notice-grid time {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #6b7280 !important;
+}
+
+/* 보도자료실 기사 제목 및 테이블 (Press Row & Table) */
+.press-row {
+  font-size: 16px !important;
+}
+
+.press-row b,
+.press-row a {
+  font-size: 17px !important;
+  font-weight: 700 !important; /* 기사 제목 강조 */
+  color: #111827 !important;
+}
+
+.overview {
+  font-size: 15px !important;
+}
+
+.overview th {
+  font-size: 15px !important;
+  font-weight: 800 !important; /* ExtraBold */
+  padding: 18px !important;
+}
+
+.overview td {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  padding: 18px !important;
+}
+
+/* 14. 자료실 다운로드·공지 카드 연두색 외곽선 Hover 통일 */
+.report-card,
+.brochure-card,
+.notice-grid > a {
+  transition: transform 0.28s ease,
+              box-shadow 0.28s ease !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .report-card:hover,
+  .brochure-card:hover,
+  .notice-grid > a:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 0 1px #7bcc12,
+                0 12px 26px rgba(39, 53, 33, 0.11) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .report-card,
+  .brochure-card,
+  .notice-grid > a {
+    transition: none !important;
+  }
+}
+
+/* 15. 보고서 Part·브로슈어 구성 카드 Hover 위계 반전 */
+.parts article,
+.brochure-parts article {
+  transition: transform 0.3s ease-out,
+              background-color 0.3s ease-out,
+              box-shadow 0.3s ease-out !important;
+}
+
+.parts article i,
+.brochure-parts article i,
+.parts article b,
+.brochure-parts article b,
+.parts article p,
+.brochure-parts article p {
+  transform-origin: left center;
+  transition: color 0.3s ease-out,
+              transform 0.3s ease-out,
+              font-weight 0.3s ease-out !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .parts article:hover,
+  .brochure-parts article:hover {
+    transform: translateY(-3px) !important;
+    background-color: #f7fbf2 !important;
+    box-shadow: 0 10px 24px rgba(39, 53, 33, 0.11) !important;
+  }
+
+  .parts article:hover i,
+  .brochure-parts article:hover i {
+    color: #3f9f16 !important;
+  }
+
+  .parts article:hover b,
+  .brochure-parts article:hover b {
+    transform: scale(0.94);
+  }
+
+  .parts article:hover p,
+  .brochure-parts article:hover p {
+    color: #313b35 !important;
+    font-weight: 600 !important;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parts article,
+  .brochure-parts article,
+  .parts article i,
+  .brochure-parts article i,
+  .parts article b,
+  .brochure-parts article b,
+  .parts article p,
+  .brochure-parts article p {
+    transition: none !important;
+  }
+}

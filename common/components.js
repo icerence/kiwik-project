@@ -6,6 +6,7 @@
     if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
     if (/^sub\d*(-responsive)?\.html$/i.test(name)) return 'sub';
+    if (/^(newsroom|esg|multimedia|resources)\.html$/i.test(name)) return 'newsroom';
     return 'index';
   }
 
@@ -107,7 +108,15 @@
       });
     });
     dropdown.addEventListener('click', function (event) {
-      if (event.target.closest('a')) closeDropdown();
+      var link = event.target.closest('a');
+      if (!link) return;
+
+      closeDropdown();
+
+      if (link.hasAttribute('data-page-navigation')) {
+        event.preventDefault();
+        window.location.assign(link.href);
+      }
     });
     window.addEventListener('resize', function () {
       if (headerMain.classList.contains('is-dropdown-open')) syncColumnAlignment();

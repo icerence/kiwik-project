@@ -158,6 +158,20 @@
   /* 디자인시스템 대응 변수 없음 — 높이 960px 이하 데스크톱 실측 압축값 */
   --spacing-value-card-visual-compact: 120px;
   --spacing-split-block-compact: 12px;
+  /* 디자인시스템 대응 변수 없음 — 1280×720에서 Section 2 내부 스크롤을 제거하기 위한 저높이 실측값 */
+  --spacing-value-card-padding-block-short: 24px;
+  --spacing-section-heading-margin-short: 16px;
+  /* 디자인시스템 대응 변수 없음 — Section 4 저높이 데스크톱 실측 압축값 */
+  --spacing-news-list-gap-compact: 16px;
+  --spacing-news-copy-gap-compact: 16px;
+  --spacing-news-copy-gap-short: 8px;
+  --spacing-news-featured-height-compact: 348px;
+  --spacing-news-featured-height-short: 284px;
+  --spacing-news-thumb-short: 112px;
+  /* 디자인시스템 대응 변수 없음 — 1920×920에서 Section 2 제목 시작선과 맞춘 Section 4 상단 실측값 */
+  --spacing-news-section-padding-top-compact: 68px;
+  /* 디자인시스템 대응 변수 없음 — 1920×920 캡처에서 Section 5 제목을 Section 4보다 21px 위로 맞춘 실측값 */
+  --spacing-social-section-padding-top: 131px;
   /* ---------- 선 두께·외곽선 ---------- */
   --spacing-hairline: 1px;
   --spacing-line-thick: 2px;
@@ -187,6 +201,8 @@
   --spacing-dot-nav-slot-gap: 2px;
   --spacing-dot-nav-active: 32px;
   --spacing-dot-nav-icon: 20px;
+  /* Figma newspaper 원본(19.5×18)의 높은 도형 점유율을 다른 20px 아이콘과 시각 보정 */
+  --spacing-dot-nav-icon-newspaper: 18px;
   --spacing-dot-nav-inactive: 10px;
   --radius-dot-nav: 9999px;
   --shadow-dot-nav-active: 0 0 4px rgba(0, 200, 83, 0.4);
@@ -195,7 +211,9 @@
   --opacity-dot-nav-hidden: 0;
   --scale-dot-nav-active: 1;
   --scale-dot-nav-rest: 0.75;
-  --transition-dot-nav: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* 디자인시스템 대응 변수 없음 — 하림 메인 fullPage.js 기본 전환(700ms)을 기준으로 섹션 이동과 Dot Move의 종료 시점을 통일 */
+  --duration-section-navigation: 700ms;
+  --transition-dot-nav: var(--duration-section-navigation) cubic-bezier(0.65, 0, 0.35, 1);
   --z-index-dot-nav: 40;
 }
 
@@ -211,6 +229,25 @@
 
 </style>
 <style>
+.portfolio-notice--entering {
+  animation: portfolio-notice-fade-in var(--transition-dot-nav) both;
+}
+
+.portfolio-notice--closing {
+  animation: portfolio-notice-fade-out var(--transition-dot-nav) both;
+  pointer-events: none;
+}
+
+@keyframes portfolio-notice-fade-in {
+  from { opacity: var(--opacity-dot-nav-hidden); }
+  to { opacity: var(--opacity-dot-nav-visible); }
+}
+
+@keyframes portfolio-notice-fade-out {
+  from { opacity: var(--opacity-dot-nav-visible); }
+  to { opacity: var(--opacity-dot-nav-hidden); }
+}
+
 @media (max-width: 63.9375rem) {
   main .mobile-content-shell {
     width: 100%;
@@ -245,6 +282,21 @@
 </head>
 
 <body class="bg-white font-sans text-base text-gray-800">
+
+<!-- 포트폴리오 안내 팝업 -->
+<div id="portfolio-notice" class="portfolio-notice--entering fixed inset-0 z-50 flex items-center justify-center bg-scrim-banner px-6 py-8" role="dialog" aria-modal="true" aria-labelledby="portfolio-notice-title" aria-describedby="portfolio-notice-description">
+  <div class="relative w-full max-w-lg rounded-2xl border border-green-900 bg-white p-8 shadow-card">
+    <button type="button" class="common-focus absolute top-4 right-4 inline-flex size-10 items-center justify-center rounded-full text-gray-600 hover:bg-green-50 hover:text-green-900" data-portfolio-notice-close aria-label="포트폴리오 안내 닫기">
+      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <p class="mb-3 text-label font-bold tracking-label text-lime-600">PORTFOLIO NOTICE</p>
+    <h1 id="portfolio-notice-title" class="text-display font-extrabold tracking-tight text-green-900">구직용 포트폴리오입니다.</h1>
+    <p id="portfolio-notice-description" class="mt-5 text-card leading-body text-gray-700">이 프로젝트는 구직용 포트폴리오이며,<br>풀무원과는 무관합니다.</p>
+    <button type="button" class="common-focus mt-8 w-full rounded-md bg-brand px-5 py-3 font-bold text-green-950 hover:bg-lime-600 hover:text-white" data-portfolio-notice-close>닫기</button>
+  </div>
+</div>
 
 <a class="skip-link" href="#main">본문 바로가기</a>
 
@@ -282,21 +334,21 @@
           <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-          <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
         </ul>
       </nav>
 
       <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
         <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
           <ul class="site-header-dropdown__list">
-            <li><a class="site-header-dropdown__link" href="ceo.html">총괄CEO인사말</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">CI소개</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">연혁</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">가치체계</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">사업소개</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">동반성장</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">기업지배구조</a></li>
-            <li><a class="site-header-dropdown__link" href="ceo.html">투자정보</a></li>
+            <li><a class="site-header-dropdown__link" data-page-navigation href="company.html">총괄CEO인사말</a></li>
+            <li><a class="site-header-dropdown__link" data-page-navigation href="company1.html">CI소개</a></li>
+            <li><a class="site-header-dropdown__link" href="#">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="#">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="#">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="#">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="#">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="#">투자정보</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
@@ -317,10 +369,10 @@
             <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
-            <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
-            <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+            <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+            <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/esg.html">ESG경영</a></li>
+            <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+            <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/resources.html">자료&공지</a></li>
           </ul>
         </div>
       </div>
@@ -348,7 +400,7 @@
         <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
         <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
         <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-        <li><a href="index.html#section5">뉴스룸</a></li>
+        <li><a data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
       </ul>
     </div>
   </div>
@@ -367,7 +419,7 @@
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-calendar.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-leaf.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-globe.svg" alt="">
-      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
+      <img class="dot-nav__indicator-icon dot-nav__indicator-icon--newspaper" src="assets/icons/dot-nav-newspaper.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
     </li>
   </ul>
@@ -594,17 +646,19 @@
           </header>
 
           <div class="grid gap-10 lg:grid-media-text">
-            <article class="flex flex-col gap-4 lg:gap-6">
+            <article class="news-featured flex flex-col gap-4 lg:gap-6">
               <a class="focus-ring block overflow-hidden rounded-2xl" href="#section4">
                 <img src="assets/images/news-featured.webp" alt="풀무원 넷제로 시스템 검증의견서 수여 현장" class="aspect-featured w-full object-cover" loading="lazy">
               </a>
               <p class="text-xs font-bold text-green-900 lg:text-sm">보도자료 · 2025.03.13</p>
-              <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
-                <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
-              </h3>
-              <p class="text-sm leading-normal text-gray-500 lg:text-base">
-                풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
-              </p>
+              <div class="news-featured__copy flex flex-col gap-4 lg:gap-6">
+                <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
+                  <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
+                </h3>
+                <p class="text-sm leading-normal text-gray-500 lg:text-base">
+                  풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
+                </p>
+              </div>
             </article>
 
             <div class="swiper card-swiper" data-swiper="news">
@@ -633,18 +687,6 @@
                     <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
                     <h3 class="text-sm font-bold text-gray-800">
                       <a class="focus-ring" href="#section4">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
-                    </h3>
-                  </div>
-                </li>
-                <!-- Figma 데스크톱(3004:1313)에만 있는 4번째 카드.
-                     모바일 시안(3007:2592)은 3장이지만, 모바일에서는 이 목록이 Swiper 캐로셀로
-                     바뀌어 한 장씩 넘겨 보므로 슬라이드를 숨기면 빈 칸이 생긴다. 그래서 남긴다. -->
-                <li class="swiper-slide news-card">
-                  <img src="assets/images/news-small-1.webp" alt="풀무원 지속가능경영 보고서 표지" class="news-card__thumb" loading="lazy">
-                  <div class="flex min-w-0 flex-col gap-1.5">
-                    <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
-                    <h3 class="text-sm font-bold text-gray-800">
-                      <a class="focus-ring" href="#section4">풀무원, 식물성 음료 '그린주스' 신제품 3종 출시</a>
                     </h3>
                   </div>
                 </li>
@@ -804,6 +846,28 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
 <script>
+  (() => {
+    const notice = document.getElementById('portfolio-notice');
+    const closeButtons = document.querySelectorAll('[data-portfolio-notice-close]');
+
+    const closeNotice = () => {
+      if (!notice || notice.classList.contains('portfolio-notice--closing')) return;
+      notice.classList.remove('portfolio-notice--entering');
+      notice.classList.add('portfolio-notice--closing');
+    };
+
+    closeButtons.forEach((button) => button.addEventListener('click', closeNotice));
+    notice?.addEventListener('click', (event) => {
+      if (event.target === notice) closeNotice();
+    });
+    notice?.addEventListener('animationend', (event) => {
+      if (event.target === notice && notice.classList.contains('portfolio-notice--closing')) notice.remove();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeNotice();
+    });
+  })();
+
   /* 모바일에서는 패널 전환 스크립트를 로드하지 않아 기본 연속 스크롤을 사용한다. */
   if (window.matchMedia('(min-width: 64rem)').matches) {
     document.write('<script src="assets/js/main.js?v=mobile-native-scroll" defer><\/script>');

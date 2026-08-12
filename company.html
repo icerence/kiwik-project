@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>총괄 CEO 인사말 | 풀무원</title>
   <meta name="description" content="풀무원 총괄 CEO 이우봉의 인사말입니다.">
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <!-- common:head:start -->
   <link rel="stylesheet" href="assets/css/fonts.css" />
@@ -37,8 +40,8 @@
 
     .ceo-portrait {
       background-image: url("assets/images/ceo-portrait.png");
-      background-position: center 26.7%;
-      background-size: 103% auto;
+      background-position: center 28%;
+      background-size: 100% auto;
     }
   </style>
 </head>
@@ -76,21 +79,21 @@
             <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
             <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
             <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-            <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
           </ul>
         </nav>
 
         <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
           <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
             <ul class="site-header-dropdown__list">
-              <li><a class="site-header-dropdown__link" href="ceo.html">총괄CEO인사말</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">CI소개</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">연혁</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">가치체계</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">사업소개</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">동반성장</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">기업지배구조</a></li>
-              <li><a class="site-header-dropdown__link" href="ceo.html">투자정보</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
             </ul>
             <ul class="site-header-dropdown__list">
               <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
@@ -111,10 +114,10 @@
               <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
             </ul>
             <ul class="site-header-dropdown__list">
-              <li><a class="site-header-dropdown__link" href="index.html#section4">풀무원뉴스</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#section2">ESG경영</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#section5">멀티미디어</a></li>
-              <li><a class="site-header-dropdown__link" href="index.html#site-footer">자료&공지</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="./pulmuone-newsroom/resources.html">자료&공지</a></li>
             </ul>
           </div>
         </div>
@@ -142,7 +145,7 @@
           <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-          <li><a href="index.html#section5">뉴스룸</a></li>
+          <li><a data-nav-page="newsroom" href="./pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
         </ul>
       </div>
     </div>
@@ -153,17 +156,7 @@
     <section aria-label="총괄 CEO 인사말 소개">
       <div class="ceo-hero-image h-48 bg-no-repeat sm:h-60" role="img" aria-label="자연과 건강한 식생활을 표현한 풀무원 이미지"></div>
 
-      <div class="mx-auto max-w-[var(--container-ceo)] px-6 pb-16 pt-8 lg:px-0 lg:pb-20">
-        <nav aria-label="현재 위치" class="text-sm leading-6 text-gray-600">
-          <ol class="flex flex-wrap items-center gap-2">
-            <li><a class="common-focus hover:text-brand" href="index.html" aria-label="홈">⌂</a></li>
-            <li aria-hidden="true">›</li>
-            <li><a class="common-focus hover:text-brand" href="index.html#section3">회사소개</a></li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">총괄 CEO 인사말</li>
-          </ol>
-        </nav>
-        <hr class="my-10 border-gray-200">
+      <div class="mx-auto max-w-[var(--container-ceo)] px-6 pb-16 pt-16 lg:px-0 lg:pb-20 lg:pt-20">
         <h1 class="text-center text-[length:var(--text-ceo-title)] font-bold leading-[var(--text-ceo-title--line-height)] tracking-tight">
           존경하는 풀무원 고객 여러분, 그리고 이해 관계자 여러분<br class="hidden sm:block">
           <span class="text-brand">한결같은 관심과 사랑에 깊은 감사</span>를 드립니다.
@@ -172,7 +165,7 @@
     </section>
 
     <section aria-labelledby="ceo-message-title" class="mx-auto max-w-[var(--container-ceo)] px-6 pb-24 lg:px-0">
-      <div class="ceo-portrait h-80 rounded-xl bg-no-repeat sm:h-[600px]" role="img" aria-label="풀무원 총괄 CEO 이우봉"></div>
+      <div class="ceo-portrait h-[420px] rounded-xl bg-no-repeat sm:h-[680px]" role="img" aria-label="풀무원 총괄 CEO 이우봉"></div>
       <h2 id="ceo-message-title" class="mt-10 text-lg font-bold leading-[1.6]">안녕하십니까. 풀무원 총괄CEO 이우봉입니다.</h2>
 
       <div class="mt-10 space-y-7 text-base leading-[var(--leading-ceo-body)]">
