@@ -17,7 +17,7 @@
   z-index: 100;
   border-radius: var(--radius-lg);
   background: var(--color-brand);
-  color: var(--color-white);
+  color: var(--color-gray-800);
   padding: 0.75rem 1.25rem;
   font-weight: var(--font-weight-bold);
   transition: top 0.2s ease;
@@ -157,22 +157,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-dot-nav-gap);
+  gap: var(--spacing-dot-nav-slot-gap);
 }
 .dot-nav__link {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--spacing-dot-nav-inactive);
-  height: var(--spacing-dot-nav-inactive);
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
   border-radius: var(--radius-dot-nav);
-  transition: width var(--transition-dot-nav), height var(--transition-dot-nav);
-}
-.dot-nav__link::before {
-  position: absolute;
-  inset: var(--spacing-dot-nav-hit-inset);
-  content: "";
 }
 .dot-nav__link:focus-visible {
   outline: var(--spacing-outline) solid var(--color-brand);
@@ -182,6 +176,9 @@
   display: block;
   width: var(--spacing-dot-nav-inactive);
   height: var(--spacing-dot-nav-inactive);
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
 .dot-nav__active {
   position: absolute;
@@ -192,22 +189,27 @@
   border-radius: var(--radius-dot-nav);
   background: var(--color-brand);
   box-shadow: var(--shadow-dot-nav-active);
-  opacity: 0;
-  transition: opacity var(--transition-dot-nav);
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
 .dot-nav__active img {
   width: var(--spacing-dot-nav-icon);
   height: var(--spacing-dot-nav-icon);
 }
-.dot-nav__link[aria-current="true"] {
-  width: var(--spacing-dot-nav-active);
-  height: var(--spacing-dot-nav-active);
-}
 .dot-nav__link[aria-current="true"] .dot-nav__inactive {
-  opacity: 0;
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
 }
 .dot-nav__link[aria-current="true"] .dot-nav__active {
-  opacity: 1;
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-nav__inactive,
+  .dot-nav__active {
+    transition: none;
+  }
 }
 
 /* ---------- 섹션 내부 스크롤바만 숨김 ----------
