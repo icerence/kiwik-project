@@ -152,6 +152,12 @@
    (공식 문서: 테마 변수 전체 생성 = @theme static) */
 @theme static {
   --container-mobile: 600px;
+  /* 디자인시스템 대응 변수 없음 — 1920×1080 실측으로 Value 카드 시각 영역을 축소 */
+  --spacing-value-card-visual-lg: 196px;
+  --spacing-value-card-strategy-gap-lg: 8px;
+  /* 디자인시스템 대응 변수 없음 — 높이 960px 이하 데스크톱 실측 압축값 */
+  --spacing-value-card-visual-compact: 120px;
+  --spacing-split-block-compact: 12px;
   /* ---------- 선 두께·외곽선 ---------- */
   --spacing-hairline: 1px;
   --spacing-line-thick: 2px;
@@ -177,14 +183,19 @@
 
   /* ---------- 도트 내비게이션 (Figma Dot_Navigation 18:1070) ---------- */
   --spacing-dot-nav-inset: 24px;
-  --spacing-dot-nav-gap: 24px;
+  /* 32px 고정 슬롯 안의 10px 도트 사이가 시각적으로 24px가 되도록 하는 슬롯 간격 */
+  --spacing-dot-nav-slot-gap: 2px;
   --spacing-dot-nav-active: 32px;
   --spacing-dot-nav-icon: 20px;
   --spacing-dot-nav-inactive: 10px;
-  --spacing-dot-nav-hit-inset: -11px;
   --radius-dot-nav: 9999px;
   --shadow-dot-nav-active: 0 0 4px rgba(0, 200, 83, 0.4);
-  --transition-dot-nav: 200ms ease;
+  /* 도트 전환 상태: 완전 표시/숨김 및 활성 원의 기준 배율 */
+  --opacity-dot-nav-visible: 1;
+  --opacity-dot-nav-hidden: 0;
+  --scale-dot-nav-active: 1;
+  --scale-dot-nav-rest: 0.75;
+  --transition-dot-nav: 320ms cubic-bezier(0.22, 1, 0.36, 1);
   --z-index-dot-nav: 40;
 }
 
@@ -347,11 +358,18 @@
 <!-- ================= 섹션 바로가기 (도트 내비) ================= -->
 <nav class="dot-nav" aria-label="섹션 바로가기">
   <ul>
-    <li><a class="dot-nav__link" href="#section1" aria-label="2035 계획"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-calendar.svg" alt=""></span></a></li>
-    <li><a class="dot-nav__link" href="#section2" aria-label="Eco-Caring"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-leaf.svg" alt=""></span></a></li>
-    <li><a class="dot-nav__link" href="#section3" aria-label="환경 발자국"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-globe.svg" alt=""></span></a></li>
-    <li><a class="dot-nav__link" href="#section4" aria-label="지구식단 소개"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-tv.svg" alt=""></span></a></li>
-    <li><a class="dot-nav__link" href="#section5" aria-label="지구식단 제품과 소식"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-tv.svg" alt=""></span></a></li>
+    <li><a class="dot-nav__link" href="#section1" aria-label="2035 계획"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""></a></li>
+    <li><a class="dot-nav__link" href="#section2" aria-label="Eco-Caring"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""></a></li>
+    <li><a class="dot-nav__link" href="#section3" aria-label="환경 발자국"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""></a></li>
+    <li><a class="dot-nav__link" href="#section4" aria-label="지구식단 소개"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""></a></li>
+    <li><a class="dot-nav__link" href="#section5" aria-label="지구식단 제품과 소식"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""></a></li>
+    <li class="dot-nav__indicator" aria-hidden="true">
+      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-calendar.svg" alt="">
+      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-leaf.svg" alt="">
+      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-globe.svg" alt="">
+      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
+      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
+    </li>
   </ul>
 </nav>
 
@@ -369,8 +387,8 @@
         <div class="hero__scrim bg-gradient-to-b from-scrim-banner via-scrim-mobile-via via-60% to-scrim-hero lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:via-35% lg:to-scrim-hero" aria-hidden="true"></div>
 
         <div class="hero__inner hero__inner--offset mobile-content-shell mx-auto flex w-full max-w-page flex-col justify-between px-6">
-          <!-- 상단: 태그라인 · 제목 · 부제 · 데스크톱 CTA -->
-          <div class="flex flex-col items-start gap-6">
+          <!-- 상단: 태그라인 · 제목 · 부제 · CTA -->
+          <div class="flex flex-col items-start gap-4 lg:gap-6">
             <p class="flex items-center gap-2">
               <span class="h-0.5 w-10 shrink-0 bg-brand lg:bg-green-50" aria-hidden="true"></span>
               <span class="ts-strong text-sm font-bold tracking-widest text-brand lg:text-green-50">친환경 케어 Eco-Caring</span>
@@ -384,8 +402,8 @@
               A Plan for a Better World - Net Zero &amp; Nature Positive
             </p>
 
-            <!-- CTA: 데스크톱 전용 — div로 감싸야 btn-brand CSS 캐스케이드를 우회 가능 -->
-            <div class="hidden lg:flex">
+            <!-- CTA: 모든 화면에서 노출 — div로 감싸야 btn-brand CSS 캐스케이드를 우회 가능 -->
+            <div class="flex">
               <a class="btn-brand btn-brand--sm bg-brand self-start" href="#section2">감축 계획 자세히 보기</a>
             </div>
           </div>
@@ -434,7 +452,7 @@
 
       <div class="panel__block">
         <div class="mobile-content-shell mx-auto w-full max-w-page px-6">
-          <header class="mb-6 flex flex-col gap-2 lg:mb-10">
+          <header class="mb-6 flex flex-col gap-2 bg-lime-800 lg:mb-10 lg:bg-white">
             <p class="text-sm font-bold tracking-label text-brand lg:hidden">GOAL · DIRECTION · SCOPE</p>
             <h2 id="s2-title" class="text-section font-black text-white lg:text-gray-800">Eco-Caring이란?</h2>
           </header>
@@ -447,7 +465,7 @@
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Net Zero</h3>
                 <p class="text-xs leading-body text-gray-700 lg:text-sm">지구온도 상승을 1.5℃ 이하로 제한하기 위해 온실가스 배출량 ‘0’을 목표로 꾸준히 나아갑니다.</p>
               </div>
-              <div class="flex flex-1 items-center justify-center">
+              <div class="value-card__visual flex flex-1 items-center justify-center">
                 <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
                   <img src="assets/icons/factory.svg" alt="" width="88" height="88" class="size-5 lg:size-icon-lg">
                 </span>
@@ -461,7 +479,7 @@
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Nature Positive</h3>
                 <p class="text-xs leading-body text-gray-700 lg:text-sm">지속가능한 지구환경을 위해 생물다양성 손실을 최소화하며 자연 자원을 적극 보전합니다.</p>
               </div>
-              <div class="flex flex-1 items-center justify-center">
+              <div class="value-card__visual flex flex-1 items-center justify-center">
                 <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
                   <img src="assets/icons/leaf.svg" alt="" width="88" height="88" class="size-5 lg:size-icon-lg">
                 </span>
@@ -476,7 +494,7 @@
                 <p class="text-xs leading-body text-gray-700 lg:text-center lg:text-sm">지속가능 에너지, 지속가능 수자원, 지속가능 원재료, 지속가능 파트너십을 통해 실천합니다.</p>
               </div>
               <!-- Figma: 모바일 4열 1행 + 짧은 라벨(3007:2547), 데스크톱 2열 2행 + 두 줄 라벨(3004:1385) -->
-              <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="value-card__visual value-card__visual--strategy grid grid-cols-2 gap-4 pt-2">
                 <span class="flex flex-col items-center gap-1.5">
                   <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
                     <img src="assets/icons/zap.svg" alt="" width="32" height="32" class="size-5 lg:size-8">

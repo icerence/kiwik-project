@@ -17,7 +17,7 @@
   z-index: 100;
   border-radius: var(--radius-lg);
   background: var(--color-brand);
-  color: var(--color-white);
+  color: var(--color-gray-800);
   padding: 0.75rem 1.25rem;
   font-weight: var(--font-weight-bold);
   transition: top 0.2s ease;
@@ -154,25 +154,25 @@
   }
 }
 .dot-nav ul {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-dot-nav-gap);
+  gap: var(--spacing-dot-nav-slot-gap);
+  --dot-nav-current: 0;
+}
+.dot-nav li:not(.dot-nav__indicator) {
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
 }
 .dot-nav__link {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--spacing-dot-nav-inactive);
-  height: var(--spacing-dot-nav-inactive);
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
   border-radius: var(--radius-dot-nav);
-  transition: width var(--transition-dot-nav), height var(--transition-dot-nav);
-}
-.dot-nav__link::before {
-  position: absolute;
-  inset: var(--spacing-dot-nav-hit-inset);
-  content: "";
 }
 .dot-nav__link:focus-visible {
   outline: var(--spacing-outline) solid var(--color-brand);
@@ -182,32 +182,52 @@
   display: block;
   width: var(--spacing-dot-nav-inactive);
   height: var(--spacing-dot-nav-inactive);
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
-.dot-nav__active {
+.dot-nav__indicator {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
   border-radius: var(--radius-dot-nav);
   background: var(--color-brand);
   box-shadow: var(--shadow-dot-nav-active);
-  opacity: 0;
-  transition: opacity var(--transition-dot-nav);
+  pointer-events: none;
+  transform: translateY(calc(var(--dot-nav-current) * (var(--spacing-dot-nav-active) + var(--spacing-dot-nav-slot-gap))));
+  transition: transform var(--transition-dot-nav);
 }
-.dot-nav__active img {
+.dot-nav__indicator-icon {
+  position: absolute;
   width: var(--spacing-dot-nav-icon);
   height: var(--spacing-dot-nav-icon);
-}
-.dot-nav__link[aria-current="true"] {
-  width: var(--spacing-dot-nav-active);
-  height: var(--spacing-dot-nav-active);
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
 .dot-nav__link[aria-current="true"] .dot-nav__inactive {
-  opacity: 0;
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
 }
-.dot-nav__link[aria-current="true"] .dot-nav__active {
-  opacity: 1;
+.dot-nav[data-current="0"] .dot-nav__indicator-icon:nth-child(1),
+.dot-nav[data-current="1"] .dot-nav__indicator-icon:nth-child(2),
+.dot-nav[data-current="2"] .dot-nav__indicator-icon:nth-child(3),
+.dot-nav[data-current="3"] .dot-nav__indicator-icon:nth-child(4),
+.dot-nav[data-current="4"] .dot-nav__indicator-icon:nth-child(5) {
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-nav__inactive,
+  .dot-nav__indicator,
+  .dot-nav__indicator-icon {
+    transition: none;
+  }
 }
 
 /* ---------- 섹션 내부 스크롤바만 숨김 ----------
@@ -315,7 +335,7 @@
 }
 
 /* ---------- Eco-Caring 밸류 카드 ----------
-   Figma 데스크톱(3004:1352) padding 40px + brand 테두리 + 상단 4px 액센트 바,
+   데스크톱 Figma(3004:1352)의 40px 패딩 + brand 테두리 + 상단 4px 액센트 바,
    모바일(3007:2526) padding 20px + 테두리·액센트 바 없음(초록 배경 위 흰 카드). */
 .value-card {
   position: relative;
@@ -334,6 +354,13 @@
   .value-card {
     border: var(--spacing-hairline) solid var(--color-lime-600);
     padding: 2.5rem;
+  }
+  .value-card__visual {
+    flex: none;
+    height: var(--spacing-value-card-visual-lg);
+  }
+  .value-card__visual--strategy {
+    gap: var(--spacing-value-card-strategy-gap-lg);
   }
   .value-card__accent {
     position: absolute;
@@ -534,5 +561,20 @@
 @media (min-width: 64rem) {
   .panel__scroll--split .panel__block {
     padding-block: 1.75rem;
+    flex: none;
+  }
+}
+@media (min-width: 64rem) and (max-height: 60rem) {
+  .panel__scroll--split .panel__block {
+    padding-block: var(--spacing-split-block-compact);
+  }
+  .value-card__visual {
+    height: var(--spacing-value-card-visual-compact);
+  }
+  .value-card__visual--strategy {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .value-card__visual--strategy > span {
+    align-self: center;
   }
 }
