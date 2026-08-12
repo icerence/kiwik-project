@@ -44,7 +44,6 @@
     .popup-shell { width: 100%; overflow: hidden; }
     .popup-media { max-width: var(--container-popup); margin-inline: auto; overflow: hidden; }
     .popup-inner { width: min(100% - 2rem, var(--container-popup-inner)); margin-inline: auto; }
-    .earthmeal-local-inner { width: min(100% - 2rem, var(--container-popup-inner)); margin-inline: auto; }
     .section-space { padding-block: var(--spacing-section); }
     .page-title { font-size: var(--text-page-title); line-height: var(--leading-page-title); }
     .section-title { font-size: var(--text-section-title); line-height: var(--leading-section-title); }
@@ -63,7 +62,7 @@
   <script src="common/components.js" defer></script>
   <!-- common:head:end -->
 </head>
-<body class="bg-white font-sans text-gray-950 antialiased">
+<body class="bg-white font-sans text-gray-950 antialiased" data-common-header-offset>
   <a class="skip-link" href="#main">본문 바로가기</a>
   <!-- common:header:start -->
   <header id="site-header" class="common-header">
@@ -174,15 +173,8 @@
   <div id="smooth-wrapper">
     <div id="smooth-content" class="popup-shell bg-white">
 
-    <nav class="w-full border-b border-gray-200 bg-white" aria-label="지구식단 하위 메뉴">
-      <div class="earthmeal-local-inner flex justify-center gap-6">
-        <a href="earthmeal1.html" class="border-b-2 border-transparent px-6 py-4 text-center text-base font-medium text-gray-400">지구로그</a>
-        <a href="earthmeal2.html" class="border-b-2 border-lime-500 px-6 py-4 text-center text-base font-bold text-lime-600" aria-current="page">팝업스토어</a>
-      </div>
-    </nav>
-
     <main id="main">
-      <section class="relative overflow-hidden bg-white py-16" aria-labelledby="popup-title">
+      <section class="relative overflow-hidden bg-white section-space" aria-labelledby="popup-title">
         <div class="popup-inner relative z-10"><p class="mb-2 text-sm font-bold text-lime-600">Popup Store</p><h1 id="popup-title" class="page-title font-extrabold text-lime-600">팝업스토어</h1><p class="mt-4 text-2xl font-extrabold text-gray-950">풀무원 바른먹거리 체험 공간</p><p class="mt-4 text-base leading-7 text-gray-600">풀무원의 바른먹거리 철학을 직접 보고, 맛보고, 경험할 수 있는 특별한 팝업스토어입니다. 두부·녹즙·식물성 지향 식품을 체험하고 건강한 라이프스타일을 만나보세요.</p></div>
       </section>
       <div class="popup-media"><img class="h-auto w-full" src="assets/images/earthlog2/popup-store-main.svg" alt="식물과 상품이 진열된 밝은 풀무원 팝업스토어 내부" width="1200" height="326"></div>
