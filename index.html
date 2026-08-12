@@ -160,6 +160,8 @@
   --spacing-split-block-compact: 12px;
   /* 디자인시스템 대응 변수 없음 — 1280×720에서 Section 2 내부 스크롤을 제거하기 위한 저높이 실측값 */
   --spacing-value-card-padding-block-short: 24px;
+  /* 카드 크기와 글자 크기를 유지하면서 추진방향 본문의 두 줄 폭을 확보 */
+  --spacing-value-card-copy-overflow-lg: 20px;
   --spacing-section-heading-margin-short: 16px;
   /* 디자인시스템 대응 변수 없음 — Section 4 저높이 데스크톱 실측 압축값 */
   --spacing-news-list-gap-compact: 16px;
@@ -515,7 +517,7 @@
               <div class="flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Net Zero</h3>
-                <p class="text-xs leading-body text-gray-700 lg:text-sm">지구온도 상승을 1.5℃ 이하로 제한하기 위해 온실가스 배출량 ‘0’을 목표로 꾸준히 나아갑니다.</p>
+                <p class="text-xs leading-body text-gray-700 lg:text-sm">지구온도 상승을 1.5℃ 이하로 제한하기 위해<br class="hidden lg:block"> 온실가스 배출량 ‘0’을 목표로 꾸준히 나아갑니다.</p>
               </div>
               <div class="value-card__visual flex flex-1 items-center justify-center">
                 <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
@@ -529,7 +531,7 @@
               <div class="flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Nature Positive</h3>
-                <p class="text-xs leading-body text-gray-700 lg:text-sm">지속가능한 지구환경을 위해 생물다양성 손실을 최소화하며 자연 자원을 적극 보전합니다.</p>
+                <p class="text-xs leading-body text-gray-700 lg:text-sm">지속가능한 지구환경을 위해 생물다양성 손실을<br class="hidden lg:block"> 최소화하며 자연 자원을 적극 보전합니다.</p>
               </div>
               <div class="value-card__visual flex flex-1 items-center justify-center">
                 <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
@@ -543,7 +545,7 @@
               <div class="flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">전략</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">추진방향</h3>
-                <p class="text-xs leading-body text-gray-700 lg:text-center lg:text-sm">지속가능 에너지, 지속가능 수자원, 지속가능 원재료, 지속가능 파트너십을 통해 실천합니다.</p>
+                <p class="value-card__strategy-copy text-xs leading-body text-gray-700 lg:text-sm">지속가능 에너지, 지속가능 수자원, 지속가능 원재료,<br class="hidden lg:block"> 지속가능 파트너십을 통해 실천합니다.</p>
               </div>
               <!-- Figma: 모바일 4열 1행 + 짧은 라벨(3007:2547), 데스크톱 2열 2행 + 두 줄 라벨(3004:1385) -->
               <div class="value-card__visual value-card__visual--strategy grid grid-cols-2 gap-4 pt-2">
@@ -656,7 +658,7 @@
                   <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
                 </h3>
                 <p class="text-sm leading-normal text-gray-500 lg:text-base">
-                  풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
+                  풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고,<br class="hidden lg:block"> LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
                 </p>
               </div>
             </article>

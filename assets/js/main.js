@@ -486,6 +486,35 @@
     if (best > 1) window.scrollTo(0, targetTop(nearest));
   }
 
+  // 브라우저 스크롤바를 직접 드래그한 경우에도 실제 화면 위치를 기준으로
+  // 현재 섹션과 도트 내비게이션을 맞춘다. 자동 섹션 이동 중에는 goTo()가
+  // 상태를 관리하므로, 사용자가 직접 스크롤할 때만 갱신한다.
+  let scrollSyncFrame = null;
+  window.addEventListener('scroll', function () {
+    if (!desktopQuery.matches || isAnimating || scrollSyncFrame !== null) return;
+
+    scrollSyncFrame = window.requestAnimationFrame(function () {
+      scrollSyncFrame = null;
+      if (isAnimating) return;
+
+      const y = window.scrollY;
+      let nearest = 0;
+      let best = Infinity;
+
+      for (let i = 0; i < targets.length; i += 1) {
+        const distance = Math.abs(targetTop(i) - y);
+        if (distance < best) {
+          best = distance;
+          nearest = i;
+        }
+      }
+
+      if (nearest === currentIndex) return;
+      currentIndex = nearest;
+      syncNav();
+    });
+  }, { passive: true });
+
   window.addEventListener('load', function () {
     ScrollTrigger.refresh();
     if (!window.location.hash) syncFromScroll();
