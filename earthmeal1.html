@@ -45,7 +45,6 @@
     body { margin: 0; }
     .earthlog-shell { width: 100%; overflow: hidden; }
     .earthlog-inner { width: min(100% - 2rem, var(--container-content)); margin-inline: auto; }
-    .earthmeal-local-inner { width: min(100% - 2rem, var(--container-earthlog)); margin-inline: auto; }
     .section-space { padding-block: var(--spacing-section); }
     .page-title { font-size: var(--text-page-title); line-height: var(--leading-page-title); }
     .section-title { font-size: var(--text-section-title); line-height: var(--leading-section-title); }
@@ -67,7 +66,7 @@
   <script src="common/components.js" defer></script>
   <!-- common:head:end -->
 </head>
-<body class="bg-white font-sans text-gray-950 antialiased">
+<body class="bg-white font-sans text-gray-950 antialiased" data-common-header-offset>
   <a class="skip-link" href="#main">본문 바로가기</a>
 
   <!-- common:header:start -->
@@ -179,20 +178,13 @@
   <div id="smooth-wrapper">
     <div id="smooth-content" class="earthlog-shell bg-white">
 
-    <nav class="w-full border-b border-gray-200 bg-white" aria-label="지구식단 하위 메뉴">
-      <div class="earthmeal-local-inner flex justify-center gap-6">
-        <a href="earthmeal1.html" class="border-b-2 border-lime-500 px-6 py-4 text-center text-base font-bold text-lime-600" aria-current="page">지구로그</a>
-        <a href="earthmeal2.html" class="border-b-2 border-transparent px-6 py-4 text-center text-base font-medium text-gray-400">팝업스토어</a>
-      </div>
-    </nav>
-
     <main id="main">
-      <section class="earthlog-inner py-16" aria-labelledby="earthlog-title">
+      <section class="earthlog-inner section-space" aria-labelledby="earthlog-title">
         <div class="mb-10"><p class="mb-2 text-sm font-bold text-lime-600">Earth Log</p><h1 id="earthlog-title" class="page-title font-extrabold text-lime-600">지구로그</h1><h2 class="mt-4 text-2xl font-extrabold text-gray-950">지구로그 소개</h2><p class="mt-4 text-base leading-7 text-gray-600">풀무원의 지속가능한 경영과 식생활 혁신을 이어가는 다양한 이야기를 소개합니다. 환경과 사람을 생각하는 작은 실천이 더 나은 내일을 만듭니다.</p></div>
         <div class="grid gap-6 md:grid-cols-3">
-          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-1.png" alt="두부와 신선한 채소" width="360" height="160"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">바른먹거리</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">Non-GMO 선언</h3><p class="mt-2 text-sm leading-6 text-gray-600">올바른 먹거리를 위한 풀무원의 원칙과 실천을 소개합니다.</p></div></article>
-          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-2.png" alt="친환경 농장 풍경" width="360" height="160"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">환경</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">동물복지 달걀</h3><p class="mt-2 text-sm leading-6 text-gray-600">생명 존중의 가치를 담은 지속가능한 농장 이야기를 전합니다.</p></div></article>
-          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-3.png" alt="RE100 친환경 생산 시설" width="360" height="160"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">지속가능성</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">RE100 가입</h3><p class="mt-2 text-sm leading-6 text-gray-600">재생에너지 전환을 향한 풀무원의 구체적인 여정을 담았습니다.</p></div></article>
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-1.png" alt="두부와 신선한 채소" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">바른먹거리</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">Non-GMO 인증</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 국내 최초로 Non-GMO 선언을 하고 유전자 재조합 식품을 사용하지 않습니다.</p></div></article>
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-2.png" alt="동물복지 인증 농장" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">동물복지</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">동물복지 달걀</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 동물복지 인증 달걀만을 사용하여 윤리적 식품 생산을 실천합니다.</p></div></article>
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-3.png" alt="RE100 친환경 생산 시설" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">탄소중립</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">RE100 참여</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 2050 탄소중립 목표를 선언하고 RE100에 가입하여 재생에너지 전환을 추진합니다.</p></div></article>
         </div>
       </section>
 
@@ -203,10 +195,10 @@
       </div></div></section>
 
       <section id="content" class="section-space earthlog-inner" aria-labelledby="content-title"><h2 id="content-title" class="section-title font-extrabold">풀무원 콘텐츠</h2><p class="mt-3 text-base text-gray-600">바른먹거리부터 환경과 사회까지, 풀무원의 다양한 이야기를 전합니다.</p><div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-1.png" alt="샐러드 두부 요리" width="282" height="160"><div class="p-6"><span class="text-xs font-bold text-lime-600">요리</span><p class="mt-3 text-xs text-gray-600">2026.06.21</p><h3 class="mt-2 text-lg font-extrabold text-lime-950">두부로 만드는 건강 한 끼</h3></div></article>
-        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-2.png" alt="친환경 연구 공간" width="282" height="160"><div class="p-6"><span class="text-xs font-bold text-lime-600">환경</span><p class="mt-3 text-xs text-gray-600">2026.06.25</p><h3 class="mt-2 text-lg font-extrabold text-lime-950">풀무원 ESG 임팩트 2025</h3></div></article>
-        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-3.png" alt="재활용 가능한 종이 포장재" width="282" height="160"><div class="p-6"><span class="text-xs font-bold text-lime-600">포장재</span><p class="mt-3 text-xs text-gray-600">2026.06.28</p><h3 class="mt-2 text-lg font-extrabold text-lime-950">친환경 포장재 전환 프로젝트</h3></div></article>
-        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-4.png" alt="식물성 지향 식품 요리" width="282" height="160"><div class="p-6"><span class="text-xs font-bold text-lime-600">뉴스</span><p class="mt-3 text-xs text-gray-600">2026.07.01</p><h3 class="mt-2 text-lg font-extrabold text-lime-950">풀무원, 식물성 지향 식품 사업 확대</h3></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-1.png" alt="두부 요리" width="282" height="160"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">레시피</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.15</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">두부로 만드는 건강 한 끼</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원 두부를 활용한 간편하고 맛있는 건강 레시피를 소개합니다.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-2.png" alt="ESG 경영보고서" width="282" height="160"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">ESG</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.20</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">풀무원 ESG 경영보고서 2025</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원의 환경·사회·지배구조(ESG) 경영 성과를 한눈에 확인하세요.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-3.png" alt="친환경 포장재" width="282" height="160"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">포장재</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.06.28</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">친환경 포장재 전환 프로젝트</h3><p class="mt-2 text-sm leading-6 text-gray-600">재활용이 쉬운 단일소재 포장재로의 전환 과정을 소개합니다.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-4.png" alt="식물성 지향 식품 요리" width="282" height="160"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">뉴스</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.01</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">풀무원, 식물성 지향 식품 사업 확대</h3><p class="mt-2 text-sm leading-6 text-gray-600">식물성 단백질 시장을 선도하는 풀무원의 새로운 도전을 소개합니다.</p></div></article>
       </div></section>
 
       <section class="section-space bg-lime-100" aria-labelledby="campaign-title"><div class="earthlog-inner"><h2 id="campaign-title" class="section-title font-extrabold">풀무원 캠페인</h2><p class="mt-3 text-base text-gray-600">풀무원이 전개하는 바른먹거리 캠페인과 사회공헌 활동을 소개합니다.</p><div class="mt-10 grid gap-6 md:grid-cols-2">
