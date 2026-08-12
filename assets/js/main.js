@@ -63,36 +63,6 @@
     return el.getBoundingClientRect().top + window.scrollY;
   }
 
-  // 상단 유틸리티 바는 첫 번째 섹션에서만 보인다.
-  const utilityBar = document.getElementById('utility-bar');
-  let utilityShown = true;
-
-  function syncUtilityBar() {
-    if (!utilityBar) return;
-
-    const shouldShow = currentIndex === 0;
-    if (shouldShow === utilityShown) return;
-    utilityShown = shouldShow;
-
-    document.body.classList.toggle('is-header-compact', !shouldShow);
-
-    const state = shouldShow
-      ? { height: 'auto', autoAlpha: 1 }
-      : { height: 0, autoAlpha: 0 };
-
-    if (reduceMotion()) {
-      gsap.set(utilityBar, state);
-      return;
-    }
-
-    gsap.to(utilityBar, {
-      height: state.height,
-      autoAlpha: state.autoAlpha,
-      duration: 0.35,
-      ease: 'power2.out'
-    });
-  }
-
   // Hero 섹션에서는 헤더가 사진 위에 떠 있고, 벗어나면 흰 배경으로 돌아온다.
   const siteHeader = document.getElementById('site-header');
 
@@ -102,7 +72,6 @@
   }
 
   function syncNav() {
-    syncUtilityBar();
     syncHeaderFloat();
 
     const id = targets[currentIndex] ? targets[currentIndex].id : '';

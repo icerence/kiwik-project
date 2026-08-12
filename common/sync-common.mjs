@@ -41,6 +41,31 @@ function hasRegion(source, name) {
     source.includes(`<!-- common:${name}:end -->`);
 }
 
+function placeHeaderOutsideSmoothWrapper(source, fileName) {
+  const wrapperPattern = /<div\b[^>]*\bid=["']smooth-wrapper["'][^>]*>/i;
+  const wrapperMatch = wrapperPattern.exec(source);
+  const headerStart = source.indexOf('<!-- common:header:start -->');
+
+  if (!wrapperMatch || headerStart < wrapperMatch.index) return source;
+
+  const headerRegionPattern = /^[\t ]*<!-- common:header:start -->[\s\S]*?^[\t ]*<!-- common:header:end -->[\t ]*\n?/m;
+  const headerRegionMatch = headerRegionPattern.exec(source);
+  if (!headerRegionMatch) {
+    throw new Error(`${fileName}: common:header 영역을 이동할 수 없습니다.`);
+  }
+
+  const withoutHeader = source.slice(0, headerRegionMatch.index) +
+    source.slice(headerRegionMatch.index + headerRegionMatch[0].length);
+  const nextWrapperMatch = wrapperPattern.exec(withoutHeader);
+  const wrapperLineStart = withoutHeader.lastIndexOf('\n', nextWrapperMatch.index - 1) + 1;
+  const wrapperIndent = withoutHeader.slice(wrapperLineStart, nextWrapperMatch.index);
+
+  return withoutHeader.slice(0, wrapperLineStart) +
+    `${wrapperIndent}<!-- common:header:start -->\n` +
+    `${wrapperIndent}<!-- common:header:end -->\n\n` +
+    withoutHeader.slice(wrapperLineStart);
+}
+
 function initializeRegions(source, fileName) {
   let updated = source;
 
@@ -95,6 +120,7 @@ for (const fileName of targets) {
   const original = await readFile(filePath, 'utf8');
   const newline = original.includes('\r\n') ? '\r\n' : '\n';
   let updated = initializeRegions(original.replace(/\r\n/g, '\n'), fileName);
+  updated = placeHeaderOutsideSmoothWrapper(updated, fileName);
 
   for (const [name, partial] of Object.entries(partials)) {
     updated = replaceRegion(updated, name, partial, fileName);
