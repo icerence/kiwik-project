@@ -43,16 +43,16 @@
       .card .col-right{gap:8px}.card .col-right p{font-size:13px;line-height:1.5}
       .card .col-right p:before{content:""}
     }
-    @media(max-width:1023px){
-      main{padding-top:60px}
-      .common-header__utility,.common-header__nav,.common-header__language{display:none!important}
-      .common-header__main{height:60px}
-      .common-header__logo-link{position:absolute;left:50%;transform:translateX(-50%)}
-      .common-header__logo-link img{width:104px}
-      .common-header__actions{position:static;width:100%;height:60px;pointer-events:none}
-      .common-header__menu-button{position:absolute!important;left:0;display:flex!important;width:44px!important;height:44px!important;border:0;pointer-events:auto}
-      .common-header__search{position:absolute;right:0;display:flex!important;width:44px;height:44px;align-items:center;justify-content:center;border:0;background:transparent;pointer-events:auto}
-      .common-header__search img{width:20px;height:20px}
+    @media (max-width: 1023px) {
+      main { padding-top: 60px !important; }
+      .common-header__utility,.common-header__nav,.common-header__language { display: none !important; }
+      .common-header__main { height: 60px !important; position: relative !important; padding: 0 16px !important; }
+      .common-header__logo-link { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; }
+      .common-header__logo-link img { width: 104px !important; height: auto !important; }
+      .common-header__actions { position: static !important; width: 100% !important; height: 60px !important; pointer-events: none !important; }
+      .common-header__menu-button { position: absolute !important; left: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search img { width: 20px !important; height: 20px !important; display: block !important; }
     }
     @media(max-width:767px){
       :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 근사값(Figma color/overlay 변수, 인덱스 페이지의 --color-scrim-banner 0.45와 동일 계열 채택) */
