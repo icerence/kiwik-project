@@ -195,7 +195,9 @@
   --opacity-dot-nav-hidden: 0;
   --scale-dot-nav-active: 1;
   --scale-dot-nav-rest: 0.75;
-  --transition-dot-nav: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* 디자인시스템 대응 변수 없음 — 하림 메인 fullPage.js 기본 전환(700ms)을 기준으로 섹션 이동과 Dot Move의 종료 시점을 통일 */
+  --duration-section-navigation: 700ms;
+  --transition-dot-nav: var(--duration-section-navigation) cubic-bezier(0.65, 0, 0.35, 1);
   --z-index-dot-nav: 40;
 }
 
