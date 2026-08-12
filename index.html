@@ -161,6 +161,13 @@
   /* 디자인시스템 대응 변수 없음 — 1280×720에서 Section 2 내부 스크롤을 제거하기 위한 저높이 실측값 */
   --spacing-value-card-padding-block-short: 24px;
   --spacing-section-heading-margin-short: 16px;
+  /* 디자인시스템 대응 변수 없음 — Section 4 저높이 데스크톱 실측 압축값 */
+  --spacing-news-list-gap-compact: 16px;
+  --spacing-news-copy-gap-compact: 16px;
+  --spacing-news-copy-gap-short: 8px;
+  --spacing-news-featured-height-compact: 348px;
+  --spacing-news-featured-height-short: 284px;
+  --spacing-news-thumb-short: 112px;
   /* ---------- 선 두께·외곽선 ---------- */
   --spacing-hairline: 1px;
   --spacing-line-thick: 2px;
@@ -633,17 +640,19 @@
           </header>
 
           <div class="grid gap-10 lg:grid-media-text">
-            <article class="flex flex-col gap-4 lg:gap-6">
+            <article class="news-featured flex flex-col gap-4 lg:gap-6">
               <a class="focus-ring block overflow-hidden rounded-2xl" href="#section4">
                 <img src="assets/images/news-featured.webp" alt="풀무원 넷제로 시스템 검증의견서 수여 현장" class="aspect-featured w-full object-cover" loading="lazy">
               </a>
               <p class="text-xs font-bold text-green-900 lg:text-sm">보도자료 · 2025.03.13</p>
-              <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
-                <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
-              </h3>
-              <p class="text-sm leading-normal text-gray-500 lg:text-base">
-                풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
-              </p>
+              <div class="news-featured__copy flex flex-col gap-4 lg:gap-6">
+                <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
+                  <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
+                </h3>
+                <p class="text-sm leading-normal text-gray-500 lg:text-base">
+                  풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고, LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
+                </p>
+              </div>
             </article>
 
             <div class="swiper card-swiper" data-swiper="news">
@@ -672,18 +681,6 @@
                     <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
                     <h3 class="text-sm font-bold text-gray-800">
                       <a class="focus-ring" href="#section4">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
-                    </h3>
-                  </div>
-                </li>
-                <!-- Figma 데스크톱(3004:1313)에만 있는 4번째 카드.
-                     모바일 시안(3007:2592)은 3장이지만, 모바일에서는 이 목록이 Swiper 캐로셀로
-                     바뀌어 한 장씩 넘겨 보므로 슬라이드를 숨기면 빈 칸이 생긴다. 그래서 남긴다. -->
-                <li class="swiper-slide news-card">
-                  <img src="assets/images/news-small-1.webp" alt="풀무원 지속가능경영 보고서 표지" class="news-card__thumb" loading="lazy">
-                  <div class="flex min-w-0 flex-col gap-1.5">
-                    <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
-                    <h3 class="text-sm font-bold text-gray-800">
-                      <a class="focus-ring" href="#section4">풀무원, 식물성 음료 '그린주스' 신제품 3종 출시</a>
                     </h3>
                   </div>
                 </li>

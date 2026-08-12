@@ -592,3 +592,56 @@
     padding-block: var(--spacing-value-card-padding-block-short);
   }
 }
+
+/* Section 4 뉴스룸: 실제 스크롤 시 utility bar가 접힌 GNB 높이를 기준으로
+   여백과 카드 사이 간격을 줄여 낮은 데스크톱에서도 한 화면에 맞춘다. */
+@media (min-width: 64rem) and (max-height: 67.5rem) {
+  #section4 .panel__scroll {
+    padding-top: var(--common-header-main-height-desktop);
+  }
+  #section4 .panel__block {
+    padding-block: var(--spacing-split-block-compact);
+  }
+  #section4 .panel__block header {
+    margin-bottom: var(--spacing-section-heading-margin-short);
+  }
+  #section4 .news-featured,
+  #section4 .news-featured__copy {
+    gap: var(--spacing-news-copy-gap-compact);
+  }
+  #section4 .card-swiper[data-swiper="news"]:not(.swiper-initialized) .swiper-wrapper {
+    gap: var(--spacing-news-list-gap-compact);
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 60rem) {
+  #section4 .news-featured > a:first-child {
+    height: var(--spacing-news-featured-height-compact);
+  }
+  #section4 .news-featured > a:first-child img {
+    height: 100%;
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 54rem) {
+  #section4 .news-featured,
+  #section4 .news-featured__copy {
+    gap: var(--spacing-news-copy-gap-short);
+  }
+  #section4 .news-featured > a:first-child {
+    height: var(--spacing-news-featured-height-short);
+  }
+  #section4 .news-card__thumb {
+    width: var(--spacing-news-thumb-short);
+    height: var(--spacing-news-thumb-short);
+  }
+}
+
+@media (min-width: 64rem) {
+  #section4 .news-featured__copy {
+    margin-top: auto;
+  }
+  #section4 .card-swiper {
+    padding-bottom: 0;
+  }
+}
