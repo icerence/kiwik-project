@@ -367,6 +367,10 @@
   .value-card__visual--strategy {
     gap: var(--spacing-value-card-strategy-gap-lg);
   }
+  .value-card__strategy-copy {
+    width: calc(100% + var(--spacing-value-card-copy-overflow-lg) + var(--spacing-value-card-copy-overflow-lg));
+    white-space: nowrap;
+  }
   .value-card__accent {
     position: absolute;
     inset-inline: 0;
