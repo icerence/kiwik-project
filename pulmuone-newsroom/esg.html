@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="풀무원의 ESG 전략과 주요 실천 사례" />
+    <title>ESG 경영 | 풀무원 뉴스룸</title>
+    <!-- Tailwind CSS v4 (Play CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- common:head:start -->
+    <link rel="stylesheet" href="../assets/css/fonts.css" />
+    <link rel="stylesheet" href="../common/components.css" />
+    <script src="../common/components.js" defer></script>
+    <!-- common:head:end -->
+  </head>
+  <body class="page-esg" data-common-header-offset>
+    <a class="skip-link" href="#content">본문 바로가기</a>
+    <!-- common:header:start -->
+    <header id="site-header" class="common-header">
+      <div class="common-header__inner">
+        <div id="utility-bar" class="common-header__utility">
+          <a class="common-header__utility-link" href="../index.html#section2">
+            <span class="common-header__utility-icon"><img src="../assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+            <span>지속가능경영보고서</span>
+          </a>
+          <a class="common-header__utility-link" href="../index.html#section4">
+            <span class="common-header__utility-icon"><img src="../assets/icons/users.svg" alt="" width="20" height="20" /></span>
+            <span>인재채용</span>
+          </a>
+          <a class="common-header__utility-link" href="../index.html#site-footer">
+            <span class="common-header__utility-icon"><img src="../assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+            <span>고객기쁨센터</span>
+          </a>
+          <a class="common-header__utility-link common-header__utility-link--bold" href="../index.html#section6">
+            <span class="common-header__utility-icon"><img src="../assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+            <span>#풀무원</span>
+          </a>
+        </div>
+
+        <div class="common-header__main">
+          <a href="../index.html" class="common-focus common-header__logo-link">
+            <img src="../assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+          </a>
+
+          <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+            <ul class="common-header__nav-list">
+              <li><a class="common-header__nav-link" data-nav-page="index" href="../index.html#section3">회사소개</a></li>
+              <li><a class="common-header__nav-link" data-nav-page="sub" href="../sub.html">사회책임경영</a></li>
+              <li><a class="common-header__nav-link" data-nav-page="food" href="../food.html">바른먹거리</a></li>
+              <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="../earthmeal1.html">지구식단</a></li>
+              <li><a class="common-header__nav-link" data-nav-page="newsroom" href="./newsroom.html">뉴스룸</a></li>
+            </ul>
+          </nav>
+
+          <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+            <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+              <ul class="site-header-dropdown__list">
+                <li><a class="site-header-dropdown__link" href="../company.html">총괄CEO인사말</a></li>
+                <li><a class="site-header-dropdown__link" href="../company1.html">CI소개</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">연혁</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">가치체계</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">사업소개</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">동반성장</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">기업지배구조</a></li>
+                <li><a class="site-header-dropdown__link" href="../company.html">투자정보</a></li>
+              </ul>
+              <ul class="site-header-dropdown__list">
+                <li><a class="site-header-dropdown__link" href="../sub.html">개요</a></li>
+                <li><a class="site-header-dropdown__link" href="../sub.html">추진전략</a></li>
+                <li><a class="site-header-dropdown__link" href="../sub.html">활동 및 실적</a></li>
+                <li><a class="site-header-dropdown__link" href="../sub.html">수상</a></li>
+              </ul>
+              <ul class="site-header-dropdown__list">
+                <li><a class="site-header-dropdown__link" href="../food.html">지속가능 식생활</a></li>
+                <li><a class="site-header-dropdown__link" href="../food2.html">지속가능식품</a></li>
+                <li><a class="site-header-dropdown__link" href="../food3.html">바른먹거리 원칙</a></li>
+                <li><a class="site-header-dropdown__link" href="../food4.html">바른먹거리 캠페인</a></li>
+                <li><a class="site-header-dropdown__link" href="../food5.html">식품안전 및 품질정책</a></li>
+                <li><a class="site-header-dropdown__link" href="../food.html">테이스터풀무원 ↗</a></li>
+              </ul>
+              <ul class="site-header-dropdown__list">
+                <li><a class="site-header-dropdown__link" href="../earthmeal1.html">지구로그</a></li>
+                <li><a class="site-header-dropdown__link" href="../earthmeal2.html">팝업스토어</a></li>
+              </ul>
+              <ul class="site-header-dropdown__list">
+                <li><a class="site-header-dropdown__link" href="./newsroom.html">풀무원뉴스</a></li>
+                <li><a class="site-header-dropdown__link" href="./esg.html">ESG경영</a></li>
+                <li><a class="site-header-dropdown__link" href="./multimedia.html">멀티미디어</a></li>
+                <li><a class="site-header-dropdown__link" href="./resources.html">자료&공지</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="common-header__actions">
+            <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+              <img src="../assets/icons/search.svg" alt="" width="20" height="20" />
+            </button>
+            <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+              <span>KOR</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+              </svg>
+            </button>
+            <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+              <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+              <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+          <ul>
+            <li><a data-nav-page="index" href="../index.html#section3">회사소개</a></li>
+            <li><a data-nav-page="sub" href="../sub.html">사회책임경영</a></li>
+            <li><a data-nav-page="food" href="../food.html">바른먹거리</a></li>
+            <li><a data-nav-page="earthmeal" href="../earthmeal1.html">지구식단</a></li>
+            <li><a data-nav-page="newsroom" href="./newsroom.html">뉴스룸</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- common:header:end -->
+
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <main id="content" class="esg-content container">
+      <section class="esg-hero">
+        <img src="assets/esg-hero.png" alt="푸른 하늘 아래 풍력 발전기" />
+        <div class="esg-hero-copy">
+          <span>ESG경영</span>
+          <h1>ESG경영</h1>
+          <p>
+            환경 · 사회 · 거버넌스 전략과 주요 실천 사례를<br />설명형 콘텐츠와
+            최신 소식으로 연결
+          </p>
+          <div class="hero-chips">
+            <a href="#featured">기획자료</a><a href="#videos">ESG영상</a
+            ><a href="#esg-news">ESG뉴스</a>
+          </div>
+        </div>
+      </section>
+      <section id="featured" class="section-block">
+        <div class="section-heading">
+          <div>
+            <h2>대표 기획자료</h2>
+            <small>PULMUONE ESG STRATEGY</small>
+          </div>
+          <form class="compact-search" role="search">
+            <label class="sr-only" for="esg-search">ESG 자료 검색</label
+            ><input
+              id="esg-search"
+              type="search"
+              placeholder="검색어를 입력하세요"
+            /><button aria-label="검색">
+              <img src="assets/search.svg" alt="" />
+            </button>
+          </form>
+        </div>
+        <p class="empty-message" hidden>검색 결과가 없습니다.</p>
+        <article class="featured-story">
+          <img
+            src="assets/esg-feature.png"
+            alt="풀무원 지속가능경영 핵심 스토리"
+          />
+          <div>
+            <span>기획자료</span>
+            <h3>풀무원의 지속가능경영 핵심 스토리</h3>
+            <p>
+              전략 설명과 관련 사례를 묶어 사용자가 ESG 맥락을 먼저 이해하도록
+              구성
+            </p>
+            <div class="story-meta">
+              <b>기획자료</b><time datetime="2026-07-30">2026.07.30</time>
+            </div>
+          </div>
+          <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
+        </article>
+        <div class="esg-card-grid">
+          <article>
+            <img src="assets/esg-card-01.png" alt="손 위의 새싹" /><span
+              >기획자료</span
+            >
+            <h3>친환경 활동 전략</h3>
+            <p>등록일 · 요약 텍스트</p>
+          </article>
+          <article>
+            <img src="assets/esg-card-02.png" alt="친환경 종이 패키지" /><span
+              >ESG영상</span
+            >
+            <h3>친환경 패키지 소개</h3>
+            <p>등록일 · 요약 텍스트</p>
+          </article>
+          <article>
+            <img
+              src="assets/esg-card-03.png"
+              alt="아이들과 함께하는 식생활 교육"
+            /><span>기획자료</span>
+            <h3>사회공헌 사례</h3>
+            <p>등록일 · 요약 텍스트</p>
+          </article>
+        </div>
+      </section>
+      <section id="videos" class="section-block">
+        <div class="section-heading">
+          <div>
+            <h2>ESG 영상 캐러셀</h2>
+            <p>자연순환 · 친환경 패키지 · 식물성 식품</p>
+          </div>
+        </div>
+        <article class="esg-video">
+          <img src="assets/esg-video.png" alt="자연 속 유리구슬을 든 손" />
+          <div>
+            <h3>자연순환을 위한 친환경 전략</h3>
+            <p>
+              환경을 배려한 지속가능활동, 그린 도시, 자연 풍경 등<br />ESG 관련
+              이미지를 생성해서 넣었습니다.
+            </p>
+            <a href="#"><img src="assets/play.svg" alt="" />영상 보기</a>
+          </div>
+        </article>
+      </section>
+      <section id="esg-news" class="section-block">
+        <div class="section-heading">
+          <div>
+            <h2>ESG 뉴스</h2>
+            <small>LATEST ESG NEWS</small>
+          </div>
+        </div>
+        <div class="esg-news-grid">
+          <article>
+            <img src="assets/esg-news-01.png" alt="ESG 뉴스 이미지" />
+            <div>
+              <span>기업뉴스</span>
+              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
+              <time datetime="2026-07-30">2026.07.30</time>
+            </div>
+          </article>
+          <article>
+            <img src="assets/esg-news-02.png" alt="ESG 뉴스 이미지" />
+            <div>
+              <span>브랜드뉴스</span>
+              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
+              <time datetime="2026-07-30">2026.07.30</time>
+            </div>
+          </article>
+          <article>
+            <img src="assets/esg-news-03.png" alt="ESG 뉴스 이미지" />
+            <div>
+              <span>기업뉴스</span>
+              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
+              <time datetime="2026-07-30">2026.07.30</time>
+            </div>
+          </article>
+          <article>
+            <img src="assets/esg-news-04.png" alt="ESG 뉴스 이미지" />
+            <div>
+              <span>브랜드뉴스</span>
+              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
+              <time datetime="2026-07-30">2026.07.30</time>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <!-- common:footer:start -->
+    <footer id="site-footer" class="common-footer">
+      <div class="common-footer__inner">
+        <div class="common-footer__top">
+          <div class="common-footer__company">
+            <img src="../assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+            <address>
+              <span>법인명 : (주)풀무원</span>
+              <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
+              <span>대표전화 : <a class="common-focus" href="tel:080-022-0085">080-022-0085</a></span>
+            </address>
+          </div>
+
+          <div class="common-footer__links">
+            <nav aria-label="정책 및 안내">
+              <ul class="common-footer__policy-list">
+                <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+              </ul>
+            </nav>
+
+            <div class="common-footer__social">
+              <span>공식계정</span>
+              <a class="common-focus" href="#site-footer"><img src="../assets/images/sns-tistory.png" alt="풀무원 티스토리" loading="lazy" /></a>
+              <a class="common-focus" href="#site-footer"><img src="../assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+              <a class="common-focus" href="#site-footer"><img src="../assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+              <a class="common-focus" href="#site-footer"><img src="../assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+              <a class="common-focus" href="#site-footer"><img src="../assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" loading="lazy" /></a>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="common-footer__bottom">
+          <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+          <div class="common-footer__family">
+            <button type="button" class="common-focus" aria-haspopup="listbox" aria-expanded="false">
+              계열사/브랜드 사이트
+              <img src="../assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+            </button>
+            <img src="../assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- common:footer:end -->
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="scroll-reveal.js"></script>
+  </body>
+</html>
