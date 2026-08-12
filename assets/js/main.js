@@ -24,6 +24,10 @@
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const desktopQuery = window.matchMedia('(min-width: 1024px)');
 
+  // 모바일은 문서의 기본 스크롤만 사용한다. 이전에 내려받은 main.js가 남아
+  // 있더라도 휠·터치 이벤트를 가로채 섹션 단위로 이동시키지 않는다.
+  if (!desktopQuery.matches) return;
+
   const panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
   const footer = document.getElementById('site-footer');
   let targets = [];
