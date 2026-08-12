@@ -168,6 +168,10 @@
   --spacing-news-featured-height-compact: 348px;
   --spacing-news-featured-height-short: 284px;
   --spacing-news-thumb-short: 112px;
+  /* 디자인시스템 대응 변수 없음 — 1920×920에서 Section 2 제목 시작선과 맞춘 Section 4 상단 실측값 */
+  --spacing-news-section-padding-top-compact: 68px;
+  /* 디자인시스템 대응 변수 없음 — 1920×920 캡처에서 Section 5 제목을 Section 4보다 21px 위로 맞춘 실측값 */
+  --spacing-social-section-padding-top: 131px;
   /* ---------- 선 두께·외곽선 ---------- */
   --spacing-hairline: 1px;
   --spacing-line-thick: 2px;
@@ -197,6 +201,8 @@
   --spacing-dot-nav-slot-gap: 2px;
   --spacing-dot-nav-active: 32px;
   --spacing-dot-nav-icon: 20px;
+  /* Figma newspaper 원본(19.5×18)의 높은 도형 점유율을 다른 20px 아이콘과 시각 보정 */
+  --spacing-dot-nav-icon-newspaper: 18px;
   --spacing-dot-nav-inactive: 10px;
   --radius-dot-nav: 9999px;
   --shadow-dot-nav-active: 0 0 4px rgba(0, 200, 83, 0.4);
@@ -413,7 +419,7 @@
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-calendar.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-leaf.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-globe.svg" alt="">
-      <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
+      <img class="dot-nav__indicator-icon dot-nav__indicator-icon--newspaper" src="assets/icons/dot-nav-newspaper.svg" alt="">
       <img class="dot-nav__indicator-icon" src="assets/icons/dot-nav-tv.svg" alt="">
     </li>
   </ul>
