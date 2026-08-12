@@ -214,8 +214,12 @@ body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
 }
 
 .common-header__actions { display: flex; align-items: center; gap: 1.25rem; }
-.common-header__search,
 .common-header__language { display: none; }
+.common-header__search {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
 .common-header__menu-button {
   display: flex;
   width: 2.5rem;
