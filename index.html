@@ -173,6 +173,18 @@
   /* ---------- 모바일 푸터 소셜 배지 (Figma 3009:244) 36×19 ---------- */
   --spacing-social-pill-w: 36px;
   --spacing-social-pill-h: 19px;
+
+  /* ---------- 도트 내비게이션 (Figma Dot_Navigation 18:1070) ---------- */
+  --spacing-dot-nav-inset: 24px;
+  --spacing-dot-nav-gap: 24px;
+  --spacing-dot-nav-active: 32px;
+  --spacing-dot-nav-icon: 20px;
+  --spacing-dot-nav-inactive: 10px;
+  --spacing-dot-nav-hit-inset: -11px;
+  --radius-dot-nav: 9999px;
+  --shadow-dot-nav-active: 0 0 4px rgba(0, 200, 83, 0.4);
+  --transition-dot-nav: 200ms ease;
+  --z-index-dot-nav: 40;
 }
 
 /* 시안의 미디어:텍스트 2열 배치.
@@ -262,12 +274,11 @@
 <!-- ================= 섹션 바로가기 (도트 내비) ================= -->
 <nav class="dot-nav" aria-label="섹션 바로가기">
   <ul>
-    <li><a class="dot-nav__link" href="#section1"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">2035 계획</span></a></li>
-    <li><a class="dot-nav__link" href="#section2"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">Eco-Caring이란?</span></a></li>
-    <li><a class="dot-nav__link" href="#section3"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">나는 지구식단 합니다</span></a></li>
-    <li><a class="dot-nav__link" href="#section4"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">뉴스룸</span></a></li>
-    <li><a class="dot-nav__link" href="#section5"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">SNS</span></a></li>
-    <li><a class="dot-nav__link" href="#site-footer"><span class="dot-nav__dot" aria-hidden="true"></span><span class="dot-nav__text">사이트 정보</span></a></li>
+    <li><a class="dot-nav__link" href="#section1" aria-label="2035 계획"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-calendar.svg" alt=""></span></a></li>
+    <li><a class="dot-nav__link" href="#section2" aria-label="Eco-Caring"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-leaf.svg" alt=""></span></a></li>
+    <li><a class="dot-nav__link" href="#section3" aria-label="환경 발자국"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-globe.svg" alt=""></span></a></li>
+    <li><a class="dot-nav__link" href="#section4" aria-label="지구식단 소개"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-tv.svg" alt=""></span></a></li>
+    <li><a class="dot-nav__link" href="#section5" aria-label="지구식단 제품과 소식"><img class="dot-nav__inactive" src="assets/icons/dot-nav-inactive.svg" alt=""><span class="dot-nav__active" aria-hidden="true"><img src="assets/icons/dot-nav-tv.svg" alt=""></span></a></li>
   </ul>
 </nav>
 
