@@ -4,6 +4,8 @@
 }
 
 :root {
+  --spacing: 0.25rem;
+  --text-base: 1rem;
   --common-header-main-height-mobile: 4rem;
   --common-header-main-height-desktop: 6rem;
   --common-header-utility-height: 3.5rem;
@@ -155,8 +157,8 @@ body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
   width: 140px;
   flex-direction: column;
   align-items: center;
-  gap: calc(var(--spacing) * 2.5);
-  font-size: var(--text-base);
+  gap: calc(var(--spacing, 0.25rem) * 2.5);
+  font-size: var(--text-base, 1rem);
   line-height: 20px;
   text-align: center;
   transform: translateX(-50%);
