@@ -211,6 +211,25 @@
 
 </style>
 <style>
+.portfolio-notice--entering {
+  animation: portfolio-notice-fade-in var(--transition-dot-nav) both;
+}
+
+.portfolio-notice--closing {
+  animation: portfolio-notice-fade-out var(--transition-dot-nav) both;
+  pointer-events: none;
+}
+
+@keyframes portfolio-notice-fade-in {
+  from { opacity: var(--opacity-dot-nav-hidden); }
+  to { opacity: var(--opacity-dot-nav-visible); }
+}
+
+@keyframes portfolio-notice-fade-out {
+  from { opacity: var(--opacity-dot-nav-visible); }
+  to { opacity: var(--opacity-dot-nav-hidden); }
+}
+
 @media (max-width: 63.9375rem) {
   main .mobile-content-shell {
     width: 100%;
@@ -245,6 +264,21 @@
 </head>
 
 <body class="bg-white font-sans text-base text-gray-800">
+
+<!-- 포트폴리오 안내 팝업 -->
+<div id="portfolio-notice" class="portfolio-notice--entering fixed inset-0 z-50 flex items-center justify-center bg-scrim-banner px-6 py-8" role="dialog" aria-modal="true" aria-labelledby="portfolio-notice-title" aria-describedby="portfolio-notice-description">
+  <div class="relative w-full max-w-lg rounded-2xl border border-green-900 bg-white p-8 shadow-card">
+    <button type="button" class="common-focus absolute top-4 right-4 inline-flex size-10 items-center justify-center rounded-full text-gray-600 hover:bg-green-50 hover:text-green-900" data-portfolio-notice-close aria-label="포트폴리오 안내 닫기">
+      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <p class="mb-3 text-label font-bold tracking-label text-lime-600">PORTFOLIO NOTICE</p>
+    <h1 id="portfolio-notice-title" class="text-display font-extrabold tracking-tight text-green-900">구직용 포트폴리오입니다.</h1>
+    <p id="portfolio-notice-description" class="mt-5 text-card leading-body text-gray-700">이 프로젝트는 구직용 포트폴리오이며,<br>풀무원과는 무관합니다.</p>
+    <button type="button" class="common-focus mt-8 w-full rounded-md bg-brand px-5 py-3 font-bold text-green-950 hover:bg-lime-600 hover:text-white" data-portfolio-notice-close>닫기</button>
+  </div>
+</div>
 
 <a class="skip-link" href="#main">본문 바로가기</a>
 
@@ -804,6 +838,28 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
 <script>
+  (() => {
+    const notice = document.getElementById('portfolio-notice');
+    const closeButtons = document.querySelectorAll('[data-portfolio-notice-close]');
+
+    const closeNotice = () => {
+      if (!notice || notice.classList.contains('portfolio-notice--closing')) return;
+      notice.classList.remove('portfolio-notice--entering');
+      notice.classList.add('portfolio-notice--closing');
+    };
+
+    closeButtons.forEach((button) => button.addEventListener('click', closeNotice));
+    notice?.addEventListener('click', (event) => {
+      if (event.target === notice) closeNotice();
+    });
+    notice?.addEventListener('animationend', (event) => {
+      if (event.target === notice && notice.classList.contains('portfolio-notice--closing')) notice.remove();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeNotice();
+    });
+  })();
+
   /* 모바일에서는 패널 전환 스크립트를 로드하지 않아 기본 연속 스크롤을 사용한다. */
   if (window.matchMedia('(min-width: 64rem)').matches) {
     document.write('<script src="assets/js/main.js?v=mobile-native-scroll" defer><\/script>');
