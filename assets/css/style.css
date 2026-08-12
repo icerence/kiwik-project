@@ -589,6 +589,7 @@
 @media (min-width: 64rem) and (max-height: 54rem) {
   #section2 .panel__scroll--split {
     padding-top: var(--common-header-main-height-desktop);
+    justify-content: center;
   }
   #section2 .panel__block header {
     margin-bottom: var(--spacing-section-heading-margin-short);
@@ -636,6 +637,9 @@
 }
 
 @media (min-width: 64rem) and (max-height: 54rem) {
+  #section4 .panel__block {
+    justify-content: center;
+  }
   #section4 .news-featured,
   #section4 .news-featured__copy {
     gap: var(--spacing-news-copy-gap-short);
