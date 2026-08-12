@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Pulmuone inspired smile favicon</title>
+  <desc id="desc">A white smile curve on a bright sage green background.</desc>
+  <rect width="64" height="64" rx="16" fill="#49685A"/>
+  <path d="M10 16.7C20.4 21.1 29.2 22.6 40.4 21.5c5.7-.6 10.2-2.6 13.6-4.8-6.5 6.8-15.2 9.5-22.1 9.5-8.3 0-16.8-3.4-21.9-9.5Z" fill="#FFF" transform="translate(-8.96 -1.11) scale(1.28)"/>
+  <g transform="translate(0 4)">
+    <path d="M32.2 30.5c-7.4 4.3-11 10.2-9.7 16 1.1 5 5.2 8.5 10.1 8.5 6.7 0 11.4-5.3 11.4-12.7 0-3.8-1.1-7.8-3.2-11.5-3.3 1.8-6.1 4.1-8.6 6.9Z" fill="#FFF"/>
+    <path d="M27.7 47.2c3.1-4.7 7.2-8.5 12.2-11.5" fill="none" stroke="#1D352B" stroke-linecap="round" stroke-width="2.3"/>
+  </g>
+</svg>
