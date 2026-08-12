@@ -142,9 +142,9 @@
 /* ---------- 도트 내비게이션(데스크톱) ---------- */
 .dot-nav {
   position: fixed;
-  right: 1.5rem;
+  right: var(--spacing-dot-nav-inset);
   top: 50%;
-  z-index: 40;
+  z-index: var(--z-index-dot-nav);
   transform: translateY(-50%);
   display: none;
 }
@@ -156,41 +156,58 @@
 .dot-nav ul {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
+  align-items: center;
+  gap: var(--spacing-dot-nav-gap);
 }
 .dot-nav__link {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: var(--spacing-dot-nav-inactive);
+  height: var(--spacing-dot-nav-inactive);
+  border-radius: var(--radius-dot-nav);
+  transition: width var(--transition-dot-nav), height var(--transition-dot-nav);
 }
-.dot-nav__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  flex: none;
-  border-radius: 999px;
-  background: var(--color-gray-400);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.dot-nav__link[aria-current="true"] .dot-nav__dot {
-  background: var(--color-brand);
-  transform: scale(1.3);
-}
-.dot-nav__text {
+.dot-nav__link::before {
   position: absolute;
-  right: calc(100% + 0.5rem);
-  top: 50%;
-  font-size: 0.75rem;
-  color: var(--color-gray-600);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(-50%) translateX(0.25rem);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  inset: var(--spacing-dot-nav-hit-inset);
+  content: "";
 }
-.dot-nav__link:hover .dot-nav__text,
-.dot-nav__link[aria-current="true"] .dot-nav__text {
+.dot-nav__link:focus-visible {
+  outline: var(--spacing-outline) solid var(--color-brand);
+  outline-offset: var(--spacing-outline-offset);
+}
+.dot-nav__inactive {
+  display: block;
+  width: var(--spacing-dot-nav-inactive);
+  height: var(--spacing-dot-nav-inactive);
+}
+.dot-nav__active {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-dot-nav);
+  background: var(--color-brand);
+  box-shadow: var(--shadow-dot-nav-active);
+  opacity: 0;
+  transition: opacity var(--transition-dot-nav);
+}
+.dot-nav__active img {
+  width: var(--spacing-dot-nav-icon);
+  height: var(--spacing-dot-nav-icon);
+}
+.dot-nav__link[aria-current="true"] {
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
+}
+.dot-nav__link[aria-current="true"] .dot-nav__inactive {
+  opacity: 0;
+}
+.dot-nav__link[aria-current="true"] .dot-nav__active {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
 }
 
 /* ---------- 섹션 내부 스크롤바만 숨김 ----------
