@@ -154,76 +154,89 @@
 <body class="bg-white font-sans text-text-primary antialiased">
   <a href="#main" class="skip-link">본문 바로가기</a>
 
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="index.html#section3" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-mega-menu">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub.html" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-mega-menu">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-mega-menu">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-mega-menu">지구식단</a></li>
+            <li><a class="common-header__nav-link" href="index.html#section5" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-mega-menu">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+            <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="index.html#section3">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a href="index.html#section5">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="desktop-mega-menu" class="common-header__mega" aria-label="전체 하위 메뉴" aria-hidden="true">
+      <div class="common-header__mega-inner">
+        <ul class="common-header__mega-columns">
+          <li><ul><li><a href="index.html#section3">총괄CEO인사말</a></li><li><a href="index.html#section3">CI소개</a></li><li><a href="index.html#section3">연혁</a></li><li><a href="index.html#section3">가치체계</a></li><li><a href="index.html#section3">사업소개</a></li><li><a href="index.html#section3">동반성장</a></li><li><a href="index.html#section3">기업지배구조</a></li><li><a href="index.html#section3">투자정보</a></li></ul></li>
+          <li><ul><li><a href="sub.html">개요</a></li><li><a href="sub.html">추진전략</a></li><li><a href="sub.html">활동 및 실적</a></li><li><a href="sub.html">수상</a></li></ul></li>
+          <li><ul><li><a href="food.html">지속가능 식생활</a></li><li><a href="food2.html">지속가능식품</a></li><li><a href="food3.html">바른먹거리 원칙</a></li><li><a href="food4.html">바른먹거리 캠페인</a></li><li><a href="food5.html">식품안전 및 품질정책</a></li><li><span>테이스터풀무원 <span aria-hidden="true">↗</span></span></li></ul></li>
+          <li><ul><li><a href="earthmeal1.html">지구로그</a></li><li><a href="earthmeal2.html">팝업스토어</a></li></ul></li>
+          <li><ul><li><a href="index.html#section5">풀무원뉴스</a></li><li><a href="index.html#section5">ESG경영</a></li><li><a href="index.html#section5">멀티미디어</a></li><li><a href="index.html#section5">자료&amp;공지</a></li></ul></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
+
   <div id="smooth-wrapper">
     <div id="smooth-content">
 
       <!-- ===== Header (사이트 공용 헤더 — index.html/food.html과 동일 구성) ===== -->
-<!-- common:header:start -->
-<header id="site-header" class="common-header">
-  <div class="common-header__inner">
-    <div id="utility-bar" class="common-header__utility">
-      <a class="common-header__utility-link" href="index.html#section2">
-        <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
-        <span>지속가능경영보고서</span>
-      </a>
-      <a class="common-header__utility-link" href="index.html#section4">
-        <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
-        <span>인재채용</span>
-      </a>
-      <a class="common-header__utility-link" href="index.html#site-footer">
-        <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
-        <span>고객기쁨센터</span>
-      </a>
-      <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
-        <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
-        <span>#풀무원</span>
-      </a>
-    </div>
-
-    <div class="common-header__main">
-      <a href="index.html" class="common-focus common-header__logo-link">
-        <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
-      </a>
-
-      <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
-        <ul class="common-header__nav-list">
-          <li><a class="common-header__nav-link" data-nav-page="index" href="index.html#section3">회사소개</a></li>
-          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub.html">사회책임경영</a></li>
-          <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
-          <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-          <li><a class="common-header__nav-link" href="index.html#section5">뉴스룸</a></li>
-        </ul>
-      </nav>
-
-      <div class="common-header__actions">
-        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
-          <img src="assets/icons/search.svg" alt="" width="20" height="20" />
-        </button>
-        <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
-          <span>KOR</span>
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
-          </svg>
-        </button>
-        <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
-          <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-          <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
-        </button>
-      </div>
-    </div>
-
-    <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
-      <ul>
-        <li><a data-nav-page="index" href="index.html#section3">회사소개</a></li>
-        <li><a data-nav-page="sub" href="sub.html">사회책임경영</a></li>
-        <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
-        <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
-        <li><a href="index.html#section5">뉴스룸</a></li>
-      </ul>
-    </div>
-  </div>
-</header>
-<!-- common:header:end -->
 
       <main id="main" tabindex="-1">
 

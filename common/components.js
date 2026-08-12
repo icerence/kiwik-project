@@ -75,12 +75,48 @@
     sync();
   }
 
+  function bindDesktopMegaMenu(header) {
+    var nav = header.querySelector('#primary-nav');
+    var mega = header.querySelector('#desktop-mega-menu');
+    var triggers = nav ? Array.from(nav.querySelectorAll('[aria-controls="desktop-mega-menu"]')) : [];
+    var lastTrigger = null;
+    if (!nav || !mega || !triggers.length) return;
+
+    function isDesktop() { return window.getComputedStyle(nav).display !== 'none'; }
+    function setOpen(open) {
+      var active = open && isDesktop();
+      mega.classList.toggle('is-open', active);
+      mega.setAttribute('aria-hidden', String(!active));
+      triggers.forEach(function (trigger) { trigger.setAttribute('aria-expanded', String(active)); });
+    }
+    function containsFocus() {
+      return nav.contains(document.activeElement) || mega.contains(document.activeElement);
+    }
+
+    nav.addEventListener('pointerenter', function () { setOpen(true); });
+    header.addEventListener('pointerleave', function () { if (!containsFocus()) setOpen(false); });
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('focus', function () { lastTrigger = trigger; setOpen(true); });
+    });
+    header.addEventListener('focusout', function () {
+      window.requestAnimationFrame(function () { if (!containsFocus()) setOpen(false); });
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || mega.getAttribute('aria-hidden') === 'true') return;
+      event.preventDefault();
+      if (lastTrigger) lastTrigger.focus();
+      setOpen(false);
+    });
+    window.addEventListener('resize', function () { if (!isDesktop()) setOpen(false); });
+  }
+
   function initComponents() {
     var header = document.getElementById('site-header');
     if (header) {
       placeHeaderOutsideSmoothWrapper(header);
       setActiveNavigation(header);
       bindHeader(header);
+      bindDesktopMegaMenu(header);
       bindScrollState(header);
     }
     document.dispatchEvent(new CustomEvent('common-components:ready'));
