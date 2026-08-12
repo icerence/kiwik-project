@@ -107,7 +107,15 @@
       });
     });
     dropdown.addEventListener('click', function (event) {
-      if (event.target.closest('a')) closeDropdown();
+      var link = event.target.closest('a');
+      if (!link) return;
+
+      closeDropdown();
+
+      if (link.hasAttribute('data-page-navigation')) {
+        event.preventDefault();
+        window.location.assign(link.href);
+      }
     });
     window.addEventListener('resize', function () {
       if (headerMain.classList.contains('is-dropdown-open')) syncColumnAlignment();
