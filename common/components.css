@@ -29,9 +29,21 @@
 .common-header__utility {
   display: none;
   height: 3.5rem;
+  overflow: hidden;
   align-items: center;
   justify-content: flex-end;
   gap: .25rem;
+  opacity: 1;
+  visibility: visible;
+  transition: height .3s ease, opacity .2s ease, visibility 0s;
+}
+
+.common-header--compact .common-header__utility {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-delay: 0s, 0s, .3s;
 }
 
 .common-header__utility-link {
@@ -167,4 +179,8 @@
   .common-footer__links { align-items: flex-end; }
   .common-footer__policy-list { justify-content: flex-end; }
   .common-footer__bottom { flex-direction: row; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .common-header__utility { transition: none; }
 }
