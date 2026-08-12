@@ -200,7 +200,7 @@
 
 </style>
 <style>
-@media (max-width: 40rem) {
+@media (max-width: 63.9375rem) {
   main .mobile-content-shell {
     width: 100%;
     max-width: var(--container-mobile);
@@ -787,7 +787,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
 <script>
   /* 모바일에서는 패널 전환 스크립트를 로드하지 않아 기본 연속 스크롤을 사용한다. */
-  if (!window.matchMedia('(max-width: 40rem)').matches) {
+  if (window.matchMedia('(min-width: 64rem)').matches) {
     document.write('<script src="assets/js/main.js" defer><\/script>');
   }
 </script>
