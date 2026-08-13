@@ -10,7 +10,7 @@
       name="description"
       content="풀무원의 새로운 소식과 활동을 한눈에 확인하는 뉴스룸입니다."
     />
-    <title>풀무원 뉴스 | 기업뉴스</title>
+    <title>풀무원 뉴스 | 풀무원</title>
     <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12" />
 
     <!-- Tailwind CSS v4 (Play CDN) -->
@@ -22,7 +22,7 @@
     <script src="../common/components.js" defer></script>
     <!-- common:head:end -->
   </head>
-  <body data-common-header-offset>
+  <body class="page-newsroom" data-common-header-offset>
     <a class="skip-link" href="#content">본문 바로가기</a>
     <!-- common:header:start -->
     <header id="site-header" class="common-header">
@@ -181,11 +181,29 @@
               aria-controls="news-panel"
             >
               기업뉴스</button
-            ><button type="button" role="tab" aria-selected="false">
+            ><button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              id="tab-brand"
+              aria-controls="news-panel"
+            >
               브랜드 뉴스</button
-            ><button type="button" role="tab" aria-selected="false">
+            ><button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              id="tab-kimchi"
+              aria-controls="news-panel"
+            >
               뮤지엄김치간</button
-            ><button type="button" role="tab" aria-selected="false">
+            ><button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              id="tab-social"
+              aria-controls="news-panel"
+            >
               사회공헌 뉴스
             </button>
           </div>

@@ -158,7 +158,7 @@ if (newsPanel) {
   }
 
   /**
-   * Render pagination controls
+   * Render pagination controls (Displays 1-10 page group size identical to desktop web)
    */
   function renderPagination(totalItems) {
     const paginationNav = document.querySelector('.pagination');
@@ -172,48 +172,48 @@ if (newsPanel) {
     const startPage = Math.floor((currentPage - 1) / PAGE_GROUP_SIZE) * PAGE_GROUP_SIZE + 1;
     const endPage = Math.min(startPage + PAGE_GROUP_SIZE - 1, totalPages);
 
-    function createPageBtn(label, targetPage, isDisabled, isCurrent = false) {
+    function createPageBtn(label, targetPage, isDisabled, isCurrent = false, extraClass = '') {
+      const el = isDisabled ? document.createElement('button') : document.createElement('a');
       if (isDisabled) {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.disabled = true;
-        btn.textContent = label;
-        return btn;
+        el.type = 'button';
+        el.disabled = true;
       } else {
-        const a = document.createElement('a');
-        a.href = '#';
-        a.textContent = label;
-        if (isCurrent) {
-          a.className = 'current';
-          a.setAttribute('aria-current', 'page');
-        }
-        a.addEventListener('click', e => {
+        el.href = '#';
+      }
+      el.textContent = label;
+      if (extraClass) el.classList.add(extraClass);
+      if (isCurrent) {
+        el.classList.add('current');
+        el.setAttribute('aria-current', 'page');
+      }
+      if (!isDisabled) {
+        el.addEventListener('click', e => {
           e.preventDefault();
           if (currentPage !== targetPage) {
             currentPage = targetPage;
             renderNews();
           }
         });
-        return a;
       }
+      return el;
     }
 
     // « First Page
-    paginationNav.appendChild(createPageBtn('«', 1, currentPage === 1));
+    paginationNav.appendChild(createPageBtn('«', 1, currentPage === 1, false, 'page-btn-first'));
 
     // ‹ Prev Page
-    paginationNav.appendChild(createPageBtn('‹', Math.max(1, currentPage - 1), currentPage === 1));
+    paginationNav.appendChild(createPageBtn('‹', Math.max(1, currentPage - 1), currentPage === 1, false, 'page-btn-prev'));
 
-    // Numbered Pages
+    // Numbered Pages (1..10)
     for (let p = startPage; p <= endPage; p++) {
-      paginationNav.appendChild(createPageBtn(String(p), p, false, p === currentPage));
+      paginationNav.appendChild(createPageBtn(String(p), p, false, p === currentPage, 'page-btn-num'));
     }
 
     // › Next Page
-    paginationNav.appendChild(createPageBtn('›', Math.min(totalPages, currentPage + 1), currentPage === totalPages));
+    paginationNav.appendChild(createPageBtn('›', Math.min(totalPages, currentPage + 1), currentPage === totalPages, false, 'page-btn-next'));
 
     // » Last Page
-    paginationNav.appendChild(createPageBtn('»', totalPages, currentPage === totalPages));
+    paginationNav.appendChild(createPageBtn('»', totalPages, currentPage === totalPages, false, 'page-btn-last'));
   }
 
   /**
