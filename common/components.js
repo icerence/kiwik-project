@@ -5,22 +5,17 @@
     var name = window.location.pathname.split('/').pop() || 'index.html';
     if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
-    if (name.toLowerCase() === 'sub.html') return 'sub';
+    if (/^sub\d*(-responsive)?\.html$/i.test(name)) return 'sub';
     if (/^(newsroom|esg|multimedia|resources)\.html$/i.test(name)) return 'newsroom';
     return 'index';
   }
 
   function setActiveNavigation(header) {
     var page = currentPage();
-    var currentPath = window.location.pathname.replace(/\/$/, '');
     header.classList.add('common-header--fixed');
     header.querySelectorAll('[data-nav-page]').forEach(function (link) {
       if (link.dataset.navPage === page) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
-    });
-    header.querySelectorAll('.site-header-dropdown__link').forEach(function (link) {
-      var linkPath = new URL(link.getAttribute('href'), window.location.href).pathname.replace(/\/$/, '');
-      link.classList.toggle('is-current-submenu', linkPath === currentPath);
     });
   }
 
@@ -36,6 +31,18 @@
     var closeIcon = header.querySelector('#menu-icon-close');
     if (!button || !menu || !openIcon || !closeIcon) return;
 
+    function normalizeReportLabel() {
+      var reportLabel = header.querySelector('.common-header__utility-link:first-child > span:last-child');
+      if (!reportLabel || reportLabel.dataset.reportLabelNormalized === 'true') return;
+      reportLabel.textContent = '';
+      reportLabel.appendChild(document.createTextNode('지속가능경영'));
+      reportLabel.appendChild(document.createElement('wbr'));
+      reportLabel.appendChild(document.createTextNode('보고서'));
+      reportLabel.dataset.reportLabelNormalized = 'true';
+    }
+
+    normalizeReportLabel();
+
     function buildMobileMenu() {
       var list = menu.querySelector('ul');
       var desktopSubmenus = header.querySelectorAll('.site-header-dropdown__list');
@@ -45,7 +52,6 @@
       var heroTop = document.createElement('div');
       var closeButton = document.createElement('button');
       var shortcuts = document.createElement('nav');
-      var shortcutsGraphic = document.createElement('img');
       var language = header.querySelector('.common-header__language');
       var utilityLinks = header.querySelectorAll('.common-header__utility-link');
 
@@ -59,17 +65,15 @@
       closeButton.querySelector('svg').classList.remove('is-hidden');
       shortcuts.className = 'common-header__mobile-shortcuts';
       shortcuts.setAttribute('aria-label', '바로가기');
-      shortcutsGraphic.src = window.location.pathname.indexOf('/pulmuone-newsroom/') !== -1 ? '../assets/icons/mobile-menu-shortcuts.svg' : 'assets/icons/mobile-menu-shortcuts.svg';
-      shortcutsGraphic.alt = '';
-      shortcutsGraphic.setAttribute('aria-hidden', 'true');
       if (language) {
         var languageCopy = language.cloneNode(true);
         languageCopy.classList.add('common-header__mobile-language');
         heroTop.appendChild(languageCopy);
       }
-      shortcuts.appendChild(shortcutsGraphic);
       Array.prototype.slice.call(utilityLinks).forEach(function (utilityLink) {
-        shortcuts.appendChild(utilityLink.cloneNode(true));
+        var shortcutLink = utilityLink.cloneNode(true);
+        shortcutLink.classList.add('common-header__mobile-shortcut');
+        shortcuts.appendChild(shortcutLink);
       });
       heroTop.insertBefore(closeButton, heroTop.firstChild);
       hero.appendChild(heroTop);
@@ -115,7 +119,8 @@
         item.appendChild(heading);
         item.appendChild(submenu);
 
-        toggle.addEventListener('click', function () {
+        function toggleSubmenu(event) {
+          if (event) event.preventDefault();
           var willOpen = toggle.getAttribute('aria-expanded') !== 'true';
           Array.prototype.slice.call(list.querySelectorAll('.common-header__mobile-menu-toggle')).forEach(function (otherToggle) {
             var otherSubmenu = document.getElementById(otherToggle.getAttribute('aria-controls'));
@@ -126,6 +131,12 @@
           toggle.setAttribute('aria-expanded', String(willOpen));
           toggle.setAttribute('aria-label', link.textContent.trim() + ' 하위 메뉴 ' + (willOpen ? '닫기' : '열기'));
           submenu.classList.toggle('is-hidden', !willOpen);
+        }
+
+        toggle.addEventListener('click', toggleSubmenu);
+        heading.addEventListener('click', function (event) {
+          if (event.target.closest('.common-header__mobile-menu-toggle')) return;
+          toggleSubmenu(event);
         });
       });
       list.dataset.accordionReady = 'true';
@@ -133,11 +144,86 @@
 
     buildMobileMenu();
 
+    function setPageInert(isInert) {
+      Array.prototype.slice.call(document.body.children).forEach(function (child) {
+        if (child !== header && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+          child.inert = isInert;
+          if (isInert) {
+            child.dataset.headerPageInert = 'true';
+            child.setAttribute('aria-hidden', 'true');
+          } else if (child.dataset.headerPageInert === 'true') {
+            delete child.dataset.headerPageInert;
+            child.removeAttribute('aria-hidden');
+          }
+        }
+      });
+    }
+
+    function bindLanguageSelectors() {
+      var languageButtons = Array.prototype.slice.call(header.querySelectorAll('.common-header__language'));
+      languageButtons.forEach(function (languageButton, index) {
+        if (languageButton.parentElement.classList.contains('common-header__language-wrap')) return;
+        var wrapper = document.createElement('span');
+        var options = document.createElement('div');
+        var optionId = 'language-options-' + index;
+        wrapper.className = 'common-header__language-wrap';
+        options.className = 'common-header__language-options';
+        options.id = optionId;
+        options.setAttribute('role', 'listbox');
+        options.hidden = true;
+        ['KOR', 'ENG', 'CHN', 'JPN'].forEach(function (language) {
+          var option = document.createElement('button');
+          option.type = 'button';
+          option.className = 'common-focus common-header__language-option';
+          option.setAttribute('role', 'option');
+          option.textContent = language;
+          option.addEventListener('click', function () {
+            languageButton.querySelector('span').textContent = language;
+            languageButton.setAttribute('aria-label', language + ' 언어 선택, 현재 ' + language);
+            options.hidden = true;
+            wrapper.classList.remove('is-open');
+            languageButton.setAttribute('aria-expanded', 'false');
+          });
+          options.appendChild(option);
+        });
+        languageButton.setAttribute('aria-expanded', 'false');
+        languageButton.setAttribute('aria-controls', optionId);
+        languageButton.parentNode.insertBefore(wrapper, languageButton);
+        wrapper.appendChild(languageButton);
+        wrapper.appendChild(options);
+        languageButton.addEventListener('click', function (event) {
+          event.stopPropagation();
+          header.querySelectorAll('.common-header__language-wrap').forEach(function (otherWrapper) {
+            if (otherWrapper !== wrapper) {
+              otherWrapper.classList.remove('is-open');
+              otherWrapper.querySelector('.common-header__language-options').hidden = true;
+              otherWrapper.querySelector('.common-header__language').setAttribute('aria-expanded', 'false');
+            }
+          });
+          var opening = options.hidden;
+          options.hidden = !opening;
+          wrapper.classList.toggle('is-open', opening);
+          languageButton.setAttribute('aria-expanded', String(opening));
+        });
+      });
+      document.addEventListener('click', function (event) {
+        if (event.target.closest('.common-header__language-wrap')) return;
+        header.querySelectorAll('.common-header__language-wrap').forEach(function (wrapper) {
+          wrapper.classList.remove('is-open');
+          wrapper.querySelector('.common-header__language-options').hidden = true;
+          wrapper.querySelector('.common-header__language').setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    bindLanguageSelectors();
+
     function closeMenu(restoreFocus) {
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-label', '메뉴 열기');
       header.classList.remove('common-header--menu-open');
       document.body.classList.remove('common-header-menu-open');
+      setPageInert(false);
       menu.classList.remove('is-entering');
       menu.classList.add('is-hidden');
       openIcon.classList.remove('is-hidden');
@@ -156,14 +242,21 @@
       button.setAttribute('aria-label', opening ? '메뉴 닫기' : '메뉴 열기');
       header.classList.toggle('common-header--menu-open', opening);
       document.body.classList.toggle('common-header-menu-open', opening);
+      setPageInert(opening);
       menu.classList.toggle('is-hidden', !opening);
       menu.classList.toggle('is-entering', opening);
       openIcon.classList.toggle('is-hidden', opening);
       closeIcon.classList.toggle('is-hidden', !opening);
     });
 
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024 && button.getAttribute('aria-expanded') === 'true') {
+        closeMenu(false);
+      }
+    });
+
     header.addEventListener('click', function (event) {
-      if (event.target.closest('#mobile-menu a')) closeMenu(false);
+      if (event.target.closest('#mobile-menu .common-header__mobile-submenu a')) closeMenu(false);
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') closeMenu(true);
@@ -211,21 +304,6 @@
       });
       link.addEventListener('focus', function () {
         openDropdown(link);
-      });
-    });
-
-    dropdown.querySelectorAll('.site-header-dropdown__link').forEach(function (link) {
-      link.addEventListener('mouseenter', function () {
-        link.classList.add('is-hovered');
-      });
-      link.addEventListener('mouseleave', function () {
-        link.classList.remove('is-hovered');
-      });
-      link.addEventListener('focus', function () {
-        link.classList.add('is-hovered');
-      });
-      link.addEventListener('blur', function () {
-        link.classList.remove('is-hovered');
       });
     });
 
@@ -395,6 +473,32 @@
     sync();
   }
 
+  function bindFooterFamily() {
+    var family = document.querySelector('.common-footer__family-site');
+    if (!family) return;
+    var button = family.querySelector('button[aria-controls]');
+    var panel = document.getElementById(button ? button.getAttribute('aria-controls') : '');
+    if (!button || !panel) return;
+
+    function closePanel(restoreFocus) {
+      button.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+      if (restoreFocus) button.focus();
+    }
+
+    button.addEventListener('click', function () {
+      var opening = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(opening));
+      panel.hidden = !opening;
+    });
+    document.addEventListener('click', function (event) {
+      if (!family.contains(event.target)) closePanel(false);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !panel.hidden) closePanel(true);
+    });
+  }
+
   function initComponents() {
     var header = document.getElementById('site-header');
     if (header) {
@@ -405,6 +509,7 @@
       bindHeaderSearch(header);
       bindScrollState(header);
     }
+    bindFooterFamily();
     document.dispatchEvent(new CustomEvent('common-components:ready'));
   }
 

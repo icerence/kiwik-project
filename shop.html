@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>샵풀무원 | 바른먹거리 장보기</title>
+  <meta name="description" content="풀무원의 인기 상품과 건강한 식생활 상품을 한곳에서 만나보세요." />
+  <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+
+      --color-brand: #7bcc12; /* kiwik_design_system color/lime/500 */
+      --color-brand-dark: #396204; /* kiwik_design_system color/lime/800 */
+      --color-brand-deep: #1f8005; /* Figma 2467:5286, 디자인시스템 근접 lime/800 대치 전 원본 */
+      --color-white: #ffffff; /* kiwik_design_system white */
+      --color-gray-50: #f7f7f8; /* kiwik_design_system color/gray/50 */
+      --color-gray-100: #efeff1; /* kiwik_design_system color/gray/100 */
+      --color-gray-200: #d9dade; /* kiwik_design_system color/gray/200 */
+      --color-gray-400: #9ca1ab; /* kiwik_design_system color/gray/400 */
+      --color-gray-500: #6b7280; /* kiwik_design_system color/gray/500 */
+      --color-gray-700: #40444d; /* kiwik_design_system color/gray/700 */
+      --color-gray-900: #17191d; /* kiwik_design_system color/gray/900 */
+      --color-sale: #db1f1f; /* Figma 2467:5336, 디자인시스템 대응 변수 없음 */
+      --color-hero-pink: #ffd4db; /* Figma 2467:5299, 디자인시스템 대응 변수 없음 */
+      --color-hero-lime: #e5f2b0; /* Figma 2467:5302, 디자인시스템 대응 변수 없음 */
+      --color-hero-yellow: #f5f5b2; /* Figma 2467:5305, 디자인시스템 대응 변수 없음 */
+      --color-orga: #fff7e8; /* Figma 2467:5429, 디자인시스템 대응 변수 없음 */
+
+      --container-shop: 1200px; /* Figma 2467:5284의 608px 축약본을 데스크톱 원비율로 환산 */
+      --spacing-shop-gutter: 24px; /* kiwik_design_system spacing/24 */
+      --spacing-shop-section: 72px; /* kiwik_design_system spacing/72 */
+      --spacing-shop-card-gap: 20px; /* kiwik_design_system spacing/20 */
+      --spacing-shop-thumb: 220px; /* Figma 2467:5334 비례 확장, 대응 sizing 없음 */
+      --spacing-shop-hero: 360px; /* Figma 2467:5299 비례 확장, 대응 sizing 없음 */
+      --spacing-shop-icon: 64px; /* kiwik_design_system sizing/64 */
+      --radius-shop-search: 9999px; /* kiwik_design_system radius/full */
+      --radius-shop-card: 8px; /* kiwik_design_system radius/8 */
+      --shadow-shop-card: 0 10px 30px rgba(0, 0, 0, 0.06); /* Figma node 2467:5333, DS 대응 없음 */
+      --text-shop-hero: clamp(1.5rem, 2.2vw, 2.25rem); /* Figma 2467:5301 반응형 환산 */
+      --text-shop-section: clamp(1.375rem, 2vw, 1.75rem); /* Figma 2467:5338 반응형 환산 */
+    }
+  </style>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; }
+    .shop-shell { width: min(100% - (var(--spacing-shop-gutter) * 2), var(--container-shop)); margin-inline: auto; }
+    .product-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--spacing-shop-card-gap); }
+    .product-card { min-width: 0; }
+    .product-card__image { aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-shop-card); background: var(--color-gray-50); }
+    .product-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+    .product-card:hover .product-card__image img { transform: scale(1.04); }
+    .hero-card img { width: 100%; height: 100%; object-fit: cover; }
+    .category-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .focus-ring:focus-visible { outline: 3px solid var(--color-brand); outline-offset: 3px; }
+    @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 640px) {
+      .shop-shell { width: min(100% - (var(--spacing-shop-gutter) * 2), var(--container-shop)); }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .desktop-only { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+  </style>
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="common/components.css" />
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+</head>
+<body class="bg-white font-sans text-gray-900 antialiased">
+  <a href="#main" class="focus-ring fixed -top-20 left-6 z-50 rounded-shop-card bg-brand px-5 py-3 font-bold focus:top-6">본문 바로가기</a>
+
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+          <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+              <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+              <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+              <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+              <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+              <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+              <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+        <div class="common-header__search-panel-inner">
+          <div class="common-header__search-field">
+            <label for="common-search-input">통합검색</label>
+            <div class="common-header__search-input-wrap">
+              <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요" />
+              <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20" />
+            </div>
+          </div>
+          <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+          <ul id="common-search-results" class="common-header__search-results"></ul>
+        </div>
+      </section>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
+
+  <main id="main">
+    <section id="events" class="shop-shell grid gap-5 py-8 md:grid-cols-3" aria-label="주요 혜택">
+      <a class="hero-card focus-ring relative overflow-hidden rounded-shop-card bg-hero-pink" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener">
+        <img class="aspect-square" src="assets/images/shop/official-03.jpg" alt="풀무원 인기 제품 5주년 할인 혜택" />
+      </a>
+      <a class="hero-card focus-ring relative overflow-hidden rounded-shop-card bg-hero-lime" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener">
+        <img class="aspect-square" src="assets/images/shop/official-04.jpg" alt="풀무원 짜먹는 나또 제품" />
+      </a>
+      <a class="hero-card focus-ring relative overflow-hidden rounded-shop-card bg-hero-yellow" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener">
+        <img class="aspect-square" src="assets/images/shop/official-05.jpg" alt="풀무원 고단백 두부 제품" />
+      </a>
+    </section>
+
+    <section class="shop-shell py-6" aria-label="빠른 카테고리">
+      <ul class="grid grid-cols-4 gap-6 sm:grid-cols-8" id="category-list"></ul>
+    </section>
+
+    <div id="product-sections"></div>
+  </main>
+
+  <!-- common:footer:start -->
+  <footer id="site-footer" class="common-footer">
+    <div class="common-footer__inner">
+      <div class="common-footer__top">
+        <div class="common-footer__company">
+          <img src="assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+          <address>
+            <span>법인명 : (주)풀무원</span>
+            <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+            <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
+          </address>
+        </div>
+
+        <div class="common-footer__links">
+          <nav aria-label="정책 및 안내">
+            <ul class="common-footer__policy-list">
+              <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+            </ul>
+          </nav>
+
+          <div class="common-footer__social">
+            <span>공식계정</span>
+            <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
+            <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+            <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+            <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+            <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="common-footer__bottom">
+        <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+        <div class="common-footer__family">
+          <div class="common-footer__family-site">
+            <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+              계열사/브랜드 사이트
+              <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+            </button>
+            <div id="family-site-panel" class="common-footer__family-panel" hidden>
+              <section aria-labelledby="family-pulmuone-title">
+                <h2 id="family-pulmuone-title">풀무원</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                  <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                  <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                  <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                  <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+                </ul>
+              </section>
+              <section aria-labelledby="family-affiliate-title">
+                <h2 id="family-affiliate-title">계열사</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                  <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                  <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                  <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                  <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+                </ul>
+              </section>
+              <section aria-labelledby="family-brand-title">
+                <h2 id="family-brand-title">브랜드</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                  <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                  <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                  <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                  <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- common:footer:end -->
+
+  <script>
+    const officialImages = [
+      'assets/images/shop/official-03.jpg',
+      'assets/images/shop/official-04.jpg',
+      'assets/images/shop/official-05.jpg',
+      'assets/images/shop/official-11.jpg'
+    ];
+
+    const products = [
+      ['고단백 두부', '25%', '6,980원'], ['짜먹는 나또', '20%', '5,980원'],
+      ['슬림핏 식단면', '30%', '4,980원'], ['생만두', '18%', '7,480원'], ['지구식단 두부면', '22%', '6,480원'],
+      ['국산콩 두부', '15%', '4,280원'], ['건강한 한 끼', '28%', '8,900원'], ['나또 샐러드', '24%', '5,900원'],
+      ['두부 도시락', '19%', '7,900원'], ['식물성 단백질 세트', '32%', '12,900원']
+    ];
+
+    const sectionData = [
+      ['recommend', '고객님만을 위한 이 상품', '취향에 맞춘 풀무원 추천'],
+      ['sale', 'PULMUONE SALE', '놓치기 아까운 오늘의 혜택'],
+      ['easy', '출출할 때 간편하게 딱!', '빠르고 든든한 한 끼'],
+      ['repeat', '인기있는 재구매 추천템', '다시 찾는 데에는 이유가 있어요'],
+      ['orga', '프리미엄 식품관 올가홀푸드', '엄선한 원재료와 믿을 수 있는 먹거리'],
+      ['health', '내 몸을 가볍게! 클린 식단케어', '건강한 일상을 위한 선택'],
+      ['water', '시원하게 수분 충전!', '매일 가볍게 채우는 수분'],
+      ['new', 'NEW, 제일 먼저 만나는 신상품', '새롭게 선보이는 풀무원 제품'],
+      ['brand', '풀무원의 모든 브랜드', '다양한 브랜드를 한곳에서'],
+      ['best', '베스트 상품 추천', '지금 가장 사랑받는 상품']
+    ];
+
+    const categories = ['쿠폰혜택', '#라운지', '일일배송', '전단행사', '산지직송', '지구식단', '헬스케어', '샘물'];
+    document.querySelector('#category-list').innerHTML = categories.map((name, index) => `
+      <li><a class="category-icon focus-ring flex flex-col items-center gap-2 text-center text-xs" href="#${index === 5 ? 'brand' : index === 6 ? 'health' : 'recommend'}">
+        <span class="block size-shop-icon overflow-hidden rounded-full bg-gray-50"><img src="assets/images/shop/official-${String(7 + index).padStart(2, '0')}.${index === 5 ? 'webp' : index === 4 ? 'jpg' : 'png'}" alt="" /></span><span>${name}</span>
+      </a></li>`).join('');
+
+    function productCard(product, index) {
+      return `<article class="product-card group">
+        <a class="focus-ring block" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener">
+          <div class="product-card__image"><img loading="lazy" src="${officialImages[index % officialImages.length]}" alt="${product[0]} 제품 이미지" /></div>
+          <p class="mt-4 line-clamp-2 min-h-12 text-sm leading-6 text-gray-700">${product[0]}</p>
+          <p class="mt-1 flex items-baseline gap-2"><strong class="text-sale">${product[1]}</strong><strong>${product[2]}</strong></p>
+        </a>
+      </article>`;
+    }
+
+    document.querySelector('#product-sections').innerHTML = sectionData.map((section, sectionIndex) => {
+      const sectionProducts = Array.from({ length: sectionIndex > 7 ? 10 : 5 }, (_, index) => products[(index + sectionIndex) % products.length]);
+      const background = section[0] === 'sale' ? 'bg-gray-50' : section[0] === 'orga' ? 'bg-orga' : 'bg-white';
+      return `<section id="${section[0]}" class="${background} py-shop-section">
+        <div class="shop-shell">
+          <div class="mb-8 flex items-end justify-between gap-5">
+            <div><h2 class="text-shop-section font-extrabold">${section[1]}</h2><p class="mt-2 text-sm text-gray-500">${section[2]}</p></div>
+            <a class="focus-ring whitespace-nowrap text-sm text-gray-500" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener">더보기 →</a>
+          </div>
+          <div class="product-grid">${sectionProducts.map((product, index) => productCard(product, index + sectionIndex)).join('')}</div>
+        </div>
+      </section>`;
+    }).join('');
+  </script>
+</body>
+</html>

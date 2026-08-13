@@ -1,17 +1,24 @@
 ---
 name: sync-tokens
-description: 코드에 흩어진 하드코딩을 찾아 index.html의 @theme 토큰으로 정리하고, Figma 변수와 @theme을 맞춘다.
+description: >-
+  코드에 흩어진 하드코딩된 시각 값(색상, 간격, 반지름 등)을 찾아 index.html의 @theme 토큰으로 등록하고 Figma 변수와 동기화할 때 사용한다.
 ---
 
-이 명령은 하드코딩을 찾아 토큰으로 정리하는 작업을 token-guardian 서브 에이전트에 맡깁니다.
+# Sync Tokens 스킬
+
+코드 내 하드코딩 값을 찾아 `@theme` 디자인 토큰으로 정리하고 동기화하는 스킬입니다.
+
+상세 지침은 [token-guardian 가이드](./references/token-guardian.md)를 참조합니다.
 
 ## 절차
 
-1. 사용자에게 검사할 범위(전체 프로젝트인지, 특정 파일·폴더인지)를 확인합니다.
-2. token-guardian 서브 에이전트를 호출해 검사 범위를 전달합니다.
-3. token-guardian가 Scan → Map → Report 3단계로 작업하고 결과를 보고하면, 그 보고를 사용자에게 그대로 전달합니다.
-4. 보고에는 index.html의 @theme에 추가한 토큰과, 코드 파일에 남아 사용자가 바꿔야 할 하드코딩 자리가 담깁니다. 코드 파일의 하드코딩을 바꾸려면 별도로 figma-implementer나 section-builder에게 맡기도록 안내합니다.
+1. **하드코딩 탐색 (Scan)**
+   - `.html`, `.css`, `.js` 파일에서 하드코딩된 색상값(hex, rgb, hsl) 및 임의 수치(px, rem)를 스캔합니다.
+   - 탐색된 값의 위치(파일, 라인 번호)를 기록합니다.
 
-## 주의
+2. **토큰 매핑 (Map)**
+   - `index.html`의 `@theme` 블록과 비교하여 기존 토큰과 매핑하거나 새 토큰 후보(`--color-*`, `--spacing-*`, `--radius-*`)를 정리합니다.
 
-- token-guardian는 index.html의 @theme 블록만 편집합니다. 코드 파일(HTML·JS)의 하드코딩은 직접 고치지 않고 보고만 합니다.
+3. **토큰 등록 및 보고 (Report)**
+   - `index.html`의 `@theme` 블록에 신규 토큰을 추가 등록합니다.
+   - HTML/JS 코드 상에서 교체가 필요한 위치와 토큰명을 정리하여 사용자에게 보고합니다.

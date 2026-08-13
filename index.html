@@ -152,6 +152,15 @@
    (공식 문서: 테마 변수 전체 생성 = @theme static) */
 @theme static {
   --container-mobile: 600px;
+  /* Section 2 모바일 600px 컨테이너에서 가로형 Value 카드 3개를 위아래로 쌓기 위한 압축 토큰 */
+  --spacing-value-card-gap-mobile: 12px; /* 디자인시스템 spacing/12 */
+  --spacing-value-card-padding-mobile: 16px; /* 디자인시스템 spacing/16 */
+  --spacing-value-card-icon-mobile: 52px; /* 모바일 가로형 카드 실측, 디자인시스템 대응 변수 없음 */
+  --spacing-value-card-strategy-icon-mobile: 32px; /* 디자인시스템 sizing/32 */
+  --spacing-value-card-strategy-width-mobile: 128px; /* '파트너십' 한 줄 표기를 위한 모바일 복수 아이콘 영역 실측 */
+  --spacing-value-card-strategy-gap-mobile: 8px; /* 디자인시스템 spacing/8 */
+  --spacing-value-card-min-height-mobile: 152px; /* 모바일 가로형 카드 실측, 디자인시스템 대응 변수 없음 */
+  --text-value-card-copy-mobile: 11px; /* 모바일 가로형 카드 실측, 디자인시스템 대응 변수 없음 */
   /* 디자인시스템 대응 변수 없음 — 1920×1080 실측으로 Value 카드 시각 영역을 축소 */
   --spacing-value-card-visual-lg: 196px;
   --spacing-value-card-strategy-gap-lg: 8px;
@@ -333,7 +342,7 @@
       <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
         <ul class="common-header__nav-list">
           <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
-          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub.html">사회책임경영</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
           <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
@@ -345,18 +354,18 @@
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
             <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
-            <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
+            <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
-            <li><a class="site-header-dropdown__link" href="sub.html">개요</a></li>
-            <li><a class="site-header-dropdown__link" href="sub.html">추진전략</a></li>
-            <li><a class="site-header-dropdown__link" href="sub.html">활동 및 실적</a></li>
-            <li><a class="site-header-dropdown__link" href="sub.html">수상</a></li>
+            <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+            <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+            <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+            <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
@@ -381,7 +390,10 @@
 
       <div class="common-header__actions">
         <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
-          <img src="assets/icons/search.svg" alt="" width="20" height="20" />
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
         </button>
         <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
           <span>KOR</span>
@@ -413,7 +425,7 @@
     <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
       <ul>
         <li><a data-nav-page="index" href="company.html">회사소개</a></li>
-        <li><a data-nav-page="sub" href="sub.html">사회책임경영</a></li>
+        <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
         <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
         <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
         <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
@@ -525,16 +537,16 @@
             <h2 id="s2-title" class="text-section font-black text-white lg:text-gray-800">Eco-Caring이란?</h2>
           </header>
 
-          <ul class="grid grid-cols-3 gap-4 lg:gap-8">
+          <ul class="eco-card-grid grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
             <li class="value-card gap-2 p-3 shadow-card lg:gap-4 lg:p-5">
               <div class="value-card__accent" aria-hidden="true"></div>
-              <div class="flex flex-col gap-4">
+              <div class="value-card__copy flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Net Zero</h3>
                 <p class="text-xs leading-body text-gray-700 lg:text-sm">지구온도 상승을 1.5℃ 이하로 제한하기 위해<br class="hidden lg:block"> 온실가스 배출량 ‘0’을 목표로 꾸준히 나아갑니다.</p>
               </div>
               <div class="value-card__visual flex flex-1 items-center justify-center">
-                <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
+                <span class="value-card__icon flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
                   <img src="assets/icons/factory.svg" alt="" width="88" height="88" class="size-5 lg:size-icon-lg">
                 </span>
               </div>
@@ -542,13 +554,13 @@
 
             <li class="value-card gap-2 p-3 shadow-card lg:gap-4 lg:p-5">
               <div class="value-card__accent" aria-hidden="true"></div>
-              <div class="flex flex-col gap-4">
+              <div class="value-card__copy flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">목표</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">Nature Positive</h3>
                 <p class="text-xs leading-body text-gray-700 lg:text-sm">지속가능한 지구환경을 위해 생물다양성 손실을<br class="hidden lg:block"> 최소화하며 자연 자원을 적극 보전합니다.</p>
               </div>
               <div class="value-card__visual flex flex-1 items-center justify-center">
-                <span class="flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
+                <span class="value-card__icon flex size-10 items-center justify-center rounded-full bg-green-50 lg:size-icon-circle-lg">
                   <img src="assets/icons/leaf.svg" alt="" width="88" height="88" class="size-5 lg:size-icon-lg">
                 </span>
               </div>
@@ -556,7 +568,7 @@
 
             <li class="value-card gap-2 p-3 shadow-card lg:gap-4 lg:p-5">
               <div class="value-card__accent" aria-hidden="true"></div>
-              <div class="flex flex-col gap-4">
+              <div class="value-card__copy flex flex-col gap-4">
                 <p class="badge rounded-sm bg-lime-600 text-white">전략</p>
                 <h3 class="text-sm font-black text-lime-600 lg:text-3xl">추진방향</h3>
                 <p class="value-card__strategy-copy text-xs leading-body text-gray-700 lg:text-sm">지속가능 에너지, 지속가능 수자원, 지속가능 원재료,<br class="hidden lg:block"> 지속가능 파트너십을 통해 실천합니다.</p>
@@ -564,25 +576,25 @@
               <!-- Figma: 모바일 4열 1행 + 짧은 라벨(3007:2547), 데스크톱 2열 2행 + 두 줄 라벨(3004:1385) -->
               <div class="value-card__visual value-card__visual--strategy grid grid-cols-2 gap-4 pt-2">
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                  <span class="value-card__strategy-icon flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
                     <img src="assets/icons/zap.svg" alt="" width="32" height="32" class="size-5 lg:size-8">
                   </span>
                   <span class="whitespace-nowrap text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br></span>에너지</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                  <span class="value-card__strategy-icon flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
                     <img src="assets/icons/globe-mini.svg" alt="" width="32" height="32" class="size-5 lg:size-8">
                   </span>
                   <span class="whitespace-nowrap text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br></span>원재료</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                  <span class="value-card__strategy-icon flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
                     <img src="assets/icons/droplet.svg" alt="" width="32" height="32" class="size-5 lg:size-8">
                   </span>
                   <span class="whitespace-nowrap text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br></span>수자원</span>
                 </span>
                 <span class="flex flex-col items-center gap-1.5">
-                  <span class="flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
+                  <span class="value-card__strategy-icon flex size-12 items-center justify-center rounded-full bg-green-50 lg:size-16">
                     <img src="assets/icons/handshake.svg" alt="" width="32" height="32" class="size-5 lg:size-8">
                   </span>
                   <span class="whitespace-nowrap text-center text-xs font-bold text-lime-600"><span class="hidden lg:inline">지속가능<br></span>파트너십</span>
@@ -611,7 +623,7 @@
             </li>
             <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">20%</p>
-              <p class="text-base font-bold text-white">플라스틱 사용량 감축</p>
+              <p class="text-base font-bold text-white">플라스틱 사용량<br>감소</p>
             </li>
             <li class="stat-block bg-green-950 shadow-card sm:bg-green-900">
               <p class="text-stat font-extrabold text-green-50">20%</p>
@@ -663,13 +675,13 @@
 
           <div class="grid gap-10 lg:grid-media-text">
             <article class="news-featured flex flex-col gap-4 lg:gap-6">
-              <a class="focus-ring block overflow-hidden rounded-2xl" href="#section4">
+              <a class="focus-ring block overflow-hidden rounded-2xl" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3496" target="_blank" rel="noopener noreferrer" aria-label="풀무원 뉴스룸 기사: 풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축 새 창 열림">
                 <img src="assets/images/news-featured.webp" alt="풀무원 넷제로 시스템 검증의견서 수여 현장" class="aspect-featured w-full object-cover" loading="lazy">
               </a>
               <p class="text-xs font-bold text-green-900 lg:text-sm">보도자료 · 2025.03.13</p>
               <div class="news-featured__copy flex flex-col gap-4 lg:gap-6">
                 <h3 class="text-lg font-black text-gray-800 lg:text-3xl">
-                  <a class="focus-ring" href="#section4">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
+                  <a class="focus-ring" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3496" target="_blank" rel="noopener noreferrer">풀무원, 국내 식품업계 최초 ‘넷제로 시스템’ 구축</a>
                 </h3>
                 <p class="text-sm leading-normal text-gray-500 lg:text-base">
                   풀무원이 제품의 탄소 배출량을 산정하는 ‘풀무원 넷제로 시스템’을 개발하고,<br class="hidden lg:block"> LRQA(로이드인증원)로부터 넷제로 시스템 및 제품탄소발자국 검증의견서를 수여받았습니다.
@@ -680,29 +692,35 @@
             <div class="swiper card-swiper" data-swiper="news">
               <ul class="swiper-wrapper">
                 <li class="swiper-slide news-card">
-                  <img src="assets/images/news-small-1.webp" alt="지구식단 두유면 제품 이미지" class="news-card__thumb" loading="lazy">
+                  <a class="focus-ring block shrink-0" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3473" target="_blank" rel="noopener noreferrer" aria-label="풀무원 뉴스룸 기사: 풀무원, ‘지구식단 두유면’ 자체 생산 통해 공급 확대 새 창 열림">
+                    <img src="assets/images/news-small-1.webp" alt="지구식단 두유면 제품 이미지" class="news-card__thumb" loading="lazy">
+                  </a>
                   <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">보도자료 · 2025.02.17</p>
                     <h3 class="text-sm font-bold text-gray-800">
-                      <a class="focus-ring" href="#section4">풀무원, ‘지구식단 두유면’ 자체 생산 통해 공급 확대</a>
+                      <a class="focus-ring" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3473" target="_blank" rel="noopener noreferrer">풀무원, ‘지구식단 두유면’ 자체 생산 통해 공급 확대</a>
                     </h3>
                   </div>
                 </li>
                 <li class="swiper-slide news-card">
-                  <img src="assets/images/news-small-2.webp" alt="유기동물 보호단체에 전달된 사료" class="news-card__thumb" loading="lazy">
+                  <a class="focus-ring block shrink-0" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3485" target="_blank" rel="noopener noreferrer" aria-label="풀무원 뉴스룸 기사: 풀무원, 유기동물 보호단체 3곳에 사료 8톤 기부 새 창 열림">
+                    <img src="assets/images/news-small-2.webp" alt="유기동물 보호단체에 전달된 사료" class="news-card__thumb" loading="lazy">
+                  </a>
                   <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">ESG 소식 · 2025.02.28</p>
                     <h3 class="text-sm font-bold text-gray-800">
-                      <a class="focus-ring" href="#section4">풀무원, 유기동물 보호단체 3곳에 사료 8톤 기부</a>
+                      <a class="focus-ring" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3485" target="_blank" rel="noopener noreferrer">풀무원, 유기동물 보호단체 3곳에 사료 8톤 기부</a>
                     </h3>
                   </div>
                 </li>
                 <li class="swiper-slide news-card">
-                  <img src="assets/images/news-small-3.webp" alt="친환경 케어 전략 선언 현장" class="news-card__thumb" loading="lazy">
+                  <a class="focus-ring block shrink-0" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3132" target="_blank" rel="noopener noreferrer" aria-label="풀무원 뉴스룸 기사: 풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성 새 창 열림">
+                    <img src="assets/images/news-small-3.webp" alt="친환경 케어 전략 선언 현장" class="news-card__thumb" loading="lazy">
+                  </a>
                   <div class="flex min-w-0 flex-col gap-1.5">
                     <p class="text-xs font-bold text-green-900">지속가능경영 · 2024.01.31</p>
                     <h3 class="text-sm font-bold text-gray-800">
-                      <a class="focus-ring" href="#section4">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
+                      <a class="focus-ring" href="https://news.pulmuone.co.kr/pulmuone/newsroom/viewNewsroom.do?id=3132" target="_blank" rel="noopener noreferrer">풀무원, 친환경 케어(Eco-Caring) 전략 선언… 2050년까지 넷 제로 달성</a>
                     </h3>
                   </div>
                 </li>
@@ -717,8 +735,7 @@
 
   <!-- ============================================================
        SECTION 5 — SNS (Figma Section-Social-Media 3004:1318)
-       모바일 시안(Homepage-Mobile 3007:2502)에는 이 섹션이 없어 lg 미만에서 숨긴다.
-       display:none이므로 스크린리더 접근 대상에서도 함께 빠진다.
+       모바일에서는 각 SNS 콘텐츠가 컨테이너 전체 폭을 사용하는 세로 목록으로 배치된다.
        ============================================================ -->
   <section id="section5" class="panel block" aria-labelledby="s5-title">
     <div class="panel__scroll pt-header-mobile lg:pt-header-desktop">
@@ -731,7 +748,7 @@
 
           <div class="flex flex-col gap-6 pb-6">
             <h3 class="text-section font-black text-gray-800">풀무원 인스타그램</h3>
-            <ul class="grid grid-cols-4 gap-4 lg:gap-6">
+            <ul class="social-content-grid grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-6">
               <li>
                 <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
                   <img src="assets/images/social-instagram-1.png" alt="풀무원 인스타그램 게시물 1" class="aspect-instagram w-full object-cover" loading="lazy">
@@ -757,10 +774,10 @@
 
           <div class="flex flex-col gap-6 py-6">
             <h3 class="text-section font-black text-gray-800">풀무원 유튜브</h3>
-            <ul class="grid grid-cols-3 gap-4 lg:gap-6">
+            <ul class="social-content-grid grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
               <li class="relative">
-                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
-                  <img src="assets/images/social-youtube-1.png" alt="풀무원 유튜브 영상 1" class="aspect-video w-full object-cover" loading="lazy">
+                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="https://www.youtube.com/watch?v=Lgg-NYK5IgY" target="_blank" rel="noopener noreferrer" aria-label="풀무원 유튜브 영상: [이아이는요2] EP.4 에이티즈 우영 새 창 열림">
+                  <img src="assets/images/social-youtube-1.png" alt="[이아이는요2] EP.4 에이티즈 우영" class="aspect-video w-full object-cover" loading="lazy">
                   <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
                     <span class="relative flex scale-75 items-center justify-center lg:scale-100">
                       <img src="assets/icons/youtube-badge.svg" alt="" width="72" height="50">
@@ -770,8 +787,8 @@
                 </a>
               </li>
               <li class="relative">
-                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
-                  <img src="assets/images/social-youtube-2.png" alt="풀무원 유튜브 영상 2" class="aspect-video w-full object-cover" loading="lazy">
+                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="https://www.youtube.com/watch?v=R2_V2qL5D3U" target="_blank" rel="noopener noreferrer" aria-label="풀무원 유튜브 영상: 과일보다 찐한 과일, 아임리얼100 고농축 새 창 열림">
+                  <img src="assets/images/social-youtube-2.png" alt="과일보다 찐한 과일, 아임리얼100 고농축" class="aspect-video w-full object-cover" loading="lazy">
                   <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
                     <span class="relative flex scale-75 items-center justify-center lg:scale-100">
                       <img src="assets/icons/youtube-badge.svg" alt="" width="72" height="50">
@@ -781,8 +798,8 @@
                 </a>
               </li>
               <li class="relative">
-                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="#site-footer">
-                  <img src="assets/images/social-youtube-3.png" alt="풀무원 유튜브 영상 3" class="aspect-video w-full object-cover" loading="lazy">
+                <a class="focus-ring block overflow-hidden rounded-xl border border-gray-200" href="https://www.youtube.com/watch?v=gT8o-sT_K0o" target="_blank" rel="noopener noreferrer" aria-label="풀무원 유튜브 영상: 풀무원 지속가능식생활 조리학교 소개 새 창 열림">
+                  <img src="assets/images/social-youtube-3.png" alt="풀무원 지속가능식생활 조리학교 소개" class="aspect-video w-full object-cover" loading="lazy">
                   <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
                     <span class="relative flex scale-75 items-center justify-center lg:scale-100">
                       <img src="assets/icons/youtube-badge.svg" alt="" width="72" height="50">
@@ -831,11 +848,11 @@
 
         <div class="common-footer__social">
           <span>공식계정</span>
-          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" loading="lazy" /></a>
-          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
-          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
-          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
-          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" loading="lazy" /></a>
+          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
+          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
         </div>
       </div>
     </div>
@@ -845,10 +862,50 @@
     <div class="common-footer__bottom">
       <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
       <div class="common-footer__family">
-        <button type="button" class="common-focus" aria-haspopup="listbox" aria-expanded="false">
-          계열사/브랜드 사이트
-          <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
-        </button>
+        <div class="common-footer__family-site">
+          <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+            계열사/브랜드 사이트
+            <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+          </button>
+          <div id="family-site-panel" class="common-footer__family-panel" hidden>
+            <section aria-labelledby="family-pulmuone-title">
+              <h2 id="family-pulmuone-title">풀무원</h2>
+              <ul>
+                <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-affiliate-title">
+              <h2 id="family-affiliate-title">계열사</h2>
+              <ul>
+                <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-brand-title">
+              <h2 id="family-brand-title">브랜드</h2>
+              <ul>
+                <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
         <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
       </div>
     </div>

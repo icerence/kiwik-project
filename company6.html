@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기업지배구조 | 풀무원</title>
+  <meta name="description" content="선진형 지배구조 구축을 위한 풀무원의 기업지배구조와 ESG 평가 등급을 소개합니다." />
+  <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="common/components.css" />
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+  <style type="text/tailwindcss">
+    @theme {
+      /* Figma 2400:9658 · 기업지배구조 */
+      --font-sans:"NanumSquare Neo","NanumSquare Neo Variable",system-ui,sans-serif;
+      --color-governance-white:#ffffff;
+      --color-governance-ink:#030712;
+      --color-governance-brand:#7bcc12;
+      --color-governance-brand-strong:#60a10c;
+      --color-governance-line:#d9dade;
+      --color-governance-muted:#9ca3af;
+      --spacing-governance-header-mobile:4.0625rem;
+      --spacing-governance-header-desktop:9.6875rem;
+      --spacing-governance-edge:0.5rem;
+      --spacing-governance-section:3rem;
+      --spacing-governance-section-lg:4.5rem;
+      --spacing-governance-gap:1.5rem;
+      --container-governance:74rem;
+      --size-governance-hero:22.5rem;
+      --size-governance-tab:3.25rem;
+      --size-governance-button:2.625rem;
+      --size-governance-table-row:3.375rem;
+      --border-governance:0.0625rem;
+      --text-governance-page:1.75rem;
+      --text-governance-hero:1.75rem;
+      --text-governance-section:1.25rem;
+      --text-governance-tab:0.875rem;
+      --text-governance-table:0.75rem;
+      --text-governance-esg:0.8125rem;
+      --text-governance-note:0.6875rem;
+      --leading-governance-page:2.75rem;
+      --leading-governance-body:1.5;
+      --font-weight-governance-bold:700;
+    }
+    .governance-page{padding-top:var(--spacing-governance-header-mobile);overflow:hidden;background:var(--color-governance-white);color:var(--color-governance-ink)}
+    .governance-hero{width:100%;height:var(--size-governance-hero);object-fit:cover}
+    .governance-shell{max-width:var(--container-governance);margin-inline:auto;padding-inline:var(--spacing-governance-edge)}
+    .governance-title{display:flex;align-items:center;gap:calc(var(--spacing)*6);min-height:calc(var(--spacing)*22.5)}
+    .governance-title h1{flex:none;font-size:var(--text-governance-page);font-weight:var(--font-weight-governance-bold);line-height:var(--leading-governance-page)}
+    .governance-title span{height:var(--border-governance);flex:1;background:var(--color-governance-line)}
+    .governance-intro{padding-block:calc(var(--spacing)*7.5) calc(var(--spacing)*22);text-align:center}
+    .governance-intro h2{font-size:var(--text-governance-hero);font-weight:var(--font-weight-governance-bold);line-height:var(--leading-governance-page)}
+    .governance-accent{color:var(--color-governance-brand)}
+    .governance-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));height:var(--size-governance-tab);margin-top:calc(var(--spacing)*12);border:var(--border-governance) solid var(--color-governance-line)}
+    .governance-tabs a{display:grid;place-items:center;border-left:var(--border-governance) solid var(--color-governance-line);font-size:var(--text-governance-tab);font-weight:var(--font-weight-governance-bold)}
+    .governance-tabs a:first-child{border-left:0;background:var(--color-governance-brand);color:var(--color-governance-white)}
+    .governance-section{padding-block:var(--spacing-governance-section)}
+    .governance-section--ratings{padding-block:var(--spacing-governance-section) var(--spacing-governance-section-lg)}
+    .governance-section h2{text-align:center;font-size:var(--text-governance-section);font-weight:var(--font-weight-governance-bold);line-height:var(--leading-governance-body)}
+    .governance-actions{display:flex;justify-content:flex-end;margin-block:var(--spacing-governance-gap)}
+    .governance-download{display:flex;height:var(--size-governance-button);align-items:center;gap:calc(var(--spacing)*2);padding-inline:calc(var(--spacing)*3.5);border:var(--border-governance) solid var(--color-governance-line);font-size:var(--text-governance-table)}
+    .governance-table-wrap{width:100%;overflow-x:auto}
+    .governance-table{width:100%;min-width:var(--container-governance);border-collapse:collapse;table-layout:fixed;font-size:var(--text-governance-table)}
+    .governance-table th,.governance-table td{height:var(--size-governance-table-row);padding-inline:calc(var(--spacing)*4.5);border:var(--border-governance) solid var(--color-governance-line);vertical-align:middle}
+    .governance-table th{background:var(--color-governance-brand);color:var(--color-governance-white);font-size:var(--text-governance-tab);font-weight:var(--font-weight-governance-bold)}
+    .governance-table th:first-child,.governance-table td:first-child{width:52%;text-align:left}
+    .governance-table th:nth-child(2),.governance-table td:nth-child(2){width:14%;text-align:center}
+    .governance-table th:nth-child(3),.governance-table td:nth-child(3){width:34%;text-align:center}
+    .governance-description{max-width:calc(var(--container-governance) - calc(var(--spacing)*26));margin:calc(var(--spacing)*4) auto;font-size:var(--text-governance-tab);line-height:var(--leading-governance-body)}
+    .governance-esg th:first-child,.governance-esg td:first-child{width:14%;text-align:center}
+    .governance-esg th:not(:first-child),.governance-esg td:not(:first-child){width:auto;text-align:center}
+    .governance-esg td{font-size:var(--text-governance-esg)}
+    .governance-notes{display:grid;gap:calc(var(--spacing)*2);padding:calc(var(--spacing)*4) calc(var(--spacing)*2) calc(var(--spacing)*16);color:var(--color-governance-muted);font-size:var(--text-governance-note);line-height:var(--leading-governance-body)}
+    @media(min-width:64rem){.governance-page{padding-top:var(--spacing-governance-header-desktop)}}
+    @media(max-width:63.999rem){
+      .governance-hero{height:auto;min-height:calc(var(--spacing)*48)}
+      .governance-title{min-height:calc(var(--spacing)*18)}
+      .governance-title h1{font-size:var(--text-governance-section)}
+      .governance-intro{padding-block:calc(var(--spacing)*6) calc(var(--spacing)*10)}
+      .governance-intro h2{font-size:var(--text-governance-section)}
+      .governance-tabs{grid-template-columns:repeat(2,minmax(0,1fr));height:auto;margin-top:calc(var(--spacing)*8)}
+      .governance-tabs a{min-height:var(--size-governance-tab);border-bottom:var(--border-governance) solid var(--color-governance-line)}
+      .governance-section{padding-block:calc(var(--spacing)*9)}
+      .governance-description{padding-inline:calc(var(--spacing)*4)}
+      .governance-notes{padding-bottom:calc(var(--spacing)*10)}
+    }
+  </style>
+</head>
+<body class="font-sans antialiased" data-page="company6">
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+          <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+              <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+              <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+              <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+              <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+              <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+              <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+        <div class="common-header__search-panel-inner">
+          <div class="common-header__search-field">
+            <label for="common-search-input">통합검색</label>
+            <div class="common-header__search-input-wrap">
+              <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요" />
+              <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20" />
+            </div>
+          </div>
+          <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+          <ul id="common-search-results" class="common-header__search-results"></ul>
+        </div>
+      </section>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
+
+  <main id="main-content" class="governance-page">
+    <img class="governance-hero" src="assets/images/governance-hero.png" alt="흰색 말과 검은색 말이 균형 있게 배치된 체스판" width="1200" height="360" />
+    <div class="governance-shell">
+      <div class="governance-title"><h1>기업지배구조</h1><span aria-hidden="true"></span></div>
+      <section class="governance-intro" aria-labelledby="governance-intro-title">
+        <h2 id="governance-intro-title">풀무원은 이사회와 경영진 간에 <span class="governance-accent">견제와 균형을 이루는</span><br /><span class="governance-accent">‘선진형 지배구조 구축’을 위해</span> 지속적으로 노력하고<br />있습니다.</h2>
+        <nav class="governance-tabs" aria-label="기업지배구조 세부 메뉴">
+          <a href="#general" aria-current="page">일반</a><a href="#board-composition">이사회 구성</a><a href="#board-operation">이사회 운영</a><a href="#board-committee">이사회 내 위원회</a><a href="#audit-committee">감사위원회</a><a href="#resources">자료실</a>
+        </nav>
+      </section>
+      <section id="general" class="governance-section" aria-labelledby="difference-title">
+        <h2 id="difference-title">기업지배구조 모범규준과의 차이</h2>
+        <div class="governance-actions"><button class="governance-download" type="button">풀무원 정관 <span aria-hidden="true">↓</span></button></div>
+        <div class="governance-table-wrap">
+          <table class="governance-table">
+            <thead><tr><th scope="col">모범규준 권고사항</th><th scope="col">도입 여부</th><th scope="col">비고</th></tr></thead>
+            <tbody>
+              <tr><td>기업지배구조 헌장 도입</td><td>도입</td><td>-</td></tr>
+              <tr><td>임직원 윤리규정 도입</td><td>도입</td><td>-</td></tr>
+              <tr><td>집중투표제 채택 및 채택 여부 공시</td><td>미도입</td><td>-</td></tr>
+              <tr><td>이사회 구성의 과반수 독립이사 여부 공시</td><td>도입</td><td>총 10인 중 7인 (70%) 독립이사</td></tr>
+              <tr><td>대표이사와 이사회 의장의 분리 또는 선임 독립이사의 선임</td><td>도입</td><td>-</td></tr>
+              <tr><td>이사회 활동 내역, 출석률 및 주요 안건에 대한 찬반 여부 공시</td><td>도입</td><td>-</td></tr>
+              <tr><td>이사후보 추천 위원회 구성</td><td>도입</td><td>독립이사 4인</td></tr>
+              <tr><td>보상위원회 구성</td><td>도입</td><td>독립이사 4인</td></tr>
+              <tr><td>감사위원회 전원 독립이사 구성 여부 공시</td><td>도입</td><td>-</td></tr>
+              <tr><td>이사회 및 각종 위원회 역할과 운영 절차에 관한 규정 도입</td><td>도입</td><td>-</td></tr>
+              <tr><td>회사의 비용으로 이사의 손해배상 책임보험 가입</td><td>도입</td><td>-</td></tr>
+              <tr><td>이사회 활동 내용 평가</td><td>도입</td><td>-</td></tr>
+              <tr><td>외부감사의 독립성 유지</td><td>도입</td><td>-</td></tr>
+              <tr><td>대표이사 및 재무담당 책임자의 재무보고에 대한 정확과 완전성 인증</td><td>도입</td><td>-</td></tr>
+              <tr><td>모범규준과의 차이 설명</td><td>도입</td><td>-</td></tr>
+              <tr><td>감사보고서 및 중요 수시공시 사항의 한글 및 영문 공시</td><td>도입</td><td>-</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="governance-section governance-section--ratings" aria-labelledby="ratings-title">
+        <h2 id="ratings-title">ESG(환경, 사회, 지배구조) 평가 등급</h2>
+        <p class="governance-description">한국 ESG기준원(KCGS)이 매년 실시하는 ESG 평가에서 풀무원은 2017년 ESG 통합 A+ 등급을 최초 획득한 이래 국내 식품기업 중 유일하게 5년 연속 A+ 등급을 획득하였습니다.</p>
+        <div class="governance-table-wrap">
+          <table class="governance-table governance-esg">
+            <thead><tr><th scope="col">구분</th><th scope="col">2025</th><th scope="col">2024</th><th scope="col">2023</th><th scope="col">2022</th><th scope="col">2021</th></tr></thead>
+            <tbody>
+              <tr><td>ESG 통합등급</td><td>A+</td><td>A</td><td>A</td><td>A</td><td>A+</td></tr>
+              <tr><td>환경(E) 등급</td><td>A</td><td>A</td><td>A</td><td>B+</td><td>A</td></tr>
+              <tr><td>사회(S) 등급</td><td>A+</td><td>A+</td><td>A+</td><td>A+</td><td>A+</td></tr>
+              <tr><td>지배구조(G) 등급</td><td>A+</td><td>A</td><td>A</td><td>A</td><td>A+</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <div class="governance-notes">
+        <p>* 평가기관: 한국ESG기준원(Korea Institute of Corporate Governance and Sustainability, KCGS)</p>
+        <p>* ESG 평가: ESG 등급은 자본시장 참여자들이 상장회사의 ESG와 관련한 발생가능한 Risk 수준을 보다 직관적으로 파악하게 하고, 투자 의사결정에 활용할 수 있도록 지원하기 위한 목적으로 매년 평가를 실시하여 발표</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- common:footer:start -->
+  <footer id="site-footer" class="common-footer">
+    <div class="common-footer__inner">
+      <div class="common-footer__top">
+        <div class="common-footer__company">
+          <img src="assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+          <address>
+            <span>법인명 : (주)풀무원</span>
+            <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+            <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
+          </address>
+        </div>
+
+        <div class="common-footer__links">
+          <nav aria-label="정책 및 안내">
+            <ul class="common-footer__policy-list">
+              <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+              <li aria-hidden="true" class="common-footer__divider">|</li>
+              <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+            </ul>
+          </nav>
+
+          <div class="common-footer__social">
+            <span>공식계정</span>
+            <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
+            <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+            <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+            <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+            <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="common-footer__bottom">
+        <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+        <div class="common-footer__family">
+          <div class="common-footer__family-site">
+            <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+              계열사/브랜드 사이트
+              <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+            </button>
+            <div id="family-site-panel" class="common-footer__family-panel" hidden>
+              <section aria-labelledby="family-pulmuone-title">
+                <h2 id="family-pulmuone-title">풀무원</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                  <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                  <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                  <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                  <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+                </ul>
+              </section>
+              <section aria-labelledby="family-affiliate-title">
+                <h2 id="family-affiliate-title">계열사</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                  <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                  <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                  <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                  <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+                </ul>
+              </section>
+              <section aria-labelledby="family-brand-title">
+                <h2 id="family-brand-title">브랜드</h2>
+                <ul>
+                  <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                  <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                  <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                  <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                  <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                  <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- common:footer:end -->
+</body>
+</html>
