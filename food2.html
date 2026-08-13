@@ -192,7 +192,7 @@
         </nav>
 
         <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
-          <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+          <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
             <ul class="site-header-dropdown__list">
               <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
               <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
@@ -286,7 +286,7 @@
 
         <!-- ===== Hero ===== -->
         <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-80 w-full flex-col items-center justify-center overflow-hidden bg-black px-6 py-10 sm:px-10 lg:py-20">
-          <img src="assets/images/food2-hero.png" alt="" class="absolute inset-0 size-full object-cover" fetchpriority="high" />
+          <img src="assets/images/food2-hero.webp" alt="" class="absolute inset-0 size-full object-cover" fetchpriority="high" />
           <div class="absolute inset-0 bg-black/35" aria-hidden="true"></div>
           <div class="relative z-10 mx-auto flex w-full max-w-food flex-col items-center gap-2 text-center">
             <h1 id="hero-heading" class="hero-fade text-food-hero font-extrabold text-white">지속가능식품</h1>
@@ -564,17 +564,22 @@
       });
     });
 
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuBtn = document.getElementById('menu-btn');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
         if (href && href.length > 1 && document.querySelector(href)) {
           e.preventDefault();
           smoother.scrollTo(href, true, 'top top');
-          if (!mobileMenu.classList.contains('hidden')) {
+          if (mobileMenu && !mobileMenu.classList.contains('is-hidden')) {
             menuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.add('hidden');
-            menuIconOpen.classList.remove('hidden');
-            menuIconClose.classList.add('hidden');
+            mobileMenu.classList.add('is-hidden');
+            menuIconOpen.classList.remove('is-hidden');
+            menuIconClose.classList.add('is-hidden');
           }
         }
       });
