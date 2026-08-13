@@ -273,7 +273,7 @@
 </footer>
 <!-- common:footer:end -->
 <script>
-const capitals=[['building.svg','재무자본','매출 및 이익 성장을 위한 투입비용, 안정적, 효율적 자금 운영'],['wrench.svg','제조자본','안전한 제조시설 투자, 물류인프라 확충으로 부가가치 향상'],['lightbulb.svg','지적자본','R&D 신규시장 탐색을 위한 연구개발비 등 투자'],['users.svg','인적자본','직원 교육훈련비 등 인적자본 개발비, 인건비, 복리후생'],['handshake.svg','사회관계자본','활발한 네트워크와 파트너십 관계를 통한 상생 발전 인프라 구축'],['leaf.svg','자연자본','에너지, 수자원, 원자재의 친환경적 사용, 자원순환 노력']];
+const capitals=[['building.svg','재무자본','매출 및 이익 성장을 위한 투입비용, 안정적, 효율적 자금 운영'],['wrench.svg','제조자본','안전한 제조시설 투자, 물류인프라 확충으로 부가가치 향상'],['lightbulb.svg','지적자본','R&D 신규시장 탐색을 위한 연구개발비 등 투자'],['users.svg','인적자본','직원 교육훈련비 등 인적자본 개발비, 인건비, 복리후생'],['handshake.svg','사회관계자본','활발한 네트워크와 파트너십 관계를 통한 상생 발전 인프라 구축'],['leaf-ico.svg','자연자본','에너지, 수자원, 원자재의 친환경적 사용, 자원순환 노력']];
 document.querySelector('#capital-grid').innerHTML=capitals.map(x=>`<div class="card"><span class="ico"><img src="assets/icons/${x[0]}" alt=""></span><div><b>${x[1]}</b><small>${x[2]}</small></div></div>`).join('');
 const nodes=[['연구 개발 (R&D)','독자적인 기술과 건강한 가치 연구개발'],['물류','신속하고 정확한 고품질 콜드체인 시스템'],['환경 및 사회','환경영향 최소화 및 활발한 사회공헌'],['구매','공정하고 윤리적인 동반 상생 생태계'],['마케팅','고객 관점 마케팅으로 브랜드 선호 극대화'],['판매','온오프라인 채널의 최적화된 유통망 운영'],['고객 서비스','소비자 권익보호 및 소통 채널 강화'],['생산','품질 및 위생 안전 최우선 원칙 고수']];
 document.querySelector('#orbit').innerHTML='<div class="node core"><b>Pulmuone</b><span>Value Creation</span></div>'+nodes.map((x,i)=>`<div class="node n${i+1}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
