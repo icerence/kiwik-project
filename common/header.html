@@ -1,78 +1,120 @@
-<header class="w-full border-b border-gray-200 bg-white">
-        <div class="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between px-4 sm:px-6">
-          <a href="#sec-hero" class="flex h-9 items-center gap-1.5 rounded border border-gray-400 px-2" aria-label="풀무원 홈으로 이동">
-            <svg class="h-[18px] w-[18px] text-brand" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M16 4C9 4 4 9 4 16c8 0 12-4 12-12Z" />
-              <path d="M5.2 15.4 15 5.6" stroke="white" stroke-width="1" stroke-linecap="round" />
-            </svg>
-            <span class="text-sm font-bold text-brand">풀무원</span>
-          </a>
+<header id="site-header" class="common-header">
+  <div class="common-header__inner">
+    <div id="utility-bar" class="common-header__utility">
+      <a class="common-header__utility-link" href="index.html#section2">
+        <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20"></span>
+        <span>지속가능경영보고서</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#section4">
+        <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20"></span>
+        <span>인재채용</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#site-footer">
+        <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20"></span>
+        <span>고객기쁨센터</span>
+      </a>
+      <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+        <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
+        <span>#풀무원</span>
+      </a>
+    </div>
 
-          <nav aria-label="주요 메뉴" class="hidden md:block">
-            <ul class="flex gap-6 text-sm text-gray-600">
-              <li><a class="nav-link py-2" href="#sec-hero">회사소개</a></li>
-              <li><a class="nav-link py-2" href="#sec-footprint">사회책임경영</a></li>
-              <li><a class="nav-link py-2" href="#sec-ecocaring">바른먹거리</a></li>
-              <li><a class="nav-link py-2" href="#sec-earthdiet-products">지구식단</a></li>
-              <li><a class="nav-link py-2" href="#sec-newsroom">뉴스룸</a></li>
-            </ul>
-          </nav>
+    <div class="common-header__main">
+      <a href="index.html" class="common-focus common-header__logo-link">
+        <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
+      </a>
 
-          <div class="flex items-center gap-2 sm:gap-4">
-            <div class="relative hidden sm:block">
-              <button id="search-btn" type="button" aria-expanded="false" aria-controls="search-panel"
-                class="flex items-center gap-2 rounded-lg border border-gray-400 px-3 py-2 text-sm text-gray-600 transition hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">
-                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-                  <circle cx="9" cy="9" r="6" />
-                  <path d="m17 17-4-4" stroke-linecap="round" />
-                </svg>
-                검색
-              </button>
-              <div id="search-panel" class="hidden absolute right-0 top-[calc(100%+8px)] w-72 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
-                <label for="search-input" class="sr-only">검색어 입력</label>
-                <input id="search-input" type="search" placeholder="궁금한 내용을 검색해보세요"
-                  class="w-full rounded-lg border border-gray-400 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30" />
-              </div>
-            </div>
+      <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+        <ul class="common-header__nav-list">
+          <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </nav>
 
-            <div class="relative">
-              <button id="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false"
-                class="flex items-center gap-1 rounded-2xl bg-gray-100 px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" />
-                </svg>
-                <span>KOR</span>
-                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.2 7.2a.9.9 0 0 1 1.27 0L10 10.72l3.53-3.52a.9.9 0 1 1 1.27 1.27l-4.16 4.17a.9.9 0 0 1-1.28 0L5.2 8.47a.9.9 0 0 1 0-1.27Z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <ul id="lang-menu" role="listbox" aria-label="언어 선택"
-                class="hidden absolute right-0 top-[calc(100%+8px)] w-28 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 text-sm shadow-lg">
-                <li role="option" aria-selected="true"><button type="button" class="block w-full px-3 py-2 text-left font-bold text-gray-900 hover:bg-gray-50">한국어</button></li>
-                <li role="option" aria-selected="false"><button type="button" class="block w-full px-3 py-2 text-left text-gray-500 hover:bg-gray-50">English</button></li>
-              </ul>
-            </div>
-
-            <button id="menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu"
-              class="rounded-lg border border-gray-400 p-2 text-gray-600 md:hidden">
-              <svg id="menu-icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              </svg>
-              <svg id="menu-icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                <path d="M6 6l12 12M18 6 6 18" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden border-t border-gray-200 bg-white px-4 py-4 md:hidden">
-          <ul class="flex flex-col gap-1 text-sm text-gray-700">
-            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-hero">회사소개</a></li>
-            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-footprint">사회책임경영</a></li>
-            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-ecocaring">바른먹거리</a></li>
-            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-earthdiet-products">지구식단</a></li>
-            <li><a class="block rounded-lg px-2 py-2.5 hover:bg-gray-50" href="#sec-newsroom">뉴스룸</a></li>
+      <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+        <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+            <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+            <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+            <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+            <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+            <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+            <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+            <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+            <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+            <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+            <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
           </ul>
         </div>
-      </header>
+      </div>
+
+      <div class="common-header__actions">
+        <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+          <span>KOR</span>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+          </svg>
+        </button>
+        <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+          <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+      <div class="common-header__search-panel-inner">
+        <div class="common-header__search-field">
+          <label for="common-search-input">통합검색</label>
+          <div class="common-header__search-input-wrap">
+            <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+            <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
+          </div>
+        </div>
+        <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+        <ul id="common-search-results" class="common-header__search-results"></ul>
+      </div>
+    </section>
+
+    <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+      <ul>
+        <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+        <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+        <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+        <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+        <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+      </ul>
+    </div>
+  </div>
+</header>

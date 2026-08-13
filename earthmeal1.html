@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지구로그 | 풀무원</title>
+  <meta name="description" content="지속가능한 미래를 위한 풀무원의 이야기와 캠페인, 추천 콘텐츠를 소개합니다.">
+  <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+      --color-white: #ffffff; /* color/white */
+      --color-lime-50: #f6fce9; /* color/lime/50 */
+      --color-lime-100: #edf8d5; /* color/lime/100 */
+      --color-lime-500: #7bcc12; /* color/lime/500 */
+      --color-lime-600: #65a80f; /* color/primary/600 */
+      --color-lime-950: #1b3107; /* color/primary/950 */
+      --color-gray-50: #f7f7f8; /* color/gray/50 */
+      --color-gray-100: #efeff1; /* color/gray/100 */
+      --color-gray-200: #d9dade; /* color/gray/200 */
+      --color-gray-400: #9ca3af; /* text/text-grey-out */
+      --color-gray-600: #4b5563; /* text/text-secondary */
+      --color-gray-800: #31343b; /* color/text/primary */
+      --color-gray-950: #030712; /* text/text-primary */
+      --radius-lg: 8px; /* radius/lg */
+      --radius-xl: 12px; /* radius/xl */
+      --radius-2xl: 16px; /* radius/2xl */
+      --container-earthlog: 1200px; /* Figma node 2100:3014 */
+      --container-content: 1200px; /* 요청 기준 콘텐츠 폭 */
+      --spacing-section: 80px; /* spacing/20 */
+      --spacing-section-mobile: 48px; /* responsive substitution */
+      --spacing-card-image: 160px; /* Figma content cards */
+      --spacing-card-image-lg: 220px; /* Figma campaign cards */
+      --spacing-card-image-rec: 180px; /* Figma recommend cards */
+      --text-page-title: 36px; /* Figma page title */
+      --text-section-title: 30px; /* Figma section heading */
+      --leading-page-title: 48px;
+      --leading-section-title: 40px;
+      --shadow-card: 0 1px 2px rgb(3 7 18 / 0.05); /* card elevation */
+    }
+
+    html { scroll-behavior: smooth; }
+    #smooth-wrapper { overflow: hidden; }
+    body { margin: 0; }
+    .earthlog-shell { width: 100%; overflow: hidden; }
+    .earthlog-inner { width: min(100% - 2rem, var(--container-content)); margin-inline: auto; }
+    .section-space { padding-block: var(--spacing-section); }
+    .page-title { font-size: var(--text-page-title); line-height: var(--leading-page-title); }
+    .section-title { font-size: var(--text-section-title); line-height: var(--leading-section-title); }
+    .card-image { height: var(--spacing-card-image); }
+    .campaign-image { height: var(--spacing-card-image-lg); }
+    .recommend-image { height: var(--spacing-card-image-rec); }
+    .earth-card { box-shadow: var(--shadow-card); }
+    .skip-link { position: fixed; inset-inline-start: 1rem; inset-block-start: -5rem; z-index: 100; padding: .75rem 1rem; background: var(--color-gray-950); color: var(--color-white); }
+    .skip-link:focus { inset-block-start: 1rem; }
+    @media (max-width: 640px) {
+      .earthlog-inner { width: min(calc(100% - 40px), 600px); }
+      .earthlog-card-rail { grid-auto-columns: var(--spacing-card-image); grid-auto-flow: column; grid-template-columns: none !important; overflow-x: auto; scroll-snap-type: x mandatory; }
+      .earthlog-card-rail > * { scroll-snap-align: start; }
+      .earthlog-card-rail .card-image { height: calc(var(--spacing-card-image) / 2); }
+      .earthlog-card-rail article > :last-child { padding: var(--radius-xl); }
+      .earthlog-card-rail .absolute { padding-block: calc(var(--radius-lg) / 2); padding-inline: var(--radius-lg); }
+      .earthlog-card-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .earthlog-card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .earthlog-card-grid--three .card-image,
+      .earthlog-card-grid--three .recommend-image,
+      .earthlog-card-grid--two .campaign-image { height: auto; }
+      .earthlog-card-grid--three article > :last-child,
+      .earthlog-card-grid--two article > :last-child { padding: var(--radius-xl); }
+      .earthlog-card-grid--three .absolute,
+      .earthlog-card-grid--two .absolute { padding-block: calc(var(--radius-lg) / 2); padding-inline: var(--radius-lg); }
+      .earthlog-leader-grid > article { display: flex; flex-direction: column; }
+      .earthlog-leader-grid > article > div { display: flex; flex: 1; flex-direction: column; }
+      .earthlog-leader-grid span { align-self: flex-start; padding-block: calc(var(--radius-lg) / 2); padding-inline: var(--radius-lg); }
+      .earthlog-leader-grid h3 { min-height: calc(var(--radius-2xl) * 2); }
+      .earthlog-leader-grid p { margin-bottom: var(--radius-2xl) !important; }
+      .earthlog-leader-grid a { font-size: var(--radius-xl) !important; margin-top: auto !important; }
+      .earthlog-shell main article h3 { font-size: calc(var(--radius-2xl) - (var(--radius-lg) / 4)) !important; line-height: var(--radius-2xl) !important; }
+      .earthlog-shell main article p { font-size: var(--radius-xl) !important; line-height: var(--radius-2xl) !important; }
+      .section-space { padding-block: var(--spacing-section-mobile); }
+      .page-title { font-size: 2rem; line-height: 1.25; }
+      .section-title { font-size: 1.5rem; line-height: 1.35; }
+    }
+  </style>
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="common/components.css">
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+</head>
+<body class="bg-white font-sans text-gray-950 antialiased" data-common-header-offset>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20"></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20"></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20"></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+          <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+              <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+              <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+              <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+              <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+              <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+              <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+        <div class="common-header__search-panel-inner">
+          <div class="common-header__search-field">
+            <label for="common-search-input">통합검색</label>
+            <div class="common-header__search-input-wrap">
+              <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+              <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
+            </div>
+          </div>
+          <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+          <ul id="common-search-results" class="common-header__search-results"></ul>
+        </div>
+      </section>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content" class="earthlog-shell bg-white">
+
+    <main id="main">
+      <section class="earthlog-inner section-space" aria-labelledby="earthlog-title">
+        <div class="mb-10"><p class="mb-2 text-sm font-bold text-lime-600">Earth Log</p><h1 id="earthlog-title" class="page-title font-extrabold text-lime-600">지구로그</h1><h2 class="mt-4 text-2xl font-extrabold text-gray-950">지구로그 소개</h2><p class="mt-4 text-base leading-7 text-gray-600">풀무원의 지속가능한 경영과 식생활 혁신을 이어가는 다양한 이야기를 소개합니다. 환경과 사람을 생각하는 작은 실천이 더 나은 내일을 만듭니다.</p></div>
+        <div class="earthlog-card-grid--three grid gap-6 md:grid-cols-3">
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-1.png" alt="두부와 신선한 채소" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">바른먹거리</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">Non-GMO 인증</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 국내 최초로 Non-GMO 선언을 하고 유전자 재조합 식품을 사용하지 않습니다.</p></div></article>
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-2.png" alt="동물복지 인증 농장" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">동물복지</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">동물복지 달걀</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 동물복지 인증 달걀만을 사용하여 윤리적 식품 생산을 실천합니다.</p></div></article>
+          <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/intro-3.png" alt="RE100 친환경 생산 시설" width="360" height="180"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">탄소중립</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">RE100 참여</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원은 2050 탄소중립 목표를 선언하고 RE100에 가입하여 재생에너지 전환을 추진합니다.</p></div></article>
+        </div>
+      </section>
+
+      <section class="section-space bg-lime-100" aria-labelledby="leader-title"><div class="earthlog-inner"><p class="mb-2 text-sm font-bold text-lime-600">블로그 후기</p><h2 id="leader-title" class="section-title font-extrabold">지구식단, 리얼 후기를 만나보세요</h2><p class="mt-3 text-base text-gray-600">직접 경험한 지구식단의 맛있는 이야기와 일상을 확인해 보세요.</p><div class="earthlog-card-grid--three earthlog-leader-grid mt-10 grid gap-6 md:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/leader-1.png" alt="두부면 요리" width="360" height="160" loading="lazy" decoding="async"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">솔직 후기</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">풀무원 지구식단 솔직 후기</h3><p class="mt-2 text-sm leading-6 text-gray-600">건강한 한 끼를 간편하게, 색감도 맛도 만족스러운 지구식단의 솔직한 체험기.</p><a class="common-focus mt-3 inline-flex text-sm font-bold text-lime-600" href="#content">후기 보러 가기 →</a></div></article>
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/leader-2.png" alt="다양한 지구식단 제품" width="360" height="160" loading="lazy" decoding="async"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">체험 후기</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">지구식단 2주 체험 다이어트 후기</h3><p class="mt-2 text-sm leading-6 text-gray-600">자취생의 2주간 지구식단 다이어트 도전기, 편리함과 맛을 동시에 챙겼다.</p><a class="common-focus mt-3 inline-flex text-sm font-bold text-lime-600" href="#content">후기 보러 가기 →</a></div></article>
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white"><img class="card-image w-full object-cover" src="assets/images/earthlog/leader-3.png" alt="건강한 한식 상차림" width="360" height="160" loading="lazy" decoding="async"><div class="p-6"><span class="rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">맛 평가</span><h3 class="mt-4 text-lg font-extrabold text-lime-950">지구식단 맛 평가, 직접 먹어본 솔직 리뷰</h3><p class="mt-2 text-sm leading-6 text-gray-600">요리 블로거의 지구식단 맛 평가, 건강하면서도 맛있는 한 끼의 비결.</p><a class="common-focus mt-3 inline-flex text-sm font-bold text-lime-600" href="#content">후기 보러 가기 →</a></div></article>
+      </div></div></section>
+
+      <section id="content" class="section-space earthlog-inner" aria-labelledby="content-title"><h2 id="content-title" class="section-title font-extrabold">풀무원 콘텐츠</h2><p class="mt-3 text-base text-gray-600">바른먹거리부터 환경과 사회까지, 풀무원의 다양한 이야기를 전합니다.</p><div class="earthlog-card-rail mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-1.png" alt="두부 요리" width="282" height="160" loading="lazy" decoding="async"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">레시피</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.15</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">두부로 만드는 건강 한 끼</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원 두부를 활용한 간편하고 맛있는 건강 레시피를 소개합니다.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-2.png" alt="ESG 경영보고서" width="282" height="160" loading="lazy" decoding="async"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">ESG</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.20</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">풀무원 ESG 경영보고서 2025</h3><p class="mt-2 text-sm leading-6 text-gray-600">풀무원의 환경·사회·지배구조(ESG) 경영 성과를 한눈에 확인하세요.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-3.png" alt="친환경 포장재" width="282" height="160" loading="lazy" decoding="async"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">포장재</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.06.28</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">친환경 포장재 전환 프로젝트</h3><p class="mt-2 text-sm leading-6 text-gray-600">재활용이 쉬운 단일소재 포장재로의 전환 과정을 소개합니다.</p></div></article>
+        <article class="earth-card overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="card-image w-full object-cover" src="assets/images/earthlog/content-4.png" alt="식물성 지향 식품 요리" width="282" height="160" loading="lazy" decoding="async"><span class="absolute left-3 top-3 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">뉴스</span></div><div class="p-6"><p class="text-xs text-gray-600">2026.07.01</p><h3 class="mt-3 min-h-14 text-lg font-extrabold text-lime-950">풀무원, 식물성 지향 식품 사업 확대</h3><p class="mt-2 text-sm leading-6 text-gray-600">식물성 단백질 시장을 선도하는 풀무원의 새로운 도전을 소개합니다.</p></div></article>
+      </div></section>
+
+      <section class="section-space bg-lime-100" aria-labelledby="campaign-title"><div class="earthlog-inner"><h2 id="campaign-title" class="section-title font-extrabold">풀무원 캠페인</h2><p class="mt-3 text-base text-gray-600">풀무원이 전개하는 바른먹거리 캠페인과 사회공헌 활동을 소개합니다.</p><div class="earthlog-card-grid--two mt-10 grid gap-6 md:grid-cols-2">
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="campaign-image w-full object-cover" src="assets/images/earthlog/campaign-1.png" alt="아이들과 함께하는 바른먹거리 교육" width="560" height="220" loading="lazy" decoding="async"><span class="absolute left-5 top-5 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">캠페인</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">바른먹거리 캠페인</h3><p class="mt-3 text-sm leading-6 text-gray-600">어린이 식습관 개선, 로하스 식생활 교육, 비건 체험 프로그램을 통해 건강한 식문화를 확산합니다.</p></div></article>
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white"><div class="relative"><img class="campaign-image w-full object-cover" src="assets/images/earthlog/campaign-2.png" alt="지역사회 식생활 교육" width="560" height="220" loading="lazy" decoding="async"><span class="absolute left-5 top-5 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">사회공헌</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">로하스 식생활 교육</h3><p class="mt-3 text-sm leading-6 text-gray-600">풀무원재단을 통해 어린이·청소년 대상 바른먹거리 교육과 시니어 영양 개선 프로그램을 운영합니다.</p></div></article>
+      </div></div></section>
+
+      <section class="section-space earthlog-inner" aria-labelledby="recommend-title"><h2 id="recommend-title" class="section-title font-extrabold">추천 콘텐츠</h2><p class="mt-3 text-base text-gray-600">가장 많은 관심을 받고 있는 풀무원 콘텐츠를 확인해보세요.</p><div class="earthlog-card-grid--three earthlog-recommend-grid mt-10 grid gap-6 md:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl border border-gray-200"><div class="relative"><img class="recommend-image w-full object-cover" src="assets/images/earthlog/recommend-1.png" alt="두부면 국수" width="360" height="180" loading="lazy" decoding="async"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">인기</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">풀무원 두부면 레시피 BEST 5</h3><p class="mt-2 text-sm leading-6 text-gray-600">탄수화물은 줄이고 단백질은 높인 두부면 활용 레시피를 소개합니다.</p></div></article>
+        <article class="overflow-hidden rounded-2xl border border-gray-200"><div class="relative"><img class="recommend-image w-full object-cover" src="assets/images/earthlog/recommend-2.png" alt="다양한 식물성 제품" width="360" height="180" loading="lazy" decoding="async"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">트렌드</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">식물성 지향 식품 트렌드 2026</h3><p class="mt-2 text-sm leading-6 text-gray-600">글로벌 식물성 식품 시장 동향과 풀무원의 전략을 살펴봅니다.</p></div></article>
+        <article class="overflow-hidden rounded-2xl border border-gray-200"><div class="relative"><img class="recommend-image w-full object-cover" src="assets/images/earthlog/recommend-3.png" alt="풀무원 녹즙 제품" width="360" height="180" loading="lazy" decoding="async"><span class="absolute left-4 top-4 rounded-xl bg-lime-600 px-3 py-2 text-xs font-bold text-white">건강</span></div><div class="p-6"><h3 class="text-lg font-extrabold text-lime-950">풀무원 녹즙 건강 가이드</h3><p class="mt-2 text-sm leading-6 text-gray-600">하루 한 잔, 풀무원 녹즙으로 시작하는 건강 습관을 소개합니다.</p></div></article>
+      </div></section>
+    </main>
+
+    <!-- common:footer:start -->
+    <footer id="site-footer" class="common-footer">
+      <div class="common-footer__inner">
+        <div class="common-footer__top">
+          <div class="common-footer__company">
+            <img src="assets/images/footer-logo.png" alt="풀무원" width="119" height="40" loading="lazy">
+            <address>
+              <span>법인명 : (주)풀무원</span>
+              <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+              <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
+            </address>
+          </div>
+
+          <div class="common-footer__links">
+            <nav aria-label="정책 및 안내">
+              <ul class="common-footer__policy-list">
+                <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+                <li aria-hidden="true" class="common-footer__divider">|</li>
+                <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+              </ul>
+            </nav>
+
+            <div class="common-footer__social">
+              <span>공식계정</span>
+              <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" width="21" height="23" loading="lazy"></a>
+              <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" width="46" height="46" loading="lazy"></a>
+              <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" width="24" height="23" loading="lazy"></a>
+              <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" width="46" height="46" loading="lazy"></a>
+              <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" width="46" height="42" loading="lazy"></a>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="common-footer__bottom">
+          <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+          <div class="common-footer__family">
+            <div class="common-footer__family-site">
+              <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+                계열사/브랜드 사이트
+                <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12">
+              </button>
+              <div id="family-site-panel" class="common-footer__family-panel" hidden>
+                <section aria-labelledby="family-pulmuone-title">
+                  <h2 id="family-pulmuone-title">풀무원</h2>
+                  <ul>
+                    <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                    <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                    <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                    <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                    <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+                  </ul>
+                </section>
+                <section aria-labelledby="family-affiliate-title">
+                  <h2 id="family-affiliate-title">계열사</h2>
+                  <ul>
+                    <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                    <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                    <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                    <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                    <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+                  </ul>
+                </section>
+                <section aria-labelledby="family-brand-title">
+                  <h2 id="family-brand-title">브랜드</h2>
+                  <ul>
+                    <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                    <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                    <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                    <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                    <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                    <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" width="80" height="74" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- common:footer:end -->
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: reduceMotion ? 0 : 1.1,
+      normalizeScroll: !window.matchMedia('(max-width: 640px)').matches,
+      ignoreMobileResize: true,
+    });
+
+    gsap.utils.toArray('main .earthlog-inner').forEach((element) => {
+      gsap.set(element, { autoAlpha: 0, y: reduceMotion ? 0 : 28 });
+      gsap.to(element, {
+        autoAlpha: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: element, start: 'top 88%', once: true },
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const selector = link.getAttribute('href');
+        const target = selector && selector.length > 1 ? document.querySelector(selector) : null;
+        if (!target) return;
+        event.preventDefault();
+        smoother.scrollTo(target, true, 'top top');
+      });
+    });
+
+    ScrollTrigger.refresh();
+    });
+  </script>
+</body>
+</html>

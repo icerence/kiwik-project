@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
+  <!-- Tailwind CSS v4 (Play CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>활동 및 실적 | 풀무원</title>
+  <link rel="icon" href="assets/pulmuone_favicon.svg" type="image/svg+xml">
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="common/components.css">
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
+  <style>
+    :root{--lime-100:#f1f8e7;--lime-600:#65a80f;--lime-700:#4a7e07;--lime-800:#39610a;--line:#e0f1e3;--gray-100:#f3f4f6;--gray-200:#d9dade;--gray-300:#bdc0c6;--border:#dde1e5;--pale:#f5f7f6;--shadow-card:0 2px 10px rgba(0,0,0,.05);--scrim-a:rgba(0,0,0,.3);--scrim-b:rgba(0,0,0,.3);--container-xl:1200px;--container-lg:960px;--container-sm:600px;--container-pad-lg:48px;--container-pad-sm:20px} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"NanumSquare Neo",Arial,sans-serif}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%}ul,ol{margin:0;padding:0;list-style:none}h1,h2,h3,p{margin-top:0}main{display:block;padding-top:155px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--white);padding:8px}
+    .subnav{height:44px;display:flex;align-items:center;gap:8px;padding:0 16px;background:var(--lime);color:var(--white);font-size:12px}.subnav img{width:16px;height:16px}.subnav .crumb-sep{color:var(--white);opacity:.7}.subnav .crumb-current{font-weight:700}.subnav .crumb-caret{width:10px;height:6px;filter:brightness(0) invert(1)}
+    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--color-white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/activities-hero.png") center/cover}.hero-inner{width:min(680px,100%);padding:0;box-sizing:border-box;color:var(--color-white)!important}.hero h1{margin:0;color:var(--color-white)!important;font-size:48px;font-weight:900;letter-spacing:-.48px}.hero p{margin:16px 0 0;color:var(--color-white)!important;font-size:20px;font-weight:400;opacity:.9;line-height:1.6}
+    .section-title{padding:48px 0 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:var(--container-xl);margin:auto}.section-title h2{font-size:30px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
+    .promise3{padding:48px 0;text-align:center}.promise3-inner{max-width:var(--container-xl);margin:auto;display:flex;flex-direction:column;gap:24px;align-items:center}.promise3-title{margin:0;max-width:860px;font-size:28px;font-weight:800;line-height:1.45;color:var(--dark)}.promise3-title em{color:var(--lime);font-style:normal}.promise3-desc{margin:0;max-width:720px;font-size:16px;line-height:1.7;color:var(--ink)}
+    .segtabs{border:2px solid var(--gray-200);display:flex;max-width:1280px;width:100%;margin:auto;padding:0;box-sizing:border-box}.segtabs span{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;height:88px;padding:20px 24px;border:2px solid var(--gray-200);font-size:15px;font-weight:500;color:var(--dark);text-align:center;line-height:1.5}.segtabs .on{background:var(--lime);border-color:var(--lime);color:var(--white);font-weight:800}
+    .segtabs-mobile{display:none}
+    .sfood{background:var(--gray-100);padding:64px 0;display:flex;flex-direction:column;align-items:center;gap:48px}.sfood-inner{max-width:var(--container-xl);width:100%;display:flex;flex-direction:column;align-items:center;gap:48px}
+    .sec-badge{display:inline-block;background:var(--lime-100);color:var(--lime-600);font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px}
+    .sec-head{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;width:100%}.sec-head h2{margin:0;font-size:26px;font-weight:800;color:var(--dark)}.sec-head p{margin:0;max-width:800px;font-size:16px;line-height:1.65;color:var(--ink)}
+    .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:100%}
+    .pcard{display:flex;flex-direction:column;gap:40px;filter:drop-shadow(var(--shadow-card))}.pcard-img{height:240px;border-radius:12px;overflow:hidden}.pcard-img img{width:100%;height:100%;object-fit:cover;display:block}.pcard-text{display:flex;flex-direction:column;gap:24px;padding-top:20px}.card-badge{align-self:flex-start;background:var(--lime-100);color:var(--lime-600);font-size:14px;font-weight:700;padding:2px 8px;border-radius:4px}.pcard-text b{font-size:16px;font-weight:800;color:var(--dark);line-height:1.4}.pcard-text p{margin:0;font-size:14px;line-height:1.6;color:var(--ink)}
+    .diagram{background:var(--white);padding:64px 0;display:flex;flex-direction:column;align-items:center;gap:40px}
+    .diagram-box{background:#f4f6f8;border:1px solid #d1d5db;border-radius:16px;padding:48px 36px;max-width:var(--container-xl);width:100%;display:flex;flex-direction:column;align-items:center;gap:36px}
+    .diagram-main{background:var(--lime);color:var(--white);font-size:16px;font-weight:800;padding:16px 36px;border-radius:8px;box-shadow:none;text-align:center}
+    .diagram-connector{display:none}
+    .diagram-level2{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%}
+    .dnode{background:var(--white);border:1px solid #d1d5db;border-radius:12px;padding:36px 24px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;box-shadow:none}
+    .dnode-icon{display:flex;align-items:center;justify-content:center;gap:8px}
+    .dnode-icon img{width:22px;height:22px}
+    .dnode-icon b{font-size:18px;font-weight:800;color:var(--lime-600)}
+    .dnode span{font-size:13px;font-weight:700;color:var(--lime-700);margin-top:2px}
+    .dnode i{width:100%;height:1px;background:#e5f5e8;margin:18px 0;font-style:normal}
+    .dnode p{margin:0;font-size:14px;line-height:1.6;color:var(--ink);font-weight:500}
+
+    .greenspired{width:100%;padding:64px 0;display:flex;justify-content:center;background:var(--white)}
+    .greenspired-inner{display:grid;grid-template-columns:1fr 1.15fr;max-width:var(--container-xl);width:100%;height:280px;border-radius:0;overflow:hidden}
+    .gs-text{height:280px;background:var(--lime);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;padding:28px 40px;color:var(--white);box-sizing:border-box}
+    .gs-badge{align-self:flex-start;background:#345c08;color:var(--white);font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px}
+    .gs-text h2{margin:0;font-size:34px;font-weight:900;letter-spacing:-.5px;color:var(--white);line-height:1.1}
+    .gs-text p{margin:0;max-width:460px;font-size:14px;line-height:1.6;color:var(--white);opacity:.95;word-break:keep-all}
+    .gs-img{width:100%;height:280px;overflow:hidden}
+    .gs-img img{width:100%;height:280px;object-fit:cover;object-position:right center;display:block}
+    .innovation{background:var(--white);padding:112px 0;display:flex;flex-direction:column;align-items:center;gap:40px}.innovation-inner{max-width:var(--container-xl);width:100%;display:flex;flex-direction:column;gap:40px}
+    .prow{display:flex;align-items:center;gap:40px}.prow.rev{flex-direction:row-reverse}.prow-img{width:440px;height:330px;border-radius:12px;overflow:hidden;flex-shrink:0}.prow-img img{width:100%;height:100%;object-fit:cover;display:block}.prow-text{flex:1;display:flex;flex-direction:column;gap:24px}.prow-text b{font-size:20px;font-weight:800;line-height:1.35;color:var(--dark)}.prow-text i{display:block;width:100%;height:1px;background:var(--gray-200)}.prow-text p{margin:0;font-size:16px;line-height:1.7;color:var(--ink)}
+    .plantmeat{background:var(--gray-100);padding:112px 0;display:flex;flex-direction:column;align-items:center;gap:40px}.plantmeat-inner{max-width:var(--container-xl);width:100%;display:flex;flex-direction:column;gap:40px}
+    .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}.mcard{background:var(--white);border:2px solid var(--gray-100);border-radius:12px;overflow:hidden}.mcard-img{height:220px}.mcard-img img{width:100%;height:100%;object-fit:cover;display:block}.mcard-text{display:flex;flex-direction:column;gap:24px;padding:20px}.mcard-text b{font-size:16px;font-weight:800;color:var(--dark)}.mcard-text p{margin:0;font-size:14px;line-height:1.6;color:var(--ink)}
+    @media(max-width:1199px){
+      :root{--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.8)} /* token-exempt: 태블릿 히어로 스크림 값(sub1/sub2-responsive.html과 동일 패턴 재사용) */
+      .subnav{height:44px!important;min-height:44px;padding:0 48px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero-inner{padding:0 var(--container-pad-lg)}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
+      .section-title{padding:40px var(--container-pad-lg) 32px}.section-title-row{max-width:var(--container-lg)}.section-title h2{font-size:24px}
+      .promise3{padding:48px var(--container-pad-lg)}.promise3-inner{max-width:var(--container-lg)}.promise3-title{max-width:none;font-size:22px}.promise3-desc{max-width:none;font-size:13px}
+      .segtabs{max-width:none;padding:0 var(--container-pad-lg)}.segtabs span{height:78px;padding:16px 8px;font-size:13px;border-color:var(--border);background:var(--pale)}.segtabs .on{background:var(--lime);border-color:var(--lime)}
+      .sfood{padding:48px var(--container-pad-lg)}.sfood-inner{max-width:var(--container-lg)}.sec-head{gap:12px}.sec-head h2{font-size:24px}.sec-head p{font-size:13px}
+      .pgrid{gap:24px}.pcard{gap:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-card)}.pcard-img{height:200px;border-radius:0}.pcard-text{padding:0 20px 20px;gap:12px}.card-badge{font-size:11px}.pcard-text b{font-size:15px}.pcard-text p{font-size:13px}
+      .diagram{padding:48px var(--container-pad-lg)}.diagram-box{padding:24px;gap:20px;max-width:var(--container-lg)}.diagram-main{padding:16px 24px;font-size:15px}.diagram-level2{gap:24px}.dnode{padding:20px;gap:12px}.dnode-icon{gap:10px}.dnode-icon b{font-size:15px}.dnode span{font-size:12px;font-weight:400}
+      .greenspired{padding:64px var(--container-pad-lg)}.greenspired-inner{min-height:280px;max-width:var(--container-lg)}.gs-text{padding:36px 32px}.gs-badge{padding:6px 14px;font-size:12px}.gs-text h2{font-size:32px}.gs-text p{font-size:14px;line-height:1.6}
+      .innovation{padding:48px var(--container-pad-lg)}.innovation-inner{max-width:var(--container-lg);gap:32px}.sec-head{gap:12px}.prow{gap:32px}.prow-img{width:380px;height:280px}.prow-text{gap:16px}.prow-text b{font-size:20px}.prow-text p{font-size:13px}
+      .plantmeat{padding:48px var(--container-pad-lg)}.plantmeat-inner{max-width:var(--container-lg);gap:32px}.mgrid{gap:24px}.mcard-img{height:160px}.mcard-text{padding:16px;gap:10px}.mcard-text b{font-size:14px}.mcard-text p{font-size:13px}
+    }
+    @media (max-width: 1199px) {
+      main { padding-top: 60px !important; }
+      .common-header__utility,.common-header__nav,.common-header__language { display: none !important; }
+      .common-header__main { height: 60px !important; position: relative !important; padding: 0 16px !important; }
+      .common-header__logo-link { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; }
+      .common-header__logo-link img { width: 104px !important; height: auto !important; }
+      .common-header__actions { position: static !important; width: 100% !important; height: 60px !important; pointer-events: none !important; }
+      .common-header__menu-button { position: absolute !important; left: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search { position: absolute !important; right: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent url("assets/icons/search.svg") center / 22px 22px no-repeat !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search svg { display: none !important; }
+    }
+    @media(max-width:767px){
+      :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 근사값(sub1/sub2-responsive.html과 동일 패턴 재사용) */
+      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero-inner{padding:0 var(--container-pad-sm)}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
+      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero-inner{padding:0 var(--container-pad-sm)}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
+      .section-title{padding:24px var(--container-pad-sm)}.section-title-row{max-width:var(--container-sm)}.section-title h2{font-size:20px}
+      .promise3{padding:24px var(--container-pad-sm) 32px}.promise3-inner{max-width:var(--container-sm);gap:12px}.promise3-title{font-size:20px}.promise3-desc{font-size:13px}
+      .segtabs{display:none}.segtabs-mobile{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px}.segtabs-mobile span{padding:16px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--dark);background:var(--white)}.segtabs-mobile .on{background:var(--lime);color:var(--white);font-weight:800;border-color:var(--lime)}
+      .sfood{padding:32px var(--container-pad-sm)}.sfood-inner{max-width:var(--container-sm)}.sec-head{gap:8px}.sec-head h2{font-size:20px}.sec-head p{font-size:13px}
+      .pgrid{grid-template-columns:1fr;gap:20px}.pcard-img{height:220px}
+      .diagram{padding:40px var(--container-pad-sm)}.diagram-box{padding:16px;gap:16px;max-width:var(--container-sm)}.diagram-main{padding:16px;font-size:13px;text-align:center;width:100%}.diagram-connector{display:none}.diagram-level2{flex-direction:column;gap:12px}.dnode{padding:16px;gap:8px;text-align:left;align-items:flex-start}.dnode-icon{gap:8px}.dnode-icon img{width:16px;height:16px}.dnode-icon b{font-size:14px}.dnode span{display:none}.dnode i{display:none}.dnode p{font-size:12px}
+      .greenspired{padding:64px var(--container-pad-sm)}.greenspired-inner{max-width:var(--container-sm);grid-template-columns:1fr;height:auto}.gs-text{padding:20px;gap:12px}.gs-badge{background:var(--white);color:var(--lime);padding:4px 10px;border-radius:4px}.gs-text h2{font-size:20px}.gs-text p{font-size:13px;line-height:1.6}.gs-img{order:-1;width:100%;height:220px}
+      .innovation{padding:40px var(--container-pad-sm)}.innovation-inner{max-width:var(--container-sm);gap:24px}.sec-head{gap:8px}.prow{flex-direction:column;align-items:stretch;gap:16px}.prow.rev{flex-direction:column}.prow-img{width:100%;height:240px}.prow-text{gap:8px}.prow-text b{font-size:16px}.prow-text i{display:none}.prow-text p{font-size:13px}
+      .plantmeat{padding:40px var(--container-pad-sm);background:var(--pale)}.plantmeat-inner{max-width:var(--container-sm);gap:28px}.mgrid{grid-template-columns:1fr;gap:16px}.mcard{border:0}.mcard-img{height:200px}.mcard-text{padding:16px;gap:8px}.mcard-text b{font-size:14px}.mcard-text p{font-size:12px}
+      .common-footer{position:relative;clear:both;margin-top:0}}
+  </style>
+</head>
+<body data-page="sub3" class="page">
+<a class="skip" href="#main">본문 바로가기</a>
+<!-- common:header:start -->
+<header id="site-header" class="common-header">
+  <div class="common-header__inner">
+    <div id="utility-bar" class="common-header__utility">
+      <a class="common-header__utility-link" href="index.html#section2">
+        <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20"></span>
+        <span>지속가능경영보고서</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#section4">
+        <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20"></span>
+        <span>인재채용</span>
+      </a>
+      <a class="common-header__utility-link" href="index.html#site-footer">
+        <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20"></span>
+        <span>고객기쁨센터</span>
+      </a>
+      <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+        <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
+        <span>#풀무원</span>
+      </a>
+    </div>
+
+    <div class="common-header__main">
+      <a href="index.html" class="common-focus common-header__logo-link">
+        <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
+      </a>
+
+      <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+        <ul class="common-header__nav-list">
+          <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+        <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+            <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+            <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+            <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+            <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+            <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+            <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+            <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+            <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+            <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+            <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+          </ul>
+          <ul class="site-header-dropdown__list">
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+            <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="common-header__actions">
+        <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+          <span>KOR</span>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+          </svg>
+        </button>
+        <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+          <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+      <div class="common-header__search-panel-inner">
+        <div class="common-header__search-field">
+          <label for="common-search-input">통합검색</label>
+          <div class="common-header__search-input-wrap">
+            <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+            <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
+          </div>
+        </div>
+        <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+        <ul id="common-search-results" class="common-header__search-results"></ul>
+      </div>
+    </section>
+
+    <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+      <ul>
+        <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+        <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+        <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+        <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+        <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<!-- common:header:end -->
+<main id="main">
+  <section class="hero"><div class="hero-inner"><h1>활동과 실적</h1><p>사람과 지구의 건강한 내일을 만드는 풀무원의 지속가능한 가치 실현 스토리</p></div></section>
+
+  <section class="section-title"><div class="section-title-row"><h2>활동과 실적</h2><i></i></div></section>
+
+  <section class="promise3"><div class="promise3-inner">
+    <p class="promise3-title">풀무원은 사회책임경영을 통해 <em>'글로벌 No.1 기업'</em>으로 도약하겠습니다.</p>
+    <p class="promise3-desc">식물성 지향 식품과 건강기능식품을 중심으로 고객의 지속가능한 건강과 지구의 보존을 함께 고려한 먹거리 생태계를 조성합니다.</p>
+  </div></section>
+
+  <div class="segtabs" role="tablist" aria-label="활동과 실적 카테고리">
+    <span class="on">지속가능식품<br>확장</span>
+    <span>시장 트렌드 선도<br>신제품 출시</span>
+    <span>글로벌 시장<br>경쟁력 강화</span>
+    <span>DT·DX<br>온라인 사업 확대</span>
+    <span>ESG 경영<br>주요 성과</span>
+  </div>
+  <div class="segtabs-mobile" role="tablist" aria-label="활동과 실적 카테고리">
+    <span class="on">지속가능식품 확장</span>
+    <span>시장 트렌드 선도</span>
+    <span>글로벌 경쟁력 강화</span>
+    <span>DT·DX 온라인</span>
+    <span>ESG 경영 성과</span>
+  </div>
+
+  <section class="sfood"><div class="sfood-inner">
+    <div class="sec-head">
+      <span class="sec-badge">지속가능 식품 체계</span>
+      <h2>지속가능 식품 혁신 변화</h2>
+      <p>기존 육류 중심의 단백질 섭취를 대체할 수 있는 고품질 식물성 지향 제품 라인업을 강화하여 기후 변화 완화와 영양 불균형 해소에 기여합니다.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="pcard-img"><img src="assets/images/activities-plantspired.png" alt="식물성 대체육 브랜드 Plantspired 제품 라인업"></div>
+        <div class="pcard-text"><span class="card-badge">식물성 지향</span><b>식물성 대체육 브랜드 'Plantspired'</b><p>동물성 고기와 유사한 식감과 풍미를 자랑하는 풀무원 고유의 식물성 대체육 라인업으로 지속가능한 식단을 제시합니다.</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img"><img src="assets/images/activities-organic-tofu.png" alt="유기농 및 친환경 국산 두부 포트폴리오"></div>
+        <div class="pcard-text"><span class="card-badge">유기농 인증</span><b>유기농 및 친환경 국산 두부 포트폴리오</b><p>원료 엄선부터 제조공정까지 엄격한 검증을 통과한 건강한 우리 유기농 두부로 매일 안심하고 섭취 가능한 영양을 선사합니다.</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img"><img src="assets/images/activities-protein-snack.png" alt="식물성 단백질 간식 및 간편식"></div>
+        <div class="pcard-text"><span class="card-badge">고단백 간식</span><b>식물성 단백질 간식 & 간편식</b><p>부담없이 즐길 수 있는 식물성 고단백 칩, 프로틴 음료 등 세대를 불문하고 간편하게 건강을 챙길 수 있는 간식을 만듭니다.</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img"><img src="assets/images/activities-dumpling.png" alt="식물성 만두 및 간편 면류"></div>
+        <div class="pcard-text"><span class="card-badge">간편 식사</span><b>식물성 만두 및 간편 면류</b><p>엄선된 얇은 만두피 속 식물성 재료와 특제 야채 소스를 채워 풍부한 포만감과 깔끔한 맛을 살린 한 끼 식사입니다.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="diagram">
+    <div class="sec-head">
+      <h2>지속가능 식품 분류 체계</h2>
+      <p>풀무원만의 체계적 가이드를 통하여 원료 수급 단계부터 완제품 품질 검사 단계까지 철저하게 지속가능 여부를 추적하고 인증합니다.</p>
+    </div>
+    <div class="diagram-box">
+      <div class="diagram-main">풀무원 지속가능 식품 (Sustainable Food)</div>
+      <div class="diagram-connector"><b></b><i></i></div>
+      <div class="diagram-level2">
+        <div class="dnode">
+          <div class="dnode-icon"><img src="assets/icons/leaf-outline.svg" alt=""><b>식물성 지향 식품</b></div>
+          <span>Plant-Forward</span>
+          <i></i>
+          <p>최소 2/3 이상의 식물성 원료 사용</p>
+        </div>
+        <div class="dnode">
+          <div class="dnode-icon"><img src="assets/icons/heart-outline.svg" alt=""><b>동물복지 식품</b></div>
+          <span>Animal Welfare</span>
+          <i></i>
+          <p>동물복지 인증 원료 100% 사용</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="greenspired"><div class="greenspired-inner">
+    <div class="gs-text">
+      <span class="gs-badge">식물성 지향 브랜드</span>
+      <h2>greenspired</h2>
+      <p>풀무원이 제안하는 식물성 지향 라이프스타일 브랜드. 자연에서 얻은 깨끗하고 신선한 재료로 건강하고 맛있는 먹거리를 만들어 지속 가능한 삶을 지원합니다.</p>
+    </div>
+    <div class="gs-img"><img src="assets/images/activities-greenspired-banner.png" alt="greenspired 식물성 지향 제품 이미지"></div>
+  </div></section>
+
+  <section class="innovation"><div class="innovation-inner">
+    <div class="sec-head">
+      <h2>혁신적인 두부 변환 신제품 출시</h2>
+      <p>전통적인 사각 두부의 틀을 깨고, 스낵 및 바 형태의 다양한 변형 두부 제품을 전개하여 건강한 단백질 라이프스타일을 대중화합니다.</p>
+    </div>
+    <div class="prow">
+      <div class="prow-img"><img src="assets/images/activities-greenspired-banner.png" alt="한 입 쏙 고단백 큐브두부 스낵"></div>
+      <div class="prow-text"><span class="card-badge">고단백 혁신</span><b>한 입 쏙 고단백 큐브두부 스낵</b><i></i><p>바쁜 현대인을 위해 언제 어디서나 과자처럼 가볍게 집어먹을 수 있는 한 입 크기의 고단백 두부 스낵입니다. 오븐에 정성스레 구워 겉은 바삭하고 속은 부드러운 영양 간식입니다.</p></div>
+    </div>
+    <div class="prow rev">
+      <div class="prow-img"><img src="assets/images/activities-tofu-bar.png" alt="플랜스파이어드 고단백 두부 바"></div>
+      <div class="prow-text"><span class="card-badge">식물성 바</span><b>플랜스파이어드 고단백 두부 바</b><i></i><p>운동 전후 영양 보충이 필요할 때 닭가슴살 대신 건강하게 섭취할 수 있는 100% 식물성 단백질 바입니다. 매콤달콤한 소스맛을 입혀 남녀노소 누구나 즐거운 한 끼 대용으로 손색없습니다.</p></div>
+    </div>
+  </div></section>
+
+  <section class="plantmeat"><div class="plantmeat-inner">
+    <div class="sec-head">
+      <h2>식물성 대체육 신제품 출시</h2>
+      <p>독자적인 육류 텍스처 가공 공법으로 고기와 완벽하게 대칭되는 식감과 촉촉함을 지닌 저탄소 식물성 대체육 시장을 리딩합니다.</p>
+    </div>
+    <div class="mgrid">
+      <div class="mcard">
+        <div class="mcard-img"><img src="assets/images/activities-bulgogi.png" alt="식물성 숯불 직화 불고기"></div>
+        <div class="mcard-text"><b>식물성 숯불 직화 불고기</b><p>전통 직화 구이 방식으로 참숯 향을 그윽하게 살려 식물성 고기 특유의 풍미와 식감을 한층 고도화했습니다.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><img src="assets/images/activities-meatball-sauce.png" alt="식물성 미트볼 파스타 소스"></div>
+        <div class="mcard-text"><b>식물성 미트볼 파스타 소스</b><p>육즙 가득한 한 입 미트볼을 고스란히 담아 환경과 미식을 동시에 사로잡은 간편 조리 식품입니다.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><img src="assets/images/activities-mandu.png" alt="식물성 지향 얇은피 꽉찬만두"></div>
+        <div class="mcard-text"><b>식물성 지향 얇은피 꽉찬만두</b><p>밀가루 비율을 획기적으로 줄이고 식물성 재료를 가득 채운 풀무원의 스테디셀러의 건강 진화 버전입니다.</p></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+<!-- common:footer:start -->
+<footer id="site-footer" class="common-footer">
+  <div class="common-footer__inner">
+    <div class="common-footer__top">
+      <div class="common-footer__company">
+        <img src="assets/images/footer-logo.png" alt="풀무원" width="119" height="40" loading="lazy">
+        <address>
+          <span>법인명 : (주)풀무원</span>
+          <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+          <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
+        </address>
+      </div>
+
+      <div class="common-footer__links">
+        <nav aria-label="정책 및 안내">
+          <ul class="common-footer__policy-list">
+            <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+          </ul>
+        </nav>
+
+        <div class="common-footer__social">
+          <span>공식계정</span>
+          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" width="21" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" width="24" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" width="46" height="42" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="common-footer__bottom">
+      <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+      <div class="common-footer__family">
+        <div class="common-footer__family-site">
+          <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+            계열사/브랜드 사이트
+            <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12">
+          </button>
+          <div id="family-site-panel" class="common-footer__family-panel" hidden>
+            <section aria-labelledby="family-pulmuone-title">
+              <h2 id="family-pulmuone-title">풀무원</h2>
+              <ul>
+                <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-affiliate-title">
+              <h2 id="family-affiliate-title">계열사</h2>
+              <ul>
+                <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-brand-title">
+              <h2 id="family-brand-title">브랜드</h2>
+              <ul>
+                <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" width="80" height="74" loading="lazy">
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- common:footer:end -->
+</body>
+</html>

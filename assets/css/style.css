@@ -17,7 +17,7 @@
   z-index: 100;
   border-radius: var(--radius-lg);
   background: var(--color-brand);
-  color: var(--color-white);
+  color: var(--color-gray-800);
   padding: 0.75rem 1.25rem;
   font-weight: var(--font-weight-bold);
   transition: top 0.2s ease;
@@ -142,9 +142,9 @@
 /* ---------- 도트 내비게이션(데스크톱) ---------- */
 .dot-nav {
   position: fixed;
-  right: 1.5rem;
+  right: var(--spacing-dot-nav-inset);
   top: 50%;
-  z-index: 40;
+  z-index: var(--z-index-dot-nav);
   transform: translateY(-50%);
   display: none;
 }
@@ -154,43 +154,85 @@
   }
 }
 .dot-nav ul {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
+  align-items: center;
+  gap: var(--spacing-dot-nav-slot-gap);
+  --dot-nav-current: 0;
+}
+.dot-nav li:not(.dot-nav__indicator) {
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
 }
 .dot-nav__link {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
+  border-radius: var(--radius-dot-nav);
 }
-.dot-nav__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  flex: none;
-  border-radius: 999px;
-  background: var(--color-gray-400);
-  transition: background 0.2s ease, transform 0.2s ease;
+.dot-nav__link:focus-visible {
+  outline: var(--spacing-outline) solid var(--color-brand);
+  outline-offset: var(--spacing-outline-offset);
 }
-.dot-nav__link[aria-current="true"] .dot-nav__dot {
-  background: var(--color-brand);
-  transform: scale(1.3);
+.dot-nav__inactive {
+  display: block;
+  width: var(--spacing-dot-nav-inactive);
+  height: var(--spacing-dot-nav-inactive);
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
 }
-.dot-nav__text {
+.dot-nav__indicator {
   position: absolute;
-  right: calc(100% + 0.5rem);
-  top: 50%;
-  font-size: 0.75rem;
-  color: var(--color-gray-600);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(-50%) translateX(0.25rem);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-dot-nav-active);
+  height: var(--spacing-dot-nav-active);
+  border-radius: var(--radius-dot-nav);
+  background: var(--color-brand);
+  box-shadow: var(--shadow-dot-nav-active);
+  pointer-events: none;
+  transform: translateY(calc(var(--dot-nav-current) * (var(--spacing-dot-nav-active) + var(--spacing-dot-nav-slot-gap))));
+  transition: transform var(--transition-dot-nav);
 }
-.dot-nav__link:hover .dot-nav__text,
-.dot-nav__link[aria-current="true"] .dot-nav__text {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
+.dot-nav__indicator-icon {
+  position: absolute;
+  width: var(--spacing-dot-nav-icon);
+  height: var(--spacing-dot-nav-icon);
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
+  transition: opacity var(--transition-dot-nav), transform var(--transition-dot-nav);
+}
+.dot-nav__indicator-icon--newspaper {
+  width: var(--spacing-dot-nav-icon-newspaper);
+  height: var(--spacing-dot-nav-icon-newspaper);
+  object-fit: contain;
+}
+.dot-nav__link[aria-current="true"] .dot-nav__inactive {
+  opacity: var(--opacity-dot-nav-hidden);
+  transform: scale(var(--scale-dot-nav-rest));
+}
+.dot-nav[data-current="0"] .dot-nav__indicator-icon:nth-child(1),
+.dot-nav[data-current="1"] .dot-nav__indicator-icon:nth-child(2),
+.dot-nav[data-current="2"] .dot-nav__indicator-icon:nth-child(3),
+.dot-nav[data-current="3"] .dot-nav__indicator-icon:nth-child(4),
+.dot-nav[data-current="4"] .dot-nav__indicator-icon:nth-child(5) {
+  opacity: var(--opacity-dot-nav-visible);
+  transform: scale(var(--scale-dot-nav-active));
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-nav__inactive,
+  .dot-nav__indicator,
+  .dot-nav__indicator-icon {
+    transition: none;
+  }
 }
 
 /* ---------- 섹션 내부 스크롤바만 숨김 ----------
@@ -298,7 +340,7 @@
 }
 
 /* ---------- Eco-Caring 밸류 카드 ----------
-   Figma 데스크톱(3004:1352) padding 40px + brand 테두리 + 상단 4px 액센트 바,
+   데스크톱 Figma(3004:1352)의 40px 패딩 + brand 테두리 + 상단 4px 액센트 바,
    모바일(3007:2526) padding 20px + 테두리·액센트 바 없음(초록 배경 위 흰 카드). */
 .value-card {
   position: relative;
@@ -313,10 +355,84 @@
 .value-card__accent {
   display: none;
 }
+/* 모바일: 햄버거 메뉴의 세 막대처럼 가로형 카드 3개를 위에서 아래로 쌓는다.
+   각 카드 안에서는 설명을 왼쪽, 시각 요소를 오른쪽에 배치한다. */
+@media (max-width: 63.999rem) {
+  #section2 .eco-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-value-card-gap-mobile);
+  }
+  #section2 .value-card {
+    min-width: 0;
+    min-height: var(--spacing-value-card-min-height-mobile);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-value-card-gap-mobile);
+    padding: var(--spacing-value-card-padding-mobile);
+  }
+  #section2 .value-card__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: var(--spacing-value-card-gap-mobile);
+    align-items: flex-start;
+    text-align: left;
+  }
+  #section2 .value-card h3,
+  #section2 .value-card p {
+    overflow-wrap: anywhere;
+    text-align: left;
+    text-wrap: pretty;
+  }
+  #section2 .value-card__copy > p:last-child {
+    font-size: var(--text-value-card-copy-mobile);
+    line-height: var(--leading-body);
+  }
+  #section2 .value-card__icon {
+    width: var(--spacing-value-card-icon-mobile);
+    height: var(--spacing-value-card-icon-mobile);
+  }
+  #section2 .value-card__visual {
+    flex: 0 0 auto;
+    margin-inline: var(--spacing-value-card-gap-mobile);
+  }
+  #section2 .value-card__visual--strategy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: var(--spacing-value-card-strategy-width-mobile);
+    gap: var(--spacing-value-card-strategy-gap-mobile);
+    padding-top: 0;
+    margin-inline-end: 0;
+  }
+  #section2 .value-card__strategy-icon {
+    width: var(--spacing-value-card-strategy-icon-mobile);
+    height: var(--spacing-value-card-strategy-icon-mobile);
+  }
+  #section2 .value-card__visual--strategy > span {
+    min-width: 0;
+  }
+  #section2 .value-card__visual--strategy > span > span:last-child {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    font-size: var(--text-value-card-copy-mobile);
+    line-height: 1.25;
+  }
+}
 @media (min-width: 64rem) {
   .value-card {
     border: var(--spacing-hairline) solid var(--color-lime-600);
     padding: 2.5rem;
+  }
+  .value-card__visual {
+    flex: none;
+    height: var(--spacing-value-card-visual-lg);
+  }
+  .value-card__visual--strategy {
+    gap: var(--spacing-value-card-strategy-gap-lg);
+  }
+  .value-card__strategy-copy {
+    width: calc(100% + var(--spacing-value-card-copy-overflow-lg) + var(--spacing-value-card-copy-overflow-lg));
+    white-space: nowrap;
   }
   .value-card__accent {
     position: absolute;
@@ -358,7 +474,7 @@
   padding: 1rem 1.75rem;
   font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--color-green-900);
   transition: opacity 0.15s ease;
 }
 .btn-brand:hover {
@@ -453,6 +569,19 @@
   outline: var(--spacing-outline) solid var(--color-brand);
   outline-offset: var(--spacing-outline-offset);
 }
+
+/* 모바일 SNS: 600px 모바일 컨테이너 안에서 게시물 하나가 한 행 전체를 사용한다. */
+@media (max-width: 63.999rem) {
+  #section5 .social-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+  #section5 .social-content-grid > li,
+  #section5 .social-content-grid > li > a {
+    width: 100%;
+    min-width: 0;
+  }
+}
 /* 데스크톱 시안에는 배지 대신 아이콘이 온다.
    Tailwind 유틸리티는 @layer utilities에 들어가므로 레이어가 없는 이 파일의
    display 선언을 이기지 못한다. 그래서 lg:hidden 대신 여기서 직접 감춘다. */
@@ -517,5 +646,101 @@
 @media (min-width: 64rem) {
   .panel__scroll--split .panel__block {
     padding-block: 1.75rem;
+    flex: none;
+  }
+}
+@media (min-width: 64rem) and (max-height: 60rem) {
+  .panel__scroll--split .panel__block {
+    padding-block: var(--spacing-split-block-compact);
+  }
+  .value-card__visual {
+    height: var(--spacing-value-card-visual-compact);
+  }
+  .value-card__visual--strategy {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .value-card__visual--strategy > span {
+    align-self: center;
+  }
+}
+
+/* 864px 이하의 낮은 데스크톱: 텍스트 크기는 유지하고 Section 2의
+   상하 여백만 압축해 패널 내부 스크롤 없이 한 화면에 맞춘다. */
+@media (min-width: 64rem) and (max-height: 54rem) {
+  #section2 .panel__scroll--split {
+    padding-top: var(--common-header-main-height-desktop);
+    justify-content: center;
+  }
+  #section2 .panel__block header {
+    margin-bottom: var(--spacing-section-heading-margin-short);
+  }
+  #section2 .value-card {
+    padding-block: var(--spacing-value-card-padding-block-short);
+  }
+}
+
+/* Section 4 뉴스룸: 실제 스크롤 시 utility bar가 접힌 GNB 높이를 기준으로
+   여백과 카드 사이 간격을 줄여 낮은 데스크톱에서도 한 화면에 맞춘다. */
+@media (min-width: 64rem) and (max-height: 67.5rem) {
+  #section4 .panel__scroll {
+    padding-top: var(--common-header-main-height-desktop);
+  }
+  #section4 .panel__block {
+    padding-block: var(--spacing-split-block-compact);
+    justify-content: flex-start;
+  }
+  #section4 .panel__block header {
+    margin-bottom: var(--spacing-section-heading-margin-short);
+  }
+  #section4 .news-featured,
+  #section4 .news-featured__copy {
+    gap: var(--spacing-news-copy-gap-compact);
+  }
+  #section4 .card-swiper[data-swiper="news"]:not(.swiper-initialized) .swiper-wrapper {
+    gap: var(--spacing-news-list-gap-compact);
+  }
+}
+
+@media (min-width: 64rem) and (min-height: 54.01rem) and (max-height: 67.5rem) {
+  #section4 .panel__block {
+    padding-top: var(--spacing-news-section-padding-top-compact);
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 60rem) {
+  #section4 .news-featured > a:first-child {
+    height: var(--spacing-news-featured-height-compact);
+  }
+  #section4 .news-featured > a:first-child img {
+    height: 100%;
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 54rem) {
+  #section4 .panel__block {
+    justify-content: center;
+  }
+  #section4 .news-featured,
+  #section4 .news-featured__copy {
+    gap: var(--spacing-news-copy-gap-short);
+  }
+  #section4 .news-featured > a:first-child {
+    height: var(--spacing-news-featured-height-short);
+  }
+  #section4 .news-card__thumb {
+    width: var(--spacing-news-thumb-short);
+    height: var(--spacing-news-thumb-short);
+  }
+}
+
+@media (min-width: 64rem) {
+  #section4 .news-featured__copy {
+    margin-top: auto;
+  }
+  #section4 .card-swiper {
+    padding-bottom: 0;
+  }
+  #section5 .panel__scroll {
+    padding-top: var(--spacing-social-section-padding-top);
   }
 }

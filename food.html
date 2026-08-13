@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>지속가능 식생활 | 풀무원 바른먹거리</title>
+  <title>지속가능 식생활 | 풀무원</title>
   <meta name="description" content="풀무원이 제안하는 바른먹거리 가치와 실천 방안 — 지엘(GL) 다이어트, 211 식사법, 건강생활 실천 지침을 소개합니다." />
   <!-- Figma node-id=1776:3043 (sustainable-food-life-faithful)을 구현.
        9개 블록(Header/LocalNav/Hero/TabMenu/Intro/GLDietSection/Section211/Guidelines/Footer)의
        자연 세로 스크롤 페이지다. 시안에 100vh 풀페이지 왕복 구조가 없어 그 요구는 적용하지 않았다. -->
-  <link rel="icon" href="data:," />
+  <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12" />
 
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/food-tokens.css" />
+  <!-- common:head:start -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="common/components.css">
+  <script src="common/components.js" defer></script>
+  <!-- common:head:end -->
 
   <style type="text/tailwindcss">
     @theme {
@@ -25,22 +30,23 @@
       --font-weight-black: 900;
 
       /* ---------- 색: 브랜드 (Figma node 1776:3043 실측값) ---------- */
-      --color-brand: #7bcc12;
-      --color-brand-dark: #4a7e07;
-      --color-brand-deep: #396204;
-      --color-badge-brand: #f1f8e7;
+      --color-brand: var(--food-color-brand);
+      --color-brand-dark: var(--food-color-brand-dark);
+      --color-brand-deep: var(--food-color-brand-deep);
+      --color-badge-brand: var(--food-color-badge-brand);
       --color-brand-soft: #e8f5d4;
       --color-scrim-hero: rgba(17, 24, 39, 0.3); /* token-exempt: @theme 정의 — Hero 사진 스크림 */
       --color-scrim-thumb: rgba(0, 0, 0, 0.3); /* token-exempt: @theme 정의 — 영상 썸네일 스크림 */
 
       /* ---------- 색: 중립 ---------- */
+      --color-gray-600: var(--food-color-gray-600);
       --color-surface-soft: #f9faf6;
-      --color-text-primary: #31343b;
-      --color-text-body: #40444d;
-      --color-border: #e5e7eb;
-      --color-gray-50: #f7f7f8;
-      --color-gray-100: #efeff1;
-      --color-gray-400: #9ca1ab;
+      --color-text-primary: var(--food-color-text-primary);
+      --color-text-body: var(--food-color-text-body);
+      --color-border: var(--food-color-border);
+      --color-gray-50: var(--food-color-gray-50);
+      --color-gray-100: var(--food-color-gray-100);
+      --color-gray-400: var(--food-color-gray-400);
       --color-green-200: #bfe2c4;
 
       /* ---------- 색: 211 식사법 3색 ---------- */
@@ -101,7 +107,7 @@
       left: 1rem;
       z-index: 100;
       background: var(--color-brand);
-      color: var(--color-brand-dark);
+      color: var(--color-text-primary);
       font-weight: 700;
       font-size: 0.875rem;
       padding: 0.6rem 1.1rem;
@@ -132,16 +138,12 @@
     .nav-link:focus-visible::after,
     .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 
-    .tab-link { border-bottom: 2px solid transparent; }
-    .tab-link--active { color: var(--color-brand); border-color: var(--color-brand); }
-    .tab-link--inactive { color: var(--color-gray-400); }
-
     .footer-link { color: var(--color-text-body); }
     .footer-link:hover { color: var(--color-brand-dark); }
 
     @media (min-width: 768px) and (max-width: 1023px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 48px !important; padding-right: 48px !important; }
@@ -156,7 +158,7 @@
 
     @media (max-width: 767px) {
       header > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
-      header > div > div:nth-child(2) { position: relative; height: 60px !important; justify-content: center !important; }
+      header > div > div:nth-child(2) { position: relative; height: var(--common-header-main-height-mobile) !important; justify-content: center !important; }
       header > div > div:nth-child(2) > a { position: absolute; left: 50%; transform: translateX(-50%); }
       #menu-btn { position: absolute; left: 0; width: 44px; height: 44px; border: 0; }
       #site-footer > div { max-width: none !important; padding-left: 20px !important; padding-right: 20px !important; }
@@ -182,84 +184,136 @@
     }
   </style>
 </head>
-<body class="bg-white font-sans text-text-primary antialiased">
+<body class="bg-white font-sans text-text-primary antialiased" data-common-header-offset>
   <a href="#main" class="skip-link">본문 바로가기</a>
+
+  <!-- common:header:start -->
+  <header id="site-header" class="common-header">
+    <div class="common-header__inner">
+      <div id="utility-bar" class="common-header__utility">
+        <a class="common-header__utility-link" href="index.html#section2">
+          <span class="common-header__utility-icon"><img src="assets/icons/file-text.svg" alt="" width="20" height="20"></span>
+          <span>지속가능경영보고서</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#section4">
+          <span class="common-header__utility-icon"><img src="assets/icons/users.svg" alt="" width="20" height="20"></span>
+          <span>인재채용</span>
+        </a>
+        <a class="common-header__utility-link" href="index.html#site-footer">
+          <span class="common-header__utility-icon"><img src="assets/icons/message-square.svg" alt="" width="20" height="20"></span>
+          <span>고객기쁨센터</span>
+        </a>
+        <a class="common-header__utility-link common-header__utility-link--bold" href="index.html#section6">
+          <span class="common-header__utility-icon"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
+          <span>#풀무원</span>
+        </a>
+      </div>
+
+      <div class="common-header__main">
+        <a href="index.html" class="common-focus common-header__logo-link">
+          <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
+        </a>
+
+        <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
+          <ul class="common-header__nav-list">
+            <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
+          <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
+              <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
+              <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
+              <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
+              <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
+              <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
+              <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
+              <li><a class="site-header-dropdown__link" href="sub2-responsive.html">추진전략</a></li>
+              <li><a class="site-header-dropdown__link" href="sub3-responsive.html">활동 및 실적</a></li>
+              <li><a class="site-header-dropdown__link" href="sub4-responsive.html">수상</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="food.html">지속가능 식생활</a></li>
+              <li><a class="site-header-dropdown__link" href="food2.html">지속가능식품</a></li>
+              <li><a class="site-header-dropdown__link" href="food3.html">바른먹거리 원칙</a></li>
+              <li><a class="site-header-dropdown__link" href="food4.html">바른먹거리 캠페인</a></li>
+              <li><a class="site-header-dropdown__link" href="food5.html">식품안전 및 품질정책</a></li>
+              <li><a class="site-header-dropdown__link" href="food.html">테이스터풀무원 ↗</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="earthmeal1.html">지구로그</a></li>
+              <li><a class="site-header-dropdown__link" href="earthmeal2.html">팝업스토어</a></li>
+            </ul>
+            <ul class="site-header-dropdown__list">
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/newsroom.html">풀무원뉴스</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/esg.html">ESG경영</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/multimedia.html">멀티미디어</a></li>
+              <li><a class="site-header-dropdown__link" href="pulmuone-newsroom/resources.html">자료&공지</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="common-header__actions">
+          <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
+            <span>KOR</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          <button type="button" id="menu-btn" class="common-focus common-header__menu-button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg id="menu-icon-close" class="is-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+        <div class="common-header__search-panel-inner">
+          <div class="common-header__search-field">
+            <label for="common-search-input">통합검색</label>
+            <div class="common-header__search-input-wrap">
+              <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+              <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
+            </div>
+          </div>
+          <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+          <ul id="common-search-results" class="common-header__search-results"></ul>
+        </div>
+      </section>
+
+      <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
+        <ul>
+          <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
+          <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
+          <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
+          <li><a data-nav-page="newsroom" href="pulmuone-newsroom/newsroom.html">뉴스룸</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- common:header:end -->
 
   <div id="smooth-wrapper">
     <div id="smooth-content">
 
       <!-- ===== Header (사이트 공용 헤더 — index.html과 동일 구성) ===== -->
-      <header class="w-full border-b border-border bg-white">
-        <div class="mx-auto w-full max-w-food px-6">
-
-          <div class="hidden h-14 items-center justify-end gap-1 lg:flex">
-            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section2">
-              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
-              <span>지속가능경영보고서</span>
-            </a>
-            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#section4">
-              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/users.svg" alt="" width="20" height="20" /></span>
-              <span>인재채용</span>
-            </a>
-            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm text-text-primary" href="index.html#site-footer">
-              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
-              <span>고객기쁨센터</span>
-            </a>
-            <a class="focus-ring flex items-center gap-2 rounded-lg px-1 py-2.5 text-sm font-bold text-text-primary" href="index.html#section6">
-              <span class="flex size-9 items-center justify-center rounded-2xl bg-gray-50"><img src="assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
-              <span>#풀무원</span>
-            </a>
-          </div>
-
-          <div class="flex h-16 items-center justify-between lg:h-24">
-            <a href="index.html" class="focus-ring shrink-0 rounded-md">
-              <img src="assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" class="w-24 lg:w-28" />
-            </a>
-
-            <nav id="primary-nav" aria-label="주요 메뉴" class="hidden lg:block">
-              <ul class="flex items-center gap-10 text-sm text-text-body">
-                <li><a class="nav-link py-2" href="index.html#section3">회사소개</a></li>
-                <li><a class="nav-link py-2" href="index.html#section4">사회책임경영</a></li>
-                <li><a class="nav-link py-2" href="index.html#section2" aria-current="page">바른먹거리</a></li>
-                <li><a class="nav-link py-2" href="index.html#section6">지구식단</a></li>
-                <li><a class="nav-link py-2" href="index.html#section5">뉴스룸</a></li>
-              </ul>
-            </nav>
-
-            <div class="flex items-center gap-5">
-              <button type="button" class="focus-ring hidden size-5 items-center justify-center lg:flex" aria-label="통합 검색 열기">
-                <img src="assets/icons/search.svg" alt="" width="20" height="20" class="size-5" />
-              </button>
-              <button type="button" class="focus-ring hidden items-center gap-1 rounded-lg border border-black p-2 text-base text-text-primary lg:flex" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
-                <span>KOR</span>
-                <img src="assets/icons/chevron-down.svg" alt="" width="20" height="20" class="size-5" />
-              </button>
-              <button type="button" id="menu-btn" class="focus-ring flex size-10 items-center justify-center rounded-lg border border-gray-400 lg:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
-                <svg id="menu-icon-open" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-                <svg id="menu-icon-close" class="hidden size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
-              </button>
-            </div>
-          </div>
-
-          <div id="mobile-menu" class="hidden border-t border-border py-4 lg:hidden">
-            <ul class="flex flex-col gap-1 text-sm text-text-body">
-              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section3">회사소개</a></li>
-              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section4">사회책임경영</a></li>
-              <li><a class="block rounded-lg px-2 py-2.5 font-bold text-brand" href="index.html#section2" aria-current="page">바른먹거리</a></li>
-              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section6">지구식단</a></li>
-              <li><a class="block rounded-lg px-2 py-2.5" href="index.html#section5">뉴스룸</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
-      <!-- ===== 탭 메뉴 ===== -->
-      <div class="w-full border-b border-border bg-white">
-        <div class="mx-auto flex w-full max-w-food justify-center gap-6 px-6">
-          <a href="#main" class="tab-link tab-link--active px-6 py-4 text-center text-food-body font-bold" aria-current="page">지속가능 식생활</a>
-          <span class="tab-link tab-link--inactive px-6 py-4 text-center text-food-body font-medium" aria-disabled="true">지속가능한 원칙</span>
-        </div>
-      </div>
 
       <main id="main" tabindex="-1">
 
@@ -278,10 +332,8 @@
           <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
             <div class="reveal flex flex-col items-center gap-4 text-center">
               <h2 id="intro-heading" class="text-food-display font-extrabold text-text-primary">
-                풀무원은 <span class="text-brand">'바른먹거리로 사람과 지구의 건강한 내일을 만드는 기업'</span> 입니다.
+                풀무원은 <span class="text-brand">'지구의 건강한 내일을 만드는 기업'</span> 입니다.
               </h2>
-              <p class="leading-food text-base text-text-body">풀무원은 사람의 건강뿐만 아니라, 생산 과정에서 발생하는 지구 환경 오염까지 줄여 더 많은 사람들이 안전하고 바른 먹거리를 공급받을 수 있도록 최선을 다하고 있습니다.</p>
-              <p class="leading-food text-base text-text-body">환경 부담을 최소화하는 지속 가능한 순환 농법, 동물 복지 환경을 배려한 동물복지 제도, 환경 호르몬 우려가 없는 친환경 포장 기술 도입 등 지구 보존의 가치를 위한 노력을 이어가고 있습니다.</p>
             </div>
 
             <div class="reveal flex w-full max-w-4xl flex-col items-center gap-6 rounded-2xl border border-brand-soft bg-surface-soft p-10">
@@ -297,7 +349,7 @@
           <div class="mx-auto flex w-full max-w-food flex-col items-center gap-12">
 
             <div class="reveal flex flex-col items-center gap-3 text-center">
-              <h2 id="gl-heading" class="text-food-section font-bold text-text-primary">자엘(GL) 다이어트</h2>
+              <h2 id="gl-heading" class="text-food-section font-bold text-text-primary">지엘(GL) 다이어트</h2>
               <p class="text-base text-text-body">탄수화물 섭취량을 줄이고 당 흡수를 늦춰 인슐린 과다 분비를 막는 건강한 식사법</p>
             </div>
 
@@ -550,61 +602,100 @@
       </main>
 
       <!-- ===== Footer (사이트 공용 푸터 — index.html과 동일 구성) ===== -->
-      <footer id="site-footer" class="bg-gray-100">
-        <div class="mx-auto w-full max-w-food border-t border-border px-6 py-10">
+<!-- common:footer:start -->
+<footer id="site-footer" class="common-footer">
+  <div class="common-footer__inner">
+    <div class="common-footer__top">
+      <div class="common-footer__company">
+        <img src="assets/images/footer-logo.png" alt="풀무원" width="119" height="40" loading="lazy">
+        <address>
+          <span>법인명 : (주)풀무원</span>
+          <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
+          <span>대표전화 : <a class="common-focus" href="tel:070-0000-0000">070-0000-0000</a></span>
+        </address>
+      </div>
 
-          <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-start">
-            <div class="flex flex-col items-start gap-4">
-              <img src="assets/images/footer-logo.png" alt="풀무원" class="h-9 w-auto" loading="lazy" />
-              <address class="flex flex-col gap-1 text-xs not-italic text-text-body">
-                <span>법인명 : (주)풀무원</span>
-                <span>서울시 강남구 광평로 280 로즈데일빌딩</span>
-                <span>대표전화 : <a class="focus-ring underline" href="tel:080-022-0085">080-022-0085</a></span>
-              </address>
-            </div>
+      <div class="common-footer__links">
+        <nav aria-label="정책 및 안내">
+          <ul class="common-footer__policy-list">
+            <li><a class="common-footer__link common-footer__link--bold" href="#site-footer">개인정보처리방침</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">이메일주소 무단수집 거부</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">사이버감사실</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">공정거래</a></li>
+            <li aria-hidden="true" class="common-footer__divider">|</li>
+            <li><a class="common-footer__link" href="#site-footer">풀무원채용</a></li>
+          </ul>
+        </nav>
 
-            <div class="flex flex-col gap-4 lg:items-end">
-              <nav aria-label="정책 및 안내">
-                <ul class="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1 lg:justify-end">
-                  <li><a class="footer-link text-sm font-bold" href="#site-footer">개인정보처리방침</a></li>
-                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-                  <li><a class="footer-link text-sm" href="#site-footer">이메일주소 무단수집 거부</a></li>
-                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-                  <li><a class="footer-link text-sm" href="#site-footer">사이버감사실</a></li>
-                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-                  <li><a class="footer-link text-sm" href="#site-footer">공정거래</a></li>
-                  <li aria-hidden="true" class="hidden text-sm text-gray-400 sm:block">|</li>
-                  <li><a class="footer-link text-sm" href="#site-footer">풀무원채용</a></li>
-                </ul>
-              </nav>
-
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="text-sm text-text-primary">공식계정</span>
-                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" class="size-7" loading="lazy" /></a>
-                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" class="size-7" loading="lazy" /></a>
-                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" class="size-7" loading="lazy" /></a>
-                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" class="size-7" loading="lazy" /></a>
-                <a class="focus-ring rounded-md" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" class="size-7" loading="lazy" /></a>
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-6 border-border" />
-
-          <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
-            <p class="text-xs leading-normal text-text-body">Copyright © Pulmuone Corporate All Rights Reserved.</p>
-
-            <div class="flex items-center gap-6">
-              <button type="button" class="focus-ring flex items-center gap-2 rounded-lg border border-gray-400 bg-white px-4 py-2 text-sm text-text-primary" aria-haspopup="listbox" aria-expanded="false">
-                계열사/브랜드 사이트
-                <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" class="size-3" />
-              </button>
-              <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" class="size-14" loading="lazy" />
-            </div>
-          </div>
-
+        <div class="common-footer__social">
+          <span>공식계정</span>
+          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" width="21" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" width="24" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" width="46" height="42" loading="lazy"></a>
         </div>
-      </footer>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="common-footer__bottom">
+      <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
+      <div class="common-footer__family">
+        <div class="common-footer__family-site">
+          <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
+            계열사/브랜드 사이트
+            <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12">
+          </button>
+          <div id="family-site-panel" class="common-footer__family-panel" hidden>
+            <section aria-labelledby="family-pulmuone-title">
+              <h2 id="family-pulmuone-title">풀무원</h2>
+              <ul>
+                <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
+                <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
+                <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
+                <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
+                <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-affiliate-title">
+              <h2 id="family-affiliate-title">계열사</h2>
+              <ul>
+                <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
+                <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
+                <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
+                <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
+                <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
+                <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
+              </ul>
+            </section>
+            <section aria-labelledby="family-brand-title">
+              <h2 id="family-brand-title">브랜드</h2>
+              <ul>
+                <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
+                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
+                <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
+                <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
+                <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
+                <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" width="80" height="74" loading="lazy">
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- common:footer:end -->
 
     </div>
   </div>
@@ -618,30 +709,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
   <script>
-    // ---------- 헤더 인터랙션 ----------
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIconOpen = document.getElementById('menu-icon-open');
-    const menuIconClose = document.getElementById('menu-icon-close');
-
-    menuBtn.addEventListener('click', () => {
-      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!expanded));
-      mobileMenu.classList.toggle('hidden');
-      menuIconOpen.classList.toggle('hidden');
-      menuIconClose.classList.toggle('hidden');
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
-        menuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.add('hidden');
-        menuIconOpen.classList.remove('hidden');
-        menuIconClose.classList.add('hidden');
-        menuBtn.focus();
-      }
-    });
-
     // ---------- GSAP ----------
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
 

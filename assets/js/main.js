@@ -21,18 +21,25 @@
     history.scrollRestoration = 'manual';
   }
 
-  let reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let desktopQuery = window.matchMedia('(min-width: 1024px)');
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopQuery = window.matchMedia('(min-width: 1024px)');
+  const sectionNavigationDuration = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--duration-section-navigation')
+  ) / 1000;
 
-  let panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  let footer = document.getElementById('site-footer');
+  // 모바일은 문서의 기본 스크롤만 사용한다. 이전에 내려받은 main.js가 남아
+  // 있더라도 휠·터치 이벤트를 가로채 섹션 단위로 이동시키지 않는다.
+  if (!desktopQuery.matches) return;
+
+  const panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  const footer = document.getElementById('site-footer');
   let targets = [];
   let lastIndex = 0;
 
   /* 모바일 시안에는 SNS 섹션이 없어 lg 미만에서 display:none으로 감춘다.
      그래서 이동 대상 목록은 "지금 실제로 보이는 패널"만으로 매번 다시 만든다. */
   function rebuildTargets() {
-    let previous = targets[currentIndex] || null;
+    const previous = targets[currentIndex] || null;
 
     targets = panels.filter(function (panel) {
       return panel.getClientRects().length > 0;
@@ -40,14 +47,23 @@
     if (footer) targets.push(footer);
     lastIndex = Math.max(0, targets.length - 1);
 
-    let moved = previous ? targets.indexOf(previous) : -1;
+    const moved = previous ? targets.indexOf(previous) : -1;
     currentIndex = moved === -1 ? Math.min(currentIndex, lastIndex) : moved;
   }
 
-  let dotLinks = Array.prototype.slice.call(document.querySelectorAll('.dot-nav__link'));
+  const dotLinks = Array.prototype.slice.call(document.querySelectorAll('.dot-nav__link'));
+  const dotNav = document.querySelector('.dot-nav');
 
   let currentIndex = 0;
   let isAnimating = false;
+
+  // 최초 진입 직후 모바일 뷰포트가 확정되는 경우에도 진행 중인 패널 이동을
+  // 즉시 멈춰, 이후 스크롤은 브라우저 기본 동작으로 이어지게 한다.
+  desktopQuery.addEventListener('change', function (event) {
+    if (event.matches) return;
+    gsap.killTweensOf(window);
+    isAnimating = false;
+  });
 
   /* ---------------- 이동 ---------------- */
 
@@ -56,45 +72,15 @@
   }
 
   function targetTop(index) {
-    let el = targets[index];
+    const el = targets[index];
     if (el === footer) {
       return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     }
     return el.getBoundingClientRect().top + window.scrollY;
   }
 
-  // 상단 유틸리티 바는 첫 번째 섹션에서만 보인다.
-  let utilityBar = document.getElementById('utility-bar');
-  let utilityShown = true;
-
-  function syncUtilityBar() {
-    if (!utilityBar) return;
-
-    let shouldShow = currentIndex === 0;
-    if (shouldShow === utilityShown) return;
-    utilityShown = shouldShow;
-
-    document.body.classList.toggle('is-header-compact', !shouldShow);
-
-    let state = shouldShow
-      ? { height: 'auto', autoAlpha: 1 }
-      : { height: 0, autoAlpha: 0 };
-
-    if (reduceMotion()) {
-      gsap.set(utilityBar, state);
-      return;
-    }
-
-    gsap.to(utilityBar, {
-      height: state.height,
-      autoAlpha: state.autoAlpha,
-      duration: 0.35,
-      ease: 'power2.out'
-    });
-  }
-
   // Hero 섹션에서는 헤더가 사진 위에 떠 있고, 벗어나면 흰 배경으로 돌아온다.
-  let siteHeader = document.getElementById('site-header');
+  const siteHeader = document.getElementById('site-header');
 
   function syncHeaderFloat() {
     if (!siteHeader) return;
@@ -102,32 +88,38 @@
   }
 
   function syncNav() {
-    syncUtilityBar();
     syncHeaderFloat();
 
-    let id = targets[currentIndex] ? targets[currentIndex].id : '';
+    const id = targets[currentIndex] ? targets[currentIndex].id : '';
+    let activeDotIndex = -1;
     dotLinks.forEach(function (link) {
-      let isCurrent = link.getAttribute('href') === '#' + id;
+      const isCurrent = link.getAttribute('href') === '#' + id;
       if (isCurrent) {
         link.setAttribute('aria-current', 'true');
+        activeDotIndex = dotLinks.indexOf(link);
       } else {
         link.removeAttribute('aria-current');
       }
     });
+    // 푸터에는 전용 링크가 없으므로 표시 원은 마지막 섹션 위치에 그대로 둔다.
+    if (dotNav && activeDotIndex >= 0) {
+      dotNav.dataset.current = String(activeDotIndex);
+      dotNav.querySelector('ul').style.setProperty('--dot-nav-current', activeDotIndex);
+    }
   }
 
   function goTo(index, options) {
-    let opts = options || {};
+    const opts = options || {};
     index = Math.max(0, Math.min(lastIndex, index));
 
     currentIndex = index;
     syncNav();
 
-    let y = targetTop(index);
+    const y = targetTop(index);
     isAnimating = true;
 
     gsap.to(window, {
-      duration: reduceMotion() ? 0 : 0.9,
+      duration: reduceMotion() ? 0 : sectionNavigationDuration,
       ease: 'power2.inOut',
       scrollTo: { y: y, autoKill: false },
       onComplete: function () {
@@ -141,8 +133,8 @@
 
   function focusSection(el) {
     if (!el) return;
-    let heading = el.querySelector('h1, h2');
-    let focusTarget = heading || el;
+    const heading = el.querySelector('h1, h2');
+    const focusTarget = heading || el;
     if (!focusTarget.hasAttribute('tabindex')) {
       focusTarget.setAttribute('tabindex', '-1');
     }
@@ -165,7 +157,7 @@
 
   function scrollerHasRoom(scroller, direction) {
     if (!scroller) return false;
-    let max = scroller.scrollHeight - scroller.clientHeight;
+    const max = scroller.scrollHeight - scroller.clientHeight;
     if (max <= 1) return false;
     if (direction > 0) return scroller.scrollTop < max - 1;
     return scroller.scrollTop > 1;
@@ -174,10 +166,11 @@
   /* ---------------- 휠 ---------------- */
 
   window.addEventListener('wheel', function (event) {
+    if (!desktopQuery.matches) return;
     if (event.ctrlKey) return;
 
-    let direction = event.deltaY > 0 ? 1 : -1;
-    let scroller = scrollerOf(event.target);
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const scroller = scrollerOf(event.target);
 
     if (scrollerHasRoom(scroller, direction)) return;
 
@@ -199,21 +192,22 @@
   let touchScroller = null;
 
   window.addEventListener('touchstart', function (event) {
-    let touch = event.touches[0];
+    const touch = event.touches[0];
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
     touchScroller = scrollerOf(event.target);
   }, { passive: true });
 
   window.addEventListener('touchmove', function (event) {
-    let touch = event.touches[0];
-    let deltaY = touchStartY - touch.clientY;
-    let deltaX = touchStartX - touch.clientX;
+    if (!desktopQuery.matches) return;
+    const touch = event.touches[0];
+    const deltaY = touchStartY - touch.clientY;
+    const deltaX = touchStartX - touch.clientX;
 
     // 가로 제스처는 Swiper 캐로셀 몫이므로 건드리지 않는다.
     if (Math.abs(deltaX) > Math.abs(deltaY)) return;
 
-    let direction = deltaY > 0 ? 1 : -1;
+    const direction = deltaY > 0 ? 1 : -1;
     if (scrollerHasRoom(touchScroller, direction)) return;
     if (!touchScroller && currentIndex === lastIndex && direction > 0) return;
 
@@ -221,14 +215,15 @@
   }, { passive: false });
 
   window.addEventListener('touchend', function (event) {
-    let touch = event.changedTouches[0];
-    let deltaY = touchStartY - touch.clientY;
-    let deltaX = touchStartX - touch.clientX;
+    if (!desktopQuery.matches) return;
+    const touch = event.changedTouches[0];
+    const deltaY = touchStartY - touch.clientY;
+    const deltaX = touchStartX - touch.clientX;
 
     if (Math.abs(deltaY) < 60) return;
     if (Math.abs(deltaX) > Math.abs(deltaY)) return;
 
-    let direction = deltaY > 0 ? 1 : -1;
+    const direction = deltaY > 0 ? 1 : -1;
     if (scrollerHasRoom(touchScroller, direction)) return;
     if (isAnimating) return;
 
@@ -238,10 +233,11 @@
   /* ---------------- 키보드 ---------------- */
 
   window.addEventListener('keydown', function (event) {
+    if (!desktopQuery.matches) return;
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target.closest && event.target.closest('input, textarea, select, [contenteditable]')) return;
 
-    let key = event.key;
+    const key = event.key;
     let direction = 0;
 
     if (key === 'ArrowDown' || key === 'PageDown') direction = 1;
@@ -258,7 +254,7 @@
       return;
     }
 
-    let scroller = scrollerOf(document.activeElement) || scrollerOf(targets[currentIndex]);
+    const scroller = scrollerOf(document.activeElement) || scrollerOf(targets[currentIndex]);
     if (scrollerHasRoom(scroller, direction)) return;
 
     event.preventDefault();
@@ -269,13 +265,14 @@
   /* ---------------- 앵커 링크 ---------------- */
 
   document.addEventListener('click', function (event) {
-    let link = event.target.closest ? event.target.closest('a[href^="#"]') : null;
+    if (!desktopQuery.matches) return;
+    const link = event.target.closest ? event.target.closest('a[href^="#"]') : null;
     if (!link) return;
 
-    let id = link.getAttribute('href').slice(1);
+    const id = link.getAttribute('href').slice(1);
     if (!id) return;
 
-    let index = indexOfId(id);
+    const index = indexOfId(id);
     if (index === -1) return;
 
     event.preventDefault();
@@ -285,8 +282,8 @@
 
   /* ---------------- 모바일 메뉴 ---------------- */
 
-  let menuToggle = document.getElementById('menu-toggle');
-  let primaryNav = document.getElementById('primary-nav');
+  const menuToggle = document.getElementById('menu-toggle');
+  const primaryNav = document.getElementById('primary-nav');
 
   function closeMenu() {
     if (!menuToggle || !primaryNav) return;
@@ -341,7 +338,7 @@
     if (reduceMotion()) return;
 
     panels.forEach(function (panel) {
-      let blocks = panel.querySelectorAll('.panel__block > *, .hero__inner > *');
+      const blocks = panel.querySelectorAll('.panel__block > *, .hero__inner > *');
       if (!blocks.length) return;
 
       gsap.from(blocks, {
@@ -369,9 +366,9 @@
 
   /* ---------------- Swiper 캐로셀 ---------------- */
 
-  let swipers = {};
+  const swipers = {};
 
-  let swiperOptions = {
+  const swiperOptions = {
     value: {
       slidesPerView: 1.1,
       spaceBetween: 16,
@@ -387,14 +384,14 @@
   };
 
   function syncSwipers() {
-    let shouldRun = !desktopQuery.matches;
+    const shouldRun = !desktopQuery.matches;
 
     Object.keys(swiperOptions).forEach(function (key) {
-      let el = document.querySelector('.card-swiper[data-swiper="' + key + '"]');
+      const el = document.querySelector('.card-swiper[data-swiper="' + key + '"]');
       if (!el) return;
 
       if (shouldRun && !swipers[key]) {
-        let options = Object.assign({}, swiperOptions[key], {
+        const options = Object.assign({}, swiperOptions[key], {
           a11y: {
             enabled: true,
             prevSlideMessage: '이전 항목',
@@ -420,7 +417,7 @@
 
   /* 브레이크포인트가 바뀌면 보이는 패널 구성이 달라지므로 GSAP matchMedia로 다시 맞춘다. */
   function watchBreakpoints() {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     mm.add('(min-width: 1024px)', function () {
       rebuildTargets();
@@ -441,7 +438,7 @@
 
     if (window.Swiper) syncSwipers();
 
-    let hashIndex = window.location.hash ? indexOfId(window.location.hash.slice(1)) : -1;
+    const hashIndex = window.location.hash ? indexOfId(window.location.hash.slice(1)) : -1;
     if (hashIndex > 0) {
       goTo(hashIndex);
     } else {
@@ -452,6 +449,7 @@
   let resizeTimer = null;
   window.addEventListener('resize', function () {
     if (window.Swiper) syncSwipers();
+    if (!desktopQuery.matches) return;
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
       rebuildTargets();
@@ -471,12 +469,12 @@
 
   // 브라우저가 이전 스크롤 위치를 복원했을 때 현재 섹션 표시와 어긋나지 않게 맞춘다.
   function syncFromScroll() {
-    let y = window.scrollY;
+    const y = window.scrollY;
     let nearest = 0;
     let best = Infinity;
 
     for (let i = 0; i < targets.length; i += 1) {
-      let distance = Math.abs(targetTop(i) - y);
+      const distance = Math.abs(targetTop(i) - y);
       if (distance < best) {
         best = distance;
         nearest = i;
@@ -487,6 +485,35 @@
     syncNav();
     if (best > 1) window.scrollTo(0, targetTop(nearest));
   }
+
+  // 브라우저 스크롤바를 직접 드래그한 경우에도 실제 화면 위치를 기준으로
+  // 현재 섹션과 도트 내비게이션을 맞춘다. 자동 섹션 이동 중에는 goTo()가
+  // 상태를 관리하므로, 사용자가 직접 스크롤할 때만 갱신한다.
+  let scrollSyncFrame = null;
+  window.addEventListener('scroll', function () {
+    if (!desktopQuery.matches || isAnimating || scrollSyncFrame !== null) return;
+
+    scrollSyncFrame = window.requestAnimationFrame(function () {
+      scrollSyncFrame = null;
+      if (isAnimating) return;
+
+      const y = window.scrollY;
+      let nearest = 0;
+      let best = Infinity;
+
+      for (let i = 0; i < targets.length; i += 1) {
+        const distance = Math.abs(targetTop(i) - y);
+        if (distance < best) {
+          best = distance;
+          nearest = i;
+        }
+      }
+
+      if (nearest === currentIndex) return;
+      currentIndex = nearest;
+      syncNav();
+    });
+  }, { passive: true });
 
   window.addEventListener('load', function () {
     ScrollTrigger.refresh();
