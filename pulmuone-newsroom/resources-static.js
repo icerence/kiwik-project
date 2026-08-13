@@ -19,7 +19,7 @@
   const PRESS_PER_PAGE = 15;
   const REPORTS_PER_PAGE = 9;
   const NOTICES_PER_PAGE = 9;
-  const PAGE_BLOCK_SIZE = 9;
+  const PAGE_BLOCK_SIZE = 10;
 
   function formatDate(dateStr) {
     if (!dateStr) return '';
