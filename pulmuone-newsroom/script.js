@@ -112,12 +112,21 @@ if (newsPanel) {
     const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
     const pageItems = items.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
-    pageItems.forEach(item => {
+    pageItems.forEach((item, index) => {
       const article = document.createElement('article');
       article.className = 'news-card';
 
       const img = document.createElement('img');
       img.className = 'thumbnail';
+      img.width = 360;
+      img.height = 220;
+      // 첫 카드는 초기 화면(LCP 후보)이라 즉시 로드하고, 나머지는 지연 로드한다.
+      if (index === 0) {
+        img.loading = 'eager';
+        img.fetchPriority = 'high';
+      } else {
+        img.loading = 'lazy';
+      }
       img.src = item.image || 'assets/news-01.png';
       img.alt = item.title || '풀무원 뉴스 이미지';
       img.onerror = () => {
@@ -244,6 +253,7 @@ if (newsPanel) {
       renderNews();
     } catch (error) {
       console.error('뉴스 데이터를 불러오지 못했습니다.', error);
+      newsPanel.querySelectorAll('.news-card').forEach(card => card.remove());
       const emptyMessage = newsPanel.querySelector('.empty-message');
       if (emptyMessage) {
         emptyMessage.textContent = '뉴스 데이터를 불러오지 못했습니다.';
@@ -702,6 +712,9 @@ if (document.body.classList.contains('page-multimedia')) {
           const div = document.createElement('div');
 
           const img = document.createElement('img');
+          img.width = 960;
+          img.height = 540;
+          img.loading = 'lazy';
           img.src = item.image || 'assets/media-01.png';
           img.alt = item.title || '썸네일';
           img.onerror = () => { img.onerror = null; img.src = 'assets/media-01.png'; };
@@ -714,6 +727,7 @@ if (document.body.classList.contains('page-multimedia')) {
             const playImg = document.createElement('img');
             playImg.src = 'assets/youtube_icon.svg';
             playImg.width = 72;
+            playImg.height = 50;
             playImg.alt = '재생';
             playSpan.appendChild(playImg);
             div.appendChild(playSpan);
@@ -868,160 +882,6 @@ if (document.body.classList.contains('page-multimedia')) {
   loadMultimediaData();
 }
 
-/* ---------------- 등장 애니메이션 (GSAP ScrollTrigger + Observer Fallback) ---------------- */
-function initEntranceAnimations() {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
-
-  function runAnimation() {
-    if (window.gsap && window.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-
-      if (document.body.classList.contains('page-esg')) {
-        const hero = document.querySelector('.esg-hero');
-
-        if (hero && !hero.dataset.entranceDone) {
-          const heroContent = hero.querySelectorAll(
-            '.esg-hero-copy > span, .esg-hero-copy > h1, .esg-hero-copy > p, .esg-hero-copy > .hero-chips'
-          );
-
-          gsap.fromTo(
-            heroContent,
-            { opacity: 0, y: 28 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out',
-              stagger: 0.1,
-              clearProps: 'transform,opacity',
-            }
-          );
-
-          hero.dataset.entranceDone = 'true';
-        }
-
-        const esgSections = [
-          {
-            selector: '#featured',
-            targets: '.section-heading, .featured-story, .esg-card-grid > article',
-          },
-          {
-            selector: '#videos',
-            targets: '.section-heading, .esg-video',
-          },
-          {
-            selector: '#esg-news',
-            targets: '.section-heading, .esg-news-grid > article',
-          },
-        ];
-
-        esgSections.forEach(({ selector, targets }) => {
-          const section = document.querySelector(selector);
-          if (!section || section.dataset.entranceDone) return;
-
-          const sectionTargets = section.querySelectorAll(targets);
-          if (sectionTargets.length === 0) return;
-
-          gsap.fromTo(
-            sectionTargets,
-            { opacity: 0, y: 28 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out',
-              stagger: 0.1,
-              clearProps: 'transform,opacity',
-              scrollTrigger: {
-                trigger: section,
-                start: 'top 85%',
-                once: true,
-              },
-            }
-          );
-
-          section.dataset.entranceDone = 'true';
-        });
-      }
-
-      const sectionSelectors = [
-        '.intro', '.page-head', '.resource-lead', '.center-intro',
-        '.tabs', '.news-tabs', '.media-tabs',
-        '.news-list', '.report-grid', '.brochure-grid', '.notice-grid',
-        '.parts', '.brochure-parts', '.esg-news-list', '.press-table',
-        '.report-feature', '.brochure-hero', '.pagination'
-      ];
-
-      sectionSelectors.forEach((selector) => {
-        const containers = document.querySelectorAll(selector);
-        containers.forEach((container) => {
-          if (container.dataset.entranceDone) return;
-
-          const items = container.querySelectorAll(
-            ':scope > *, .news-card, .report-card, .brochure-card, .notice-grid > a, article'
-          );
-          const targets = items.length > 0 ? Array.from(items) : [container];
-
-          gsap.fromTo(
-            targets,
-            { opacity: 0, y: 32 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: 'power2.out',
-              stagger: 0.1,
-              scrollTrigger: {
-                trigger: container,
-                start: 'top 88%',
-                once: true,
-              },
-            }
-          );
-
-          container.dataset.entranceDone = 'true';
-        });
-      });
-    } else {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.05,
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      const targets = document.querySelectorAll(
-        '.intro, .page-head, .news-card, .report-card, .brochure-card, .media-card, .video-card, .notice-grid > a, article, .press-table, .overview, .pagination'
-      );
-
-      targets.forEach((el) => {
-        if (!el.classList.contains('entrance-reveal')) {
-          el.classList.add('entrance-reveal');
-          observer.observe(el);
-        }
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runAnimation);
-  } else {
-    runAnimation();
-  }
-
-  window.addEventListener('load', runAnimation);
-  document.addEventListener('newsroom-data-rendered', runAnimation);
-}
-
 // Scroll reveal is initialized once for every newsroom subpage by scroll-reveal.js.
 
 /* ---------------- 카테고리 탭 슬라이딩 Active Indicator ---------------- */
@@ -1094,7 +954,7 @@ function initSlidingCategoryTabs() {
     containers.forEach(container => {
       const activeTab = container.querySelector('.selected, .active') || container.querySelector('button, a');
       if (activeTab) {
-        let indicator = container.querySelector('.tab-sliding-indicator');
+        const indicator = container.querySelector('.tab-sliding-indicator');
         if (indicator) {
           indicator.style.transition = 'none';
           const left = activeTab.offsetLeft;

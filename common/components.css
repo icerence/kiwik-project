@@ -36,6 +36,11 @@
   --color-gray-600: #535964;
   --color-gray-800: #31343b;
   --color-white: #ffffff;
+  --lime: #7bcc12;
+  --ink: var(--color-gray-600);
+  --dark: var(--color-gray-800);
+  --gray: #f7f7f8;
+  --white: var(--color-white);
   --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
   --font-weight-bold: 700;
   --common-header-mobile-edge: 20px;

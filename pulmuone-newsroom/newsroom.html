@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang="ko">
   <head>
-  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
       content="풀무원의 새로운 소식과 활동을 한눈에 확인하는 뉴스룸입니다."
-    />
+    >
     <title>풀무원 뉴스 | 풀무원</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12" />
+    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12">
+
+    <!-- 뉴스 목록 데이터와 썸네일 원본 서버에 미리 연결해 LCP 이미지 로딩을 앞당김 -->
+    <link rel="preload" href="./newsroom.json" as="fetch" crossorigin="anonymous">
+    <link rel="preconnect" href="https://news.pulmuone.co.kr" crossorigin>
+    <link rel="dns-prefetch" href="https://news.pulmuone.co.kr">
 
     <!-- Tailwind CSS v4 (Play CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <!-- common:head:start -->
     <link rel="stylesheet" href="../assets/css/fonts.css">
     <link rel="stylesheet" href="../common/components.css">
@@ -161,8 +163,8 @@
                 id="search-input"
                 type="search"
                 placeholder="검색어를 입력하세요"
-              /><button type="submit" aria-label="검색">
-                <img src="assets/search.svg" alt="" />
+              ><button type="submit" aria-label="검색">
+                <img src="assets/search.svg" alt="" width="20" height="20">
               </button>
             </form>
           </section>
@@ -216,6 +218,61 @@
             aria-label="기업뉴스 목록"
           >
             <p class="empty-message" hidden>검색 결과가 없습니다.</p>
+            <!-- 뉴스 데이터가 로드되기 전 레이아웃 공간을 미리 확보하는 스켈레톤 카드(CLS 방지). renderNewsList가 실행되면 자동으로 제거된다. -->
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
+            <article class="news-card news-card--skeleton" aria-hidden="true" data-scroll-reveal-done="true">
+              <div class="thumbnail"></div>
+              <div class="news-copy">
+                <div class="news-card--skeleton-line news-card--skeleton-tag"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-title"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-desc"></div>
+                <div class="news-card--skeleton-line news-card--skeleton-date"></div>
+              </div>
+            </article>
           </section>
 
           <nav class="pagination" aria-label="페이지 이동"></nav>
