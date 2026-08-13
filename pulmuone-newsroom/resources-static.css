@@ -415,6 +415,40 @@ main.content.shell > .page-head {
   box-shadow: 0 4px 10px rgba(88, 165, 34, 0.25);
 }
 
+/* Figma 2470:5284 — Sustainability report tab. */
+.report-panel { padding-top: var(--spacing-report-page-top); }
+.report-panel .report-intro { display:grid!important; justify-items:center; gap:var(--spacing-report-intro); margin:0 auto var(--spacing-report-section)!important; text-align:center; }
+.report-panel .report-intro h2,.report-panel .report-section-title { margin:0; color:var(--color-report-ink)!important; font-size:var(--text-report-page-title)!important; font-weight:var(--font-weight-bold)!important; letter-spacing:normal!important; }
+.report-panel .report-intro p { margin:0; color:var(--color-report-copy)!important; font-size:var(--text-report-body)!important; line-height:1.5!important; }
+.report-home-link { padding:var(--spacing-report-table-cell) var(--spacing-report-card); border:1px solid var(--color-report-line); color:var(--color-report-muted); font-size:var(--text-report-small); }
+.report-panel .report-section-title { margin-bottom:var(--spacing-report-feature)!important; font-size:var(--text-report-section-title)!important; }
+.report-panel .report-feature { display:grid; grid-template-columns:var(--size-report-feature-cover) minmax(0,1fr); align-items:center; gap:var(--spacing-report-feature); }
+.report-feature-cover { display:flex; width:var(--size-report-feature-cover); height:var(--size-report-feature-cover-height); flex-direction:column; align-items:center; justify-content:space-between; padding:var(--spacing-report-cover-top) var(--spacing-report-card) var(--spacing-report-cover-bottom); background:var(--color-white); }
+.report-cover-kicker { align-self:flex-start; color:var(--color-report-lime); font-size:var(--text-report-small); font-weight:var(--font-weight-bold); }
+.report-feature-cover strong { color:var(--color-report-deep-green); font-size:var(--text-report-cover-brand); }
+.report-cover-graphic { display:grid; transform:rotate(12deg); }
+.report-cover-graphic i { display:block; height:var(--size-report-graphic-bar); background:var(--color-report-lime); }
+.report-cover-graphic i:nth-child(1) { width:var(--size-report-graphic-wide); }
+.report-cover-graphic i:nth-child(2) { width:var(--size-report-graphic-mid); background:var(--color-report-green); }
+.report-cover-graphic i:nth-child(3) { width:var(--size-report-graphic-short); }
+.report-panel .parts { display:grid; gap:var(--spacing-report-parts); }
+.report-panel .parts article { display:grid; grid-template-columns:var(--size-report-part-icon) minmax(0,1fr); align-items:center; gap:var(--spacing-report-intro); padding:0; background:transparent; box-shadow:none; }
+.report-panel .parts article img { width:var(--size-report-part-icon); height:var(--size-report-part-icon); }
+.report-panel .parts article b { margin:0; color:var(--color-report-ink); font-size:var(--text-report-part-title); }
+.report-panel .parts article p { margin:0; color:var(--color-report-muted); font-size:var(--text-report-small); }
+.report-archive-heading { margin-top:var(--spacing-report-section); }
+.report-panel .report-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--spacing-report-card-row) var(--spacing-report-card); }
+.report-panel .report-card { display:grid; justify-items:center; gap:var(--spacing-report-table-cell); padding:0; background:transparent; box-shadow:none; }
+.report-panel .report-card > span { color:var(--color-report-muted); font-size:var(--text-report-card-title); font-weight:var(--font-weight-bold); }
+.report-panel .report-card .report-cover { display:grid; width:var(--size-report-card-cover); height:var(--size-report-card-cover-height); place-items:center; overflow:hidden; background:var(--color-white); }
+.report-panel .report-card img { width:100%; height:100%; object-fit:cover; }
+.report-panel .report-card .download-row { display:flex; gap:var(--spacing-report-card); margin:0; }
+.report-panel .report-card .download-row a { padding:0; background:transparent; color:var(--color-report-ink); font-size:var(--text-report-small); }
+.report-panel .overview { border-radius:var(--radius-report-none); font-size:var(--text-report-small)!important; }
+.report-panel .overview th { padding:var(--spacing-report-table-cell); background:var(--color-report-lime); }
+.report-panel .overview td { padding:var(--spacing-report-table-cell); border:1px solid var(--color-report-grid-line); color:var(--color-report-muted); }
+@media (max-width:800px) { .report-panel .report-feature { grid-template-columns:1fr; } .report-feature-cover { margin-inline:auto; } .report-panel .report-grid { grid-template-columns:1fr; } }
+
 /* ==========================================================================
    12. 전체 서브페이지 검색창 디자인 시스템 통일 (esg.html 검색창 유일 기준)
    (Unified Search Bar Component Design System - Based on esg.html)
@@ -785,3 +819,14 @@ main.content.shell > .page-head {
     transition: none !important;
   }
 }
+
+/* Figma 2470:5284 final cascade for legacy newsroom rules. */
+.report-panel .report-card { padding:0!important; background:transparent!important; box-shadow:none!important; }
+.report-panel .report-card > span { margin:0!important; color:var(--color-report-muted)!important; font-size:var(--text-report-card-title)!important; }
+.report-panel .report-card .report-cover { display:grid!important; width:var(--size-report-card-cover)!important; height:var(--size-report-card-cover-height)!important; padding:0!important; border-radius:var(--radius-report-none)!important; background:var(--color-white)!important; box-shadow:none!important; }
+.report-panel .report-card .report-cover img { object-fit:cover!important; transform:none!important; }
+.report-panel .report-card .download-row { display:flex!important; gap:var(--spacing-report-card)!important; margin:0!important; }
+.report-panel .report-card .download-row a { padding:0!important; background:transparent!important; color:var(--color-report-ink)!important; font-size:var(--text-report-small)!important; font-weight:var(--font-weight-bold)!important; }
+.report-panel .parts article { padding:0!important; background:transparent!important; box-shadow:none!important; transform:none!important; }
+.report-panel .parts article:hover { background:transparent!important; box-shadow:none!important; transform:none!important; }
+.report-panel .parts article:hover p { color:var(--color-report-muted)!important; font-weight:400!important; transform:none!important; }

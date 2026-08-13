@@ -236,7 +236,7 @@
         koLink.href = item.koPdf || item.url;
         koLink.target = '_blank';
         koLink.rel = 'noopener noreferrer';
-        koLink.textContent = '국문 다운로드 ↓';
+        koLink.textContent = '국문 ↓';
         btnDiv.appendChild(koLink);
       }
 
@@ -245,7 +245,7 @@
         enLink.href = item.enPdf;
         enLink.target = '_blank';
         enLink.rel = 'noopener noreferrer';
-        enLink.textContent = '영문 다운로드 ↓';
+        enLink.textContent = '영문 ↓';
         btnDiv.appendChild(enLink);
       }
 

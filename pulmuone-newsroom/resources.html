@@ -17,6 +17,47 @@
     <link rel="stylesheet" href="../common/components.css" />
     <script src="../common/components.js" defer></script>
     <!-- common:head:end -->
+    <style type="text/tailwindcss">
+      @theme {
+        /* Figma 2470:5284 — Sustainability report tab */
+        --color-report-page: #f5f5f7;
+        --color-report-ink: #262626;
+        --color-report-copy: #616161;
+        --color-report-muted: #6b6b6b;
+        --color-report-line: #d1d1d1;
+        --color-report-grid-line: #dbdbdb;
+        --color-report-lime: #80c72e;
+        --color-report-green: #178c33;
+        --color-report-deep-green: #0a8f3b;
+        --spacing-report-page-top: 4.375rem;
+        --spacing-report-section: 4.375rem;
+        --spacing-report-intro: 1.375rem;
+        --spacing-report-feature: 2.75rem;
+        --spacing-report-parts: 1.625rem;
+        --spacing-report-card: 1.75rem;
+        --spacing-report-card-row: 2rem;
+        --spacing-report-cover-top: 2.625rem;
+        --spacing-report-cover-bottom: 2.125rem;
+        --spacing-report-table-cell: 0.75rem;
+        --size-report-feature-cover: 19.375rem;
+        --size-report-feature-cover-height: 26.25rem;
+        --size-report-card-cover: 15.625rem;
+        --size-report-card-cover-height: 20.625rem;
+        --size-report-part-icon: 3.375rem;
+        --size-report-graphic-wide: 9.375rem;
+        --size-report-graphic-mid: 8rem;
+        --size-report-graphic-short: 6.625rem;
+        --size-report-graphic-bar: 1.5rem;
+        --radius-report-none: 0;
+        --text-report-page-title: 2.125rem;
+        --text-report-section-title: 1.625rem;
+        --text-report-card-title: 1.125rem;
+        --text-report-part-title: 1rem;
+        --text-report-body: 0.9375rem;
+        --text-report-small: 0.8125rem;
+        --text-report-cover-brand: 1.9375rem;
+      }
+    </style>
   </head>
   <body data-common-header-offset>
     <a class="skip-link" href="#content">본문 바로가기</a>
@@ -160,7 +201,30 @@
       </section>
 <nav class="tabs"><button class="active" data-tab="press">보도자료실</button><button data-tab="report">지속가능경영보고서</button><button data-tab="brochure">브로슈어</button><button data-tab="notice">공지사항</button></nav>
 <section class="panel active" id="press"><p class="archive-note">2008년 5월부터 2016년 6월까지 보도자료는 풀무원 블로그에서 확인하실 수 있습니다. <a href="https://blog.pulmuone.com/category/News/%EB%89%B4%EC%8A%A4%EB%A3%B8" target="_blank" rel="noopener noreferrer" class="btn-more-archive">+ 더보기</a></p><div class="press-table"><div class="press-row head"><span>번호</span><b>제목</b><span>등록일</span></div></div><div class="pagination"></div></section>
-<section class="panel" id="report"><div class="center-intro"><h2>풀무원 지속가능경영보고서</h2><p>풀무원은 2007년 지속가능경영보고서 발간을 시작으로 2014년부터 통합보고서 체계를 도입하여<br>재무·비재무 성과와 주요 ESG 이슈 대응 현황을 종합적으로 공개해 왔습니다.<br>2025년부터는 보고서의 목적과 내용을 보다 직관적으로 전달하기 위해 ‘지속가능경영보고서’ 명칭을 재정의하였습니다.</p></div><h3 class="section-title">2025 지속가능경영보고서</h3><div class="report-feature"><div><div class="cover"><img src="https://www.figma.com/api/mcp/asset/6098366a-6242-4f5d-a2aa-6e9077fb3d1c.png" alt="2025 지속가능경영보고서 표지"></div><div class="download-row"><a>국문 다운로드 ↓</a><a>영문 다운로드 ↓</a></div><div class="cover-story"><b>Cover Story</b><p>풀무원의 그래픽 모티프를 활용하여 기업 아이덴티티를 직관적으로 표현했습니다. 또한 모티프의 일부를 타공하여 ‘풀무원의 내부를 들여다볼 수 있는 보고서’라는 콘셉트를 구현했습니다.</p></div></div><div class="parts"> <article><i>01</i><b>Part 1.</b><p>풀무원의 지배구조와 사업 영역, ESG 경영 체계를 소개합니다.</p></article><article><i>02</i><b>Part 2.</b><p>중점적으로 관리하고 있는 ESG 핵심 이슈와 일반 이슈를 정의합니다.</p></article><article><i>03</i><b>Part 3.</b><p>환경·사회·거버넌스 분야의 활동 및 성과를 소개합니다.</p></article><article><i>04</i><b>Part 4.</b><p>주요 재무·비재무 성과의 최근 3개년 추이를 제공합니다.</p></article><article><i>05</i><b>Part 5.</b><p>보고 기준과 주요 지표를 투명하게 공개합니다.</p></article></div></div><h3 class="section-title">통합보고서 아카이브</h3><div class="report-grid"></div><div class="pagination report-pagination"></div><h3 class="section-title centered">풀무원 보고서 발간 개요</h3><table class="overview"><thead><tr><th>명칭</th><th>발간연도</th><th>작성기준</th><th>구성 및 내용</th></tr></thead><tbody><tr><td>지속가능경영보고서</td><td>2007~2013</td><td>GRI 가이드라인</td><td>풀무원의 사회책임경영 활동과 실적 소개</td></tr><tr><td>통합보고서</td><td>2014</td><td>GRI 가이드라인 및 통합보고</td><td>재무·비재무 활동과 성과를 하나의 보고서로 공개</td></tr><tr><td>통합보고서</td><td>2015~2024</td><td>GRI 가이드라인</td><td>경제·사회·환경 성과 및 ESG 이슈 공개</td></tr><tr><td>지속가능경영보고서</td><td>2025</td><td>GRI 가이드라인 및 KSSB S1 공시체계</td><td>지속가능성 관련 재무정보와 ESG 성과 공개</td></tr></tbody></table></section>
+<section class="panel report-panel" id="report">
+  <div class="center-intro report-intro">
+    <h2>풀무원 지속가능경영보고서</h2>
+    <p>풀무원은 2007년 지속가능경영보고서 발간을 시작으로 통합보고서 체계를 도입하여<br>재무·비재무 성과와 주요 ESG 이슈 대응 현황을 종합적으로 공개해 왔습니다.</p>
+    <a class="report-home-link common-focus" href="https://sustainability.pulmuone.co.kr/ko/main/main.do" target="_blank" rel="noopener noreferrer">지속가능경영 홈페이지 바로가기 <span aria-hidden="true">›</span></a>
+  </div>
+  <h3 class="section-title report-section-title">2025 지속가능경영보고서</h3>
+  <div class="report-feature">
+    <a class="report-feature-cover common-focus" href="https://news.pulmuone.co.kr/pulmuone/data/2025_sustainable_report.pdf" target="_blank" rel="noopener noreferrer" aria-label="2025 지속가능경영보고서 국문 PDF 다운로드">
+      <span class="report-cover-kicker">A SUSTAINABLE<br>GROWTH OF</span><strong>PULMUONE</strong><span class="report-cover-graphic" aria-hidden="true"><i></i><i></i><i></i></span>
+    </a>
+    <div class="parts" aria-label="보고서 구성">
+      <article><img src="assets/reports/report-cover-2024.svg" alt="" aria-hidden="true"><div><b>Part 1.</b><p>지배구조·사업 영역·ESG 경영 체계와 핵심 및 일반 이슈를 소개합니다.</p></div></article>
+      <article><img src="assets/reports/report-cover-2024.svg" alt="" aria-hidden="true"><div><b>Part 2.</b><p>핵심 ESG 이슈의 거버넌스 체계, 목표, 전략 및 성과를 설명합니다.</p></div></article>
+      <article><img src="assets/reports/report-cover-2024.svg" alt="" aria-hidden="true"><div><b>Part 3.</b><p>환경·사회·거버넌스 분야의 일반 이슈 관리 체계와 주요 활동 및 성과를 소개합니다.</p></div></article>
+      <article><img src="assets/reports/report-cover-2024.svg" alt="" aria-hidden="true"><div><b>Part 4.</b><p>주요 재무·비재무 성과의 최근 3개년 추이를 정량 데이터로 제공합니다.</p></div></article>
+      <article><img src="assets/reports/report-cover-2024.svg" alt="" aria-hidden="true"><div><b>Part 5.</b><p>공시기준 인덱스, 가입·수상 현황 및 주요 데이터의 제3자 검증 결과를 제공합니다.</p></div></article>
+    </div>
+  </div>
+  <div class="report-archive-heading"><h3 class="section-title report-section-title">통합보고서 아카이브</h3></div>
+  <div class="report-grid"></div><div class="pagination report-pagination"></div>
+  <h3 class="section-title report-section-title">풀무원 보고서 발간 개요</h3>
+  <table class="overview"><thead><tr><th>명칭</th><th>발간연도</th><th>작성기준</th><th>구성 및 내용</th></tr></thead><tbody><tr><td>지속가능경영보고서</td><td>2007~2013</td><td>GRI 가이드라인</td><td>풀무원의 사회책임경영 활동과 실적 소개</td></tr><tr><td>통합보고서</td><td>2015~2024</td><td>GRI·IR 프레임워크</td><td>재무·비재무 성과 통합</td></tr><tr><td>지속가능경영보고서</td><td>2025</td><td>KSSB S1</td><td>중대한 비재무 이슈 보고</td></tr></tbody></table>
+</section>
 <section class="panel" id="brochure"><div class="center-intro"><h2>풀무원 브로슈어 Pulmuone Next 40</h2><p>이해관계자 여러분께서 풀무원의 비즈니스 현황을 보다 쉽고 빠르게 파악하실 수 있도록 향후 풀무원 브로슈어는<br>통합보고서의 요약 버전이 아닌 별도의 발간물로 제작될 예정입니다.</p></div><h3 class="section-title">2024년 브로슈어 구성</h3><div class="brochure-hero"><img src="https://www.figma.com/api/mcp/asset/835cc035-4cfe-453d-a967-4f4d3de91100.png" alt="Pulmuone Next 40"><img src="https://www.figma.com/api/mcp/asset/040bd01c-f3de-45e3-9858-22d41b7b327b.png" alt="2024 Brochure"></div><div class="brochure-parts"><article><i>01</i><b>Company Overview</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>02</i><b>Sustainable Foods for Sustainable World</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>03</i><b>Healthy Choice for U&I</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>04</i><b>Our Home Planet Health Together</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>05</i><b>Together We Grow</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article></div><h3 class="section-title">브로슈어 다운로드</h3><div class="brochure-grid"></div></section>
 <section class="panel" id="notice"><div class="notice-grid"></div><div class="pagination"></div></section></main>
 <!-- common:footer:start -->
