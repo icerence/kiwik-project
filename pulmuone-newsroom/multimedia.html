@@ -4,15 +4,18 @@
   <!-- GSAP & ScrollTrigger (Entrance Animations) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="영상으로 만나는 풀무원의 이야기" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="영상으로 만나는 풀무원의 이야기">
     <title>멀티미디어 | 풀무원</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12" />
+    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12">
+    <link rel="preload" href="multimedia.json" as="fetch" crossorigin="anonymous">
+    <link rel="preconnect" href="https://img.youtube.com">
+    <link rel="preconnect" href="https://news.pulmuone.co.kr">
 
     <!-- Tailwind CSS v4 (Play CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <!-- common:head:start -->
     <link rel="stylesheet" href="../assets/css/fonts.css">
     <link rel="stylesheet" href="../common/components.css">
@@ -157,8 +160,8 @@
             id="media-search"
             type="search"
             placeholder="검색어를 입력하세요"
-          /><button type="submit" aria-label="검색">
-            <img src="assets/search.svg" alt="" />
+          ><button type="submit" aria-label="검색">
+            <img src="assets/search.svg" alt="" width="20" height="20">
           </button>
         </form>
       </section>
@@ -189,17 +192,20 @@
         <article class="featured-video filter-card">
           <div class="video-cover">
             <img
-              src="assets/media-feature.png"
+              src="assets/media-feature.webp"
               alt="2026 풀무원 기업 홍보 영상"
-            /><span class="youtube-play"
-              ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-            /></span>
+              width="1280" height="720"
+              loading="eager" fetchpriority="high"
+              onerror="this.onerror=null;this.src='assets/media-feature.png';"
+            ><span class="youtube-play"
+              ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+            ></span>
           </div>
           <div class="featured-video-copy">
             <span>대표 영상 · KOR</span>
-            <h2>2026 풀무원 기업 홍보 영상<br />(Pulmuone PR Film)</h2>
+            <h2>2026 풀무원 기업 홍보 영상<br>(Pulmuone PR Film)</h2>
             <p>
-              사람과 자연을 함께 사랑하는 풀무원의 가치와<br />지속가능한 미래를
+              사람과 자연을 함께 사랑하는 풀무원의 가치와<br>지속가능한 미래를
               소개하는 2026년 기업 홍보 영상입니다.
             </p>
             <small>2026년 4월 9일 · 조회수</small>
@@ -209,21 +215,30 @@
           <article class="video-card filter-card">
             <div>
               <img
-                src="assets/media-01.png"
+                src="assets/media-01.webp"
                 alt="2023 풀무원 기업 홍보 영상"
-              /><span class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                width="960" height="540"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-01.png';"
+              ><span class="youtube-play"
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>2023 풀무원 기업 홍보 영상 (Pulmuone PR Film)</h3>
             <small>KOR · 2023년 2월 9일 · 조회수</small>
           </article>
           <article class="video-card filter-card">
             <div>
-              <img src="assets/media-02.png" alt="아름다운 농부 이야기" /><span
+              <img
+                src="assets/media-02.webp"
+                alt="아름다운 농부 이야기"
+                width="960" height="540"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-02.png';"
+              ><span
                 class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>プルムウォンの始まり、美しい農夫 ウォン・ギョンソン</h3>
             <small>JPN · 2023년 2월 9일 · 조회수</small>
@@ -231,31 +246,46 @@
           <article class="video-card filter-card">
             <div>
               <img
-                src="assets/media-03.png"
+                src="assets/media-03.webp"
                 alt="풀무원의 정신을 소개하는 영상"
-              /><span class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                width="960" height="540"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-03.png';"
+              ><span class="youtube-play"
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>プルムウォンの精神、美しい農夫から始まった物語</h3>
             <small>JPN · 2023년 2월 9일 · 조회수</small>
           </article>
           <article class="video-card filter-card">
             <div>
-              <img src="assets/media-04.png" alt="원경선 원장의 이야기" /><span
+              <img
+                src="assets/media-04.webp"
+                alt="원경선 원장의 이야기"
+                width="960" height="540"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-04.png';"
+              ><span
                 class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>圃美多農耕者——“至美至善”元敬善院长的故事</h3>
             <small>CHN · 2023년 2월 9일 · 조회수</small>
           </article>
           <article class="video-card filter-card">
             <div>
-              <img src="assets/media-05.png" alt="원경선 원장의 철학" /><span
+              <img
+                src="assets/media-05.webp"
+                alt="원경선 원장의 철학"
+                width="686" height="386"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-05.png';"
+              ><span
                 class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>圃美多農耕者——元敬善院长与“至美至善”의初心</h3>
             <small>CHN · 2023년 2월 9일 · 조회수</small>
@@ -263,11 +293,14 @@
           <article class="video-card filter-card">
             <div>
               <img
-                src="assets/media-04.png"
+                src="assets/media-04.webp"
                 alt="Beautiful Farmer Won Kyung-sun"
-              /><span class="youtube-play"
-                ><img src="assets/youtube_icon.svg" alt="재생" width="72"
-              /></span>
+                width="960" height="540"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='assets/media-04.png';"
+              ><span class="youtube-play"
+                ><img src="assets/youtube_icon.svg" alt="재생" width="72" height="50"
+              ></span>
             </div>
             <h3>The Beginning of Pulmuone: Beautiful Farmer Won Kyung-sun</h3>
             <small>ENG · February 9, 2023 · Views</small>
