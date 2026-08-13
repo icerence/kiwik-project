@@ -9,7 +9,7 @@
   let currentTab = 'report';
   let searchQuery = '';
 
-  let currentPages = {
+  const currentPages = {
     press: 1,
     report: 1,
     brochure: 1,
@@ -427,84 +427,6 @@
     container.appendChild(lastBtn);
   }
 
-  function initEntranceAnimations() {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    function runAnimation() {
-      if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const sectionSelectors = [
-          '.page-head', '.center-intro', '.tabs',
-          '.report-grid', '.brochure-grid', '.notice-grid',
-          '.parts', '.brochure-parts', '.press-table',
-          '.report-feature', '.brochure-hero', '.pagination'
-        ];
-
-        sectionSelectors.forEach((selector) => {
-          const containers = document.querySelectorAll(selector);
-          containers.forEach((container) => {
-            if (container.dataset.entranceDone) return;
-
-            const items = container.querySelectorAll(
-              ':scope > *, .report-card, .brochure-card, .notice-grid > a, article'
-            );
-            const targets = items.length > 0 ? Array.from(items) : [container];
-
-            gsap.fromTo(
-              targets,
-              { opacity: 0, y: 32 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                ease: 'power2.out',
-                stagger: 0.1,
-                scrollTrigger: {
-                  trigger: container,
-                  start: 'top 88%',
-                  once: true,
-                },
-              }
-            );
-
-            container.dataset.entranceDone = 'true';
-          });
-        });
-      } else {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px 0px -40px 0px',
-          threshold: 0.05,
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        const targets = document.querySelectorAll(
-          '.page-head, .center-intro, .report-card, .brochure-card, .notice-grid > a, article, .press-table, .overview, .pagination'
-        );
-
-        targets.forEach((el) => {
-          if (!el.classList.contains('entrance-reveal')) {
-            el.classList.add('entrance-reveal');
-            observer.observe(el);
-          }
-        });
-      }
-    }
-
-    runAnimation();
-    window.addEventListener('load', runAnimation);
-  }
-
     function initSlidingCategoryTabs() {
       const containers = document.querySelectorAll('.tabs, .media-tabs, .news-tabs, .resource-tabs');
 
@@ -574,7 +496,7 @@
         containers.forEach(container => {
           const activeTab = container.querySelector('.selected, .active') || container.querySelector('button, a');
           if (activeTab) {
-            let indicator = container.querySelector('.tab-sliding-indicator');
+            const indicator = container.querySelector('.tab-sliding-indicator');
             if (indicator) {
               indicator.style.transition = 'none';
               const left = activeTab.offsetLeft;

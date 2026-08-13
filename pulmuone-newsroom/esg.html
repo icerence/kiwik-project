@@ -1,18 +1,16 @@
 <!doctype html>
 <html lang="ko">
   <head>
-  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="풀무원의 ESG 전략과 주요 실천 사례" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="풀무원의 ESG 전략과 주요 실천 사례">
     <title>ESG 경영 | 풀무원</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12" />
+    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12">
+    <link rel="preload" as="image" href="assets/esg-hero.webp" type="image/webp" fetchpriority="high">
 
     <!-- Tailwind CSS v4 (Play CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <!-- common:head:start -->
     <link rel="stylesheet" href="../assets/css/fonts.css">
     <link rel="stylesheet" href="../common/components.css">
@@ -148,12 +146,15 @@
       <div id="smooth-content">
         <main id="content" class="esg-content container">
       <section class="esg-hero">
-        <img src="assets/esg-hero.png" alt="푸른 하늘 아래 풍력 발전기" />
+        <picture>
+          <source srcset="assets/esg-hero.webp" type="image/webp">
+          <img src="assets/esg-hero.png" alt="푸른 하늘 아래 풍력 발전기" width="1920" height="1080" loading="eager" fetchpriority="high">
+        </picture>
         <div class="esg-hero-copy">
           <span>ESG경영</span>
           <h1>ESG경영</h1>
           <p>
-            환경 · 사회 · 거버넌스 전략과 주요 실천 사례를<br />설명형 콘텐츠와
+            환경 · 사회 · 거버넌스 전략과 주요 실천 사례를<br>설명형 콘텐츠와
             최신 소식으로 연결
           </p>
           <div class="hero-chips">
@@ -174,17 +175,22 @@
               id="esg-search"
               type="search"
               placeholder="검색어를 입력하세요"
-            /><button aria-label="검색">
-              <img src="assets/search.svg" alt="" />
+            ><button aria-label="검색">
+              <img src="assets/search.svg" alt="">
             </button>
           </form>
         </div>
         <p class="empty-message" hidden>검색 결과가 없습니다.</p>
         <article class="featured-story">
-          <img
-            src="assets/esg-feature.png"
-            alt="풀무원, 지구를 위해 용기내다"
-          />
+          <picture>
+            <source srcset="assets/esg-feature.webp" type="image/webp">
+            <img
+              src="assets/esg-feature.png"
+              alt="풀무원, 지구를 위해 용기내다"
+              width="1280"
+              height="720"
+            >
+          </picture>
           <div class="news-copy">
             <span>기획자료</span>
             <h3><a href="#">풀무원, 지구를 위해 용기내다</a></h3>
@@ -200,7 +206,10 @@
         </article>
         <div class="esg-card-grid">
           <article class="sub-featured-story">
-            <img src="assets/esg-card-01.png" alt="손 위의 새싹" />
+            <picture>
+              <source srcset="assets/esg-card-01.webp" type="image/webp">
+              <img src="assets/esg-card-01.png" alt="손 위의 새싹" width="1200" height="675" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>기획자료</span>
               <h3><a href="#">친환경 케어(Eco-Caring), 더 나은 세상을 위한 풀무원의 노력</a></h3>
@@ -212,7 +221,10 @@
             <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
           </article>
           <article class="sub-featured-story">
-            <img src="assets/esg-card-02.png" alt="친환경 종이 패키지" />
+            <picture>
+              <source srcset="assets/esg-card-02.webp" type="image/webp">
+              <img src="assets/esg-card-02.png" alt="친환경 종이 패키지" width="1200" height="675" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>ESG영상</span>
               <h3><a href="#">중요한 것은 진정성, 풀무원 ESG 경영 스토리</a></h3>
@@ -224,7 +236,10 @@
             <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
           </article>
           <article class="sub-featured-story">
-            <img src="assets/esg-card-03.png" alt="아이들과 함께하는 식생활 교육" />
+            <picture>
+              <source srcset="assets/esg-card-03.webp" type="image/webp">
+              <img src="assets/esg-card-03.png" alt="아이들과 함께하는 식생활 교육" width="1200" height="703" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>기획자료</span>
               <h3><a href="#">풀무원이 함께 사는 사회를 위해 하는 일</a></h3>
@@ -245,14 +260,17 @@
           </div>
         </div>
         <article class="esg-video">
-          <img src="assets/esg-video.png" alt="자연 속 유리구슬을 든 손" />
+          <picture>
+            <source srcset="assets/esg-video.webp" type="image/webp">
+            <img src="assets/esg-video.png" alt="자연 속 유리구슬을 든 손" width="1920" height="1080" loading="lazy">
+          </picture>
           <div>
             <h3>자연순환을 위한 친환경 전략</h3>
             <p>
-              환경을 배려한 지속가능활동, 그린 도시, 자연 풍경 등<br />ESG 관련
+              환경을 배려한 지속가능활동, 그린 도시, 자연 풍경 등<br>ESG 관련
               이미지를 생성해서 넣었습니다.
             </p>
-            <a href="#"><img src="assets/play.svg" alt="" />영상 보기</a>
+            <a href="#"><img src="assets/play.svg" alt="">영상 보기</a>
           </div>
         </article>
       </section>
@@ -265,7 +283,10 @@
         </div>
         <div class="esg-news-grid">
           <article class="esg-news-card">
-            <img src="assets/esg-news-01.png" alt="ESG 뉴스 이미지" />
+            <picture>
+              <source srcset="assets/esg-news-01.webp" type="image/webp">
+              <img src="assets/esg-news-01.png" alt="ESG 뉴스 이미지" width="1122" height="1402" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>기업뉴스</span>
               <h3><a href="#">풀무원, 지속가능경영을 위한 ESG 가치 실천 강화 선언</a></h3>
@@ -276,7 +297,10 @@
             </div>
           </article>
           <article class="esg-news-card">
-            <img src="assets/esg-news-02.png" alt="ESG 뉴스 이미지" />
+            <picture>
+              <source srcset="assets/esg-news-02.webp" type="image/webp">
+              <img src="assets/esg-news-02.png" alt="ESG 뉴스 이미지" width="1200" height="675" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>브랜드뉴스</span>
               <h3><a href="#">지구식단 친환경 패키지 적용 제품 확대 및 자원순환 캠페인</a></h3>
@@ -287,7 +311,10 @@
             </div>
           </article>
           <article class="esg-news-card">
-            <img src="assets/esg-news-03.png" alt="ESG 뉴스 이미지" />
+            <picture>
+              <source srcset="assets/esg-news-03.webp" type="image/webp">
+              <img src="assets/esg-news-03.png" alt="ESG 뉴스 이미지" width="1152" height="896" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>기업뉴스</span>
               <h3><a href="#">풀무원 재단, 지역사회 맞춤형 어린이 바른먹거리 교육 개최</a></h3>
@@ -298,7 +325,10 @@
             </div>
           </article>
           <article class="esg-news-card">
-            <img src="assets/esg-news-04.png" alt="ESG 뉴스 이미지" />
+            <picture>
+              <source srcset="assets/esg-news-04.webp" type="image/webp">
+              <img src="assets/esg-news-04.png" alt="ESG 뉴스 이미지" width="1200" height="675" loading="lazy">
+            </picture>
             <div class="news-copy">
               <span>브랜드뉴스</span>
               <h3><a href="#">뮤지엄김치간, 식문화 유산 보존 및 지속가능 식문화 체험 프로그램</a></h3>
@@ -407,7 +437,7 @@
     <!-- common:footer:end -->
       </div>
     </div>
-    <script src="script.js"></script>
-    <script src="scroll-reveal.js"></script>
+    <script src="script.js" defer></script>
+    <script src="scroll-reveal.js" defer></script>
   </body>
 </html>
