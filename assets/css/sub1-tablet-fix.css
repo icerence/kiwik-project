@@ -1,0 +1,31 @@
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page .model{height:931px!important}
+  .page .model>h2{height:27px!important;margin:0!important;color:var(--ink)!important;font-size:24px!important;font-weight:800!important;line-height:27px!important;text-align:center!important}
+  .page .model .business{height:104px!important;margin:40px 0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:24px!important}
+  .page .model .business .cap{height:104px!important;padding:24px!important;gap:24px!important;background:var(--gray)!important}
+  .page .model .business .ico{width:44px!important;height:44px!important;flex:0 0 44px!important}
+  .page .model .business b{font-size:15px!important;line-height:18px!important}
+  .page .model .business small{font-size:12px!important;line-height:15px!important;white-space:normal!important}
+  .page .model .orbit{position:relative!important;width:100%!important;height:600px!important;margin:0!important;border-radius:12px!important;background:var(--gray)!important}
+  .page .model .node{width:120px!important;height:120px!important;padding:36px 12px 0!important;border:2px solid var(--lime)!important;border-radius:30px!important;font-size:11px!important;line-height:13px!important}
+  .page .model .core{left:calc(50% - 80px)!important;top:220px!important;width:160px!important;height:160px!important;padding-top:60px!important;border-width:4px!important;font-size:20px!important;line-height:24px!important}
+  .page .model .n1{left:calc(50% - 60px)!important;top:30px!important}
+  .page .model .n2{left:calc(50% - 272px)!important;top:110px!important}
+  .page .model .n3{right:calc(50% - 272px)!important;top:110px!important}
+  .page .model .n4{left:calc(50% - 352px)!important;top:240px!important}
+  .page .model .n5{right:calc(50% - 352px)!important;top:240px!important}
+  .page .model .n6{left:calc(50% - 272px)!important;bottom:110px!important}
+  .page .model .n7{right:calc(50% - 272px)!important;bottom:110px!important}
+  .page .model .n8{left:calc(50% - 60px)!important;bottom:30px!important}
+  .page .output{height:773px!important;background:var(--pale)!important}
+  .page .output>.badge{height:48px!important;padding:16px!important;border-radius:24px!important;font-size:12px!important;line-height:16px!important}
+  .page .output>.heading{height:58px!important;margin:12px 0 40px!important}
+  .page .output>.heading h2{margin:0!important;font-size:24px!important;line-height:29px!important}
+  .page .output>.heading p{margin-top:12px!important;font-size:14px!important;line-height:17px!important}
+  .page .output>.grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:24px!important}
+  .page .output>.grid>.cap{min-height:149px!important;padding:32px!important;gap:24px!important;align-items:flex-start!important;border-radius:12px!important}
+  .page .output>.grid .ico{width:48px!important;height:48px!important;flex:0 0 48px!important;background-color:var(--green)!important}
+  .page .output .cap b{font-size:15px!important;line-height:18px!important;margin-bottom:8px!important}
+  .page .output .cap p{margin:0 0 8px!important;font-size:11px!important;line-height:13px!important}
+  .page .output .cap ul{font-size:11px!important;line-height:21px!important}
+}

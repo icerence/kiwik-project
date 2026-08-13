@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 이 폴더의 성격
 
-F:\harness는 단일 프로젝트가 아니다.
+F:\\harness는 단일 프로젝트가 아니다.
 서로 무관한 프로젝트 두 개를 담은 워크스페이스다.
 
 각 프로젝트는 독립된 git 저장소이고, 자기만의 CLAUDE.md가 있다.
@@ -22,10 +22,10 @@ F:\harness는 단일 프로젝트가 아니다.
 
 ## 하위 프로젝트
 
-| 폴더 | 내용 | 스택 | 상세 가이드 |
-|---|---|---|---|
-| `kiwik/` | 풀무원 ESG 소개 사이트 | HTML5 + Tailwind v4 (CDN) + Vanilla JS | `kiwik/CLAUDE.md` |
-| `synergos/` | IKEA 스타일 "공간별 쇼핑" 랜딩 페이지 (5인 팀) | 단일 `index.html`, Tailwind CDN + Swiper + GSAP | `synergos/CLAUDE.md` |
+|폴더|내용|스택|상세 가이드|
+|-|-|-|-|
+|`kiwik/`|풀무원 ESG 소개 사이트|HTML5 + Tailwind v4 (CDN) + Vanilla JS|`kiwik/CLAUDE.md`|
+|`synergos/`|IKEA 스타일 "공간별 쇼핑" 랜딩 페이지 (5인 팀)|단일 `index.html`, Tailwind CDN + Swiper + GSAP|`synergos/CLAUDE.md`|
 
 빌드·린트·테스트 명령은 두 프로젝트 다 없다(정적 사이트, 브라우저에서 바로 열거나 `npx serve .`로 확인).
 
@@ -34,16 +34,16 @@ F:\harness는 단일 프로젝트가 아니다.
 파일이 어디에 있어야 하는지는 아래로 고정한다.
 새 파일을 만들기 전에 이 표에서 자리를 먼저 정한다.
 
-| 종류 | 자리 | 비고 |
-|---|---|---|
-| 페이지 HTML | 저장소 루트 | `index.html`, `sub.html` |
-| 스타일시트 | `assets/css/` | `@font-face`는 `fonts.css` 한 곳에만 |
-| 스크립트 | `assets/js/` | |
-| 사진·이미지 | `assets/images/` | `assets/` 루트에 이미지를 두지 않는다 |
-| 아이콘 SVG | `assets/icons/` | |
-| 웹폰트 원본 | `fonts/` | |
-| 보고서·요청서 문서 | `docs/` | 작업 보고, 수정 요청, 작업 지시서 |
-| 규칙·설정 문서 | 저장소 루트의 `*.md` | `CLAUDE.md` `AGENTS.md` `name.md` `link.md` `design-system-harness.md` |
+|종류|자리|비고|
+|-|-|-|
+|페이지 HTML|저장소 루트|`index.html`, `sub.html`|
+|스타일시트|`assets/css/`|`@font-face`는 `fonts.css` 한 곳에만|
+|스크립트|`assets/js/`||
+|사진·이미지|`assets/images/`|`assets/` 루트에 이미지를 두지 않는다|
+|아이콘 SVG|`assets/icons/`||
+|웹폰트 원본|`fonts/`||
+|보고서·요청서 문서|`docs/`|작업 보고, 수정 요청, 작업 지시서|
+|규칙·설정 문서|저장소 루트의 `\*.md`|`CLAUDE.md` `AGENTS.md` `name.md` `link.md` `design-system-harness.md`|
 
 지킬 것.
 
@@ -62,3 +62,4 @@ F:\harness는 단일 프로젝트가 아니다.
 
 이 루트 파일은 워크스페이스 안내용이다.
 프로젝트별 상세 규칙은 각 폴더 CLAUDE.md가 우선한다.
+

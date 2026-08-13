@@ -16,45 +16,47 @@
   <script src="common/components.js" defer></script>
   <!-- common:head:end -->
   <style>
-    :root{--lime-100:#f1f8e7;--lime-600:#65a80f;--lime-700:#4a7e07;--lime-800:#39610a;--line:#7bcc12;--gray-100:#f9fafb;--gray-200:#e5e7eb;--gray-300:#d1d5db;--border:#dde1e5;--pale:#f5f7f6;--shadow-card:0 2px 10px rgba(0,0,0,.04);--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.5)} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
+    :root{--lime-100:#f1f8e7;--lime-600:#65a80f;--lime-700:#4a7e07;--lime-800:#39610a;--line:#7bcc12;--gray-100:#f9fafb;--gray-200:#e5e7eb;--gray-300:#d1d5db;--border:#dde1e5;--pale:#f5f7f6;--shadow-card:0 2px 10px rgba(0,0,0,.04);--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.5);--container-xl:1200px;--container-lg:960px;--container-sm:600px;--container-pad-lg:48px;--container-pad-sm:20px} /* token-exempt: 페이지 전용 토큰(--lime/--ink/--dark/--gray/--white는 common/components.css 공용 토큰 사용) */
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"NanumSquare Neo",Arial,sans-serif}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%}ul,ol{margin:0;padding:0;list-style:none}h1,h2,h3,p{margin-top:0}main{display:block;padding-top:152px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--white);padding:8px}
     
-    .subnav{height:44px;display:flex;align-items:center;gap:8px;padding:0 32px;background:var(--lime);color:var(--white);font-size:13px;font-weight:500}.subnav img{width:16px;height:16px}.subnav .crumb-sep{color:var(--white);opacity:.75}.subnav .crumb-current{font-weight:700}.subnav .crumb-caret{width:10px;height:6px;filter:brightness(0) invert(1)}
+    .subnav{height:44px;display:flex;align-items:center;gap:10px;padding:0 32px;background:var(--lime);color:var(--white);font-size:13px;font-weight:500}.subnav img{width:16px;height:16px}.subnav .crumb-sep{color:var(--white);opacity:.75}.subnav .crumb-current{font-weight:700}.subnav .crumb-caret{width:10px;height:6px;filter:brightness(0) invert(1)}
     
-    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/awards-hero.png") center/cover}.hero-inner{width:720px;max-width:100%;padding:0 20px}.hero h1{margin:0;font-size:44px;font-weight:900;letter-spacing:-.5px;color:var(--white)}.hero p{margin:16px 0 0;font-size:18px;font-weight:400;opacity:.95;line-height:1.6}
+    .hero{height:300px;display:grid;place-items:center;text-align:center;color:var(--white);background:linear-gradient(var(--scrim-a),var(--scrim-b)),url("assets/images/awards-hero.png") center/cover}.hero-inner{width:min(720px,100%);padding:0;box-sizing:border-box}.hero h1{margin:0;font-size:44px;font-weight:900;letter-spacing:-.5px;color:var(--white)}.hero p{margin:16px 0 0;font-size:18px;font-weight:400;opacity:.95;line-height:1.6}
     
-    .section-title{padding:48px 32px 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:1088px;margin:auto}.section-title h2{font-size:28px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
+    .section-title{padding:56px 0 32px}.section-title-row{display:flex;align-items:center;gap:16px;max-width:var(--container-xl);margin:auto}.section-title h2{font-size:28px;font-weight:800;color:var(--dark);white-space:nowrap}.section-title i{height:1px;flex:1;background:var(--line)}
     
-    .commitment{padding:32px 32px 48px;text-align:center}.commitment-inner{max-width:1088px;margin:auto;display:flex;flex-direction:column;gap:20px;align-items:center}
+    .commitment{padding:32px 0 64px;text-align:center}.commitment-inner{max-width:var(--container-xl);margin:auto;display:flex;flex-direction:column;gap:24px;align-items:center}
     .commitment-eyebrow{font-size:14px;font-weight:800;letter-spacing:1px;color:var(--lime);text-transform:uppercase}
-    .commitment-title{margin:0;max-width:960px;font-size:26px;font-weight:800;line-height:1.55;color:var(--dark)}.commitment-title em{color:var(--lime);font-style:normal;font-weight:900}
-    .commitment-desc{margin:0;max-width:820px;font-size:15px;line-height:1.75;color:var(--ink)}
+    .commitment-title{margin:0;max-width:960px;font-size:26px;font-weight:800;line-height:1.6;color:var(--dark)}.commitment-title em{color:var(--lime);font-style:normal;font-weight:900}
+    .commitment-desc{margin:0;max-width:820px;font-size:15px;line-height:1.8;color:var(--ink)}
     
     .award-tabs{display:flex;width:100%;max-width:800px;height:56px;margin:40px auto 0;border:1px solid var(--gray-300);border-radius:4px;overflow:hidden;background:var(--white)}
     .award-tabs span{flex:1;display:flex;align-items:center;justify-content:center;height:100%;font-size:16px;font-weight:700;white-space:nowrap;cursor:pointer;color:var(--dark);background:var(--white);border:1px solid transparent;transition:all .2s ease}
     .award-tabs span.on{background:var(--lime);color:var(--white);border-color:var(--lime)}
     
-    .award-sec{background:var(--white);padding:32px 32px 96px;display:flex;flex-direction:column;align-items:center}.award-inner{max-width:1088px;width:100%;display:flex;flex-direction:column;align-items:center;gap:36px}
-    .sec-head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;width:100%}.sec-head h2{margin:0;font-size:24px;font-weight:800;color:var(--dark)}
+    .award-sec{background:var(--white);padding:48px 0 96px;display:flex;flex-direction:column;align-items:center}.award-inner{max-width:var(--container-xl);width:100%;display:flex;flex-direction:column;align-items:center;gap:40px}
+    .sec-head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;width:100%}.sec-head h2{margin:0;font-size:26px;font-weight:800;color:var(--dark)}
     
-    .award-list{display:flex;flex-direction:column;gap:24px;width:100%}
+    .award-list{display:flex;flex-direction:column;gap:28px;width:100%}
     .award-item{display:flex;flex-direction:row;background:var(--white);border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-card);transition:transform .2s ease,box-shadow .2s ease}
     .award-item:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
-    .award-img{width:380px;flex-shrink:0;height:240px;background:var(--gray-100);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .award-img{width:360px;flex-shrink:0;height:240px;background:var(--gray-100);overflow:hidden;display:flex;align-items:center;justify-content:center}
     .award-img img{width:100%;height:100%;object-fit:cover;display:block}
-    .award-body{flex:1;padding:32px 40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+    .award-body{flex:1;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:16px}
     .award-badge{align-self:flex-start;background:var(--lime-100);color:var(--lime-700);font-size:13px;font-weight:800;padding:4px 12px;border-radius:4px}
     .award-body h3{margin:0;font-size:19px;font-weight:800;color:var(--dark);line-height:1.45}
     .award-body p{margin:0;font-size:15px;line-height:1.7;color:var(--ink)}
     
-    @media(max-width:1279px){
+    @media(max-width:1199px){
       :root{--scrim-a:rgba(0,0,0,.4);--scrim-b:rgba(0,0,0,.8)} /* token-exempt: 태블릿 히어로 스크림 값 */
-      .subnav{height:44px!important;min-height:44px;padding:0 24px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
-      .section-title{padding:36px 24px 24px}.section-title-row{max-width:none}.section-title h2{font-size:24px}
-      .commitment{padding:24px}.commitment-title{font-size:22px}.commitment-desc{font-size:14px}
+      .subnav{height:44px!important;min-height:44px;padding:0 24px}.subnav .crumb-caret{display:none}.hero{height:240px}.hero-inner{padding:0 var(--container-pad-lg)}.hero h1{font-size:36px}.hero p{margin-top:12px;font-size:16px}
+      .section-title{padding:36px var(--container-pad-lg) 24px}.section-title-row{max-width:var(--container-lg)}.section-title h2{font-size:24px}
+      .commitment{padding:24px var(--container-pad-lg)}.commitment-inner{max-width:var(--container-lg)}.commitment-title{font-size:22px}.commitment-desc{font-size:14px}
       .award-tabs{max-width:680px;height:52px}.award-tabs span{font-size:15px}
-      .award-sec{padding:24px 24px 64px}.award-img{width:280px;height:210px}.award-body{padding:24px 28px;gap:12px}.award-body h3{font-size:17px}.award-body p{font-size:14px}
+      .award-sec{padding:24px var(--container-pad-lg) 64px}.award-inner{max-width:var(--container-lg)}.award-img{width:280px;height:210px}.award-body{padding:24px 28px;gap:12px}.award-body h3{font-size:17px}.award-body p{font-size:14px}
     }
+    /* Keep the compact header through tablet widths. The full navigation is
+       too wide to be usable at 1024px once the page scrollbar is present. */
     @media (max-width: 1199px) {
       main { padding-top: 60px !important; }
       .common-header__utility,.common-header__nav,.common-header__language { display: none !important; }
@@ -62,17 +64,18 @@
       .common-header__logo-link { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; }
       .common-header__logo-link img { width: 104px !important; height: auto !important; }
       .common-header__actions { position: static !important; width: 100% !important; height: 60px !important; pointer-events: none !important; }
-      .common-header__menu-button { position: absolute !important; left: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
-      .common-header__search { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent url("assets/icons/search.svg") center / 22px 22px no-repeat !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__menu-button { position: absolute !important; left: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; pointer-events: auto !important; z-index: 10 !important; }
+      .common-header__search { position: absolute !important; right: 16px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; visibility: visible !important; opacity: 1 !important; width: 44px !important; height: 44px !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent url("assets/icons/search.svg") center / 22px 22px no-repeat !important; color: #31343b !important; pointer-events: auto !important; z-index: 10 !important; }
       .common-header__search svg { display: none !important; }
     }
     @media(max-width:767px){
       :root{--scrim-a:rgba(0,0,0,.45);--scrim-b:rgba(0,0,0,.45)} /* token-exempt: 모바일 히어로 스크림 값 */
-      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
-      .section-title{padding:24px 16px}.section-title h2{font-size:20px}
-      .commitment{padding:20px 16px}.commitment-title{font-size:18px}.commitment-desc{font-size:13px}
+      body{word-break:keep-all}
+      .subnav{height:40px!important;min-height:40px;padding:0 12px}.hero{height:180px}.hero-inner{padding:0 var(--container-pad-sm)}.hero h1{font-size:28px}.hero p{margin-top:8px;font-size:14px}
+      .section-title{padding:24px var(--container-pad-sm)}.section-title-row{max-width:var(--container-sm)}.section-title h2{font-size:20px}
+      .commitment{padding:20px var(--container-pad-sm)}.commitment-inner{max-width:var(--container-sm)}.commitment-title{font-size:18px}.commitment-desc{font-size:13px}
       .award-tabs{width:100%;max-width:100%;margin:20px 0 0;height:46px}.award-tabs span{font-size:14px}
-      .award-sec{padding:16px 16px 48px}.sec-head h2{font-size:20px}
+      .award-sec{padding:16px var(--container-pad-sm) 48px}.award-inner{max-width:var(--container-sm)}.sec-head h2{font-size:20px}
       .award-list{gap:16px}.award-item{flex-direction:column}
       .award-img{width:100%;height:190px}.award-body{padding:16px;gap:8px}.award-body h3{font-size:15px}.award-body p{font-size:13px}
       .common-footer{position:relative;clear:both;margin-top:0}}
@@ -122,12 +125,12 @@
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="company.html">총괄CEO인사말</a></li>
             <li><a class="site-header-dropdown__link" href="company1.html">CI소개</a></li>
-            <li><a class="site-header-dropdown__link" href="company2.html">연혁</a></li>
-            <li><a class="site-header-dropdown__link" href="company3.html">가치체계</a></li>
-            <li><a class="site-header-dropdown__link" href="company4.html">사업소개</a></li>
-            <li><a class="site-header-dropdown__link" href="company5.html">동반성장</a></li>
-            <li><a class="site-header-dropdown__link" href="company6.html">기업지배구조</a></li>
-            <li><a class="site-header-dropdown__link" href="company7.html">투자정보</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">연혁</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">가치체계</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">사업소개</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">동반성장</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">기업지배구조</a></li>
+            <li><a class="site-header-dropdown__link" href="company.html">투자정보</a></li>
           </ul>
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="sub1-responsive.html">개요</a></li>
@@ -342,11 +345,11 @@
 
         <div class="common-footer__social">
           <span>공식계정</span>
-          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
-          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
-          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
-          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
-          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-tistory.png" alt="풀무원 티스토리" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
+          <a class="common-focus" href="#site-footer"><img src="assets/images/sns-naver-blog.png" alt="풀무원 네이버 블로그" loading="lazy" /></a>
         </div>
       </div>
     </div>
@@ -356,50 +359,10 @@
     <div class="common-footer__bottom">
       <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
       <div class="common-footer__family">
-        <div class="common-footer__family-site">
-          <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
-            계열사/브랜드 사이트
-            <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
-          </button>
-          <div id="family-site-panel" class="common-footer__family-panel" hidden>
-            <section aria-labelledby="family-pulmuone-title">
-              <h2 id="family-pulmuone-title">풀무원</h2>
-              <ul>
-                <li><a class="common-focus" href="https://kimchikan.com/" target="_blank" rel="noopener noreferrer">뮤지엄김치간</a></li>
-                <li><a class="common-focus" href="https://shop.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">#풀무원</a></li>
-                <li><a class="common-focus" href="https://pulmuone.career.greetinghr.com/" target="_blank" rel="noopener noreferrer">풀무원채용</a></li>
-                <li><a class="common-focus" href="https://efresh.pulmuone.co.kr/" target="_blank" rel="noopener noreferrer">efresh 모니터</a></li>
-                <li><a class="common-focus" href="https://www.pulmuonefoundation.or.kr/" target="_blank" rel="noopener noreferrer">풀무원재단</a></li>
-                <li><a class="common-focus" href="https://211school.pulmuone.com/" target="_blank" rel="noopener noreferrer">테이스티풀무원</a></li>
-              </ul>
-            </section>
-            <section aria-labelledby="family-affiliate-title">
-              <h2 id="family-affiliate-title">계열사</h2>
-              <ul>
-                <li><a class="common-focus" href="https://www.pulmuonegreenjuice.com/" target="_blank" rel="noopener noreferrer">풀무원녹즙</a></li>
-                <li><a class="common-focus" href="https://pulstory.pulmuone.com/" target="_blank" rel="noopener noreferrer">풀무원푸드머스</a></li>
-                <li><a class="common-focus" href="https://www.pulmuonefnc.com/" target="_blank" rel="noopener noreferrer">풀무원푸드앤컬처</a></li>
-                <li><a class="common-focus" href="https://www.danonepulmuone.co.kr/" target="_blank" rel="noopener noreferrer">풀무원다논</a></li>
-                <li><a class="common-focus" href="https://www.pulmuonewater.com/" target="_blank" rel="noopener noreferrer">풀무원샘물</a></li>
-                <li><a class="common-focus" href="https://www.pulmuonefoodsusa.com/" target="_blank" rel="noopener noreferrer">Pulmuone Foods USA</a></li>
-                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원건강생활</a></li>
-                <li><a class="common-focus" href="https://www.asahico.co.jp/" target="_blank" rel="noopener noreferrer">아사히코</a></li>
-                <li><a class="common-focus" href="http://www.pumeiduo.com/" target="_blank" rel="noopener noreferrer">풀무원 중국</a></li>
-              </ul>
-            </section>
-            <section aria-labelledby="family-brand-title">
-              <h2 id="family-brand-title">브랜드</h2>
-              <ul>
-                <li><a class="common-focus" href="https://dm.pulmuone.com/" target="_blank" rel="noopener noreferrer">디자인밀</a></li>
-                <li><a class="common-focus" href="https://www.pulmuone-lohas.com/" target="_blank" rel="noopener noreferrer">풀무원로하스</a></li>
-                <li><a class="common-focus" href="https://www.montereygourmetfoods.com/" target="_blank" rel="noopener noreferrer">Montereygourmetfoods</a></li>
-                <li><a class="common-focus" href="https://wildwoodfoods.com/" target="_blank" rel="noopener noreferrer">WILDWOOD</a></li>
-                <li><a class="common-focus" href="https://www.nasoya.com/" target="_blank" rel="noopener noreferrer">Nasoya Foods USA</a></li>
-                <li><a class="common-focus" href="https://choolchool.kr/" target="_blank" rel="noopener noreferrer">출출박스</a></li>
-              </ul>
-            </section>
-          </div>
-        </div>
+        <button type="button" class="common-focus" aria-haspopup="listbox" aria-expanded="false">
+          계열사/브랜드 사이트
+          <img src="assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+        </button>
         <img src="assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
       </div>
     </div>

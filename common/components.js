@@ -5,7 +5,7 @@
     var name = window.location.pathname.split('/').pop() || 'index.html';
     if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
-    if (name.toLowerCase() === 'sub.html') return 'sub';
+    if (/^sub\d*(-responsive)?\.html$/i.test(name)) return 'sub';
     if (/^(newsroom|esg|multimedia|resources)\.html$/i.test(name)) return 'newsroom';
     return 'index';
   }
