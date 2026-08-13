@@ -14,8 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="styles.css" />
     <!-- common:head:start -->
-    <link rel="stylesheet" href="../assets/css/fonts.css" />
-    <link rel="stylesheet" href="../common/components.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../common/components.css">
     <script src="../common/components.js" defer></script>
     <!-- common:head:end -->
   </head>
@@ -26,26 +26,26 @@
       <div class="common-header__inner">
         <div id="utility-bar" class="common-header__utility">
           <a class="common-header__utility-link" href="../index.html#section2">
-            <span class="common-header__utility-icon"><img src="../assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+            <span class="common-header__utility-icon"><img src="../assets/icons/file-text.svg" alt="" width="20" height="20"></span>
             <span>지속가능경영보고서</span>
           </a>
           <a class="common-header__utility-link" href="../index.html#section4">
-            <span class="common-header__utility-icon"><img src="../assets/icons/users.svg" alt="" width="20" height="20" /></span>
+            <span class="common-header__utility-icon"><img src="../assets/icons/users.svg" alt="" width="20" height="20"></span>
             <span>인재채용</span>
           </a>
           <a class="common-header__utility-link" href="../index.html#site-footer">
-            <span class="common-header__utility-icon"><img src="../assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+            <span class="common-header__utility-icon"><img src="../assets/icons/message-square.svg" alt="" width="20" height="20"></span>
             <span>고객기쁨센터</span>
           </a>
           <a class="common-header__utility-link common-header__utility-link--bold" href="../index.html#section6">
-            <span class="common-header__utility-icon"><img src="../assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+            <span class="common-header__utility-icon"><img src="../assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
             <span>#풀무원</span>
           </a>
         </div>
 
         <div class="common-header__main">
           <a href="../index.html" class="common-focus common-header__logo-link">
-            <img src="../assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+            <img src="../assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
           </a>
 
           <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
@@ -59,7 +59,7 @@
           </nav>
 
           <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
-            <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+            <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
               <ul class="site-header-dropdown__list">
                 <li><a class="site-header-dropdown__link" href="../company.html">총괄CEO인사말</a></li>
                 <li><a class="site-header-dropdown__link" href="../company1.html">CI소개</a></li>
@@ -122,8 +122,8 @@
             <div class="common-header__search-field">
               <label for="common-search-input">통합검색</label>
               <div class="common-header__search-input-wrap">
-                <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요" />
-                <img src="../assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20" />
+                <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+                <img src="../assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
               </div>
             </div>
             <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
@@ -183,43 +183,57 @@
         <article class="featured-story">
           <img
             src="assets/esg-feature.png"
-            alt="풀무원 지속가능경영 핵심 스토리"
+            alt="풀무원, 지구를 위해 용기내다"
           />
-          <div>
+          <div class="news-copy">
             <span>기획자료</span>
-            <h3>풀무원의 지속가능경영 핵심 스토리</h3>
+            <h3><a href="#">풀무원, 지구를 위해 용기내다</a></h3>
             <p>
               전략 설명과 관련 사례를 묶어 사용자가 ESG 맥락을 먼저 이해하도록
               구성
             </p>
             <div class="story-meta">
-              <b>기획자료</b><time datetime="2026-07-30">2026.07.30</time>
+              <time datetime="2026-07-30">2026.07.30</time>
             </div>
           </div>
           <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
         </article>
         <div class="esg-card-grid">
-          <article>
-            <img src="assets/esg-card-01.png" alt="손 위의 새싹" /><span
-              >기획자료</span
-            >
-            <h3>친환경 활동 전략</h3>
-            <p>등록일 · 요약 텍스트</p>
+          <article class="sub-featured-story">
+            <img src="assets/esg-card-01.png" alt="손 위의 새싹" />
+            <div class="news-copy">
+              <span>기획자료</span>
+              <h3><a href="#">친환경 케어(Eco-Caring), 더 나은 세상을 위한 풀무원의 노력</a></h3>
+              <p>기후변화 대응을 위한 탄소중립 실천 전략과 신재생 에너지 전환 주요 성과 요약</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
+            </div>
+            <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
           </article>
-          <article>
-            <img src="assets/esg-card-02.png" alt="친환경 종이 패키지" /><span
-              >ESG영상</span
-            >
-            <h3>친환경 패키지 소개</h3>
-            <p>등록일 · 요약 텍스트</p>
+          <article class="sub-featured-story">
+            <img src="assets/esg-card-02.png" alt="친환경 종이 패키지" />
+            <div class="news-copy">
+              <span>ESG영상</span>
+              <h3><a href="#">중요한 것은 진정성, 풀무원 ESG 경영 스토리</a></h3>
+              <p>플라스틱 감축과 100% 재활용 가능 패키징 도입 사례 및 자원순환 스토리 영상</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
+            </div>
+            <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
           </article>
-          <article>
-            <img
-              src="assets/esg-card-03.png"
-              alt="아이들과 함께하는 식생활 교육"
-            /><span>기획자료</span>
-            <h3>사회공헌 사례</h3>
-            <p>등록일 · 요약 텍스트</p>
+          <article class="sub-featured-story">
+            <img src="assets/esg-card-03.png" alt="아이들과 함께하는 식생활 교육" />
+            <div class="news-copy">
+              <span>기획자료</span>
+              <h3><a href="#">풀무원이 함께 사는 사회를 위해 하는 일</a></h3>
+              <p>미래 세대를 위한 바른먹거리 식생활 교육 프로그램과 지역사회 나눔 활동 보고</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
+            </div>
+            <a class="circle-arrow" href="#" aria-label="자세히 보기">›</a>
           </article>
         </div>
       </section>
@@ -250,36 +264,48 @@
           </div>
         </div>
         <div class="esg-news-grid">
-          <article>
+          <article class="esg-news-card">
             <img src="assets/esg-news-01.png" alt="ESG 뉴스 이미지" />
-            <div>
+            <div class="news-copy">
               <span>기업뉴스</span>
-              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
-              <time datetime="2026-07-30">2026.07.30</time>
+              <h3><a href="#">풀무원, 지속가능경영을 위한 ESG 가치 실천 강화 선언</a></h3>
+              <p>친환경 패키징 확대와 사회적 가치 창출을 위한 주요 실천 활동 및 지속가능경영 로드맵 발표</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
             </div>
           </article>
-          <article>
+          <article class="esg-news-card">
             <img src="assets/esg-news-02.png" alt="ESG 뉴스 이미지" />
-            <div>
+            <div class="news-copy">
               <span>브랜드뉴스</span>
-              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
-              <time datetime="2026-07-30">2026.07.30</time>
+              <h3><a href="#">지구식단 친환경 패키지 적용 제품 확대 및 자원순환 캠페인</a></h3>
+              <p>플라스틱 사용 감축 및 바이오 페트 용기 확대를 통한 친환경 바른먹거리 가치 제공</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
             </div>
           </article>
-          <article>
+          <article class="esg-news-card">
             <img src="assets/esg-news-03.png" alt="ESG 뉴스 이미지" />
-            <div>
+            <div class="news-copy">
               <span>기업뉴스</span>
-              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
-              <time datetime="2026-07-30">2026.07.30</time>
+              <h3><a href="#">풀무원 재단, 지역사회 맞춤형 어린이 바른먹거리 교육 개최</a></h3>
+              <p>어린이 체계적 건강 식습관 형성을 위한 나눔 교육 프로그램 실시 및 사회적 책임 이행</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
             </div>
           </article>
-          <article>
+          <article class="esg-news-card">
             <img src="assets/esg-news-04.png" alt="ESG 뉴스 이미지" />
-            <div>
+            <div class="news-copy">
               <span>브랜드뉴스</span>
-              <h3>기사 제목과 요약 정보가 들어가는 목록형 콘텐츠</h3>
-              <time datetime="2026-07-30">2026.07.30</time>
+              <h3><a href="#">뮤지엄김치간, 식문화 유산 보존 및 지속가능 식문화 체험 프로그램</a></h3>
+              <p>유네스코 인류무형문화유산 김장문화의 가치를 보존하고 대중과 공유하는 차별화된 활동</p>
+              <div class="story-meta">
+                <time datetime="2026-07-30">2026.07.30</time>
+              </div>
             </div>
           </article>
         </div>
@@ -290,7 +316,7 @@
       <div class="common-footer__inner">
         <div class="common-footer__top">
           <div class="common-footer__company">
-            <img src="../assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+            <img src="../assets/images/footer-logo.png" alt="풀무원" width="119" height="40" loading="lazy">
             <address>
               <span>법인명 : (주)풀무원</span>
               <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
@@ -315,16 +341,16 @@
 
             <div class="common-footer__social">
               <span>공식계정</span>
-              <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
-              <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
-              <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
-              <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
-              <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
+              <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-tistory.png" alt="풀무원 공식 블로그" width="21" height="23" loading="lazy"></a>
+              <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-x.png" alt="풀무원 X" width="46" height="46" loading="lazy"></a>
+              <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-youtube.png" alt="풀무원 유튜브" width="24" height="23" loading="lazy"></a>
+              <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-instagram.png" alt="풀무원 인스타그램" width="46" height="46" loading="lazy"></a>
+              <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" width="46" height="42" loading="lazy"></a>
             </div>
           </div>
         </div>
 
-        <hr />
+        <hr>
 
         <div class="common-footer__bottom">
           <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
@@ -332,7 +358,7 @@
             <div class="common-footer__family-site">
               <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
                 계열사/브랜드 사이트
-                <img src="../assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+                <img src="../assets/icons/chevron-down.svg" alt="" width="12" height="12">
               </button>
               <div id="family-site-panel" class="common-footer__family-panel" hidden>
                 <section aria-labelledby="family-pulmuone-title">
@@ -373,7 +399,7 @@
                 </section>
               </div>
             </div>
-            <img src="../assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+            <img src="../assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" width="80" height="74" loading="lazy">
           </div>
         </div>
       </div>

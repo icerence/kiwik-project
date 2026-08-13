@@ -11,40 +11,121 @@
 
     <!-- Tailwind CSS v4 (Play CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="resources-static.css?v=20260812-header-spacing">
     <!-- common:head:start -->
-    <link rel="stylesheet" href="../assets/css/fonts.css" />
-    <link rel="stylesheet" href="../common/components.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../common/components.css">
     <script src="../common/components.js" defer></script>
     <!-- common:head:end -->
+    <style type="text/tailwindcss">
+      @theme {
+        /* Figma 2470:5284 — Sustainability report tab */
+        --color-report-page: #f5f5f7;
+        --color-report-ink: #262626;
+        --color-report-copy: #616161;
+        --color-report-muted: #6b6b6b;
+        --color-report-line: #d1d1d1;
+        --color-report-grid-line: #dbdbdb;
+        --color-report-lime: #80c72e;
+        --color-report-green: #178c33;
+        --color-report-deep-green: #0a8f3b;
+        --spacing-report-page-top: 4.375rem;
+        --spacing-report-section: 4.375rem;
+        --spacing-report-intro: 1.375rem;
+        --spacing-report-feature: 2.75rem;
+        --spacing-report-parts: 1.625rem;
+        --spacing-report-card: 1.75rem;
+        --spacing-report-card-row: 2rem;
+        --spacing-report-cover-top: 2.625rem;
+        --spacing-report-cover-bottom: 2.125rem;
+        --spacing-report-table-cell: 0.75rem;
+        --size-report-feature-cover: 19.375rem;
+        --size-report-feature-cover-height: 26.25rem;
+        --size-report-card-cover: 15.625rem;
+        --size-report-card-cover-height: 20.625rem;
+        --size-report-part-icon: 3.375rem;
+        --size-report-graphic-wide: 9.375rem;
+        --size-report-graphic-mid: 8rem;
+        --size-report-graphic-short: 6.625rem;
+        --size-report-graphic-bar: 1.5rem;
+        --radius-report-none: 0;
+        --text-report-page-title: 2.125rem;
+        --text-report-section-title: 1.625rem;
+        --text-report-card-title: 1.125rem;
+        --text-report-part-title: 1rem;
+        --text-report-body: 0.9375rem;
+        --text-report-small: 0.8125rem;
+        --text-report-cover-brand: 1.9375rem;
+      }
+      :root {
+        /* Figma 2470:5284 — expose report tokens to legacy stylesheet rules. */
+        --color-report-page: #f5f5f7;
+        --color-report-ink: #262626;
+        --color-report-copy: #616161;
+        --color-report-muted: #6b6b6b;
+        --color-report-line: #d1d1d1;
+        --color-report-grid-line: #dbdbdb;
+        --color-report-lime: #80c72e;
+        --color-report-green: #178c33;
+        --color-report-deep-green: #0a8f3b;
+        --spacing-report-page-top: 4.375rem;
+        --spacing-report-section: 4.375rem;
+        --spacing-report-intro: 1.375rem;
+        --spacing-report-feature: 2.75rem;
+        --spacing-report-parts: 1.625rem;
+        --spacing-report-card: 1.75rem;
+        --spacing-report-card-row: 2rem;
+        --spacing-report-cover-top: 2.625rem;
+        --spacing-report-cover-bottom: 2.125rem;
+        --spacing-report-table-cell: 0.75rem;
+        --size-report-feature-cover: 19.375rem;
+        --size-report-feature-cover-height: 26.25rem;
+        --size-report-card-cover: 15.625rem;
+        --size-report-card-cover-height: 20.625rem;
+        --size-report-part-icon: 3.375rem;
+        --size-report-graphic-wide: 9.375rem;
+        --size-report-graphic-mid: 8rem;
+        --size-report-graphic-short: 6.625rem;
+        --size-report-graphic-bar: 1.5rem;
+        --radius-report-none: 0;
+        --text-report-page-title: 2.125rem;
+        --text-report-section-title: 1.625rem;
+        --text-report-card-title: 1.125rem;
+        --text-report-part-title: 1rem;
+        --text-report-body: 0.9375rem;
+        --text-report-small: 0.8125rem;
+        --text-report-cover-brand: 1.9375rem;
+      }
+    </style>
   </head>
-  <body data-common-header-offset>
+  <body class="page-resources" data-common-header-offset>
     <a class="skip-link" href="#content">본문 바로가기</a>
 <!-- common:header:start -->
 <header id="site-header" class="common-header">
   <div class="common-header__inner">
     <div id="utility-bar" class="common-header__utility">
       <a class="common-header__utility-link" href="../index.html#section2">
-        <span class="common-header__utility-icon"><img src="../assets/icons/file-text.svg" alt="" width="20" height="20" /></span>
+        <span class="common-header__utility-icon"><img src="../assets/icons/file-text.svg" alt="" width="20" height="20"></span>
         <span>지속가능경영보고서</span>
       </a>
       <a class="common-header__utility-link" href="../index.html#section4">
-        <span class="common-header__utility-icon"><img src="../assets/icons/users.svg" alt="" width="20" height="20" /></span>
+        <span class="common-header__utility-icon"><img src="../assets/icons/users.svg" alt="" width="20" height="20"></span>
         <span>인재채용</span>
       </a>
       <a class="common-header__utility-link" href="../index.html#site-footer">
-        <span class="common-header__utility-icon"><img src="../assets/icons/message-square.svg" alt="" width="20" height="20" /></span>
+        <span class="common-header__utility-icon"><img src="../assets/icons/message-square.svg" alt="" width="20" height="20"></span>
         <span>고객기쁨센터</span>
       </a>
       <a class="common-header__utility-link common-header__utility-link--bold" href="../index.html#section6">
-        <span class="common-header__utility-icon"><img src="../assets/icons/shopping-cart.svg" alt="" width="20" height="20" /></span>
+        <span class="common-header__utility-icon"><img src="../assets/icons/shopping-cart.svg" alt="" width="20" height="20"></span>
         <span>#풀무원</span>
       </a>
     </div>
 
     <div class="common-header__main">
       <a href="../index.html" class="common-focus common-header__logo-link">
-        <img src="../assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" />
+        <img src="../assets/images/logo-pulmuone.png" alt="풀무원 홈으로 이동" width="140" height="47">
       </a>
 
       <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
@@ -58,7 +139,7 @@
       </nav>
 
       <div class="site-header-dropdown" data-header-dropdown aria-hidden="true">
-        <div class="site-header-dropdown__inner" aria-label="전체 하위 메뉴">
+        <div class="site-header-dropdown__inner" role="group" aria-label="전체 하위 메뉴">
           <ul class="site-header-dropdown__list">
             <li><a class="site-header-dropdown__link" href="../company.html">총괄CEO인사말</a></li>
             <li><a class="site-header-dropdown__link" href="../company1.html">CI소개</a></li>
@@ -121,8 +202,8 @@
         <div class="common-header__search-field">
           <label for="common-search-input">통합검색</label>
           <div class="common-header__search-input-wrap">
-            <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요" />
-            <img src="../assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20" />
+            <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요">
+            <img src="../assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20">
           </div>
         </div>
         <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
@@ -158,9 +239,32 @@
           </button>
         </form>
       </section>
-<nav class="tabs"><button class="active" data-tab="press">보도자료실</button><button data-tab="report">지속가능경영보고서</button><button data-tab="brochure">브로슈어</button><button data-tab="notice">공지사항</button></nav>
-<section class="panel active" id="press"><p class="archive-note">2008년 5월부터 2016년 6월까지 보도자료는 풀무원 블로그에서 확인하실 수 있습니다. <a href="https://blog.pulmuone.com/category/News/%EB%89%B4%EC%8A%A4%EB%A3%B8" target="_blank" rel="noopener noreferrer" class="btn-more-archive">+ 더보기</a></p><div class="press-table"><div class="press-row head"><span>번호</span><b>제목</b><span>등록일</span></div></div><div class="pagination"></div></section>
-<section class="panel" id="report"><div class="center-intro"><h2>풀무원 지속가능경영보고서</h2><p>풀무원은 2007년 지속가능경영보고서 발간을 시작으로 2014년부터 통합보고서 체계를 도입하여<br>재무·비재무 성과와 주요 ESG 이슈 대응 현황을 종합적으로 공개해 왔습니다.<br>2025년부터는 보고서의 목적과 내용을 보다 직관적으로 전달하기 위해 ‘지속가능경영보고서’ 명칭을 재정의하였습니다.</p></div><h3 class="section-title">2025 지속가능경영보고서</h3><div class="report-feature"><div><div class="cover"><img src="https://www.figma.com/api/mcp/asset/6098366a-6242-4f5d-a2aa-6e9077fb3d1c.png" alt="2025 지속가능경영보고서 표지"></div><div class="download-row"><a>국문 다운로드 ↓</a><a>영문 다운로드 ↓</a></div><div class="cover-story"><b>Cover Story</b><p>풀무원의 그래픽 모티프를 활용하여 기업 아이덴티티를 직관적으로 표현했습니다. 또한 모티프의 일부를 타공하여 ‘풀무원의 내부를 들여다볼 수 있는 보고서’라는 콘셉트를 구현했습니다.</p></div></div><div class="parts"> <article><i>01</i><b>Part 1.</b><p>풀무원의 지배구조와 사업 영역, ESG 경영 체계를 소개합니다.</p></article><article><i>02</i><b>Part 2.</b><p>중점적으로 관리하고 있는 ESG 핵심 이슈와 일반 이슈를 정의합니다.</p></article><article><i>03</i><b>Part 3.</b><p>환경·사회·거버넌스 분야의 활동 및 성과를 소개합니다.</p></article><article><i>04</i><b>Part 4.</b><p>주요 재무·비재무 성과의 최근 3개년 추이를 제공합니다.</p></article><article><i>05</i><b>Part 5.</b><p>보고 기준과 주요 지표를 투명하게 공개합니다.</p></article></div></div><h3 class="section-title">통합보고서 아카이브</h3><div class="report-grid"></div><div class="pagination report-pagination"></div><h3 class="section-title centered">풀무원 보고서 발간 개요</h3><table class="overview"><thead><tr><th>명칭</th><th>발간연도</th><th>작성기준</th><th>구성 및 내용</th></tr></thead><tbody><tr><td>지속가능경영보고서</td><td>2007~2013</td><td>GRI 가이드라인</td><td>풀무원의 사회책임경영 활동과 실적 소개</td></tr><tr><td>통합보고서</td><td>2014</td><td>GRI 가이드라인 및 통합보고</td><td>재무·비재무 활동과 성과를 하나의 보고서로 공개</td></tr><tr><td>통합보고서</td><td>2015~2024</td><td>GRI 가이드라인</td><td>경제·사회·환경 성과 및 ESG 이슈 공개</td></tr><tr><td>지속가능경영보고서</td><td>2025</td><td>GRI 가이드라인 및 KSSB S1 공시체계</td><td>지속가능성 관련 재무정보와 ESG 성과 공개</td></tr></tbody></table></section>
+<nav class="tabs"><button data-tab="press">보도자료실</button><button class="active" data-tab="report">지속가능경영보고서</button><button data-tab="brochure">브로슈어</button><button data-tab="notice">공지사항</button></nav>
+<section class="panel" id="press"><p class="archive-note">2008년 5월부터 2016년 6월까지 보도자료는 풀무원 블로그에서 확인하실 수 있습니다. <a href="https://blog.pulmuone.com/category/News/%EB%89%B4%EC%8A%A4%EB%A3%B8" target="_blank" rel="noopener noreferrer" class="btn-more-archive">+ 더보기</a></p><div class="press-table"><div class="press-row head"><span>번호</span><b>제목</b><span>등록일</span></div></div><div class="pagination"></div></section>
+<section class="panel report-panel active" id="report">
+  <div class="center-intro report-intro">
+    <h2>풀무원 지속가능경영보고서</h2>
+    <p>풀무원은 2007년 지속가능경영보고서 발간을 시작으로 통합보고서 체계를 도입하여<br>재무·비재무 성과와 주요 ESG 이슈 대응 현황을 종합적으로 공개해 왔습니다.</p>
+    <a class="report-home-link common-focus" href="https://sustainability.pulmuone.co.kr/ko/main/main.do" target="_blank" rel="noopener noreferrer">지속가능경영 홈페이지 바로가기 <span aria-hidden="true">›</span></a>
+  </div>
+  <h3 class="section-title report-section-title">2025 지속가능경영보고서</h3>
+  <div class="report-feature">
+    <a class="report-feature-cover common-focus" href="https://news.pulmuone.co.kr/pulmuone/data/2025_sustainable_report.pdf" target="_blank" rel="noopener noreferrer" aria-label="2025 지속가능경영보고서 국문 PDF 다운로드">
+      <img src="assets/report-2025-cover.png" alt="2025 풀무원 지속가능경영보고서 표지" />
+    </a>
+    <div class="parts" aria-label="보고서 구성">
+      <article><img src="../assets/icons/building.svg" alt="" aria-hidden="true"><div><b>Part 1.</b><p>풀무원의 지배구조와 사업 영역, ESG 경영 체계를 소개합니다.</p></div></article>
+      <article><img src="../assets/icons/file-text.svg" alt="" aria-hidden="true"><div><b>Part 2.</b><p>핵심 ESG 이슈와 주요 활동 및 성과를 소개합니다.</p></div></article>
+      <article><img src="../assets/icons/globe.svg" alt="" aria-hidden="true"><div><b>Part 3.</b><p>환경·사회·거버넌스 분야의 일반 이슈와 주요 활동을 소개합니다.</p></div></article>
+      <article><img src="../assets/icons/factory.svg" alt="" aria-hidden="true"><div><b>Part 4.</b><p>주요 재무·비재무 성과의 최근 3개년 추이를 정량 데이터로 제공합니다.</p></div></article>
+      <article><img src="../assets/icons/message-square.svg" alt="" aria-hidden="true"><div><b>Part 5.</b><p>공시기준 인덱스와 주요 데이터의 제3자 검증 결과를 제공합니다.</p></div></article>
+    </div>
+  </div>
+  <div class="report-archive-heading"><h3 class="section-title report-section-title">통합보고서 아카이브</h3></div>
+  <div class="report-grid"></div><div class="pagination report-pagination"></div>
+  <h3 class="section-title report-section-title">풀무원 보고서 발간 개요</h3>
+  <table class="overview"><thead><tr><th>명칭</th><th>발간연도</th><th>작성기준</th><th>구성 및 내용</th></tr></thead><tbody><tr><td>지속가능경영보고서</td><td>2007~2013</td><td>GRI 가이드라인</td><td>풀무원의 사회책임경영 활동과 실적 소개</td></tr><tr><td>통합보고서</td><td>2015~2024</td><td>GRI·IR 프레임워크</td><td>재무·비재무 성과 통합</td></tr><tr><td>지속가능경영보고서</td><td>2025</td><td>KSSB S1</td><td>중대한 비재무 이슈 보고</td></tr></tbody></table>
+</section>
 <section class="panel" id="brochure"><div class="center-intro"><h2>풀무원 브로슈어 Pulmuone Next 40</h2><p>이해관계자 여러분께서 풀무원의 비즈니스 현황을 보다 쉽고 빠르게 파악하실 수 있도록 향후 풀무원 브로슈어는<br>통합보고서의 요약 버전이 아닌 별도의 발간물로 제작될 예정입니다.</p></div><h3 class="section-title">2024년 브로슈어 구성</h3><div class="brochure-hero"><img src="https://www.figma.com/api/mcp/asset/835cc035-4cfe-453d-a967-4f4d3de91100.png" alt="Pulmuone Next 40"><img src="https://www.figma.com/api/mcp/asset/040bd01c-f3de-45e3-9858-22d41b7b327b.png" alt="2024 Brochure"></div><div class="brochure-parts"><article><i>01</i><b>Company Overview</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>02</i><b>Sustainable Foods for Sustainable World</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>03</i><b>Healthy Choice for U&I</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>04</i><b>Our Home Planet Health Together</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article><article><i>05</i><b>Together We Grow</b><p>풀무원의 지속가능한 성장과 주요 활동을 소개합니다.</p></article></div><h3 class="section-title">브로슈어 다운로드</h3><div class="brochure-grid"></div></section>
 <section class="panel" id="notice"><div class="notice-grid"></div><div class="pagination"></div></section></main>
 <!-- common:footer:start -->
@@ -168,7 +272,7 @@
   <div class="common-footer__inner">
     <div class="common-footer__top">
       <div class="common-footer__company">
-        <img src="../assets/images/footer-logo.png" alt="풀무원" loading="lazy" />
+        <img src="../assets/images/footer-logo.png" alt="풀무원" width="119" height="40" loading="lazy">
         <address>
           <span>법인명 : (주)풀무원</span>
           <span>서울시 테스트구 샘플로 123 테스트빌딩</span>
@@ -193,16 +297,16 @@
 
         <div class="common-footer__social">
           <span>공식계정</span>
-          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-tistory.png" alt="풀무원 공식 블로그" loading="lazy" /></a>
-          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-x.png" alt="풀무원 X" loading="lazy" /></a>
-          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-youtube.png" alt="풀무원 유튜브" loading="lazy" /></a>
-          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-instagram.png" alt="풀무원 인스타그램" loading="lazy" /></a>
-          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" loading="lazy" /></a>
+          <a class="common-focus" href="https://blog.pulmuone.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-tistory.png" alt="풀무원 공식 블로그" width="21" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://x.com/pulmuonelove" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-x.png" alt="풀무원 X" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://www.youtube.com/@pulmuone.official" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-youtube.png" alt="풀무원 유튜브" width="24" height="23" loading="lazy"></a>
+          <a class="common-focus" href="https://www.instagram.com/pulmuone/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-instagram.png" alt="풀무원 인스타그램" width="46" height="46" loading="lazy"></a>
+          <a class="common-focus" href="https://blog.naver.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/images/sns-naver-blog.png" alt="네이버 블로그 홈" width="46" height="42" loading="lazy"></a>
         </div>
       </div>
     </div>
 
-    <hr />
+    <hr>
 
     <div class="common-footer__bottom">
       <p>Copyright © Pulmuone Corporate All Rights Reserved.</p>
@@ -210,7 +314,7 @@
         <div class="common-footer__family-site">
           <button type="button" class="common-focus" aria-haspopup="true" aria-expanded="false" aria-controls="family-site-panel">
             계열사/브랜드 사이트
-            <img src="../assets/icons/chevron-down.svg" alt="" width="12" height="12" />
+            <img src="../assets/icons/chevron-down.svg" alt="" width="12" height="12">
           </button>
           <div id="family-site-panel" class="common-footer__family-panel" hidden>
             <section aria-labelledby="family-pulmuone-title">
@@ -251,7 +355,7 @@
             </section>
           </div>
         </div>
-        <img src="../assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" loading="lazy" />
+        <img src="../assets/images/footer-badge-privacy.png" alt="개인정보보호 우수 웹사이트 인증 마크" width="80" height="74" loading="lazy">
       </div>
     </div>
   </div>

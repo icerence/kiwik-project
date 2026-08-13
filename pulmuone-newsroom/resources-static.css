@@ -1,4 +1,4 @@
-﻿@font-face{font-family:NSN;src:url('assets/fonts/NanumSquareNeo-Variable.ttf')}*{box-sizing:border-box}body{margin:0;background:#fafaf7;color:#17202d;font-family:NSN,sans-serif}.shell{width:1200px;max-width:calc(100% - 40px);margin:auto}a{text-decoration:none;color:inherit}.site-header{height:155px;background:#fff;border-bottom:1px solid #d9dade}.utility{height:56px;display:flex;justify-content:flex-end;align-items:center;gap:8px}.utility a{display:flex;align-items:center;gap:6px;font-size:14px}.utility img{width:20px;height:20px;padding:4px;background:#f4f8ef;border-radius:10px}.nav{height:98px;display:flex;align-items:center}.logo img{width:112px;height:58px;object-fit:contain}.nav nav{display:flex;gap:44px;margin-left:180px;font-size:14px;color:#555}.actions{margin-left:auto;display:flex;gap:14px;align-items:center}.actions button{background:#fff;border:0}.actions img{width:20px}.actions .lang{border:1px solid #9fa4aa;border-radius:8px;padding:10px 12px}main{padding:42px 0 112px;min-height:720px}.page-head{height:92px;display:flex;justify-content:space-between;align-items:flex-start}.page-head h1{margin:0 0 8px;font-size:40px;letter-spacing:-1.5px}.page-head p{margin:0;color:#7e8894}.search{width:269px;height:53px;margin-top:0;border:1px solid #c7ccc2;border-radius:30px;background:#fff;display:flex;align-items:center;padding:0 18px}.search input{width:100%;border:0;outline:0;font:inherit;background:none}.search img{width:23px}.tabs{height:58px;padding:5px;background:#f1f5ee;border-radius:14px;display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:34px}.tabs button{border:0;border-radius:10px;background:transparent;color:#59645f;font:inherit}.tabs button.active{background:#fff;color:#58a522;box-shadow:0 2px 0 #73c840}.panel{display:none}.panel.active{display:block}.archive-note{text-align:center;margin:34px 0;color:#7b858f;font-size:14px}.archive-note a{color:#58a522}.press-table{overflow:hidden;border:1px solid #e3e7e1;border-radius:16px;background:#fff}.press-row{display:grid;grid-template-columns:90px 1fr 170px;align-items:center;min-height:66px;padding:0 28px;border-bottom:1px solid #edf0f1;font-size:14px}.press-row.head{min-height:58px;background:#f1f5ee;font-weight:700}.press-row.head>span:first-child{text-align:center}.press-row.head>b{text-align:center}.press-row.head>span:last-child{text-align:center}.press-row span,.press-row time{color:#a0a8b1}.press-row>span:first-child{text-align:center}.press-row time{text-align:center}.press-row b{font-weight:600;padding-left:30px}.pagination{height:76px;display:flex;justify-content:center;align-items:center;gap:4px}.pagination button{width:32px;height:32px;border:0;background:transparent;color:#84909c}.pagination .current{border-radius:50%;background:#eef3e9;color:#1e252a}.center-intro{text-align:center;margin:14px auto 58px}.center-intro h2{font-size:30px;margin:0 0 18px}.center-intro p{font-size:13px;line-height:1.75;color:#7f8790}.section-title{font-size:26px;margin:60px 0 24px}.section-title.centered{text-align:center}.report-feature{display:grid;grid-template-columns:365px 1fr;gap:56px}.cover{height:470px;padding:20px;background:#fff;border-radius:9px;box-shadow:0 9px 25px #23301518}.cover img{width:100%;height:100%;object-fit:contain}.download-row{display:flex;gap:8px;margin:14px 0}.download-row a,.report-card a{padding:9px 12px;background:#f2f2f2;border-radius:4px;font-size:12px}.cover-story{padding:25px;background:#18aa54;border-radius:14px;color:#fff}.cover-story p{font-size:12px;line-height:1.55}.parts{display:grid;gap:13px}.parts article{padding:18px 22px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.parts i,.brochure-parts i{display:block;color:#54b51b;font-size:12px;font-style:normal}.parts b{display:block;margin:5px 0}.parts p{margin:0;color:#7b848c;font-size:12px}.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.report-card{padding:18px;background:#fff;box-shadow:0 7px 20px #23301512}.report-card>span{font-size:13px}.report-card img{width:100%;height:310px;object-fit:contain}.report-card>div{display:flex;gap:6px}.overview{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;font-size:12px}.overview th{background:#55ad18;color:#fff;padding:16px}.overview td{padding:15px;background:#fff;border-bottom:1px solid #e6e8e5}.brochure-hero{display:grid;grid-template-columns:1.4fr 1fr;overflow:hidden;border-radius:25px;background:#61ce00}.brochure-hero img{width:100%;height:350px;object-fit:cover}.brochure-parts{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:16px}.brochure-parts article{grid-column:span 2;min-height:135px;padding:20px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.brochure-parts article:nth-child(n+4){grid-column:span 3}.brochure-parts b{display:block;margin:7px 0}.brochure-parts p{margin:0;color:#7b848c;font-size:12px}.brochure-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.brochure-card{display:grid;grid-template-columns:170px 1fr;gap:22px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 7px 20px #23301514}.brochure-card img{width:170px;height:235px;object-fit:contain}.brochure-card h4{font-size:18px}.brochure-card p{color:#7b848c;font-size:12px}.brochure-card a{display:inline-block;margin-top:12px;padding:11px 17px;border-radius:22px;background:#55aa11;color:#fff;font-size:12px}.notice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.notice-grid>a{min-height:242px;padding:28px;background:#fff;border-radius:12px;box-shadow:0 5px 17px #2330150c;display:flex;flex-direction:column}.notice-grid h3{margin:0 0 12px;font-size:17px;line-height:1.4}.notice-grid p{margin:0;color:#717b84;font-size:12px}.notice-grid time{margin-top:auto;color:#a1a8ae;font-size:12px}footer{padding:42px 0;background:#f0f1f3;color:#626970;font-size:12px}.footer-inner{display:flex;justify-content:space-between}.footer-inner img{width:120px}.footer-inner nav{display:flex;gap:22px}.copyright{text-align:right;margin-top:52px;color:#a2a8ae}@media(max-width:800px){.utility,.nav nav{display:none}.site-header{height:76px}.nav{height:76px}.page-head{height:auto;display:block}.search{width:100%;margin:20px 0}.tabs{height:auto;grid-template-columns:1fr 1fr}.press-table{overflow:auto}.press-row{min-width:760px}.report-feature,.brochure-hero{grid-template-columns:1fr}.report-grid,.brochure-grid,.notice-grid{grid-template-columns:1fr}.brochure-parts{grid-template-columns:1fr}.brochure-parts article,.brochure-parts article:nth-child(n+4){grid-column:auto}.footer-inner{display:block}.footer-inner nav{flex-wrap:wrap}.copyright{text-align:left}}
+@font-face{font-family:NSN;src:url('assets/fonts/NanumSquareNeo-Variable.ttf')}*{box-sizing:border-box}body{margin:0;background:#fafaf7;color:#17202d;font-family:NSN,sans-serif}.shell{width:1200px;max-width:calc(100% - 40px);margin:auto}a{text-decoration:none;color:inherit}.site-header{height:155px;background:#fff;border-bottom:1px solid #d9dade}.utility{height:56px;display:flex;justify-content:flex-end;align-items:center;gap:8px}.utility a{display:flex;align-items:center;gap:6px;font-size:14px}.utility img{width:20px;height:20px;padding:4px;background:#f4f8ef;border-radius:10px}.nav{height:98px;display:flex;align-items:center}.logo img{width:112px;height:58px;object-fit:contain}.nav nav{display:flex;gap:44px;margin-left:180px;font-size:14px;color:#555}.actions{margin-left:auto;display:flex;gap:14px;align-items:center}.actions button{background:#fff;border:0}.actions img{width:20px}.actions .lang{border:1px solid #9fa4aa;border-radius:8px;padding:10px 12px}main{padding:42px 0 112px;min-height:720px}.page-head{height:92px;display:flex;justify-content:space-between;align-items:flex-start}.page-head h1{margin:0 0 8px;font-size:40px;letter-spacing:-1.5px}.page-head p{margin:0;color:#7e8894}.search{width:269px;height:53px;margin-top:0;border:1px solid #c7ccc2;border-radius:30px;background:#fff;display:flex;align-items:center;padding:0 18px}.search input{width:100%;border:0;outline:0;font:inherit;background:none}.search img{width:23px}.tabs{height:58px;padding:5px;background:#f1f5ee;border-radius:14px;display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:34px}.tabs button{border:0;border-radius:10px;background:transparent;color:#59645f;font:inherit}.tabs button.active{background:#fff;color:#58a522;box-shadow:0 2px 0 #73c840}.panel{display:none}.panel.active{display:block}.archive-note{text-align:center;margin:34px 0;color:#7b858f;font-size:14px}.archive-note a{color:#58a522}.press-table{overflow:hidden;border:1px solid #e3e7e1;border-radius:16px;background:#fff}.press-row{display:grid;grid-template-columns:90px 1fr 170px;align-items:center;min-height:66px;padding:0 28px;border-bottom:1px solid #edf0f1;font-size:14px}.press-row.head{min-height:58px;background:#f1f5ee;font-weight:700}.press-row.head>span:first-child{text-align:center}.press-row.head>b{text-align:center}.press-row.head>span:last-child{text-align:center}.press-row span,.press-row time{color:#a0a8b1}.press-row>span:first-child{text-align:center}.press-row time{text-align:center}.press-row b{font-weight:600;padding-left:30px}.pagination{height:76px;display:flex;justify-content:center;align-items:center;gap:4px}.pagination button{width:32px;height:32px;border:0;background:transparent;color:#84909c}.pagination .current{border-radius:50%;background:#eef3e9;color:#1e252a}.center-intro{text-align:center;margin:14px auto 58px}.center-intro h2{font-size:30px;margin:0 0 18px}.center-intro p{font-size:13px;line-height:1.75;color:#7f8790}.section-title{font-size:26px;margin:60px 0 24px}.section-title.centered{text-align:center}.report-feature{display:grid;grid-template-columns:365px 1fr;gap:56px}.cover{height:470px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 9px 25px #23301518}.cover img{width:100%;height:100%;object-fit:contain}.download-row{display:flex;gap:8px;margin:14px 0}.download-row a,.report-card a{padding:9px 12px;background:#f2f2f2;border-radius:4px;font-size:12px}.cover-story{padding:25px;background:#18aa54;border-radius:14px;color:#fff}.cover-story p{font-size:12px;line-height:1.55}.parts{display:grid;gap:13px}.parts article{padding:18px 22px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.parts i,.brochure-parts i{display:block;color:#54b51b;font-size:12px;font-style:normal}.parts b{display:block;margin:5px 0}.parts p{margin:0;color:#7b848c;font-size:12px}.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.report-card{padding:18px;background:#fff;box-shadow:0 7px 20px #23301512}.report-card>span{font-size:13px}.report-card img{width:100%;height:310px;object-fit:contain}.report-card>div{display:flex;gap:6px}.overview{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;font-size:12px}.overview th{background:#55ad18;color:#fff;padding:16px}.overview td{padding:15px;background:#fff;border-bottom:1px solid #e6e8e5}.brochure-hero{display:grid;grid-template-columns:1.4fr 1fr;overflow:hidden;border-radius:25px;background:#61ce00}.brochure-hero img{width:100%;height:350px;object-fit:cover}.brochure-parts{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:16px}.brochure-parts article{grid-column:span 2;min-height:135px;padding:20px;background:#fff;border-radius:14px;box-shadow:0 6px 18px #23301512}.brochure-parts article:nth-child(n+4){grid-column:span 3}.brochure-parts b{display:block;margin:7px 0}.brochure-parts p{margin:0;color:#7b848c;font-size:12px}.brochure-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.brochure-card{display:grid;grid-template-columns:170px 1fr;gap:22px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 7px 20px #23301514}.brochure-card img{width:170px;height:235px;object-fit:contain}.brochure-card h4{font-size:18px}.brochure-card p{color:#7b848c;font-size:12px}.brochure-card a{display:inline-block;margin-top:12px;padding:11px 17px;border-radius:22px;background:#55aa11;color:#fff;font-size:12px}.notice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.notice-grid>a{min-height:242px;padding:28px;background:#fff;border-radius:12px;box-shadow:0 5px 17px #2330150c;display:flex;flex-direction:column}.notice-grid h3{margin:0 0 12px;font-size:17px;line-height:1.4}.notice-grid p{margin:0;color:#717b84;font-size:12px}.notice-grid time{margin-top:auto;color:#a1a8ae;font-size:12px}footer{padding:42px 0;background:#f0f1f3;color:#626970;font-size:12px}.footer-inner{display:flex;justify-content:space-between}.footer-inner img{width:120px}.footer-inner nav{display:flex;gap:22px}.copyright{text-align:right;margin-top:52px;color:#a2a8ae}@media(max-width:800px){.utility,.nav nav{display:none}.site-header{height:76px}.nav{height:76px}.page-head{height:auto;display:block}.search{width:100%;margin:20px 0}.tabs{height:auto;grid-template-columns:1fr 1fr}.press-table{overflow:hidden}.press-row{min-width:0}.report-feature,.brochure-hero{grid-template-columns:1fr}.report-grid,.brochure-grid,.notice-grid{grid-template-columns:1fr}.brochure-parts{grid-template-columns:1fr}.brochure-parts article,.brochure-parts article:nth-child(n+4){grid-column:auto}.footer-inner{display:block}.footer-inner nav{flex-wrap:wrap}.copyright{text-align:left}}
 
 @font-face{font-family:'NanumSquare Neo';src:url('assets/fonts/NanumSquareNeo-Variable.ttf') format('truetype');font-weight:100 1000;font-style:normal;font-display:swap}html,body,button,input,textarea,select{font-family:'NanumSquare Neo','Malgun Gothic',sans-serif!important}
 
@@ -415,6 +415,41 @@ main.content.shell > .page-head {
   box-shadow: 0 4px 10px rgba(88, 165, 34, 0.25);
 }
 
+/* Figma 2470:5284 — Sustainability report tab. */
+.report-panel { padding-top: var(--spacing-report-page-top); }
+.report-panel .report-intro { display:grid!important; justify-items:center; gap:var(--spacing-report-intro); margin:0 auto var(--spacing-report-section)!important; text-align:center; }
+.report-panel .report-intro h2,.report-panel .report-section-title { margin:0; color:var(--color-report-ink)!important; font-size:var(--text-report-page-title)!important; font-weight:var(--font-weight-bold)!important; letter-spacing:normal!important; }
+.report-panel .report-intro p { margin:0; color:var(--color-report-copy)!important; font-size:var(--text-report-body)!important; line-height:1.5!important; }
+.report-home-link { padding:var(--spacing-report-table-cell) var(--spacing-report-card); border:1px solid var(--color-report-line); color:var(--color-report-muted); font-size:var(--text-report-small); }
+.report-panel .report-section-title { margin-bottom:var(--spacing-report-feature)!important; font-size:var(--text-report-section-title)!important; }
+.report-panel .report-feature { display:grid; grid-template-columns:var(--size-report-feature-cover) minmax(0,1fr); align-items:center; gap:var(--spacing-report-feature); }
+.report-feature-cover { display:flex; width:var(--size-report-feature-cover); height:var(--size-report-feature-cover-height); flex-direction:column; align-items:center; justify-content:space-between; padding:var(--spacing-report-cover-top) var(--spacing-report-card) var(--spacing-report-cover-bottom); background:var(--color-white); }
+.report-feature-cover img { width:100%; height:100%; object-fit:cover; }
+.report-cover-kicker { align-self:flex-start; color:var(--color-report-lime); font-size:var(--text-report-small); font-weight:var(--font-weight-bold); }
+.report-feature-cover strong { color:var(--color-report-deep-green); font-size:var(--text-report-cover-brand); }
+.report-cover-graphic { display:grid; transform:rotate(12deg); }
+.report-cover-graphic i { display:block; height:var(--size-report-graphic-bar); background:var(--color-report-lime); }
+.report-cover-graphic i:nth-child(1) { width:var(--size-report-graphic-wide); }
+.report-cover-graphic i:nth-child(2) { width:var(--size-report-graphic-mid); background:var(--color-report-green); }
+.report-cover-graphic i:nth-child(3) { width:var(--size-report-graphic-short); }
+.report-panel .parts { display:grid; gap:var(--spacing-report-parts); }
+.report-panel .parts article { display:grid; grid-template-columns:var(--size-report-part-icon) minmax(0,1fr); align-items:center; gap:var(--spacing-report-intro); padding:0; background:transparent; box-shadow:none; }
+.report-panel .parts article img { width:var(--size-report-part-icon); height:var(--size-report-part-icon); }
+.report-panel .parts article b { margin:0; color:var(--color-report-ink); font-size:var(--text-report-part-title); }
+.report-panel .parts article p { margin:0; color:var(--color-report-muted); font-size:var(--text-report-small); }
+.report-archive-heading { margin-top:var(--spacing-report-section); }
+.report-panel .report-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--spacing-report-card-row) var(--spacing-report-card); }
+.report-panel .report-card { display:grid; justify-items:center; gap:var(--spacing-report-table-cell); padding:0; background:transparent; box-shadow:none; }
+.report-panel .report-card > span { color:var(--color-report-muted); font-size:var(--text-report-card-title); font-weight:var(--font-weight-bold); }
+.report-panel .report-card .report-cover { display:grid; width:var(--size-report-card-cover); height:var(--size-report-card-cover-height); place-items:center; overflow:hidden; background:var(--color-white); }
+.report-panel .report-card img { width:100%; height:100%; object-fit:cover; }
+.report-panel .report-card .download-row { display:flex; gap:var(--spacing-report-card); margin:0; }
+.report-panel .report-card .download-row a { padding:0; background:transparent; color:var(--color-report-ink); font-size:var(--text-report-small); }
+.report-panel .overview { border-radius:var(--radius-report-none); font-size:var(--text-report-small)!important; }
+.report-panel .overview th { padding:var(--spacing-report-table-cell); background:var(--color-report-lime); }
+.report-panel .overview td { padding:var(--spacing-report-table-cell); border:1px solid var(--color-report-grid-line); color:var(--color-report-muted); }
+@media (max-width:800px) { .report-panel .report-feature { grid-template-columns:1fr; } .report-feature-cover { margin-inline:auto; } .report-panel .report-grid { grid-template-columns:1fr; } }
+
 /* ==========================================================================
    12. 전체 서브페이지 검색창 디자인 시스템 통일 (esg.html 검색창 유일 기준)
    (Unified Search Bar Component Design System - Based on esg.html)
@@ -783,5 +818,489 @@ main.content.shell > .page-head {
   .parts article p,
   .brochure-parts article p {
     transition: none !important;
+  }
+}
+
+/* Figma 2470:5284 final cascade for legacy newsroom rules. */
+.report-panel .report-card { padding:0!important; background:transparent!important; box-shadow:none!important; }
+.report-panel .report-card > span { margin:0!important; color:var(--color-report-muted)!important; font-size:var(--text-report-card-title)!important; }
+.report-panel .report-card .report-cover { display:grid!important; width:var(--size-report-card-cover)!important; height:var(--size-report-card-cover-height)!important; padding:0!important; border-radius:var(--radius-report-none)!important; background:var(--color-white)!important; box-shadow:none!important; }
+.report-panel .report-card .report-cover img { object-fit:cover!important; transform:none!important; }
+.report-panel .report-card .download-row { display:flex!important; gap:var(--spacing-report-card)!important; margin:0!important; }
+.report-panel .report-card .download-row a { padding:0!important; background:transparent!important; color:var(--color-report-ink)!important; font-size:var(--text-report-small)!important; font-weight:var(--font-weight-bold)!important; }
+.report-panel .parts article { padding:0!important; background:transparent!important; box-shadow:none!important; transform:none!important; }
+.report-panel .parts article:hover { background:transparent!important; box-shadow:none!important; transform:none!important; }
+.report-panel .parts article:hover p { color:var(--color-report-muted)!important; font-weight:400!important; transform:none!important; }
+/* ==========================================================================
+   16. Figma 기준 자료&공지(resources.html) 모바일 반응형 구현 (max-width: 640px)
+   (Resources Page Figma Mobile Responsive Layout System - Node 3358-8248 / 3383-9403 / 3387-9991 / 3391-10302)
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* 좌우 20px 여백 보장 (Total 40px margin: min(100% - 40px, var(--container))) */
+  .page-resources .shell,
+  .page-resources .container,
+  .page-resources .content {
+    width: min(100% - 40px, 1200px) !important;
+    max-width: min(100% - 40px, 1200px) !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources main,
+  .page-resources .content {
+    padding: 24px 0 60px !important;
+  }
+
+  /* 1. 상단 인트로 및 검색 영역 (Intro & Search Bar - Left Aligned to Container Start) */
+  .page-resources .intro,
+  .page-resources .page-head {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 14px !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0 0 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .page-resources .intro > div,
+  .page-resources .page-head > div {
+    width: 100% !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .page-resources .intro h1,
+  .page-resources .page-head h1 {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #111827 !important;
+    margin: 0 0 6px !important;
+    letter-spacing: -0.5px !important;
+    text-align: left !important;
+  }
+
+  .page-resources .intro p,
+  .page-resources .page-head p {
+    font-size: 14px !important;
+    color: #6b7280 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+    text-align: left !important;
+  }
+
+  .page-resources .search.page-filter,
+  .page-resources .search {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 46px !important;
+    border-radius: 23px !important;
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources .search input {
+    height: 44px !important;
+    padding-left: 16px !important;
+    font-size: 14px !important;
+    color: #111827 !important;
+  }
+
+  .page-resources .search button {
+    width: 48px !important;
+    height: 44px !important;
+  }
+
+  /* 2. 세로형 카테고리 탭 (Vertical Category Tabs) */
+  .page-resources .tabs,
+  .page-resources nav.tabs {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    gap: 6px !important;
+    padding: 6px !important;
+    background: #f2f5ee !important;
+    border-radius: 14px !important;
+    border-bottom: 0 !important;
+    margin: 16px 0 20px !important;
+    box-sizing: border-box !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .page-resources .tabs button {
+    width: 100% !important;
+    min-height: 44px !important;
+    flex: 1 1 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    color: #4b5563 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .page-resources .tabs button.active,
+  .page-resources .tabs button.selected {
+    background: #ffffff !important;
+    color: #65ac32 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+    border: 0 !important;
+  }
+
+  .page-resources .tab-sliding-indicator {
+    display: none !important;
+  }
+
+  /* 보도자료 아카이브 안내문 & 더보기 버튼 2줄 중앙 정렬 (Archive Note 2-Line Center Alignment) */
+  .page-resources .archive-note {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+    margin: 24px auto 20px !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: #6b7280 !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .archive-note .btn-more-archive,
+  .page-resources .archive-note a {
+    display: inline-flex !important;
+    margin-top: 2px !important;
+  }
+
+  /* 3. 보도자료실 테이블 (Press Release Table - Desktop Structure 100% Preserved for Mobile) */
+  .page-resources .press-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    border-radius: 14px !important;
+    border: 1px solid #e3e7e1 !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources .press-row.head {
+    display: grid !important;
+    grid-template-columns: 38px 1fr 94px !important;
+    align-items: center !important;
+    min-height: 48px !important;
+    padding: 0 18px 0 12px !important;
+    background: #f1f5ee !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    color: #17202d !important;
+    border-bottom: 1px solid #edf0f1 !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources .press-row.head > span:first-child {
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .page-resources .press-row.head > b {
+    text-align: center !important;
+    display: block !important;
+    padding: 0 !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+  }
+
+  .page-resources .press-row.head > span:last-child {
+    text-align: right !important;
+    display: block !important;
+    padding-right: 6px !important;
+  }
+
+  .page-resources .press-row:not(.head) {
+    display: grid !important;
+    grid-template-columns: 38px 1fr 94px !important;
+    align-items: center !important;
+    min-height: 56px !important;
+    height: auto !important;
+    padding: 14px 18px 14px 12px !important;
+    border-bottom: 1px solid #edf0f1 !important;
+    font-size: 13px !important;
+    box-sizing: border-box !important;
+    gap: 0 !important;
+    text-decoration: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .page-resources .press-row:not(.head) > span:first-child {
+    display: block !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #a0a8b1 !important;
+  }
+
+  .page-resources .press-row:not(.head) b {
+    display: block !important;
+    padding: 0 10px 0 6px !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    color: #111827 !important;
+    word-break: keep-all !important;
+    text-align: left !important;
+  }
+
+  .page-resources .press-row:not(.head) time {
+    display: block !important;
+    text-align: right !important;
+    font-size: 12px !important;
+    color: #a0a8b1 !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    padding-right: 6px !important;
+  }
+
+  /* 4. 지속가능경영보고서 패널 (#report) */
+  .page-resources .center-intro {
+    margin: 14px auto 30px !important;
+  }
+
+  .page-resources .center-intro h2 {
+    font-size: 24px !important;
+    margin-bottom: 10px !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .center-intro p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .section-title {
+    font-size: 22px !important;
+    margin: 36px 0 18px !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .report-feature {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .page-resources .cover {
+    height: 340px !important;
+    padding: 16px !important;
+  }
+
+  .page-resources .download-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .page-resources .download-row a {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px !important;
+  }
+
+  .page-resources .parts {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .page-resources .report-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 풀무원 보고서 발간 개요 표 모바일 한 화면 핏 (Overview Table Mobile Single Screen Fit) */
+  .page-resources table.overview {
+    display: table !important;
+    table-layout: fixed !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    white-space: normal !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+    margin-top: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources table.overview th {
+    background: #55ad18 !important;
+    color: #ffffff !important;
+    padding: 10px 4px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources table.overview th:nth-child(1) { width: 24% !important; }
+  .page-resources table.overview th:nth-child(2) { width: 20% !important; }
+  .page-resources table.overview th:nth-child(3) { width: 24% !important; }
+  .page-resources table.overview th:nth-child(4) { width: 32% !important; }
+
+  .page-resources table.overview td {
+    padding: 10px 4px !important;
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e6e8e5 !important;
+    word-break: keep-all !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-resources table.overview td:nth-child(4) {
+    text-align: left !important;
+  }
+
+  /* 5. 브로슈어 패널 (#brochure) */
+  .page-resources .brochure-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .page-resources .brochure-hero img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  .page-resources .brochure-parts {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .page-resources .brochure-parts article,
+  .page-resources .brochure-parts article:nth-child(n+4) {
+    grid-column: span 1 !important;
+    padding: 16px 18px !important;
+  }
+
+  .page-resources .brochure-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .page-resources .brochure-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .page-resources .brochure-card img {
+    width: 150px !important;
+    height: 210px !important;
+    object-fit: contain !important;
+    margin: 0 auto 14px !important;
+  }
+
+  .page-resources .brochure-card h4 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 6px !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .brochure-card p {
+    font-size: 13.5px !important;
+    color: #4b5563 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .brochure-card a {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    margin-top: 14px !important;
+    padding: 12px 18px !important;
+    border-radius: 22px !important;
+    background: #55aa11 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  /* 6. 공지사항 패널 (#notice) */
+  .page-resources .notice-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .page-resources .notice-grid > a {
+    min-height: auto !important;
+    padding: 20px !important;
+    border-radius: 14px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .page-resources .notice-grid h3 {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .notice-grid p {
+    font-size: 13.5px !important;
+    color: #4b5563 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+  }
+
+  .page-resources .notice-grid time {
+    font-size: 12.5px !important;
+    color: #9ca3af !important;
+    margin-top: 6px !important;
   }
 }
