@@ -1,16 +1,12 @@
 <!doctype html>
 <html lang="ko">
   <head>
-  <!-- GSAP & ScrollTrigger (Entrance Animations) -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>자료&공지 | 풀무원</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12" />
+    <meta name="description" content="풀무원의 보도자료, 지속가능경영보고서, 브로슈어, 공지사항을 한곳에서 확인할 수 있는 자료&공지 페이지입니다.">
+    <link rel="icon" type="image/svg+xml" href="../assets/pulmuone_favicon.svg?v=12">
 
-    <!-- Tailwind CSS v4 (Play CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="resources-static.css?v=20260812-header-spacing">
     <!-- common:head:start -->
@@ -18,48 +14,9 @@
     <link rel="stylesheet" href="../common/components.css">
     <script src="../common/components.js" defer></script>
     <!-- common:head:end -->
-    <style type="text/tailwindcss">
-      @theme {
-        /* Figma 2470:5284 — Sustainability report tab */
-        --color-report-page: #f5f5f7;
-        --color-report-ink: #262626;
-        --color-report-copy: #616161;
-        --color-report-muted: #6b6b6b;
-        --color-report-line: #d1d1d1;
-        --color-report-grid-line: #dbdbdb;
-        --color-report-lime: #80c72e;
-        --color-report-green: #178c33;
-        --color-report-deep-green: #0a8f3b;
-        --spacing-report-page-top: 4.375rem;
-        --spacing-report-section: 4.375rem;
-        --spacing-report-intro: 1.375rem;
-        --spacing-report-feature: 2.75rem;
-        --spacing-report-parts: 1.625rem;
-        --spacing-report-card: 1.75rem;
-        --spacing-report-card-row: 2rem;
-        --spacing-report-cover-top: 2.625rem;
-        --spacing-report-cover-bottom: 2.125rem;
-        --spacing-report-table-cell: 0.75rem;
-        --size-report-feature-cover: 19.375rem;
-        --size-report-feature-cover-height: 26.25rem;
-        --size-report-card-cover: 15.625rem;
-        --size-report-card-cover-height: 20.625rem;
-        --size-report-part-icon: 3.375rem;
-        --size-report-graphic-wide: 9.375rem;
-        --size-report-graphic-mid: 8rem;
-        --size-report-graphic-short: 6.625rem;
-        --size-report-graphic-bar: 1.5rem;
-        --radius-report-none: 0;
-        --text-report-page-title: 2.125rem;
-        --text-report-section-title: 1.625rem;
-        --text-report-card-title: 1.125rem;
-        --text-report-part-title: 1rem;
-        --text-report-body: 0.9375rem;
-        --text-report-small: 0.8125rem;
-        --text-report-cover-brand: 1.9375rem;
-      }
+    <style>
       :root {
-        /* Figma 2470:5284 — expose report tokens to legacy stylesheet rules. */
+        /* Figma 2470:5284 — report design tokens (no Tailwind runtime needed; page uses no Tailwind utility classes). */
         --color-report-page: #f5f5f7;
         --color-report-ink: #262626;
         --color-report-copy: #616161;
@@ -233,9 +190,9 @@
         </div>
         <form class="search page-filter" role="search">
           <label class="sr-only" for="resource-search">검색어 입력</label>
-          <input id="resource-search" type="search" placeholder="검색어를 입력하세요" />
+          <input id="resource-search" type="search" placeholder="검색어를 입력하세요">
           <button type="submit" aria-label="검색">
-            <img src="assets/search.svg" alt="" />
+            <img src="assets/search.svg" alt="">
           </button>
         </form>
       </section>
@@ -250,9 +207,9 @@
   <h3 class="section-title report-section-title">2025 지속가능경영보고서</h3>
   <div class="report-feature">
     <a class="report-feature-cover common-focus" href="https://news.pulmuone.co.kr/pulmuone/data/2025_sustainable_report.pdf" target="_blank" rel="noopener noreferrer" aria-label="2025 지속가능경영보고서 국문 PDF 다운로드">
-      <img src="assets/report-2025-cover.png" alt="2025 풀무원 지속가능경영보고서 표지" />
+      <img src="assets/report-2025-cover.png" alt="2025 풀무원 지속가능경영보고서 표지" width="410" height="548" fetchpriority="high">
     </a>
-    <div class="parts" aria-label="보고서 구성">
+    <div class="parts" role="group" aria-label="보고서 구성">
       <article><img src="../assets/icons/building.svg" alt="" aria-hidden="true"><div><b>Part 1.</b><p>풀무원의 지배구조와 사업 영역, ESG 경영 체계를 소개합니다.</p></div></article>
       <article><img src="../assets/icons/file-text.svg" alt="" aria-hidden="true"><div><b>Part 2.</b><p>핵심 ESG 이슈와 주요 활동 및 성과를 소개합니다.</p></div></article>
       <article><img src="../assets/icons/globe.svg" alt="" aria-hidden="true"><div><b>Part 3.</b><p>환경·사회·거버넌스 분야의 일반 이슈와 주요 활동을 소개합니다.</p></div></article>
