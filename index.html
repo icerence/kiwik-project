@@ -380,7 +380,7 @@
       </div>
 
       <div class="common-header__actions">
-        <button type="button" class="common-focus common-header__search" aria-label="통합 검색 열기">
+        <button type="button" class="common-focus common-header__search" aria-label="통합검색 열기" aria-expanded="false" aria-controls="common-search-panel">
           <img src="assets/icons/search.svg" alt="" width="20" height="20" />
         </button>
         <button type="button" class="common-focus common-header__language" aria-label="KOR 언어 선택, 현재 한국어" aria-haspopup="listbox">
@@ -395,6 +395,20 @@
         </button>
       </div>
     </div>
+
+    <section id="common-search-panel" class="common-header__search-panel" aria-label="통합검색" hidden>
+      <div class="common-header__search-panel-inner">
+        <div class="common-header__search-field">
+          <label for="common-search-input">통합검색</label>
+          <div class="common-header__search-input-wrap">
+            <input id="common-search-input" type="search" autocomplete="off" placeholder="검색어를 입력하세요" />
+            <img src="assets/icons/search.svg" alt="" aria-hidden="true" width="20" height="20" />
+          </div>
+        </div>
+        <p id="common-search-status" class="common-header__search-status" role="status" aria-live="polite">검색어를 입력하면 결과가 실시간으로 표시됩니다.</p>
+        <ul id="common-search-results" class="common-header__search-results"></ul>
+      </div>
+    </section>
 
     <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
       <ul>

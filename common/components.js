@@ -251,6 +251,131 @@
     });
   }
 
+  function bindHeaderSearch(header) {
+    var button = header.querySelector('.common-header__search');
+    var panel = header.querySelector('#common-search-panel');
+    var input = header.querySelector('#common-search-input');
+    var status = header.querySelector('#common-search-status');
+    var results = header.querySelector('#common-search-results');
+    if (!button || !panel || !input || !status || !results) return;
+
+    var prefix = window.location.pathname.indexOf('/pulmuone-newsroom/') !== -1 ? '../' : '';
+    var pages = [
+      ['index.html', '홈'], ['company.html', '회사소개'], ['company1.html', '회사소개'],
+      ['sub.html', '사회책임경영'], ['food.html', '바른먹거리'], ['food2.html', '바른먹거리'],
+      ['food3.html', '바른먹거리'], ['food4.html', '바른먹거리'], ['food5.html', '바른먹거리'],
+      ['earthmeal1.html', '지구식단'], ['earthmeal2.html', '지구식단'],
+      ['pulmuone-newsroom/newsroom.html', '뉴스룸'], ['pulmuone-newsroom/esg.html', '뉴스룸'],
+      ['pulmuone-newsroom/multimedia.html', '뉴스룸'], ['pulmuone-newsroom/resources.html', '뉴스룸']
+    ];
+    var searchDocuments = [];
+    var ready = false;
+    var loading = null;
+
+    function normalize(value) {
+      return value.replace(/\s+/g, ' ').trim();
+    }
+
+    function loadDocuments() {
+      if (loading) return loading;
+      status.textContent = '검색할 페이지를 불러오는 중입니다.';
+      loading = Promise.all(pages.map(function (page) {
+        return fetch(prefix + page[0]).then(function (response) {
+          if (!response.ok) throw new Error(page[0]);
+          return response.text();
+        }).then(function (html) {
+          var parsed = new DOMParser().parseFromString(html, 'text/html');
+          var main = parsed.querySelector('main');
+          var titleNode = (main && main.querySelector('h1')) || parsed.querySelector('h1') || parsed.querySelector('title');
+          return {
+            path: prefix + page[0],
+            section: page[1],
+            title: normalize(titleNode ? titleNode.textContent : page[0]),
+            text: normalize(main ? main.textContent : parsed.body.textContent)
+          };
+        }).catch(function () {
+          return null;
+        });
+      })).then(function (loaded) {
+        searchDocuments = loaded.filter(Boolean);
+        ready = true;
+        render(input.value);
+      });
+      return loading;
+    }
+
+    function excerpt(text, query) {
+      var index = text.toLocaleLowerCase('ko').indexOf(query.toLocaleLowerCase('ko'));
+      var start = Math.max(0, index - 55);
+      var end = Math.min(text.length, index + query.length + 95);
+      return (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
+    }
+
+    function render(value) {
+      var query = normalize(value);
+      results.replaceChildren();
+      if (!query) {
+        status.textContent = ready ? '검색어를 입력하면 결과가 실시간으로 표시됩니다.' : '검색할 페이지를 불러오는 중입니다.';
+        return;
+      }
+      if (!ready) return;
+
+      var lowered = query.toLocaleLowerCase('ko');
+      var matches = searchDocuments.filter(function (page) {
+        return (page.title + ' ' + page.text).toLocaleLowerCase('ko').includes(lowered);
+      });
+      status.textContent = '“' + query + '” 검색 결과 ' + matches.length + '건';
+
+      matches.forEach(function (page) {
+        var item = document.createElement('li');
+        var link = document.createElement('a');
+        var category = document.createElement('span');
+        var title = document.createElement('strong');
+        var summary = document.createElement('span');
+        link.className = 'common-focus common-header__search-result-link';
+        link.href = page.path;
+        category.className = 'common-header__search-result-category';
+        title.className = 'common-header__search-result-title';
+        summary.className = 'common-header__search-result-summary';
+        category.textContent = page.section;
+        title.textContent = page.title;
+        summary.textContent = excerpt(page.text, query);
+        link.append(category, title, summary);
+        item.appendChild(link);
+        results.appendChild(item);
+      });
+    }
+
+    function openSearch() {
+      panel.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+      button.setAttribute('aria-label', '통합검색 닫기');
+      loadDocuments();
+      window.requestAnimationFrame(function () { input.focus(); });
+    }
+
+    function closeSearch() {
+      panel.hidden = true;
+      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-label', '통합검색 열기');
+    }
+
+    button.addEventListener('click', function () {
+      if (panel.hidden) openSearch();
+      else closeSearch();
+    });
+    input.addEventListener('input', function () { render(input.value); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !panel.hidden) {
+        closeSearch();
+        button.focus();
+      }
+    });
+    document.addEventListener('click', function (event) {
+      if (!panel.hidden && !header.contains(event.target)) closeSearch();
+    });
+  }
+
   function bindScrollState(header) {
     var ticking = false;
 
@@ -277,6 +402,7 @@
       setActiveNavigation(header);
       bindHeader(header);
       bindHeaderDropdown(header);
+      bindHeaderSearch(header);
       bindScrollState(header);
     }
     document.dispatchEvent(new CustomEvent('common-components:ready'));

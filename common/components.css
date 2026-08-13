@@ -211,6 +211,34 @@ body[data-common-header-offset] > #smooth-wrapper > #smooth-content::before {
 .common-header__actions { display: flex; align-items: center; gap: 1.25rem; }
 .common-header__search,
 .common-header__language { display: none; }
+.common-header__search-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 45;
+  width: 100vw;
+  max-height: calc(100vh - var(--common-header-main-height-desktop));
+  overflow-y: auto;
+  border-top: 1px solid #d9dade;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .12);
+  transform: translateX(-50%);
+}
+.common-header__search-panel[hidden] { display: none; }
+.common-header__search-panel-inner { width: 100%; max-width: 960px; margin-inline: auto; padding: 2rem 1.5rem; }
+.common-header__search-field label { display: block; margin-bottom: .75rem; font-size: 1.5rem; font-weight: 800; }
+.common-header__search-input-wrap { position: relative; }
+.common-header__search-input-wrap input { width: 100%; border: 2px solid #002905; border-radius: .5rem; padding: 1rem 3.5rem 1rem 1.25rem; background: #fff; color: #31343b; font: inherit; }
+.common-header__search-input-wrap input:focus { outline: 3px solid #7bcc12; outline-offset: 2px; }
+.common-header__search-input-wrap img { position: absolute; top: 50%; right: 1.25rem; width: 1.25rem; height: 1.25rem; transform: translateY(-50%); }
+.common-header__search-status { margin: 1.5rem 0 .75rem; font-weight: 700; }
+.common-header__search-results { margin: 0; padding: 0; list-style: none; }
+.common-header__search-results li { border-top: 1px solid #d9dade; }
+.common-header__search-result-link { display: grid; gap: .375rem; padding: 1rem; color: #31343b; text-decoration: none; }
+.common-header__search-result-link:hover { background: #f2f9f3; }
+.common-header__search-result-category { color: #002905; font-size: .75rem; font-weight: 700; }
+.common-header__search-result-title { font-size: 1rem; font-weight: 800; }
+.common-header__search-result-summary { overflow: hidden; color: #6b7280; font-size: .875rem; line-height: 1.5; text-overflow: ellipsis; white-space: nowrap; }
 .common-header__menu-button {
   display: flex;
   width: 2.5rem;
