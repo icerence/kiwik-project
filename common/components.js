@@ -2,7 +2,7 @@
   'use strict';
 
   function currentPage() {
-    var name = window.location.pathname.split('/').pop() || 'index.html';
+    const name = window.location.pathname.split('/').pop() || 'index.html';
     if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
     if (/^sub\d*(-responsive)?\.html$/i.test(name)) return 'sub';
@@ -11,7 +11,7 @@
   }
 
   function setActiveNavigation(header) {
-    var page = currentPage();
+    const page = currentPage();
     header.classList.add('common-header--fixed');
     header.querySelectorAll('[data-nav-page]').forEach(function (link) {
       if (link.dataset.navPage === page) link.setAttribute('aria-current', 'page');
@@ -20,19 +20,19 @@
   }
 
   function placeHeaderOutsideSmoothWrapper(header) {
-    var wrapper = document.getElementById('smooth-wrapper');
+    const wrapper = document.getElementById('smooth-wrapper');
     if (wrapper && wrapper.contains(header)) wrapper.before(header);
   }
 
   function bindHeader(header) {
-    var button = header.querySelector('#menu-btn');
-    var menu = header.querySelector('#mobile-menu');
-    var openIcon = header.querySelector('#menu-icon-open');
-    var closeIcon = header.querySelector('#menu-icon-close');
+    const button = header.querySelector('#menu-btn');
+    const menu = header.querySelector('#mobile-menu');
+    const openIcon = header.querySelector('#menu-icon-open');
+    const closeIcon = header.querySelector('#menu-icon-close');
     if (!button || !menu || !openIcon || !closeIcon) return;
 
     function normalizeReportLabel() {
-      var reportLabel = header.querySelector('.common-header__utility-link:first-child > span:last-child');
+      const reportLabel = header.querySelector('.common-header__utility-link:first-child > span:last-child');
       if (!reportLabel || reportLabel.dataset.reportLabelNormalized === 'true') return;
       reportLabel.textContent = '';
       reportLabel.appendChild(document.createTextNode('지속가능경영'));
@@ -44,16 +44,16 @@
     normalizeReportLabel();
 
     function buildMobileMenu() {
-      var list = menu.querySelector('ul');
-      var desktopSubmenus = header.querySelectorAll('.site-header-dropdown__list');
+      const list = menu.querySelector('ul');
+      const desktopSubmenus = header.querySelectorAll('.site-header-dropdown__list');
       if (!list || list.dataset.accordionReady === 'true') return;
 
-      var hero = document.createElement('div');
-      var heroTop = document.createElement('div');
-      var closeButton = document.createElement('button');
-      var shortcuts = document.createElement('nav');
-      var language = header.querySelector('.common-header__language');
-      var utilityLinks = header.querySelectorAll('.common-header__utility-link');
+      const hero = document.createElement('div');
+      const heroTop = document.createElement('div');
+      const closeButton = document.createElement('button');
+      const shortcuts = document.createElement('nav');
+      const language = header.querySelector('.common-header__language');
+      const utilityLinks = header.querySelectorAll('.common-header__utility-link');
 
       hero.className = 'common-header__mobile-menu-hero';
       heroTop.className = 'common-header__mobile-menu-hero-top';
@@ -66,12 +66,12 @@
       shortcuts.className = 'common-header__mobile-shortcuts';
       shortcuts.setAttribute('aria-label', '바로가기');
       if (language) {
-        var languageCopy = language.cloneNode(true);
+        const languageCopy = language.cloneNode(true);
         languageCopy.classList.add('common-header__mobile-language');
         heroTop.appendChild(languageCopy);
       }
       Array.prototype.slice.call(utilityLinks).forEach(function (utilityLink) {
-        var shortcutLink = utilityLink.cloneNode(true);
+        const shortcutLink = utilityLink.cloneNode(true);
         shortcutLink.classList.add('common-header__mobile-shortcut');
         shortcuts.appendChild(shortcutLink);
       });
@@ -85,14 +85,14 @@
       });
 
       Array.prototype.slice.call(list.children).forEach(function (item, index) {
-        var link = item.querySelector('a[data-nav-page]');
-        var sourceLinks = desktopSubmenus[index] ? desktopSubmenus[index].querySelectorAll('a') : [];
+        const link = item.querySelector('a[data-nav-page]');
+        const sourceLinks = desktopSubmenus[index] ? desktopSubmenus[index].querySelectorAll('a') : [];
         if (!link || !sourceLinks.length) return;
 
-        var heading = document.createElement('div');
-        var toggle = document.createElement('button');
-        var submenu = document.createElement('ul');
-        var submenuId = 'mobile-submenu-' + link.dataset.navPage + '-' + index;
+        const heading = document.createElement('div');
+        const toggle = document.createElement('button');
+        const submenu = document.createElement('ul');
+        const submenuId = 'mobile-submenu-' + link.dataset.navPage + '-' + index;
 
         heading.className = 'common-header__mobile-menu-heading';
         toggle.type = 'button';
@@ -105,8 +105,8 @@
         submenu.id = submenuId;
 
         Array.prototype.slice.call(sourceLinks).forEach(function (sourceLink) {
-          var childItem = document.createElement('li');
-          var childLink = document.createElement('a');
+          const childItem = document.createElement('li');
+          const childLink = document.createElement('a');
           childLink.href = sourceLink.href;
           childLink.textContent = sourceLink.textContent.trim();
           childItem.appendChild(childLink);
@@ -121,9 +121,9 @@
 
         function toggleSubmenu(event) {
           if (event) event.preventDefault();
-          var willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+          const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
           Array.prototype.slice.call(list.querySelectorAll('.common-header__mobile-menu-toggle')).forEach(function (otherToggle) {
-            var otherSubmenu = document.getElementById(otherToggle.getAttribute('aria-controls'));
+            const otherSubmenu = document.getElementById(otherToggle.getAttribute('aria-controls'));
             otherToggle.setAttribute('aria-expanded', 'false');
             otherToggle.setAttribute('aria-label', otherToggle.closest('li').querySelector('a').textContent.trim() + ' 하위 메뉴 열기');
             if (otherSubmenu) otherSubmenu.classList.add('is-hidden');
@@ -160,19 +160,19 @@
     }
 
     function bindLanguageSelectors() {
-      var languageButtons = Array.prototype.slice.call(header.querySelectorAll('.common-header__language'));
+      const languageButtons = Array.prototype.slice.call(header.querySelectorAll('.common-header__language'));
       languageButtons.forEach(function (languageButton, index) {
         if (languageButton.parentElement.classList.contains('common-header__language-wrap')) return;
-        var wrapper = document.createElement('span');
-        var options = document.createElement('div');
-        var optionId = 'language-options-' + index;
+        const wrapper = document.createElement('span');
+        const options = document.createElement('div');
+        const optionId = 'language-options-' + index;
         wrapper.className = 'common-header__language-wrap';
         options.className = 'common-header__language-options';
         options.id = optionId;
         options.setAttribute('role', 'listbox');
         options.hidden = true;
         ['KOR', 'ENG', 'CHN', 'JPN'].forEach(function (language) {
-          var option = document.createElement('button');
+          const option = document.createElement('button');
           option.type = 'button';
           option.className = 'common-focus common-header__language-option';
           option.setAttribute('role', 'option');
@@ -200,7 +200,7 @@
               otherWrapper.querySelector('.common-header__language').setAttribute('aria-expanded', 'false');
             }
           });
-          var opening = options.hidden;
+          const opening = options.hidden;
           options.hidden = !opening;
           wrapper.classList.toggle('is-open', opening);
           languageButton.setAttribute('aria-expanded', String(opening));
@@ -229,7 +229,7 @@
       openIcon.classList.remove('is-hidden');
       closeIcon.classList.add('is-hidden');
       menu.querySelectorAll('.common-header__mobile-menu-toggle[aria-expanded="true"]').forEach(function (toggle) {
-        var submenu = document.getElementById(toggle.getAttribute('aria-controls'));
+        const submenu = document.getElementById(toggle.getAttribute('aria-controls'));
         toggle.click();
         if (submenu) submenu.classList.add('is-hidden');
       });
@@ -237,7 +237,7 @@
     }
 
     button.addEventListener('click', function () {
-      var opening = button.getAttribute('aria-expanded') !== 'true';
+      const opening = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', String(opening));
       button.setAttribute('aria-label', opening ? '메뉴 닫기' : '메뉴 열기');
       header.classList.toggle('common-header--menu-open', opening);
@@ -264,17 +264,17 @@
   }
 
   function bindHeaderDropdown(header) {
-    var headerMain = header.querySelector('.common-header__main');
-    var dropdown = header.querySelector('[data-header-dropdown]');
-    var dropdownInner = dropdown ? dropdown.querySelector('.site-header-dropdown__inner') : null;
-    var navLinks = Array.prototype.slice.call(header.querySelectorAll('.common-header__nav-link'));
+    const headerMain = header.querySelector('.common-header__main');
+    const dropdown = header.querySelector('[data-header-dropdown]');
+    const dropdownInner = dropdown ? dropdown.querySelector('.site-header-dropdown__inner') : null;
+    const navLinks = Array.prototype.slice.call(header.querySelectorAll('.common-header__nav-link'));
     if (!headerMain || !dropdown || !dropdownInner || !navLinks.length) return;
 
     function syncColumnAlignment() {
-      var innerRect = dropdownInner.getBoundingClientRect();
+      const innerRect = dropdownInner.getBoundingClientRect();
       navLinks.forEach(function (link, index) {
-        var linkRect = link.getBoundingClientRect();
-        var center = linkRect.left + (linkRect.width / 2) - innerRect.left;
+        const linkRect = link.getBoundingClientRect();
+        const center = linkRect.left + (linkRect.width / 2) - innerRect.left;
         dropdownInner.style.setProperty('--dropdown-col-' + index, center + 'px');
       });
     }
@@ -314,7 +314,7 @@
       });
     });
     dropdown.addEventListener('click', function (event) {
-      var link = event.target.closest('a');
+      const link = event.target.closest('a');
       if (!link) return;
 
       closeDropdown();
@@ -330,15 +330,15 @@
   }
 
   function bindHeaderSearch(header) {
-    var button = header.querySelector('.common-header__search');
-    var panel = header.querySelector('#common-search-panel');
-    var input = header.querySelector('#common-search-input');
-    var status = header.querySelector('#common-search-status');
-    var results = header.querySelector('#common-search-results');
+    const button = header.querySelector('.common-header__search');
+    const panel = header.querySelector('#common-search-panel');
+    const input = header.querySelector('#common-search-input');
+    const status = header.querySelector('#common-search-status');
+    const results = header.querySelector('#common-search-results');
     if (!button || !panel || !input || !status || !results) return;
 
-    var prefix = window.location.pathname.indexOf('/pulmuone-newsroom/') !== -1 ? '../' : '';
-    var pages = [
+    const prefix = window.location.pathname.indexOf('/pulmuone-newsroom/') !== -1 ? '../' : '';
+    const pages = [
       ['index.html', '홈'], ['company.html', '회사소개'], ['company1.html', '회사소개'],
       ['sub.html', '사회책임경영'], ['food.html', '바른먹거리'], ['food2.html', '바른먹거리'],
       ['food3.html', '바른먹거리'], ['food4.html', '바른먹거리'], ['food5.html', '바른먹거리'],
@@ -346,9 +346,9 @@
       ['pulmuone-newsroom/newsroom.html', '뉴스룸'], ['pulmuone-newsroom/esg.html', '뉴스룸'],
       ['pulmuone-newsroom/multimedia.html', '뉴스룸'], ['pulmuone-newsroom/resources.html', '뉴스룸']
     ];
-    var searchDocuments = [];
-    var ready = false;
-    var loading = null;
+    let searchDocuments = [];
+    let ready = false;
+    let loading = null;
 
     function normalize(value) {
       return value.replace(/\s+/g, ' ').trim();
@@ -362,9 +362,9 @@
           if (!response.ok) throw new Error(page[0]);
           return response.text();
         }).then(function (html) {
-          var parsed = new DOMParser().parseFromString(html, 'text/html');
-          var main = parsed.querySelector('main');
-          var titleNode = (main && main.querySelector('h1')) || parsed.querySelector('h1') || parsed.querySelector('title');
+          const parsed = new DOMParser().parseFromString(html, 'text/html');
+          const main = parsed.querySelector('main');
+          const titleNode = (main && main.querySelector('h1')) || parsed.querySelector('h1') || parsed.querySelector('title');
           return {
             path: prefix + page[0],
             section: page[1],
@@ -383,14 +383,14 @@
     }
 
     function excerpt(text, query) {
-      var index = text.toLocaleLowerCase('ko').indexOf(query.toLocaleLowerCase('ko'));
-      var start = Math.max(0, index - 55);
-      var end = Math.min(text.length, index + query.length + 95);
+      const index = text.toLocaleLowerCase('ko').indexOf(query.toLocaleLowerCase('ko'));
+      const start = Math.max(0, index - 55);
+      const end = Math.min(text.length, index + query.length + 95);
       return (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
     }
 
     function render(value) {
-      var query = normalize(value);
+      const query = normalize(value);
       results.replaceChildren();
       if (!query) {
         status.textContent = ready ? '검색어를 입력하면 결과가 실시간으로 표시됩니다.' : '검색할 페이지를 불러오는 중입니다.';
@@ -398,18 +398,18 @@
       }
       if (!ready) return;
 
-      var lowered = query.toLocaleLowerCase('ko');
-      var matches = searchDocuments.filter(function (page) {
+      const lowered = query.toLocaleLowerCase('ko');
+      const matches = searchDocuments.filter(function (page) {
         return (page.title + ' ' + page.text).toLocaleLowerCase('ko').includes(lowered);
       });
       status.textContent = '“' + query + '” 검색 결과 ' + matches.length + '건';
 
       matches.forEach(function (page) {
-        var item = document.createElement('li');
-        var link = document.createElement('a');
-        var category = document.createElement('span');
-        var title = document.createElement('strong');
-        var summary = document.createElement('span');
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        const category = document.createElement('span');
+        const title = document.createElement('strong');
+        const summary = document.createElement('span');
         link.className = 'common-focus common-header__search-result-link';
         link.href = page.path;
         category.className = 'common-header__search-result-category';
@@ -455,7 +455,7 @@
   }
 
   function bindScrollState(header) {
-    var ticking = false;
+    let ticking = false;
 
     function sync() {
       header.classList.toggle('common-header--compact', window.scrollY > 8);
@@ -474,10 +474,10 @@
   }
 
   function bindFooterFamily() {
-    var family = document.querySelector('.common-footer__family-site');
+    const family = document.querySelector('.common-footer__family-site');
     if (!family) return;
-    var button = family.querySelector('button[aria-controls]');
-    var panel = document.getElementById(button ? button.getAttribute('aria-controls') : '');
+    const button = family.querySelector('button[aria-controls]');
+    const panel = document.getElementById(button ? button.getAttribute('aria-controls') : '');
     if (!button || !panel) return;
 
     function closePanel(restoreFocus) {
@@ -487,7 +487,7 @@
     }
 
     button.addEventListener('click', function () {
-      var opening = button.getAttribute('aria-expanded') !== 'true';
+      const opening = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', String(opening));
       panel.hidden = !opening;
     });
@@ -500,7 +500,7 @@
   }
 
   function initComponents() {
-    var header = document.getElementById('site-header');
+    const header = document.getElementById('site-header');
     if (header) {
       placeHeaderOutsideSmoothWrapper(header);
       setActiveNavigation(header);
