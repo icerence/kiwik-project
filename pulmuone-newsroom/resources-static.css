@@ -424,6 +424,7 @@ main.content.shell > .page-head {
 .report-panel .report-section-title { margin-bottom:var(--spacing-report-feature)!important; font-size:var(--text-report-section-title)!important; }
 .report-panel .report-feature { display:grid; grid-template-columns:var(--size-report-feature-cover) minmax(0,1fr); align-items:center; gap:var(--spacing-report-feature); }
 .report-feature-cover { display:flex; width:var(--size-report-feature-cover); height:var(--size-report-feature-cover-height); flex-direction:column; align-items:center; justify-content:space-between; padding:var(--spacing-report-cover-top) var(--spacing-report-card) var(--spacing-report-cover-bottom); background:var(--color-white); }
+.report-feature-cover img { width:100%; height:100%; object-fit:cover; }
 .report-cover-kicker { align-self:flex-start; color:var(--color-report-lime); font-size:var(--text-report-small); font-weight:var(--font-weight-bold); }
 .report-feature-cover strong { color:var(--color-report-deep-green); font-size:var(--text-report-cover-brand); }
 .report-cover-graphic { display:grid; transform:rotate(12deg); }

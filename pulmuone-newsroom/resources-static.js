@@ -6,7 +6,7 @@
     notices: []
   };
 
-  let currentTab = 'press';
+  let currentTab = 'report';
   let searchQuery = '';
 
   let currentPages = {
