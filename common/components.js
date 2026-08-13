@@ -3,11 +3,12 @@
 
   function currentPage() {
     const name = window.location.pathname.split('/').pop() || 'index.html';
+    if (/^company\d*\.html$/i.test(name)) return 'company';
     if (/^earthmeal[12]\.html$/i.test(name)) return 'earthmeal';
     if (/^food\d*\.html$/i.test(name)) return 'food';
     if (/^sub\d*(-responsive)?\.html$/i.test(name)) return 'sub';
     if (/^(newsroom|esg|multimedia|resources)\.html$/i.test(name)) return 'newsroom';
-    return 'index';
+    return 'home';
   }
 
   function setActiveNavigation(header) {
