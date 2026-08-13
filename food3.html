@@ -11,8 +11,6 @@
        왕복 구조가 없어 그 요구는 적용하지 않았다. -->
   <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12" />
 
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/food-tokens.css" />
   <!-- common:head:start -->
@@ -20,57 +18,7 @@
   <link rel="stylesheet" href="common/components.css">
   <script src="common/components.js" defer></script>
   <!-- common:head:end -->
-
-  <style type="text/tailwindcss">
-    @theme {
-      /* ---------- 글꼴 ---------- */
-      --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
-      --font-weight-normal: 400;
-      --font-weight-bold: 700;
-      --font-weight-extrabold: 800;
-      --font-weight-black: 900;
-
-      /* ---------- 색: 브랜드 (Figma node 1788:3442 실측값. food.html·food2.html과 겹치는 값은 같은 이름 재사용) ---------- */
-      --color-brand: var(--food-color-brand);
-      --color-brand-dark: var(--food-color-brand-dark);
-
-      /* ---------- 색: 중립 ---------- */
-      --color-gray-600: var(--food-color-gray-600);
-      --color-text-primary: var(--food-color-text-primary);
-      --color-text-body: var(--food-color-text-body);
-      --color-border: var(--food-color-border);
-      --color-gray-50: var(--food-color-gray-50);
-      --color-gray-100: var(--food-color-gray-100);
-      --color-gray-200: var(--food-color-gray-200);
-      --color-gray-400: var(--food-color-gray-400);
-      --color-surface-soft: var(--food-color-surface-soft); /* principles-section 배경 + icon-circle 배경 */
-
-      /* ---------- 색: 사진 위 스크림 ---------- */
-      --color-scrim-hero: rgba(0, 0, 0, 0.35);      /* hero-section 제목 가독성 스크림 */
-      --color-scrim-forest: rgba(11, 21, 4, 0.4);   /* philosophy-image-panel 숲 사진 위 스크림 */
-
-      /* ---------- 레이아웃 ---------- */
-      --container-food: 1200px;
-      --radius-panel: 1.25rem; /* 20px — philosophy-image-panel, traceability-hero-banner 라운드 */
-
-      /* ---------- 그림자 ---------- */
-      --drop-shadow-badge: 0 4px 6px rgba(0, 0, 0, 0.08); /* floating-badge-container */
-
-      /* ---------- 글자 크기 (Tailwind 기본 스케일에 없는 시안 값만. food.html·food2.html과 겹치는 값은 같은 이름 재사용) ---------- */
-      --text-food-headline: 2.75rem; /* 44px — main-title-row */
-      --text-food-hero-title: 2.5rem; /* 40px — food2~food5 Hero 제목 통일 */
-      --text-food-display: 2rem;    /* 32px */
-      --text-food-tiny: 0.8125rem;  /* 13px — 서브메뉴 */
-      --text-food-micro: 0.625rem;  /* 10px — 서브메뉴 활성 항목의 ▼ 표시 (food5.html과 동일 이름·값 재사용) */
-      --text-food-body: 0.9375rem;  /* 15px */
-
-      /* ---------- 행간 (Tailwind 기본 스케일에 없는 시안 값만) ---------- */
-      --leading-food-title: 1.3;  /* main-title-row */
-      --leading-food-quote: 1.6;  /* poetic-text-block */
-      --leading-food: 1.7;        /* traceability-details-group 본문 (food.html과 동일 이름 재사용) */
-      --leading-food-loose: 1.8;  /* philosophy-prose (food.html과 동일 이름 재사용) */
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/food3-tailwind.css">
 
   <style>
     ::selection { background: var(--color-brand); color: var(--color-brand-dark); }

@@ -1,0 +1,51 @@
+/*
+ * food3.html 전용 Tailwind v4 빌드 입력 파일.
+ * 다시 생성할 때는 tailwindcss@4와 @tailwindcss/cli@4가 같은
+ * node_modules에 설치된 빌드 환경에서 아래 입력·출력 경로를 사용한다.
+ * 프로젝트에는 빌드 의존성을 보관하지 않는다.
+ */
+@import "tailwindcss";
+
+@source "../../food3.html";
+@source "../../common";
+
+@theme {
+  --font-sans: "NanumSquare Neo", "NanumSquare Neo Variable", system-ui, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --color-brand: var(--food-color-brand);
+  --color-brand-dark: var(--food-color-brand-dark);
+
+  --color-gray-600: var(--food-color-gray-600);
+  --color-text-primary: var(--food-color-text-primary);
+  --color-text-body: var(--food-color-text-body);
+  --color-border: var(--food-color-border);
+  --color-gray-50: var(--food-color-gray-50);
+  --color-gray-100: var(--food-color-gray-100);
+  --color-gray-200: var(--food-color-gray-200);
+  --color-gray-400: var(--food-color-gray-400);
+  --color-surface-soft: var(--food-color-surface-soft);
+
+  --color-scrim-hero: rgba(0, 0, 0, 0.35);
+  --color-scrim-forest: rgba(11, 21, 4, 0.4);
+
+  --container-food: 1200px;
+  --radius-panel: 1.25rem;
+
+  --drop-shadow-badge: 0 4px 6px rgba(0, 0, 0, 0.08);
+
+  --text-food-headline: 2.75rem;
+  --text-food-hero-title: 2.5rem;
+  --text-food-display: 2rem;
+  --text-food-tiny: 0.8125rem;
+  --text-food-micro: 0.625rem;
+  --text-food-body: 0.9375rem;
+
+  --leading-food-title: 1.3;
+  --leading-food-quote: 1.6;
+  --leading-food: 1.7;
+  --leading-food-loose: 1.8;
+}
