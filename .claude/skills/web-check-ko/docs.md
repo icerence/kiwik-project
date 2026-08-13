@@ -158,7 +158,7 @@ C:\Users\PC\Documents\웹검사결과\example.json 이 결과로 한국어 보�
 
 | 옵션 | 하는 일 | 기본값 |
 | --- | --- | --- |
-| `--strategy` | 측정 기준 정하기 | mobile |
+| `--strategy` | Lighthouse 측정 기준 정하기 | both (모바일+데스크톱) |
 | `--psi-key` | 구글 키 넘기기 | 없음 |
 | `--skip` | 검사 건너뛰기 | 없음 |
 | `--html-file` | 내 HTML 검사 | 없음 |
@@ -169,9 +169,9 @@ C:\Users\PC\Documents\웹검사결과\example.json 이 결과로 한국어 보�
 
 ### 3.1 - 데스크톱 기준으로 다시 재기
 
-`--strategy` 옵션은 Lighthouse가 어떤 기기를 흉내 내어 점수를 잴지 정하는 옵션입니다. 값은 `mobile`과 `desktop` 두 가지입니다.
+`--strategy` 옵션은 Lighthouse가 어떤 기기를 흉내 내어 점수를 잴지 정하는 옵션입니다. 값은 `both`, `mobile`, `desktop` 세 가지입니다.
 
-이 옵션을 붙이지 않으면 `mobile` 기준으로 잽니다. 휴대전화는 컴퓨터보다 처리 속도가 느려서 같은 페이지라도 점수가 더 낮게 나옵니다.
+이 옵션을 붙이지 않으면 `both`로 실행하여 모바일과 데스크톱을 모두 잽니다. HTML·CSS·JS 검사는 한 번만 수행합니다. 휴대전화는 컴퓨터보다 처리 속도가 느려서 같은 페이지라도 점수가 더 낮게 나올 수 있습니다.
 
 1. PowerShell 창에 아래 명령을 입력합니다.
 

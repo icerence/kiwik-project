@@ -1,5 +1,0 @@
-현재 E:\team\kiwik\index.html 에 설정된 파비콘은 다음과 같습니다:
-
-href: assets/pulmuone_favicon.svg?v=12
-type: image/svg+xml
-코드 라인 (8행): <link rel="icon" type="image/svg+xml" href="assets/pulmuone_favicon.svg?v=12">

@@ -20,23 +20,26 @@ description: 웹페이지 하나를 받아 HTML 문법, CSS 문법, JavaScript(E
 
 ### 1단계 — 입력 확인
 
-사용자에게서 받을 것은 **공개 URL 하나**다. 없으면 묻는다. 아래 두 가지는 사용자가 말하지 않으면 되묻지 않고 기본값으로 간다.
+사용자에게서 받을 것은 **공개 URL 하나**다. 없으면 묻는다. 아래는 사용자가 말하지 않으면 되묻지 않고 기본값으로 간다.
 
-- 측정 기준: `mobile`(기본) 또는 `desktop`
+- 측정 기준: **모바일과 데스크톱 둘 다 기본**이다. 사용자가 "모바일만" "데스크톱만"처럼 하나로 콕 집어 말한 경우에만 그쪽 하나만 돌린다.
 - PageSpeed Insights API 키: 없으면 키 없이 시도한다
 
 로컬 파일(`.html`·`.css`·`.js`)을 준 경우에는 문법·린트 검사만 수행하고, Lighthouse는 "인터넷에 올린 뒤 다시 실행"으로 안내한다.
 
 ### 2단계 — 검사 실행
 
+URL 검사는 기본적으로 한 번 실행한다. 스크립트가 HTML·CSS·JS 검사를 한 번 수행하고 모바일·데스크톱 Lighthouse를 함께 실행한다.
+
 ```bash
 node scripts/check.mjs https://example.com/
 ```
 
-자주 쓰는 옵션이다.
+기기 한쪽만 요청받으면 `--strategy mobile` 또는 `--strategy desktop`을 지정한다.
+
+그 밖에 자주 쓰는 옵션이다.
 
 ```bash
-node scripts/check.mjs https://example.com/ --strategy desktop
 node scripts/check.mjs https://example.com/ --psi-key 발급받은키
 node scripts/check.mjs https://example.com/ --skip lighthouse
 node scripts/check.mjs --html-file index.html --css-file style.css --js-file app.js
@@ -44,6 +47,8 @@ node scripts/check.mjs --js-file app.js utils.js
 node scripts/check.mjs https://example.com/ --js-file app.js
 node scripts/check.mjs https://example.com/ --out result.json
 ```
+
+URL과 `--html-file`, `--css-file`, `--js-file`을 함께 주면 지정한 로컬 파일을 해당 문법·린트 검사에 사용하고, URL은 나머지 검사와 Lighthouse에 계속 사용한다. 로컬 파일 옵션 때문에 URL 검사를 건너뛰지 않는다.
 
 **Node.js 18 이상**이 있어야 한다. 그 밖에 설치할 것은 없다. `npm install`도 필요 없다.
 
@@ -87,7 +92,7 @@ JSON을 그대로 사용자에게 보여 주지 않는다. `references/`의 대�
 1. **숫자를 그대로 적는다.** "오류가 좀 있습니다"가 아니라 "HTML 오류 4건, 경고 2건"으로 적는다.
 2. **오류마다 줄 번호와 고치는 방법을 함께 적는다.** 무엇이 잘못됐는지만 알려 주면 학습자는 다음 동작을 정하지 못한다.
 3. **경고와 오류를 섞지 않는다.** 오류는 규칙 위반이고, 경고는 권고 사항이다. 표를 나눈다.
-4. **점수는 측정 기준을 함께 밝힌다.** 모바일 기준과 데스크톱 기준은 점수가 다르게 나온다.
+4. **점수는 모바일·데스크톱을 나란히 적는다.** 둘의 점수가 다르게 나오므로, 사용자가 하나만 요청한 게 아니라면 "한눈에 보기"와 "성능" 표에 두 값을 함께 적는다.
 5. **자동 검사의 한계를 마지막에 한 줄로 적는다.** Lighthouse 접근성 점수는 자동으로 잡히는 항목만 반영하며, 키보드 이동이나 포커스 순서는 사람이 직접 확인해야 한다.
 6. **추측을 사실처럼 적지 않는다.** 검사기가 판단하지 않은 것은 "확인되지 않음"으로 적는다.
 
