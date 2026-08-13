@@ -629,7 +629,7 @@ const HELP = `사용법: node check.mjs [URL] [옵션]
   --html-file 경로       로컬 HTML 파일 경로(문법만 검사)
   --css-file 경로        로컬 CSS 파일 경로(문법만 검사)
   --js-file 경로 [경로…] 로컬 JavaScript 파일 경로(여러 개 허용)
-  --strategy mobile|desktop   측정 기준 (기본: mobile)
+  --strategy both|mobile|desktop   측정 기준 (기본: both)
   --psi-key 키           PageSpeed Insights API 키
   --skip html|css|js|lighthouse   건너뛸 검사 (여러 번 지정 가능)
   --out 경로             결과 JSON을 저장할 경로
@@ -640,7 +640,7 @@ const HELP = `사용법: node check.mjs [URL] [옵션]
 function parseArgs(argv) {
   const opts = {
     url: null, htmlFile: null, cssFile: null, jsFile: null,
-    strategy: "mobile", psiKey: null, skip: [], out: null,
+    strategy: "both", psiKey: null, skip: [], out: null,
   };
   const SINGLE = {
     "--html-file": "htmlFile", "--css-file": "cssFile",
@@ -691,8 +691,8 @@ function parseArgs(argv) {
     else fail(`인자가 너무 많습니다: ${tok}`);
   }
 
-  if (!["mobile", "desktop"].includes(opts.strategy)) {
-    fail("--strategy 값은 mobile 또는 desktop 이어야 합니다.");
+  if (!["both", "mobile", "desktop"].includes(opts.strategy)) {
+    fail("--strategy 값은 both, mobile 또는 desktop 이어야 합니다.");
   }
   return opts;
 }
@@ -707,8 +707,9 @@ function fail(msg) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  const localMode = Boolean(args.htmlFile || args.cssFile || args.jsFile);
-  if (!args.url && !localMode) {
+  const hasLocalFiles = Boolean(args.htmlFile || args.cssFile || args.jsFile);
+  const localMode = !args.url && hasLocalFiles;
+  if (!args.url && !hasLocalFiles) {
     fail("URL 또는 --html-file/--css-file/--js-file 중 하나는 있어야 합니다.");
   }
 
@@ -727,15 +728,27 @@ async function main() {
       reason: "로컬 파일은 Lighthouse 로 측정할 수 없습니다. 인터넷에 올린 뒤 URL 로 다시 실행합니다.",
     };
   } else {
-    report.html = args.skip.includes("html") ? { skipped: true } : await checkHtml(target);
-    report.css = args.skip.includes("css") ? { skipped: true } : await checkCss(target);
+    report.html = args.skip.includes("html")
+      ? { skipped: true }
+      : await checkHtml(args.htmlFile ? null : target, args.htmlFile);
+    report.css = args.skip.includes("css")
+      ? { skipped: true }
+      : await checkCss(args.cssFile ? null : target, args.cssFile);
     // URL 모드에서도 --js-file이 오면 그 파일들을 검사합니다.
     if (args.skip.includes("js")) report.js = { skipped: true };
     else if (args.jsFile) report.js = await checkJs({ localPaths: args.jsFile });
     else report.js = await checkJs({ targetUrl: target });
-    report.lighthouse = args.skip.includes("lighthouse")
-      ? { skipped: true }
-      : await checkLighthouse(target, args.strategy, args.psiKey);
+    if (args.skip.includes("lighthouse")) {
+      report.lighthouse = { skipped: true };
+    } else if (args.strategy === "both") {
+      const [mobile, desktop] = await Promise.all([
+        checkLighthouse(target, "mobile", args.psiKey),
+        checkLighthouse(target, "desktop", args.psiKey),
+      ]);
+      report.lighthouse = { mobile, desktop };
+    } else {
+      report.lighthouse = await checkLighthouse(target, args.strategy, args.psiKey);
+    }
   }
 
   const text = JSON.stringify(report, null, 2);

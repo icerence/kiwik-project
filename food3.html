@@ -188,7 +188,7 @@
 
         <nav id="primary-nav" class="common-header__nav" aria-label="주요 메뉴">
           <ul class="common-header__nav-list">
-            <li><a class="common-header__nav-link" data-nav-page="index" href="company.html">회사소개</a></li>
+            <li><a class="common-header__nav-link" data-nav-page="company" href="company.html">회사소개</a></li>
             <li><a class="common-header__nav-link" data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
             <li><a class="common-header__nav-link" data-nav-page="food" href="food.html">바른먹거리</a></li>
             <li><a class="common-header__nav-link" data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
@@ -271,7 +271,7 @@
 
       <div id="mobile-menu" class="common-header__mobile-menu is-hidden">
         <ul>
-          <li><a data-nav-page="index" href="company.html">회사소개</a></li>
+          <li><a data-nav-page="company" href="company.html">회사소개</a></li>
           <li><a data-nav-page="sub" href="sub1-responsive.html">사회책임경영</a></li>
           <li><a data-nav-page="food" href="food.html">바른먹거리</a></li>
           <li><a data-nav-page="earthmeal" href="earthmeal1.html">지구식단</a></li>
@@ -291,7 +291,7 @@
 
         <!-- ===== Hero ===== -->
         <section id="sec-hero" aria-labelledby="hero-heading" class="relative flex h-80 w-full items-center justify-center overflow-hidden">
-          <img src="assets/images/food3-hero.png" alt="" class="absolute inset-0 size-full object-cover" />
+          <img src="assets/images/food3-hero.webp" alt="" width="1536" height="672" class="absolute inset-0 size-full object-cover" fetchpriority="high" />
           <div class="absolute inset-0 bg-scrim-hero" aria-hidden="true"></div>
           <div class="relative z-10 flex flex-col items-center gap-2 px-6 text-center text-white">
             <h1 id="hero-heading" class="text-food-hero-title font-extrabold leading-food-title">바른먹거리 원칙</h1>
@@ -308,7 +308,7 @@
             </h2>
 
             <div class="reveal relative h-80 w-full overflow-hidden rounded-panel md:h-120">
-              <img src="assets/images/food3-philosophy-forest.png" alt="숲 사이로 햇살이 비치는 나무 캐노피" class="absolute inset-0 size-full object-cover" />
+              <img src="assets/images/food3-philosophy-forest.webp" alt="숲 사이로 햇살이 비치는 나무 캐노피" width="1536" height="672" class="absolute inset-0 size-full object-cover" loading="lazy" />
               <div class="absolute inset-0 bg-scrim-forest"></div>
               <div class="relative flex size-full flex-col items-center justify-center gap-6 p-6 text-center sm:p-12">
                 <p class="text-2xl leading-food-quote font-bold text-white">
@@ -388,7 +388,7 @@
             </div>
 
             <div class="reveal h-64 w-full overflow-hidden rounded-panel sm:h-100">
-              <img src="assets/images/food3-traceability.png" alt="농장에서 갓 수확한 파프리카가 담긴 그릇을 든 손" class="size-full object-cover" />
+              <img src="assets/images/food3-traceability.webp" alt="농장에서 갓 수확한 파프리카가 담긴 그릇을 든 손" width="1536" height="672" class="size-full object-cover" loading="lazy" />
             </div>
 
             <div class="reveal flex flex-col items-center gap-6">
@@ -518,6 +518,10 @@
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuBtn = document.getElementById('menu-btn');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
 
     const smoother = ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
@@ -544,11 +548,11 @@
         if (href && href.length > 1 && document.querySelector(href)) {
           e.preventDefault();
           smoother.scrollTo(href, true, 'top top');
-          if (!mobileMenu.classList.contains('hidden')) {
+          if (mobileMenu && menuBtn && menuIconOpen && menuIconClose && !mobileMenu.classList.contains('is-hidden')) {
             menuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.add('hidden');
-            menuIconOpen.classList.remove('hidden');
-            menuIconClose.classList.add('hidden');
+            mobileMenu.classList.add('is-hidden');
+            menuIconOpen.classList.remove('is-hidden');
+            menuIconClose.classList.add('is-hidden');
           }
         }
       });
