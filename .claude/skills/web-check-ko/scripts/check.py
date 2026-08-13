@@ -544,15 +544,17 @@ def main():
     ap.add_argument("--css-file", default=None, help="로컬 CSS 파일 경로(문법만 검사)")
     ap.add_argument("--js-file", nargs="+", default=None,
                     help="로컬 JavaScript 파일 경로(여러 개 허용)")
-    ap.add_argument("--strategy", choices=["mobile", "desktop"], default="mobile")
+    ap.add_argument("--strategy", choices=["both", "mobile", "desktop"], default="both",
+                    help="Lighthouse 측정 기준(기본: both)")
     ap.add_argument("--psi-key", default=None, help="PageSpeed Insights API 키")
     ap.add_argument("--skip", action="append", default=[],
                     choices=["html", "css", "js", "lighthouse"], help="건너뛸 검사")
     ap.add_argument("--out", default=None, help="결과 JSON을 저장할 경로")
     args = ap.parse_args()
 
-    local_mode = bool(args.html_file or args.css_file or args.js_file)
-    if not args.url and not local_mode:
+    has_local_files = bool(args.html_file or args.css_file or args.js_file)
+    local_mode = not args.url and has_local_files
+    if not args.url and not has_local_files:
         ap.error("URL 또는 --html-file/--css-file/--js-file 중 하나는 있어야 합니다.")
 
     target = args.url or ""
@@ -577,8 +579,10 @@ def main():
             "reason": "로컬 파일은 Lighthouse 로 측정할 수 없습니다. 인터넷에 올린 뒤 URL 로 다시 실행합니다.",
         }
     else:
-        report["html"] = {"skipped": True} if "html" in args.skip else check_html(target)
-        report["css"] = {"skipped": True} if "css" in args.skip else check_css(target)
+        report["html"] = ({"skipped": True} if "html" in args.skip else
+                          check_html(None, args.html_file) if args.html_file else check_html(target))
+        report["css"] = ({"skipped": True} if "css" in args.skip else
+                         check_css(None, args.css_file) if args.css_file else check_css(target))
         # URL 모드에서도 --js-file이 오면 그 파일들을 검사합니다.
         if "js" in args.skip:
             report["js"] = {"skipped": True}
@@ -586,8 +590,15 @@ def main():
             report["js"] = check_js(local_paths=args.js_file)
         else:
             report["js"] = check_js(target_url=target)
-        report["lighthouse"] = ({"skipped": True} if "lighthouse" in args.skip
-                                else check_lighthouse(target, args.strategy, args.psi_key))
+        if "lighthouse" in args.skip:
+            report["lighthouse"] = {"skipped": True}
+        elif args.strategy == "both":
+            report["lighthouse"] = {
+                "mobile": check_lighthouse(target, "mobile", args.psi_key),
+                "desktop": check_lighthouse(target, "desktop", args.psi_key),
+            }
+        else:
+            report["lighthouse"] = check_lighthouse(target, args.strategy, args.psi_key)
 
     text = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
